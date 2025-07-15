@@ -1,11 +1,11 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 // 节流函数
-const throttle = (func: Function, limit: number) => {
+const throttle = <T extends (...args: Parameters<T>) => void>(func: T, limit: number): (...args: Parameters<T>) => void => {
   let lastCall = 0;
-  return (...args: any[]) => {
+  return (...args: Parameters<T>) => {
     const now = Date.now();
     if (now - lastCall >= limit) {
       func(...args);
@@ -28,7 +28,7 @@ interface Particle {
 
 const ParticleCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-    const throttledResizeRef = useRef<(...args: any[]) => void>(() => {});
+    const throttledResizeRef = useRef<(...args: unknown[]) => void>(() => {});
     const handleMouseMoveRef = useRef<(e: MouseEvent) => void>(() => {});
     const [isRendered, setIsRendered] = useState(false);
 
@@ -40,7 +40,7 @@ const ParticleCanvas = () => {
     if (!isRendered) return;
 
     // 声明事件处理函数变量并初始化为空函数
-    let throttledResize: (...args: any[]) => void = () => {};
+    const throttledResize: (...args: unknown[]) => void = () => {};
     let handleMouseMove: (e: MouseEvent) => void = () => {};
 
     const canvas = canvasRef.current;
