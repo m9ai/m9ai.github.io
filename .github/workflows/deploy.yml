@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Cache Next.js build
+        uses: actions/cache@v3
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-nextjs-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-cache-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint code
+        run: pnpm lint
+
+      - name: Clean previous build
+        run: rm -rf out
+
+      - name: Build
+        run: pnpm build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          commit_message: 'Deploy from GitHub Actions: ${{ github.sha }}'
+          force_orphan: true
