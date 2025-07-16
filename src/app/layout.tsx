@@ -1,8 +1,19 @@
+'use client';
+import React from 'react';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
+
+declare module 'leancloud-storage' {
+  namespace AV {
+    export const Analytics: {
+      track: (eventName: string, dimensions?: Record<string, any>) => Promise<void>;
+    };
+  }
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +25,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: '水杉智境工作室 | Metasequoia AI Studio',
   description: '低成本智能体服务平台，提供大模型私有化部署、应用开发和智能体开发等服务',
   icons: {
@@ -43,6 +54,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="zh-CN">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,6 +65,7 @@ export default function RootLayout({
         <ThemeProvider>
       <LanguageProvider>
         {children}
+        <SpeedInsights />
       </LanguageProvider>
     </ThemeProvider>
       </body>

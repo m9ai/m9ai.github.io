@@ -10,10 +10,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/mdx": "^15.4.1",
+    "@vercel/speed-insights": "^1.2.0",
+    "gray-matter": "^4.0.3",
+    "leancloud-storage": "^4.15.2",
+    "lunr": "^2.3.9",
     "next": "15.4.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-slick": "^0.30.3",
+    "rehype": "^13.0.2",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
