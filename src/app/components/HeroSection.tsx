@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import TechGridBackground from './TechGridBackground';
+import ParticleCanvas from './ParticleCanvas';
 
 export default function HeroSection() {
   return (
     <section className='py-20 md:py-32 relative overflow-hidden'>
-  <TechGridBackground gridSize={30} lineWidth={0.8} pointSize={2.5} animationSpeed={0.8} density={0.03} />
+  <ParticleCanvas />
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='max-w-4xl mx-auto text-center relative z-10'>
           <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight'>

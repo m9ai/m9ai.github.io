@@ -3,9 +3,10 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import AppCard from '../components/AppCard';
-import { apps, App } from '@/data/apps';
+import { apps } from '@/data/apps';
 import { MagnifyingGlassIcon as SearchIcon, AdjustmentsHorizontalIcon as SlidersHorizontalIcon } from '@heroicons/react/24/outline';
-
+import Link from 'next/link';
+import Image from 'next/image';
 const APP_TYPES = ['全部', '小程序', 'H5', 'App'] as const;
 const CATEGORIES = ['全部', '工具', '创意', '开发', '商务'] as const;
 

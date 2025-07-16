@@ -5,6 +5,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,7 +57,9 @@ export default function RootLayout({
       >
         <ThemeProvider>
       <LanguageProvider>
+        <Navbar />
         {children}
+        <Footer />
         <SpeedInsights />
       </LanguageProvider>
     </ThemeProvider>

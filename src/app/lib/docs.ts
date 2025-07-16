@@ -1,21 +1,45 @@
-import matter from 'gray-matter';
 import lunr, { Index } from 'lunr';
+import fs from 'fs';
+import path from 'path';
 
-// 类型声明补充
+interface Frontmatter {
+  title: string;
+ date: string;
+ description: string;
+ tags?: string[];
+ [key: string]: unknown;
+}
+
+interface DocData {
+ frontmatter: Frontmatter;
+ content: string;
+ path: string;
+}
+
+interface MarkdownTools {
+  unified: unknown;
+  remarkParse: unknown;
+  remarkRehype: unknown;
+  rehypeStringify: unknown;
+}
+
 declare module 'unified' {
-  const unified: any;
+ function unified(): {
+    use: (...plugins: unknown[]) => unknown;
+    process: (content: string) => Promise<unknown>;
+  };
   export default unified;
 }
 declare module 'remark-parse' {
-  const remarkParse: any;
+  const remarkParse: unknown;
   export default remarkParse;
 }
 declare module 'remark-rehype' {
-  const remarkRehype: any;
+  const remarkRehype: unknown;
   export default remarkRehype;
 }
 declare module 'rehype-stringify' {
-  const rehypeStringify: any;
+  const rehypeStringify: unknown;
   export default rehypeStringify;
 }
 
@@ -134,3 +158,9 @@ export async function searchDocs(query: string): Promise<DocData[]> {
     return docs.find((doc) => doc.path === result.ref);
   }).filter((doc): doc is DocData => Boolean(doc));
 }
+
+function getSortedPosts(): DocData[] {
+  const frontmatter: Frontmatter = parsedData.data;
+  function getAllTags(): { tag: string; count: number }[] {
+  function getPostsByTag(tag: string): DocData[] {
+  function getPostBySlug(slug: string): DocData | undefined {
