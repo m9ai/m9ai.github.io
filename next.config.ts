@@ -1,12 +1,18 @@
 import type { NextConfig } from "next";
+import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
   output: 'export',
   // 如果部署到 https://<username>.github.io/<repo-name>/，请取消注释并替换为你的仓库名称
   // basePath: process.env.NODE_ENV !== 'development' ? '/m9ai.github.io' : '',
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
     unoptimized: true
   }
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+})
+
+export default withMDX(nextConfig);

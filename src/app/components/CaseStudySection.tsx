@@ -94,6 +94,8 @@ export default function CaseStudySection() {
                 <div className="bg-slate-50 dark:bg-slate-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                   <div className="h-48 bg-slate-200 dark:bg-slate-700 flex items-center justify-center p-4">
                     <Image
+                      width={128}
+                      height={128}
                       draggable={false}
                       src={study.imageUrl}
                       alt={study.title}

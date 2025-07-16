@@ -54,6 +54,8 @@ export default function PartnersSection() {
             <div key={partner.id} className="bg-white dark:bg-slate-900 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
               <div className="w-24 h-24 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mb-4">
                 <Image
+                  width={64}
+                  height={64}
                   draggable={false}
                   src={partner.logoUrl}
                   alt={partner.name}
