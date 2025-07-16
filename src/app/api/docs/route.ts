@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+export const dynamic = 'force-static';
 
 // 模拟线上文档数据
 const mockDocs = [

@@ -1,6 +1,4 @@
 import lunr, { Index } from 'lunr';
-import fs from 'fs';
-import path from 'path';
 
 interface Frontmatter {
   title: string;
@@ -10,73 +8,47 @@ interface Frontmatter {
  [key: string]: unknown;
 }
 
-interface DocData {
+export interface DocData {
  frontmatter: Frontmatter;
  content: string;
  path: string;
+ slug?: string;
 }
 
-interface MarkdownTools {
-  unified: unknown;
-  remarkParse: unknown;
-  remarkRehype: unknown;
-  rehypeStringify: unknown;
+// 彻底解决所有TypeScript错误 - 最终修复版
+interface UnifiedProcessor {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  use: (...plugins: any[]) => UnifiedProcessor;
+  process: (content: string) => Promise<{ toString: () => string }>;
 }
 
-declare module 'unified' {
- function unified(): {
-    use: (...plugins: unknown[]) => unknown;
-    process: (content: string) => Promise<unknown>;
-  };
-  export default unified;
-}
-declare module 'remark-parse' {
-  const remarkParse: unknown;
-  export default remarkParse;
-}
-declare module 'remark-rehype' {
-  const remarkRehype: unknown;
-  export default remarkRehype;
-}
-declare module 'rehype-stringify' {
-  const rehypeStringify: unknown;
-  export default rehypeStringify;
-}
-
-// 文档数据接口定义
-export interface DocData {
-  id: string;
-  path: string;
-  title: string;
-  content: string;
-  [key: string]: any;
-}
-
-// 动态导入markdown处理工具并添加类型定义
-interface MarkdownTools {
-  unified: any;
+// 使用安全动态导入和精确类型断言
+const importMarkdownTools = async (): Promise<{
+  unified: () => UnifiedProcessor;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   remarkParse: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   remarkRehype: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rehypeStringify: any;
-}
-
-const importMarkdownTools = async (): Promise<MarkdownTools> => {
+}> => {
   try {
-    // 使用动态导入并添加类型断言
-    const unifiedModule = await import('unified') as { default: any };
-    const remarkParseModule = await import('remark-parse') as { default: any };
-    const remarkRehypeModule = await import('remark-rehype') as { default: any };
-    const rehypeStringifyModule = await import('rehype-stringify') as { default: any };
+    const { default: unified } = (await import('unified')) as unknown as { default: () => UnifiedProcessor };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { default: remarkParse } = await import('remark-parse') as { default: any };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { default: remarkRehype } = await import('remark-rehype') as { default: any };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { default: rehypeStringify } = await import('rehype-stringify') as { default: any };
 
-    return {
-      unified: unifiedModule.default,
-      remarkParse: remarkParseModule.default,
-      remarkRehype: remarkRehypeModule.default,
-      rehypeStringify: rehypeStringifyModule.default
-    };
+    if (!unified || !remarkParse || !remarkRehype || !rehypeStringify) {
+      throw new Error('Critical markdown processing modules failed to load');
+    }
+
+    return { unified, remarkParse, remarkRehype, rehypeStringify };
   } catch (error) {
-    console.error('Failed to import markdown tools:', error);
-    throw new Error('Markdown processing tools could not be loaded');
+    console.error('Failed to import markdown processing tools:', error);
+    throw new Error('Markdown utilities initialization failed');
   }
 }
 
@@ -134,6 +106,7 @@ export async function getDocById(id: string): Promise<DocData | null> {
 }
 
 // 创建Lunr搜索索引
+
 export async function createSearchIndex(): Promise<Index> {
   const docs = await getDocs();
   return lunr(function (this: Index) {
@@ -158,9 +131,3 @@ export async function searchDocs(query: string): Promise<DocData[]> {
     return docs.find((doc) => doc.path === result.ref);
   }).filter((doc): doc is DocData => Boolean(doc));
 }
-
-function getSortedPosts(): DocData[] {
-  const frontmatter: Frontmatter = parsedData.data;
-  function getAllTags(): { tag: string; count: number }[] {
-  function getPostsByTag(tag: string): DocData[] {
-  function getPostBySlug(slug: string): DocData | undefined {

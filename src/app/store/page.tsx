@@ -1,12 +1,9 @@
 'use client';
 import { useState } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import AppCard from '../components/AppCard';
 import { apps } from '@/data/apps';
 import { MagnifyingGlassIcon as SearchIcon, AdjustmentsHorizontalIcon as SlidersHorizontalIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import Image from 'next/image';
+
 const APP_TYPES = ['全部', '小程序', 'H5', 'App'] as const;
 const CATEGORIES = ['全部', '工具', '创意', '开发', '商务'] as const;
 
@@ -30,7 +27,6 @@ export default function StorePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100">
-      <Navbar />
       <main className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
@@ -106,7 +102,6 @@ export default function StorePage() {
           </div>
         )}
       </main>
-      <Footer />
     </div>
   );
 }
