@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import { isDarkMode, watchDarkMode } from '../lib/theme-utils';
 
 // 节流函数
 const throttle = <T extends (...args: Parameters<T>) => void>(func: T, limit: number): (...args: Parameters<T>) => void => {
@@ -54,6 +55,11 @@ const ParticleCanvas = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    watchDarkMode((isDarkMode) => {
+      ctx.fillStyle = isDarkMode ? 'transparent' : '#f0f0f0';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    })
+
     // 设置Canvas尺寸
     const resizeCanvas = () => {
       const container = canvas.parentElement;
@@ -100,6 +106,7 @@ const ParticleCanvas = () => {
       speedY: number;
       color: string;
       opacity: number;
+      isDarkMode: boolean;
 
       constructor() {
         this.x = Math.random() * canvas!.width;
@@ -109,6 +116,7 @@ const ParticleCanvas = () => {
         this.speedY = (Math.random() - 0.5) * 0.5;
         this.color = particleColors[Math.floor(Math.random() * particleColors.length)];
         this.opacity = Math.random() * 0.5 + 0.2;
+        this.isDarkMode = isDarkMode();
       }
 
       update() {
@@ -161,8 +169,8 @@ const ParticleCanvas = () => {
       if (!ctx || !canvas) return;
 
       // 半透明背景，创建轨迹效果
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+      // ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // 更新和绘制粒子
       for (let i = 0; i < particlesArray.length; i++) {
@@ -215,7 +223,7 @@ const ParticleCanvas = () => {
       }
     };
 
-    animate();
+    if (!isDarkMode) animate();
 
     // 清理函数
     return () => {
@@ -228,7 +236,7 @@ const ParticleCanvas = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full z-0"
+      className="absolute inset-0 w-full h-full z-0 dark:bg-slate-800"
       aria-hidden="true"
     />
   );

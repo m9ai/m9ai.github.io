@@ -4,8 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from '../contexts/ThemeContext';
 import { useLanguage } from '../contexts/LanguageContext';
-import SettingsButton from './SettingsButton';
-
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
@@ -32,11 +30,10 @@ export default function Navbar() {
             </Link>
             <Link
               href='/store'
-              className='ml-4 px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors text-sm font-medium flex items-center gap-2'
+              className='ml-4 px-4 py-2 bg-emerald-600 dark:bg-slate-900/80 text-white rounded-md hover:bg-emerald-700 transition-colors text-sm font-medium flex items-center gap-2'
             >
               应用商店
             </Link>
-            <SettingsButton theme={theme} setTheme={setTheme} language={language} setLanguage={setLanguage} />
           </nav>
         </div>
       </div>

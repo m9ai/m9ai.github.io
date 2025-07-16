@@ -15,7 +15,7 @@ export default function SettingsButton({ theme, setTheme, language, setLanguage 
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
-    <div className='ml-6 relative group'>
+    <div className='ml-6 relative group dark:bg-slate-900/80'>
       {/* 设置图标按钮 */}
       <button
         className='p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors relative z-10'
