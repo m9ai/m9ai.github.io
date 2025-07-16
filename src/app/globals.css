@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

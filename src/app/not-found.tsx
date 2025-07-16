@@ -24,7 +24,7 @@ export default function NotFoundPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background p-6 text-foreground">
       <div className="absolute inset-0 overflow-hidden -z-10">
-        <Image src="/globe.svg" draggable={false} alt="Globe illustration" className="w-full h-full opacity-5 animate-pulse" />
+        <Image width={0} height={0} sizes='100vw' src="/globe.svg" draggable={false} alt="Globe illustration" className="w-full h-full" />
       </div>
 
       <div className="text-center max-w-md mx-auto">
