@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: '水杉智境工作室 | Metasequoia AI Studio',
-  description: '低学习成本智能体服务平台，提供大模型私有化部署、应用开发和智能体开发等服务',
+  description: '低成本智能体服务平台，提供大模型私有化部署、应用开发和智能体开发等服务',
   icons: {
     icon: '/favicon.jpg',
   },

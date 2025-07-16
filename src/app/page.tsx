@@ -2,6 +2,9 @@
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
+import CaseStudySection from './components/CaseStudySection';
+import PartnersSection from './components/PartnersSection';
+import CollaborationSection from './components/CollaborationSection';
 import Footer from './components/Footer';
 
 // 主页面组件
@@ -12,6 +15,9 @@ export default function Home() {
       <main>
         <HeroSection />
         <ServicesSection />
+        <CaseStudySection />
+        <PartnersSection />
+        <CollaborationSection />
       </main>
       <Footer />
     </div>

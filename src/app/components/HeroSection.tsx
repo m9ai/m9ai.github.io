@@ -14,11 +14,11 @@ export default function HeroSection() {
               水杉智境工作室
             </span>
             <span className='block mt-2 text-slate-700 dark:text-slate-300'>
-              低学习成本智能体服务平台
+              低成本智能体服务平台
             </span>
           </h1>
           <p className='text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-3xl mx-auto'>
-            为开发者及AIGC爱好者提供大模型私有化部署、应用开发和智能体开发服务，让AI技术落地更简单
+            为AI爱好者提供大模型私有化部署、大模型及智能体开发服务，让AI技术落地更简单
           </p>
           <div className='flex flex-col sm:flex-row justify-center gap-4'>
             <Link
