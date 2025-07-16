@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -92,7 +93,8 @@ export default function CaseStudySection() {
               <div key={study.id} className="px-4">
                 <div className="bg-slate-50 dark:bg-slate-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                   <div className="h-48 bg-slate-200 dark:bg-slate-700 flex items-center justify-center p-4">
-                    <img
+                    <Image
+                      draggable={false}
                       src={study.imageUrl}
                       alt={study.title}
                       className="h-32 object-contain"

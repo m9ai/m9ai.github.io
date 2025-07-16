@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -23,7 +24,7 @@ export default function NotFoundPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background p-6 text-foreground">
       <div className="absolute inset-0 overflow-hidden -z-10">
-        <img src="/globe.svg" alt="Globe illustration" className="w-full h-full opacity-5 animate-pulse" />
+        <Image src="/globe.svg" draggable={false} alt="Globe illustration" className="w-full h-full opacity-5 animate-pulse" />
       </div>
 
       <div className="text-center max-w-md mx-auto">

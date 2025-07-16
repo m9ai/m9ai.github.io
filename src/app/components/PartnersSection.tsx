@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import React from 'react';
 
 // 合作伙伴数据类型定义
@@ -52,7 +53,8 @@ export default function PartnersSection() {
           {partners.map((partner) => (
             <div key={partner.id} className="bg-white dark:bg-slate-900 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
               <div className="w-24 h-24 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mb-4">
-                <img
+                <Image
+                  draggable={false}
                   src={partner.logoUrl}
                   alt={partner.name}
                   className="h-16 w-16 object-contain"
