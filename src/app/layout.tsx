@@ -57,9 +57,13 @@ export default function RootLayout({
       >
         <ThemeProvider>
       <LanguageProvider>
-        <Navbar />
-        {children}
-        <Footer />
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </div>
         <SpeedInsights />
       </LanguageProvider>
     </ThemeProvider>
