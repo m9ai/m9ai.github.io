@@ -143,6 +143,7 @@ export default function CollaborationSection() {
                         width={120}
                         height={120}
                         className="object-contain"
+                        draggable={false}
                       />
                     </div>
                     <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300 mb-2">
