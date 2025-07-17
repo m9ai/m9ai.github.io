@@ -138,7 +138,7 @@ export default function CollaborationSection() {
                   <div className="flex flex-col items-center text-center">
                     <div className="w-32 h-32 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
                       <Image
-                        src="/wechatqrcode.png"
+                        src="/wechatqrcode.jpg"
                         alt="服务顾问微信二维码"
                         width={120}
                         height={120}

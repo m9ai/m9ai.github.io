@@ -20,28 +20,28 @@ const caseStudies: CaseStudy[] = [
     id: 1,
     title: '智能客服系统',
     description: '基于大语言模型的智能客服解决方案，提升客户满意度30%',
-    imageUrl: '/window.svg',
+    imageUrl: '/kefu.jpg',
     category: '企业服务'
   },
   {
     id: 2,
     title: '医疗数据分析平台',
     description: '利用AI技术分析医疗数据，辅助医生诊断决策',
-    imageUrl: '/file.svg',
+    imageUrl: '/yiliao.jpg',
     category: '医疗健康'
   },
   {
     id: 3,
     title: '金融风控系统',
     description: '实时监控交易风险，识别异常行为准确率达98%',
-    imageUrl: '/globe.svg',
+    imageUrl: '/jinrong.jpg',
     category: '金融科技'
   },
   {
     id: 4,
     title: '教育内容生成工具',
     description: '自动生成个性化学习内容，适配不同学习风格',
-    imageUrl: '/next.svg',
+    imageUrl: '/jiaoyu.jpg',
     category: '在线教育'
   }
 ];
@@ -92,16 +92,7 @@ export default function CaseStudySection() {
             {caseStudies.map((study) => (
               <div key={study.id} className="px-4">
                 <div className="bg-slate-50 dark:bg-slate-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
-                  <div className="h-48 bg-slate-200 dark:bg-slate-700 flex items-center justify-center p-4">
-                    <Image
-                      width={128}
-                      height={128}
-                      draggable={false}
-                      src={study.imageUrl}
-                      alt={study.title}
-                      className="h-32 object-contain"
-                    />
-                  </div>
+                  <div className="h-48 bg-slate-200 dark:bg-slate-700 flex items-center justify-center p-4 bg-cover" style={{backgroundImage: `url(${study.imageUrl})`}} />
                   <div className="p-6 flex-grow flex flex-col">
                     <div className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs font-semibold mb-3 w-fit">
                       {study.category}
