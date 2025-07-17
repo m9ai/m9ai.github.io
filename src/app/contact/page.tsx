@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import * as  motion from 'motion/react-client';
 
 export const metadata: Metadata = {
-  title: '联系我们 | Metasequoia Studio',
-  description: '联系Metasequoia Studio团队，了解更多关于我们的信息',
+  title: '联系我们 | 水杉智境工作室',
+  description: '联系水杉智境团队，了解更多关于我们的信息',
 };
 
 // 动画效果配置
