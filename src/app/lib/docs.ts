@@ -85,13 +85,8 @@ export async function getDocs(): Promise<DocData[]> {
 // 从API获取单个文档内容
 export async function getDocById(id: string): Promise<DocData | null> {
   try {
-    const res = await fetch('/api/docs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id }),
-    });
+    const searchParams = new URLSearchParams({ id });
+    const res = await fetch(`/api/docs?${searchParams}`);
     
     if (!res.ok) {
       if (res.status === 404) return null;

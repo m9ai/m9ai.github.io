@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import toast, { Toaster } from 'react-hot-toast';
 
 // 表单数据类型定义
 interface FormData {
@@ -27,14 +28,26 @@ export default function CollaborationSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // 模拟表单提交
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.error || '提交失败');
+      }
+
       setSubmitSuccess(true);
       setFormData({ name: '', contact: '', message: '' });
-      // 实际项目中这里会有API调用
+      toast.success('提交成功！');
     } catch (error) {
-      console.error('提交失败:', error);
+      const errorMessage = error instanceof Error ? error.message : '提交失败，请稍后重试';
+      toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -42,6 +55,7 @@ export default function CollaborationSection() {
 
   return (
     <section className="py-20 bg-white dark:bg-slate-900">
+      <Toaster position="top-right" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">一键合作</h2>

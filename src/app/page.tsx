@@ -1,4 +1,5 @@
 'use client';
+
 import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
 import CaseStudySection from './components/CaseStudySection';

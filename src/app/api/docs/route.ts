@@ -1,60 +1,26 @@
 import { NextResponse } from 'next/server';
+import AV from '@/app/lib/leancloud';
+
 export const dynamic = 'force-static';
 
-// 模拟线上文档数据
-const mockDocs = [
-  {
-    id: 'introduction',
-    title: '介绍',
-    content: '# 项目介绍\n\n这是一个通过API获取文档的示例项目。',
-    path: '/docs/introduction'
-  },
-  {
-    id: 'installation',
-    title: '安装指南',
-    content: '# 安装指南\n\n使用`pnpm install`安装依赖。',
-    path: '/docs/installation'
-  }
-];
-
-// 获取所有文档列表
-export async function GET() {
+// 获取文档列表或单个文档内容
+export async function GET(request: Request) {
   try {
-    // 实际项目中这里应该是调用线上API获取文档数据
-    // const res = await fetch('线上API地址', { next: { revalidate: 60 } });
-    // const docs = await res.json();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+    const query = new AV.Query('Document');
     
-    // 使用模拟数据
-    return NextResponse.json(mockDocs);
-  } catch (error) {
-    console.error('获取文档失败:', error);
-    return NextResponse.json(
-      { error: '获取文档失败' },
-      { status: 500 }
-    );
-  }
-}
-
-// 获取单个文档内容
-export async function POST(request: Request) {
-  try {
-    const { id } = await request.json();
-    // 实际项目中这里应该是调用线上API获取单个文档
-    const doc = mockDocs.find(item => item.id === id);
-    
-    if (!doc) {
-      return NextResponse.json(
-        { error: '文档不存在' },
-        { status: 404 }
-      );
+    if (id) {
+      const doc = await query.get(id);
+      return NextResponse.json(doc.toJSON());
+    } else {
+      const docs = await query.find();
+      return NextResponse.json(docs.map(doc => doc.toJSON()));
     }
-    
-    return NextResponse.json(doc);
   } catch (error) {
-    console.error('获取文档内容失败:', error);
-    return NextResponse.json(
-      { error: '获取文档内容失败' },
-      { status: 500 }
-    );
+    if (error instanceof Error && error.message.includes('not found')) {
+      return NextResponse.json({ error: 'Document not found' }, { status: 404 });
+    }
+    return NextResponse.json({ error: 'Failed to fetch documents' }, { status: 500 });
   }
 }
