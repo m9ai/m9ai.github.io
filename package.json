@@ -19,6 +19,7 @@
     "gray-matter": "^4.0.3",
     "leancloud-storage": "^4.15.2",
     "lunr": "^2.3.9",
+    "motion": "^12.23.6",
     "next": "15.4.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",

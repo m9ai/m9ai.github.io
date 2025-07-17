@@ -20,7 +20,7 @@ export default function Footer() {
           <div className='flex space-x-6'>
             <Link href='/privacy-policy' className='text-sm hover:text-emerald-400 transition-colors'>隐私政策</Link>
             <Link href='/terms-of-service' className='text-sm hover:text-emerald-400 transition-colors'>服务条款</Link>
-            <Link href='#contact' className='text-sm hover:text-emerald-400 transition-colors'>联系我们</Link>
+            <Link href='/contact' className='text-sm hover:text-emerald-400 transition-colors'>联系我们</Link>
           </div>
         </div>
       </div>
