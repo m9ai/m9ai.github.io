@@ -52,6 +52,8 @@ export default function RootLayout({
     <html lang="zh-CN">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="author" content="水杉智境工作室" />
+      <link rel="manifest" href="/manifest.json" />
+      <meta name="theme-color" content="#000000" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

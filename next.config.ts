@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import createMDX from '@next/mdx'
+import withPWA from 'next-pwa'
 
 const nextConfig: NextConfig = {
   output: 'export',
@@ -15,4 +16,9 @@ const withMDX = createMDX({
   // Add markdown plugins here, as desired
 })
 
-export default withMDX(nextConfig);
+export default withPWA({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development'
+})(withMDX(nextConfig));
