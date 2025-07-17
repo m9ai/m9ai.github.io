@@ -29,20 +29,25 @@ interface Particle {
 
 const ParticleCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-    const throttledResizeRef = useRef<(...args: unknown[]) => void>(() => {});
-    const handleMouseMoveRef = useRef<(e: MouseEvent) => void>(() => {});
-    const [isRendered, setIsRendered] = useState(false);
+  const throttledResizeRef = useRef<(...args: unknown[]) => void>(() => { });
+  const handleMouseMoveRef = useRef<(e: MouseEvent) => void>(() => { });
+  const [isRendered, setIsRendered] = useState(false);
+  const [isDark, setIsDarkMode] = useState(isDarkMode());
 
   useEffect(() => {
     setIsRendered(true);
   }, []);
 
+  watchDarkMode((isDarkMode) => {
+    setIsDarkMode(isDarkMode);
+  })
+
   useEffect(() => {
     if (!isRendered) return;
 
     // 声明事件处理函数变量并初始化为空函数
-    const throttledResize: (...args: unknown[]) => void = () => {};
-    let handleMouseMove: (e: MouseEvent) => void = () => {};
+    const throttledResize: (...args: unknown[]) => void = () => { };
+    let handleMouseMove: (e: MouseEvent) => void = () => { };
 
     const canvas = canvasRef.current;
     if (!canvas) {
@@ -54,11 +59,6 @@ const ParticleCanvas = () => {
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-
-    watchDarkMode((isDarkMode) => {
-      ctx.fillStyle = isDarkMode ? 'transparent' : '#f0f0f0';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    })
 
     // 设置Canvas尺寸
     const resizeCanvas = () => {
@@ -106,7 +106,6 @@ const ParticleCanvas = () => {
       speedY: number;
       color: string;
       opacity: number;
-      isDarkMode: boolean;
 
       constructor() {
         this.x = Math.random() * canvas!.width;
@@ -116,7 +115,6 @@ const ParticleCanvas = () => {
         this.speedY = (Math.random() - 0.5) * 0.5;
         this.color = particleColors[Math.floor(Math.random() * particleColors.length)];
         this.opacity = Math.random() * 0.5 + 0.2;
-        this.isDarkMode = isDarkMode();
       }
 
       update() {
@@ -169,8 +167,8 @@ const ParticleCanvas = () => {
       if (!ctx || !canvas) return;
 
       // 半透明背景，创建轨迹效果
-      // ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-      // ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // 更新和绘制粒子
       for (let i = 0; i < particlesArray.length; i++) {
@@ -223,15 +221,15 @@ const ParticleCanvas = () => {
       }
     };
 
-    if (!isDarkMode) animate();
+    if(!isDark) animate();
 
     // 清理函数
     return () => {
-        window.removeEventListener('resize', throttledResizeRef.current);
-        window.removeEventListener('mousemove', handleMouseMoveRef.current);
-        cancelAnimationFrame(animationFrameId);
-      };
-    }, [isRendered]);
+      window.removeEventListener('resize', throttledResizeRef.current);
+      window.removeEventListener('mousemove', handleMouseMoveRef.current);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [isRendered]);
 
   return (
     <canvas
