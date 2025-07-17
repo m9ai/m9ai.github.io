@@ -53,7 +53,7 @@ export default function ContactPage() {
           </div>
           <div className="md:w-2/3">
             <h3 className="text-xl font-medium mb-3 text-gray-800">张舰</h3>
-            <p className="mb-4 text-gray-700 leading-relaxed">张舰是水杉智境工作室的创始人，拥有多年的软件开发和团队管理经验，专注于 AI 技术应用和用户体验。曾参与多个大型项目的设计与开发，热衷于开源技术和创新解决方案。</p>
+            <p className="mb-4 text-gray-700 leading-relaxed">水杉智境工作室的创始人，拥有多年的软件开发和团队管理经验，专注于 AI 技术应用和用户体验。曾参与多个大型项目的设计与开发，热衷于开源技术和创新解决方案。</p>
             <Link 
               href="https://zhangjianzy.github.io/"
               target="_blank"
@@ -88,7 +88,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-500">邮箱</p>
-                <a href="mailto:c@m9ai.dev" className="text-gray-800 font-medium hover:text-blue-600 transition-colors">c@m9ai.dev</a>
+                <a href="mailto:c@m9ai.work" className="text-gray-800 font-medium hover:text-blue-600 transition-colors">c@m9ai.work</a>
               </div>
             </li>
           </ul>

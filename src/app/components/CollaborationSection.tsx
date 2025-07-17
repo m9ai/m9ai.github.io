@@ -156,7 +156,7 @@ export default function CollaborationSection() {
                 </div>
 
                 <div className="space-y-4">
-                  <a href="mailto:c@m9ai.dev" className="flex items-center gap-3 p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 transition-all duration-300 hover:shadow-md">
+                  <a href="mailto:c@m9ai.work" className="flex items-center gap-3 p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 transition-all duration-300 hover:shadow-md">
                     <div className="w-10 h-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -164,7 +164,7 @@ export default function CollaborationSection() {
                     </div>
                     <div>
                       <p className="text-sm text-slate-500 dark:text-slate-400">发送邮件</p>
-                      <p className="font-medium text-slate-900 dark:text-white">c@m9ai.dev</p>
+                      <p className="font-medium text-slate-900 dark:text-white">c@m9ai.work</p>
                     </div>
                   </a>
                 </div>
