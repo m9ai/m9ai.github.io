@@ -3,49 +3,16 @@ import Image from 'next/image';
 import React from 'react';
 
 // 合作伙伴数据类型定义
-interface Partner {
-  id: number;
-  name: string;
-  logoUrl: string;
-  description: string;
-}
-
-// 示例合作伙伴数据
-const partners: Partner[] = [
-  {
-    id: 1,
-    name: '科技联盟',
-    logoUrl: '/globe.svg',
-    description: '全球领先的AI技术研究机构'
-  },
-  {
-    id: 2,
-    name: '未来数据',
-    logoUrl: '/file.svg',
-    description: '企业级数据解决方案提供商'
-  },
-  {
-    id: 3,
-    name: '智能云',
-    logoUrl: '/next.svg',
-    description: '云计算服务领导者'
-  },
-  {
-    id: 4,
-    name: '数字未来',
-    logoUrl: '/window.svg',
-    description: '数字化转型咨询公司'
-  }
-];
+import { partners, Partner } from '@/data/partners';
 
 export default function PartnersSection() {
   return (
     <section className="py-16 bg-slate-50 dark:bg-slate-800">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">合作伙伴</h2>
+          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">技术支持伙伴</h2>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            与行业领先企业携手，共同推动AI技术创新与落地应用
+            基于 LangChain、FastAPI 等开源框架开发，代码符合行业标准
           </p>
         </div>
 

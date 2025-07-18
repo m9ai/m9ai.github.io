@@ -1,5 +1,6 @@
 'use client';
 
+import { CommandLineIcon, CpuChipIcon, SquaresPlusIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -10,7 +11,7 @@ export default function ServicesSection() {
         <div className='text-center mb-16'>
           <h2 className='text-3xl md:text-4xl font-bold mb-4'>我们的核心服务</h2>
           <p className='text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto'>
-            提供全方位的AI智能体开发解决方案，满足不同场景需求
+            提供全方位的 AI 应用开发解决方案，满足不同场景需求
           </p>
         </div>
 
@@ -18,7 +19,7 @@ export default function ServicesSection() {
           {/* 服务卡片 1 */}
           <div className='bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow group'>
             <div className='w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-500 group-hover:text-white transition-colors'>
-              <Image src='/globe.svg' alt='大模型私有化部署' width={24} height={24} />
+              <CpuChipIcon className='w-6 h-6' />
             </div>
             <h3 className='text-xl font-semibold mb-3'>大模型私有化部署</h3>
             <p className='text-slate-600 dark:text-slate-400 mb-4'>
@@ -32,7 +33,7 @@ export default function ServicesSection() {
           {/* 服务卡片 2 */}
           <div className='bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow group'>
             <div className='w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-500 group-hover:text-white transition-colors'>
-              <Image src='/file.svg' alt='大模型应用开发' width={24} height={24} />
+              <CommandLineIcon className='w-6 h-6' />
             </div>
             <h3 className='text-xl font-semibold mb-3'>大模型应用开发</h3>
             <p className='text-slate-600 dark:text-slate-400 mb-4'>
@@ -46,7 +47,7 @@ export default function ServicesSection() {
           {/* 服务卡片 3 */}
           <div className='bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow group'>
             <div className='w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-500 group-hover:text-white transition-colors'>
-              <Image src='/window.svg' alt='智能体开发' width={24} height={24} />
+              <SquaresPlusIcon className='w-6 h-6' />
             </div>
             <h3 className='text-xl font-semibold mb-3'>智能体开发</h3>
             <p className='text-slate-600 dark:text-slate-400 mb-4'>

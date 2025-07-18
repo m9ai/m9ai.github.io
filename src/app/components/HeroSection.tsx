@@ -18,7 +18,7 @@ export default function HeroSection() {
             </span>
           </h1>
           <p className='text-lg md:text-xl text-slate-400 font-medium mb-8 max-w-3xl mx-auto'>
-            为AI爱好者提供大模型私有化部署、大模型及智能体开发服务，让AI技术落地更简单
+            为客户提供大模型私有化部署、大模型及智能体开发服务及创意实现，让 AI 创造价值
           </p>
           <div className='flex flex-col sm:flex-row justify-center gap-4'>
             <Link
