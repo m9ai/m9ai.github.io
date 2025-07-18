@@ -27,5 +27,19 @@ export default withPWA({
   dest: 'public',
   register: true,
   skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development'
+  exclude: [
+    // add buildExcludes here
+    ({ asset }) => {
+      if (
+        asset.name.startsWith("server/") ||
+        asset.name.match(/^((app-|^)build-manifest\.json|react-loadable-manifest\.json)$/)
+      ) {
+        return true;
+      }
+      if (process.env.NODE_ENV === 'development' && !asset.name.startsWith("static/runtime/")) {
+        return true;
+      }
+      return false;
+    }
+  ],
 })(withMDX(nextConfig));
