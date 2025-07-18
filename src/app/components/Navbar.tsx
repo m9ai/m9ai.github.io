@@ -2,12 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTheme } from '../contexts/ThemeContext';
-import { useLanguage } from '../contexts/LanguageContext';
-export default function Navbar() {
-  const { theme, setTheme } = useTheme();
-  const { language, setLanguage } = useLanguage();
 
+export default function Navbar() {
 
   return (
     <header className='sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-700'>
@@ -22,7 +18,7 @@ export default function Navbar() {
             </span>
           </Link>
           <nav className='hidden md:flex items-center space-x-8'>
-            <Link href='#services' className='text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors'>
+            <Link href='/services' className='text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors'>
               服务
             </Link>
             <Link href='/docs' className='text-sm font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors'>
