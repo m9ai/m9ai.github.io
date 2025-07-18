@@ -6,6 +6,7 @@
     "deploy:local": "pnpm build && npx serve out",
     "dev": "next dev --turbopack",
     "build": "next build",
+    "vercel-build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
