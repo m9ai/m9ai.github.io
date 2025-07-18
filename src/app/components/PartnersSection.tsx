@@ -43,7 +43,7 @@ export default function PartnersSection() {
     <section className="py-16 bg-slate-50 dark:bg-slate-800">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">合作伙伴/赞助商</h2>
+          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">合作伙伴</h2>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
             与行业领先企业携手，共同推动AI技术创新与落地应用
           </p>

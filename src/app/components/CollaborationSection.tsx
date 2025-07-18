@@ -60,7 +60,7 @@ export default function CollaborationSection() {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">一键合作</h2>
           <p className="text-lg text-slate-600 dark:text-slate-300">
-            填写表单或通过以下方式与我们取得联系，我们的服务顾问将尽快与您沟通
+            填写表单或通过以下方式与我们取得联系，我们将尽快与您沟通
           </p>
         </div>
 
