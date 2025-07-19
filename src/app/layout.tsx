@@ -1,5 +1,4 @@
 import React from 'react';
-import Clarity from '@microsoft/clarity';
 import type { Metadata } from "next";
 
 import "./globals.css";
@@ -7,6 +6,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ClarityInit from './components/ClarityInit';
 
 export const metadata: Metadata = {
   title: '水杉智境工作室 | Metasequoia AI Studio',
@@ -31,8 +31,6 @@ export const metadata: Metadata = {
     images: ['/favicon.jpg'],
   },
 };
-
-Clarity.init('sh3gwrtagw');
 
 export default function RootLayout({
   children,
@@ -72,7 +70,7 @@ export default function RootLayout({
             });
           }
         `}} />
-        
+        {process.env.NODE_ENV === 'production' && <ClarityInit />}
       </body>
     </html>
   );
