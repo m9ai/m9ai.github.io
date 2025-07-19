@@ -1,4 +1,5 @@
 import React from 'react';
+import Clarity from '@microsoft/clarity';
 import type { Metadata } from "next";
 
 import "./globals.css";
@@ -30,6 +31,8 @@ export const metadata: Metadata = {
     images: ['/favicon.jpg'],
   },
 };
+
+Clarity.init('sh3gwrtagw');
 
 export default function RootLayout({
   children,
@@ -69,6 +72,7 @@ export default function RootLayout({
             });
           }
         `}} />
+        
       </body>
     </html>
   );
