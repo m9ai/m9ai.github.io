@@ -13,7 +13,7 @@ export const services: Service[] = [
     id: 'model-deployment',
     title: '大模型私有化部署',
     description: '提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化',
-    imageUrl: '/jiaoyu.jpg',
+    imageUrl: '/bushu.jpg',
     category: 'AI服务',
     details: '提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化。我们的解决方案包括模型选型、环境配置、性能调优和持续维护，帮助企业在自有基础设施上安全高效地运行AI模型。',
     features: [
@@ -27,7 +27,7 @@ export const services: Service[] = [
     id: 'model-application',
     title: '大模型应用开发',
     description: '基于大模型API构建各类智能应用，包括聊天机器人、内容生成工具、智能分析系统等',
-    imageUrl: '/jinrong.jpg',
+    imageUrl: '/app.jpg',
     category: 'AI服务',
     details: '基于大模型API构建各类智能应用，包括聊天机器人、内容生成工具、智能分析系统等。我们专注于将大模型能力与业务场景深度融合，开发实用、高效的AI应用解决方案。',
     features: [
@@ -41,7 +41,7 @@ export const services: Service[] = [
     id: 'agent-development',
     title: '智能体开发',
     description: '开发具备自主决策能力的AI智能体，支持多工具集成、任务规划与长期记忆管理',
-    imageUrl: '/yiliao.jpg',
+    imageUrl: '/agent.jpg',
     category: 'AI服务',
     details: '开发具备自主决策能力的AI智能体，支持多工具集成、任务规划与长期记忆管理。我们的智能体解决方案能够理解复杂指令，规划执行步骤，并通过多工具协作完成复杂任务。',
     features: [
