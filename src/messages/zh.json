@@ -1,0 +1,481 @@
+{
+  "meta": {
+    "defaultTitle": "水杉智境工作室",
+    "defaultDescription": "水杉智境工作室为客户提供大模型私有化部署、应用开发及智能体定制服务"
+  },
+  "Contact": {
+    "title": "联系我们",
+    "about": {
+      "title": "关于我们",
+      "description": "水杉智境工作室（Metasequoia AI Studio）是一家专注于创新技术解决方案的团队，致力于为客户提供高质量的产品和服务。我们专注于 AGI 应用解决方案，帮助企业实现数字化、智能化转型。"
+    },
+    "founder": {
+      "title": "创始人",
+      "name": "张舰",
+      "description": "水杉智境工作室的创始人，拥有多年的软件开发和团队管理经验，专注于 AI 技术应用和用户体验。曾参与多个大型项目的设计与开发，热衷于开源技术和创新解决方案。",
+      "viewProfile": "查看个人主页"
+    },
+    "contact": {
+      "title": "联系我们",
+      "description": "如有任何问题或合作意向，请通过以下方式联系我们：",
+      "emailLabel": "邮箱"
+    }
+  },
+  "title": "水杉智境工作室",
+  "subtitle": "低成本智能体服务平台",
+  "description": "为客户提供大模型私有化部署、应用开发及智能体定制服务",
+  "learnMore": "了解更多 →",
+  "form": {
+    "nameLabel": "称呼",
+    "namePlaceholder": "请输入您的称呼",
+    "contactLabel": "联系方式",
+    "contactPlaceholder": "电话或邮箱",
+    "messageLabel": "备注",
+    "messagePlaceholder": "请简要描述您的需求",
+    "submitButton": "提交合作申请"
+  },
+  "home": {
+    "title": "企业级AI解决方案",
+    "description": "我们为各种规模的企业提供尖端AI解决方案。",
+    "features": {
+      "title": "核心功能",
+      "items": [
+        {
+          "title": "定制AI模型",
+          "description": "基于企业特定业务数据训练的专属大语言模型"
+        },
+        {
+          "title": "无缝集成",
+          "description": "将AI能力与现有系统和工作流程相连接"
+        },
+        {
+          "title": "数据安全",
+          "description": "企业级安全协议保护敏感信息"
+        },
+        {
+          "title": "可扩展架构",
+          "description": "随业务需求和用户规模增长解决方案"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "客户评价",
+      "items": [
+        {
+          "quote": "AI解决方案彻底改变了我们的客户服务运营，将响应时间减少了60%",
+          "author": "科技创新公司CTO"
+        },
+        {
+          "quote": "他们个性化的AI开发方法帮助我们比预期更快地实现了业务目标",
+          "author": "数字转型集团CEO"
+        }
+      ]
+    }
+  },
+  "services": {
+    "meta": {
+      "title": "AI服务 | 水杉智境工作室",
+      "description": "提供大模型私有化部署、应用开发和智能体开发等企业级AI解决方案"
+    },
+    "pageTitle": "我们的服务",
+    "sectionTitle": "我们的核心服务",
+    "sectionDescription": "提供全方位的 AI 应用开发解决方案，满足不同行业客户需求",
+    "cta": {
+      "consultExpert": "咨询专家",
+      "readyForAIDescription": "准备好开启您的AI转型之旅了吗？我们的专家团队随时为您提供支持",
+      "readyForAI": "准备好拥抱AI了吗",
+      "consultSolution": "咨询解决方案",
+      "learnMore": "了解更多"
+    },
+    "learnMore": "了解更多",
+    "categories": {
+      "aiService": "AI服务"
+    },
+    "sections": {
+      "coreAdvantages": "核心优势",
+      "scenarios": "应用场景",
+      "technicalFeatures": "技术特征",
+      "caseStudies": "客户案例"
+    },
+    "backToList": "返回服务列表",
+    "model-deployment": {
+      "title": "模型部署",
+      "description": "在客户自有服务器环境中部署大语言模型，确保数据安全与隐私保护",
+      "details": "提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化。",
+      "coreAdvantages": {
+        "supportAllModels": {
+          "title": "支持主流大模型全覆盖",
+          "description": "包含GPT系列、LLaMA、文心一言、讯飞星火等10+主流大模型的本地化适配"
+        },
+        "dataSecurity": {
+          "title": "数据安全与隐私保护",
+          "description": "模型部署在客户自有服务器，数据不出本地网络，满足合规要求"
+        },
+        "customization": {
+          "title": "深度定制与微调",
+          "description": "基于客户业务数据进行模型微调，提升特定场景下的响应质量"
+        },
+        "performanceOptimization": {
+          "title": "性能优化与资源管理",
+          "description": "针对不同硬件环境优化模型推理速度，降低显存占用"
+        }
+      },
+      "scenarios": {
+        "dataSensitiveIndustries": {
+          "title": "数据敏感型行业",
+          "description": "金融、医疗等对数据隐私要求高的行业本地化部署方案"
+        },
+        "localResponse": {
+          "title": "低延迟本地响应",
+          "description": "满足实时交互需求的本地化部署，响应速度提升90%"
+        }
+      },
+      "technicalFeatures": {
+        "toolchain": {
+          "title": "一站式部署工具链",
+          "description": "自动化部署脚本与监控面板，简化运维复杂度"
+        },
+        "hybridDeployment": {
+          "title": "混合部署模式",
+          "description": "支持本地+云端混合部署，平衡成本与性能"
+        }
+      },
+      "cases": [
+        {
+          "title": "某国有银行智能客服系统",
+          "description": "部署本地化大模型，处理日均10万+客户咨询，准确率达92%"
+        }
+      ]
+    },
+    "model-application": {
+      "title": "大模型应用开发",
+      "description": "基于大语言模型构建企业级应用，实现智能客服、内容生成等场景",
+      "details": "定制开发基于大模型的企业级应用，打通业务系统数据，实现智能化升级。",
+      "coreAdvantages": {
+        "multimodal": {
+          "title": "多模态交互能力",
+          "description": "融合文本、语音、图像的全方位交互体验"
+        },
+        "lowCode": {
+          "title": "低代码快速开发",
+          "description": "可视化配置平台，降低AI应用开发门槛"
+        },
+        "businessIntegration": {
+          "title": "深度业务系统集成",
+          "description": "与CRM、ERP等企业系统无缝对接，数据互通"
+        }
+      },
+      "scenarios": {
+        "intelligentInteraction": {
+          "title": "智能交互系统",
+          "description": "企业智能客服、语音助手等自然语言交互产品"
+        },
+        "contentCreation": {
+          "title": "内容创作平台",
+          "description": "自动化文案生成、智能排版与多平台发布"
+        },
+        "dataIntelligence": {
+          "title": "数据智能分析",
+          "description": "非结构化数据解析与智能报告生成"
+        }
+      },
+      "technicalFeatures": {
+        "apiManagement": {
+          "title": "完善的API管理",
+          "description": "标准化接口设计，支持高并发请求与流量控制"
+        },
+        "monitoring": {
+          "title": "全链路监控",
+          "description": "用户行为分析与模型性能监控，持续优化体验"
+        }
+      },
+      "cases": [
+        {
+          "title": "在线教育智能答疑平台",
+          "description": "为K12教育机构开发的AI辅导系统，覆盖85%常见学科问题"
+        }
+      ]
+    },
+    "agent-development": {
+      "title": "智能体开发",
+      "description": "开发具备自主决策能力的AI智能体，自动化复杂业务流程",
+      "details": "定制开发具备任务规划、工具使用和自主学习能力的AI智能体，赋能企业自动化。",
+      "coreAdvantages": {
+        "autonomousPlanning": {
+          "title": "自主任务规划",
+          "description": "基于目标拆解复杂任务，动态调整执行策略"
+        },
+        "toolIntegration": {
+          "title": "多工具集成能力",
+          "description": "连接企业内部系统与外部API，扩展智能体能力边界"
+        },
+        "memoryManagement": {
+          "title": "长效记忆管理",
+          "description": "上下文理解与长期记忆存储，支持连贯对话与任务跟踪"
+        }
+      },
+      "scenarios": {
+        "automation": {
+          "title": "流程自动化",
+          "description": "财务报销、合同审核等重复性工作自动化处理"
+        },
+        "complexProcess": {
+          "title": "复杂业务流程",
+          "description": "研发项目管理、市场分析等多步骤复杂任务处理"
+        }
+      },
+      "technicalFeatures": {
+        "decisionFramework": {
+          "title": "强化学习决策框架",
+          "description": "基于环境反馈持续优化决策模型"
+        },
+        "humanMachine": {
+          "title": "人机协作机制",
+          "description": "关键决策节点人工干预，确保任务准确性"
+        }
+      },
+      "cases": [
+        {
+          "title": "电商智能运营助手",
+          "description": "自动化商品上架、库存管理与营销活动策划，运营效率提升60%"
+        }
+      ]
+    },
+    "education": {
+      "title": "教育行业解决方案",
+      "description": "AI辅助教学系统，个性化学习路径规划与智能答疑"
+    },
+    "finance": {
+      "title": "金融风控系统",
+      "description": "智能风险评估与欺诈检测，提升金融安全等级"
+    },
+    "healthcare": {
+      "title": "医疗辅助诊断",
+      "description": "医学影像分析与辅助诊断建议，提高诊断准确率"
+    }
+  },
+  "navbar": {
+    "logo": "水杉智境",
+    "services": "服务",
+    "docs": "文档",
+    "store": "商店",
+    "menu": {
+      "home": "首页",
+      "services": "服务",
+      "cases": "案例",
+      "partners": "合作伙伴",
+      "contact": "联系我们",
+      "store": "商店",
+      "docs": "文档"
+    },
+    "language": "语言",
+    "themeToggle": "切换主题"
+  },
+  "footer": {
+    "logoAlt": "水杉智境工作室标志",
+    "logoText": "水杉智境",
+    "copyright": "© 2023 水杉智境工作室. 保留所有权利.",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款",
+    "contactUs": "联系我们",
+    "links": {
+      "privacy": "隐私政策",
+      "terms": "服务条款",
+      "sitemap": "网站地图"
+    },
+    "contact": {
+      "email": "联系邮箱",
+      "phone": "联系电话"
+    }
+  },
+  "common": {
+    "buttons": {
+      "submit": "提交",
+      "cancel": "取消",
+      "save": "保存",
+      "close": "关闭",
+      "learnMore": "了解更多"
+    },
+    "errors": {
+      "networkError": "网络错误，请稍后再试",
+      "serverError": "服务器错误，请联系管理员",
+      "notFound": "资源未找到",
+      "permissionDenied": "权限被拒绝"
+    },
+    "notifications": {
+      "info": "信息",
+      "warning": "警告",
+      "success": "成功",
+      "error": "错误",
+      "confirmDelete": "您确定要删除此项目吗？"
+    },
+    "validation": {
+      "required": "此字段为必填项",
+      "email": "请输入有效的邮箱地址",
+      "minLength": "最小长度为{min}个字符",
+      "maxLength": "最大长度为{max}个字符",
+      "pattern": "请匹配要求的格式",
+      "numeric": "请输入数字",
+      "url": "请输入有效的URL"
+    },
+    "labels": {
+      "search": "搜索",
+      "filter": "筛选",
+      "sort": "排序",
+      "loading": "加载中...",
+      "error": "出错了",
+      "success": "操作成功",
+      "confirm": "确认"
+    }
+  },
+  "cases": {
+    "sectionTitle": "案例研究",
+    "sectionDescription": "探索我们使用大模型技术成功实施的项目",
+    "viewDetails": "查看详情 →",
+    "studies": [
+      {
+        "category": "零售",
+        "title": "智能推荐系统",
+        "description": "基于用户行为分析的个性化商品推荐引擎"
+      },
+      {
+        "category": "制造业",
+        "title": "预测性维护AI",
+        "description": "通过机器学习预测设备故障，降低停机时间"
+      },
+      {
+        "category": "媒体",
+        "title": "内容自动生成平台",
+        "description": "AI辅助的新闻稿件与社交媒体内容生成系统"
+      },
+      {
+        "category": "金融",
+        "title": "风险评估系统",
+        "description": "基于AI的金融风险评估与预测平台"
+      }
+    ]
+  },
+  "partners": {
+    "sectionTitle": "技术合作伙伴",
+    "sectionDescription": "基于LangChain和FastAPI等开源框架开发",
+    "companies": {
+      "langchain": {
+        "description": "领先的大语言模型应用开发框架"
+      },
+      "fastapi": {
+        "description": "高性能API开发框架"
+      },
+      "dify": {
+        "description": "低代码/零代码AI应用开发平台"
+      },
+      "nextjs": {
+        "description": "SEO友好型全栈应用开发框架"
+      }
+    }
+  },
+  "cases": {
+    "sectionTitle": "案例研究",
+    "sectionDescription": "探索我们使用大模型技术成功实施的项目",
+    "viewDetails": "查看详情 →",
+    "studies": [
+      {
+        "category": "企业服务",
+        "title": "智能客服系统",
+        "description": "基于大语言模型的智能客服解决方案，提升客户满意度30%"
+      },
+      {
+        "category": "医疗健康",
+        "title": "医疗数据分析平台",
+        "description": "利用AI技术分析医疗数据，辅助医生诊断决策"
+      },
+      {
+        "category": "金融科技",
+        "title": "金融风控系统",
+        "description": "实时监控交易风险，识别异常行为准确率达到98%"
+      },
+      {
+        "category": "在线教育",
+        "title": "教育内容生成工具",
+        "description": "自动生成个性化学习内容，适配不同学习风格"
+      }
+    ]
+  },
+  "contact": {
+    "title": "联系我们",
+    "submit": "发送消息"
+  },
+  "hero": {
+    "title": "水杉智境工作室",
+    "subtitle": "低成本智能体服务平台",
+    "description": "为客户提供大模型私有化部署、应用开发及智能体定制服务",
+    "cta": {
+      "explore": "探索服务",
+      "docs": "查看文档"
+    }
+  },
+  "cta": {
+    "explore": "探索服务",
+    "docs": "查看文档"
+  },
+  "collaboration": {
+    "sectionTitle": "一键合作",
+    "sectionDescription": "填写表单或通过以下方式与我们取得联系，我们将尽快与您沟通",
+    "form": {
+      "nameLabel": "称呼",
+      "namePlaceholder": "请输入您的称呼",
+      "contactLabel": "联系方式",
+      "contactPlaceholder": "电话或邮箱",
+      "messageLabel": "备注",
+      "messagePlaceholder": "请简要描述您的需求",
+      "submitButton": "提交合作申请"
+    },
+    "submitSuccess": {
+      "title": "提交成功！",
+      "message": "感谢您的咨询，我们的服务顾问将在1-2个工作日内与您联系"
+    },
+    "toast": {
+      "success": "提交成功！"
+    },
+    "contact": {
+      "wechat": "扫码加微信",
+      "email": "发送邮件",
+      "responseTime": "我们将在1-2个工作日内回复您"
+    }
+  },
+  "Store": {
+    "title": "水杉智境应用商店",
+    "description": "探索我们开发的AI应用，提升您的工作效率和创造力",
+    "searchPlaceholder": "搜索应用...",
+    "types": {
+      "all": "全部",
+      "miniProgram": "小程序",
+      "h5": "H5",
+      "app": "App"
+    },
+    "categories": {
+      "all": "全部",
+      "tools": "工具",
+      "creativity": "创意",
+      "development": "开发",
+      "business": "商务"
+    },
+    "noAppsFound": "未找到匹配的应用",
+    "clearFilters": "清除筛选条件",
+    "meta": {
+      "title": "应用商店 | 水杉智境工作室",
+      "description": "探索我们开发的AI应用，提升您的工作效率和创造力"
+    }
+  },
+  "Docs": {
+    "loading": "加载文档中...",
+    "meta": {
+      "title": "文档中心 | 水杉智境工作室",
+      "description": "水杉智境工作室的文档中心"
+    },
+    "errors": {
+      "title": "错误",
+      "loadFailed": "获取文档失败",
+      "notFound": "文档未找到"
+    }
+  }
+}

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
+import { useTranslations } from 'next-intl';
 
 // 表单数据类型定义
 interface FormData {
@@ -11,6 +12,7 @@ interface FormData {
 }
 
 export default function CollaborationSection() {
+  const t = useTranslations('collaboration');
   const [formData, setFormData] = useState<FormData>({
     name: '',
     contact: '',
@@ -44,7 +46,7 @@ export default function CollaborationSection() {
 
       setSubmitSuccess(true);
       setFormData({ name: '', contact: '', message: '' });
-      toast.success('提交成功！');
+      toast.success(t('toast.success'));
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '提交失败，请稍后重试';
       toast.error(errorMessage);
@@ -58,9 +60,9 @@ export default function CollaborationSection() {
       <Toaster position="top-right" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">一键合作</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">{t('sectionTitle')}</h2>
           <p className="text-lg text-slate-600 dark:text-slate-300">
-            填写表单或通过以下方式与我们取得联系，我们将尽快与您沟通
+            {t('sectionDescription')}
           </p>
         </div>
 
@@ -75,16 +77,16 @@ export default function CollaborationSection() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">提交成功！</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{t('submitSuccess.title')}</h3>
                   <p className="text-slate-600 dark:text-slate-300 max-w-md mx-auto">
-                    感谢您的咨询，我们的服务顾问将在1-2个工作日内与您联系
+                    {t('submitSuccess.message')}
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                      称呼
+                      {t('form.nameLabel')}
                     </label>
                     <input
                       type="text"
@@ -94,13 +96,13 @@ export default function CollaborationSection() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-transparent border-b border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:border-primary focus:ring-0 transition-all outline-none"
-                      placeholder="请输入您的称呼"
+                      placeholder={`${t('form.namePlaceholder')}`}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="contact" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                      联系方式
+                      {t('form.contactLabel')}
                     </label>
                     <input
                       type="text"
@@ -110,13 +112,13 @@ export default function CollaborationSection() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-transparent border-b border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:border-primary focus:ring-0 transition-all outline-none"
-                      placeholder="电话或邮箱"
+                      placeholder={`${t('form.contactPlaceholder')}`}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                      备注
+                      {t('form.messageLabel')}
                     </label>
                     <textarea
                       id="message"
@@ -125,7 +127,7 @@ export default function CollaborationSection() {
                       onChange={handleChange}
                       rows={4}
                       className="w-full px-4 py-3 bg-transparent rounded-lg text-slate-900 dark:text-white focus:border-primary focus:ring-0 transition-all outline-none resize-none"
-                      placeholder="请简要描述您的需求"
+                      placeholder={`${t('form.messagePlaceholder')}`}
                     ></textarea>
                   </div>
 
@@ -137,7 +139,7 @@ export default function CollaborationSection() {
                     {isSubmitting ? (
                       <>提交中...</>
                     ) : (
-                      <>提交合作申请</>
+                      <>{t('form.submitButton')}</>
                     )}
                   </button>
                 </form>
@@ -164,7 +166,7 @@ export default function CollaborationSection() {
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
-                      <span>扫码加微信</span>
+                      <span>{t('contact.wechat')}</span>
                     </div>
                   </div>
                 </div>
@@ -177,14 +179,14 @@ export default function CollaborationSection() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">发送邮件</p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400">{t('contact.email')}</p>
                       <p className="font-medium text-slate-900 dark:text-white">c@m9ai.work</p>
                     </div>
                   </a>
                 </div>
 
                 <div className="text-sm text-slate-500 dark:text-slate-400 space-y-1">
-                  <p>我们将在1-2个工作日内回复您</p>
+                  <p>{t('contact.responseTime')}</p>
                 </div>
               </div>
             </div>

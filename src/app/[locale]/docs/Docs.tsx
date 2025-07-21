@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { getDocById, processMarkdown } from '@/app/lib/docs';
 import { DocData } from '@/app/lib/docs';
+import { useTranslations } from 'next-intl';
 
 export default function DocsHomePage() {
+  const t = useTranslations('Docs');
   const [doc, setDoc] = useState<DocData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -17,14 +19,14 @@ export default function DocsHomePage() {
         // 获取默认文档（介绍）
         const document = await getDocById('introduction');
         if (!document) {
-          setError('默认文档不存在');
+          setError(t('errors.notFound'));
           return;
         }
         setDoc(document);
         const html = await processMarkdown(document.content);
         setHtmlContent(html);
       } catch (err) {
-        setError('获取文档失败');
+        setError(t('errors.loadFailed'));
         console.error(err);
       } finally {
         setLoading(false);
@@ -32,11 +34,11 @@ export default function DocsHomePage() {
     };
 
     fetchDefaultDoc();
-  }, []);
+  }, [t]);
 
-  if (loading) return <div className="text-center py-10">加载文档中...</div>;
-  if (error) return <div className="text-center py-10 text-red-500">错误: {error}</div>;
-  if (!doc) return <div className="text-center py-10">文档未找到</div>;
+  if (loading) return <div className="text-center py-10">{t('loading')}</div>;
+  if (error) return <div className="text-center py-10 text-red-500">{t('errors.title')}: {error}</div>;
+  if (!doc) return <div className="text-center py-10">{t('errors.notFound')}</div>;
 
   return (
     <div className="prose max-w-none">

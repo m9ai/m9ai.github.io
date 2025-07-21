@@ -20,24 +20,24 @@ export const partners: Partner[] = [
     id: 1,
     name: 'LangChain',
     logoUrl: '/logos/langchain.svg',
-    description: '领先的大语言模型应用开发框架'
+    description: 'companies.langchain.description'
   },
   {
     id: 2,
     name: 'FastAPI',
     logoUrl: '/logos/fastapi.svg',
-    description: '高性能 API 开发框架'
+    description: 'companies.fastapi.description'
   },
   {
     id: 3,
     name: 'Dify',
     logoUrl: '/logos/dify.svg',
-    description: '低代码/零代码 AI 应用开发平台'
+    description: 'companies.dify.description'
   },
   {
     id: 4,
     name: 'Next.js',
     logoUrl: '/logos/next.svg',
-    description: 'SEO 友好型全栈应用开发框架'
+    description: 'companies.nextjs.description'
   }
 ];

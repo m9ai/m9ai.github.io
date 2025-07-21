@@ -1,45 +1,37 @@
-import type { NextConfig } from "next";
-import createMDX from '@next/mdx'
-import withPWA from 'next-pwa'
-
+import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
+import withPWA from 'next-pwa';
+import withMDX from '@next/mdx';
 import path from 'path';
 
+// 基础 Next.js 配置
 const nextConfig: NextConfig = {
-  webpack: (config) => {
-    config.resolve.alias['@'] = path.join(__dirname, 'src');
+  images: { unoptimized: true },
+  webpack(config) {
+    config.resolve.alias = { ...config.resolve.alias, '@': path.join(__dirname, 'src') };
     return config;
   },
+  experimental: { mdxRs: true },
 
-  output: 'export',
-  // 如果部署到 https://<username>.github.io/<repo-name>/，请取消注释并替换为你的仓库名称
-  // basePath: process.env.NODE_ENV !== 'development' ? '/m9ai.github.io' : '',
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-  images: {
-    unoptimized: true
-  }
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
 };
 
-const withMDX = createMDX({
-  // Add markdown plugins here, as desired
-})
+// MDX 插件配置
+const withMDXConfig = withMDX({
+  options: {}
+});
 
-export default withPWA({
+// PWA 插件配置
+const withPWAConfig = withPWA({
   dest: 'public',
   register: true,
   skipWaiting: true,
-  exclude: [
-    // add buildExcludes here
-    ({ asset }) => {
-      if (
-        asset.name.startsWith("server/") ||
-        asset.name.match(/^((app-|^)build-manifest\.json|react-loadable-manifest\.json)$/)
-      ) {
-        return true;
-      }
-      if (process.env.NODE_ENV === 'development' && !asset.name.startsWith("static/runtime/")) {
-        return true;
-      }
-      return false;
-    }
-  ],
-})(withMDX(nextConfig));
+  disable: process.env.NODE_ENV === 'development'
+});
+
+// 插件组合 (next-intl 必须是最外层)
+export default createNextIntlPlugin('./i18n.ts')(
+  withPWAConfig(
+    withMDXConfig(nextConfig)
+  )
+);

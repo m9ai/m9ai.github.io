@@ -4,6 +4,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useTranslations } from 'next-intl';
 
 // 案例数据类型定义
 interface CaseStudy {
@@ -15,36 +16,17 @@ interface CaseStudy {
 }
 
 // 示例案例数据
-const caseStudies: CaseStudy[] = [
-  {
-    id: 1,
-    title: '智能客服系统',
-    description: '基于大语言模型的智能客服解决方案，提升客户满意度30%',
-    imageUrl: '/kefu.jpg',
-    category: '企业服务'
-  },
-  {
-    id: 2,
-    title: '医疗数据分析平台',
-    description: '利用AI技术分析医疗数据，辅助医生诊断决策',
-    imageUrl: '/yiliao.jpg',
-    category: '医疗健康'
-  },
-  {
-    id: 3,
-    title: '金融风控系统',
-    description: '实时监控交易风险，识别异常行为准确率达98%',
-    imageUrl: '/jinrong.jpg',
-    category: '金融科技'
-  },
-  {
-    id: 4,
-    title: '教育内容生成工具',
-    description: '自动生成个性化学习内容，适配不同学习风格',
-    imageUrl: '/jiaoyu.jpg',
-    category: '在线教育'
-  }
-];
+// 移除硬编码数据
+// const caseStudies: CaseStudy[] = [ ... ]
+
+// 使用翻译键动态获取案例数据
+const caseStudies = [0, 1, 2, 3].map((idx) => ({
+  id: idx + 1,
+  title: `studies.${idx}.title`,
+  description: `studies.${idx}.description`,
+  imageUrl: [`/kefu.jpg`, `/yiliao.jpg`, `/jinrong.jpg`, `/jiaoyu.jpg`][idx],
+  category: `studies.${idx}.category`
+}));
 
 // 轮播配置
 const sliderSettings = {
@@ -77,30 +59,31 @@ const sliderSettings = {
 };
 
 export default function CaseStudySection() {
+  const t = useTranslations('cases');
   return (
     <section className="py-16 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">案例实践</h2>
+          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">{t('sectionTitle')}</h2>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            探索我们利用大模型技术成功落地的项目案例，见证AI如何赋能各行各业
+            {t('sectionDescription')}
           </p>
         </div>
 
         <div className="mt-10">
           <Slider {...sliderSettings}>
-            {caseStudies.map((study) => (
-              <div key={study.id} className="px-4">
+            {caseStudies.map((study, idx) => (
+              <div key={idx} className="px-4">
                 <div className="bg-slate-50 dark:bg-slate-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                   <div className="h-48 bg-slate-200 dark:bg-slate-700 flex items-center justify-center p-4 bg-cover" style={{backgroundImage: `url(${study.imageUrl})`}} />
                   <div className="p-6 flex-grow flex flex-col">
                     <div className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs font-semibold mb-3 w-fit">
-                      {study.category}
+                      {t(`studies.${idx}.category`)}
                     </div>
-                    <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">{study.title}</h3>
-                    <p className="text-slate-600 dark:text-slate-300 flex-grow">{study.description}</p>
+                    <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">{t(`studies.${idx}.title`)}</h3>
+                    <p className="text-slate-600 dark:text-slate-300 flex-grow">{t(`studies.${idx}.description`)}</p>
                     <button className="mt-4 text-blue-600 dark:text-blue-400 font-medium hover:text-blue-800 dark:hover:text-blue-300 transition-colors">
-                      查看详情 →
+                      {t('viewDetails')}
                     </button>
                   </div>
                 </div>
