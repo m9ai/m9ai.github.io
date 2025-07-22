@@ -1,7 +1,11 @@
 {
   "meta": {
     "defaultTitle": "Metasequoia AI Studio",
-    "defaultDescription": "Metasequoia AI Studio is a team focused on innovative technology solutions, dedicated to providing high-quality products and services to clients. We specialize in AGI application solutions, helping enterprises achieve digital and intelligent transformation."
+    "defaultDescription": "Metasequoia AI Studio provides private deployment of large models, application development and intelligent agent customization services",
+    "privacyPolicyTitle": "Privacy Policy",
+    "privacyPolicyDescription": "This Privacy Policy explains how we collect, use, and safeguard your personal information when you use our website and services.",
+    "termsOfServiceTitle": "Terms of Service",
+    "termsOfServiceDescription": "These Terms of Service outline the rules and regulations governing the use of our website and services."
   },
   "Contact": {
     "title": "Contact Us",

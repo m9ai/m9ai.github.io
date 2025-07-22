@@ -1,24 +1,18 @@
-'use client';
+import HomeClient from './HomeClient';
+import { setRequestLocale } from 'next-intl/server';
 
-import HeroSection from '@/app/components/HeroSection';
-import ServicesSection from '@/app/components/ServicesSection';
-import CaseStudySection from '@/app/components/CaseStudySection';
-import PartnersSection from '@/app/components/PartnersSection';
-import CollaborationSection from '@/app/components/CollaborationSection';
-import { useTranslations } from 'next-intl';
+// 静态生成参数
+export async function generateStaticParams() {
+  return [{ locale: 'zh' }, { locale: 'en' }];
+}
 
-// 主页面组件
-export default function Home() {
-  const t = useTranslations('home');
-  return (
-    <div className='min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100'>
-      <main>
-        <HeroSection />
-        <ServicesSection />
-        <CaseStudySection />
-        <PartnersSection />
-        <CollaborationSection />
-      </main>
-    </div>
-  );
+// 页面组件（服务器组件）
+export default async function HomePage({
+  params
+}: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  // 设置请求locale
+  setRequestLocale(locale);
+  
+  return <HomeClient />;
 }

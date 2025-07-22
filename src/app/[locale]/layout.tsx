@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 
+
 import "@/app/globals.css";
 import { ThemeProvider } from '@/app/contexts/ThemeContext';
 import Navbar from '@/app/components/Navbar';
@@ -45,6 +46,7 @@ export async function generateMetadata(context: {
 
 import enMessages from '@/messages/en.json';
 import zhMessages from '@/messages/zh.json';
+import { setRequestLocale } from 'next-intl/server';
 
 export default async function RootLayout({
   children,
@@ -54,6 +56,8 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  // 设置请求locale（必须在使用任何国际化函数前调用）
+  setRequestLocale(locale);
   const messages = {
     en: enMessages,
     zh: zhMessages

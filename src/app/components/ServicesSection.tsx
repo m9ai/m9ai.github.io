@@ -1,5 +1,5 @@
 import { CommandLineIcon, CpuChipIcon, SquaresPlusIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { services } from '@/data/services';
 import { useTranslations } from 'next-intl';
 

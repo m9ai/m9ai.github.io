@@ -1,44 +1,26 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import ReactMarkdown from 'react-markdown';
-import { useParams } from 'next/navigation';
-import remarkGfm from 'remark-gfm';
+import { getTranslations } from 'next-intl/server';
+import TermsOfService from './Term';
+import { Metadata } from 'next';
+
+// 动态生成元数据
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const t = await getTranslations({ locale: (await params).locale, namespace: 'meta' });
+  return {
+    title: t('termsOfServiceTitle'),
+    description: t('termsOfServiceDescription'),
+  };
+}
+
+// 添加静态参数生成函数，指定支持的语言
+ export async function generateStaticParams() {
+  return [
+    { locale: 'zh' },
+    { locale: 'en' }
+  ];
+}
 
 export default function TermsOfServicePage() {
-  const params = useParams();
-  const locale = params.locale as string;
-  const [markdownContent, setMarkdownContent] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchMarkdown = async () => {
-      try {
-        const markdownUrl = locale === 'en' ? '/docs/terms-of-service-en.md' : '/docs/terms-of-service.md';
-        const response = await fetch(markdownUrl);
-        if (!response.ok) throw new Error('Failed to load terms of service');
-        const content = await response.text();
-        setMarkdownContent(content);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An unknown error occurred');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchMarkdown();
-  }, [locale]);
-
-  if (isLoading) return <div className='container mx-auto p-8'>Loading terms of service...</div>;
-  if (error) return <div className='container mx-auto p-8 text-red-500'>Error: {error}</div>;
-
-  return (
-    <div className='container mx-auto p-4 md:p-8 max-w-4xl'>
-      <h1 className='text-3xl font-bold mb-8 text-slate-800 dark:text-white'>{locale === 'en' ? 'Terms of Service' : '服务条款'}</h1>
-      <div className='prose prose-lg max-w-none dark:prose-invert'>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdownContent}</ReactMarkdown>
-      </div>
-    </div>
-  );
+ 
+  return <TermsOfService />
 }

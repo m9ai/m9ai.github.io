@@ -11,6 +11,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+// 添加静态参数生成函数，指定支持的语言
+ export async function generateStaticParams() {
+  return [
+    { locale: 'zh' },
+    { locale: 'en' }
+  ];
+}
+
 export default function Page() {
   return <Store />
 }

@@ -6,6 +6,8 @@ import path from 'path';
 
 // 基础 Next.js 配置
 const nextConfig: NextConfig = {
+  output: 'export',
+  trailingSlash: true,
   images: { unoptimized: true },
   webpack(config) {
     config.resolve.alias = { ...config.resolve.alias, '@': path.join(__dirname, 'src') };

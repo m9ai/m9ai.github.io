@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import ParticleCanvas from './ParticleCanvas';
 import { useTranslations } from 'next-intl';
 

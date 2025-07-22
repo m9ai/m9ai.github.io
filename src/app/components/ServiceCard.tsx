@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import type { Service } from '../../data/services';
 import { useTranslations } from 'next-intl';
 

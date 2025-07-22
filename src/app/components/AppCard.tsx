@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { App } from '@/data/apps';
 import { ShoppingBagIcon, StarIcon } from '@heroicons/react/24/outline';
 

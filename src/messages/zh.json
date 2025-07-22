@@ -1,7 +1,11 @@
 {
   "meta": {
     "defaultTitle": "水杉智境工作室",
-    "defaultDescription": "水杉智境工作室为客户提供大模型私有化部署、应用开发及智能体定制服务"
+    "defaultDescription": "水杉智境工作室为客户提供大模型私有化部署、应用开发及智能体定制服务",
+    "privacyPolicyTitle": "隐私政策",
+    "privacyPolicyDescription": "本隐私政策详细说明我们如何收集、使用和保护您的个人信息。",
+    "termsOfServiceTitle": "服务条款",
+    "termsOfServiceDescription": "本服务条款详细说明您使用我们服务的权利和责任。"
   },
   "Contact": {
     "title": "联系我们",

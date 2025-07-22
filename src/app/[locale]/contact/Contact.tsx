@@ -1,6 +1,6 @@
 "use client"
 
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation'; // 添加路由参数钩子
 import * as  motion from 'motion/react-client';
