@@ -13,7 +13,6 @@ interface ServiceDetailClientProps {
 export default function ServiceDetailClient({ service }: ServiceDetailClientProps) {
   const t = useTranslations('services');
   const serviceT = t.raw(service.id);
-  const globalT = t.raw('global');
 
   return (
     <div className="container mx-auto py-16 px-4">

@@ -1,6 +1,5 @@
 import React from 'react';
 import '@/app/globals.css';
-import { ThemeProvider } from '@/app/contexts/ThemeContext';
 import { setRequestLocale } from 'next-intl/server';
 
 export const metadata = {
@@ -14,14 +13,6 @@ export default async function RootLayout({ children,
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
-      <body className="antialiased">
-        <ThemeProvider>
-          <div className="flex flex-col min-h-screen">
-            <main className="flex-grow">{children}</main>
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
+    <>{children}</>
   );
 }

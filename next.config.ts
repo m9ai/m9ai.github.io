@@ -28,7 +28,7 @@ const withPWAConfig = withPWA({
   dest: 'public',
   register: true,
   skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development'
+  // disable: process.env.NODE_ENV === 'development'
 });
 
 // 插件组合 (next-intl 必须是最外层)
