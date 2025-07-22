@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from 'next-intl';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
 
 
 import "@/app/globals.css";
@@ -47,6 +47,8 @@ export async function generateMetadata(context: {
 import enMessages from '@/messages/en.json';
 import zhMessages from '@/messages/zh.json';
 import { setRequestLocale } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
+import { notFound } from 'next/navigation';
 
 export default async function RootLayout({
   children,
@@ -56,6 +58,9 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
   // 设置请求locale（必须在使用任何国际化函数前调用）
   setRequestLocale(locale);
   const messages = {

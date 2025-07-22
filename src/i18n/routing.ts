@@ -7,3 +7,10 @@ export const routing = defineRouting({
 });
 
 export type Locale = (typeof routing.locales)[number];
+
+export function detectLocale() {
+  if (typeof window === 'undefined') return 'zh';
+  
+  const userLang = window.navigator.language.split('-')[0];
+  return userLang;
+}

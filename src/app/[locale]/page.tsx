@@ -1,9 +1,10 @@
+import { routing } from '@/i18n/routing';
 import HomeClient from './HomeClient';
 import { setRequestLocale } from 'next-intl/server';
 
 // 静态生成参数
 export async function generateStaticParams() {
-  return [{ locale: 'zh' }, { locale: 'en' }];
+  return routing.locales.map((locale) => ({locale}));
 }
 
 // 页面组件（服务器组件）
