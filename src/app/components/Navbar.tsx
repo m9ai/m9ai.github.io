@@ -47,19 +47,19 @@ export default function Navbar() {
                 {t('store')}
               </Link>
               {/* 语言切换器 */}
-              <div className='flex border rounded-md overflow-hidden md:ml-4'>
+              {/* <div className='flex border rounded-md overflow-hidden md:ml-4'>
                 {routing.locales.map((locale) => (
-                  <Link
+                  <button
                     key={locale}
-                    href={pathname}
-                    locale={locale}
-                    //onClick={() => changeLocale(locale)}
+                    // href={pathname}
+                    // locale={locale}
+                    onClick={() => changeLocale(locale)}
                     className={`px-3 py-1 text-sm ${currentLocale === locale ? 'bg-emerald-600 text-white' : 'hover:bg-slate-100 dark:hover:bg-slate-800'}`}
                   >
                     {locale.toUpperCase() === 'ZH' ? '中文' : 'English'}
-                  </Link>
+                  </button>
                 ))}
-              </div>
+              </div> */}
             </nav>
           </div>
         </div>

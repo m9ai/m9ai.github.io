@@ -26,4 +26,4 @@ You have the right to access, correct, or delete your personal information.
 We may update this policy from time to time.
 
 ## 8. Contact Us
-For questions about this policy, contact us at privacy@example.com.
+For questions about this policy, contact us at c@m9ai.work.

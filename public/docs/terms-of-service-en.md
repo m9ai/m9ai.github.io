@@ -27,4 +27,4 @@ These terms are governed by the laws of [Jurisdiction].
 We may update these terms periodically.
 
 ## 9. Contact Information
-For questions about these terms, contact us at terms@example.com.
+For questions about these terms, contact us at c@m9ai.work.
