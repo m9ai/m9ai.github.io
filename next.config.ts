@@ -14,8 +14,45 @@ const nextConfig: NextConfig = {
     return config;
   },
   experimental: { mdxRs: true },
-
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+        ],
+      },
+      {
+        source: '/m9ai-sw.js',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/javascript; charset=utf-8',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self'",
+          },
+        ],
+      },
+    ]
+  },
 };
 
 // MDX 插件配置
@@ -28,7 +65,9 @@ const withPWAConfig = withPWA({
   dest: 'public',
   register: true,
   skipWaiting: true,
-  // disable: process.env.NODE_ENV === 'development'
+  sw: 'm9ai-sw.js',
+  scope: '/',
+  // exclude: ['/_next/app-build-manifest.json'] // 使用字符串路径而非正则表达式
 });
 
 // 插件组合 (next-intl 必须是最外层)
