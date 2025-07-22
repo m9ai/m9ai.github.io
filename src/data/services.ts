@@ -28,7 +28,7 @@ export const services: Service[] = [
     coreAdvantages: [
       { titleKey: 'model-deployment.coreAdvantages.supportAllModels.title', descriptionKey: 'model-deployment.coreAdvantages.supportAllModels.description' },
       { titleKey: 'model-deployment.coreAdvantages.dataSecurity.title', descriptionKey: 'model-deployment.coreAdvantages.dataSecurity.description' },
-      { titleKey: 'modeld-deployment.coreAdvantages.customization.title', descriptionKey: 'model-deployment.coreAdvantages.customization.description' },
+      { titleKey: 'model-deployment.coreAdvantages.customization.title', descriptionKey: 'model-deployment.coreAdvantages.customization.description' },
       { titleKey: 'model-deployment.coreAdvantages.performanceOptimization.title', descriptionKey: 'model-deployment.coreAdvantages.performanceOptimization.description' }
     ],
     scenarios: [
