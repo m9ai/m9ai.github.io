@@ -24,13 +24,13 @@ export default function HeroSection() {
           </p>
           <div className='flex flex-col sm:flex-row justify-center gap-4'>
             <Link
-              href='#services'
+              href='/services'
               className='px-6 py-3 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors text-base font-medium shadow-lg shadow-emerald-500/20'
             >
               {t('cta.explore')}
             </Link>
             <Link
-              href='#docs'
+              href='/docs'
               className='px-6 py-3 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors text-base font-medium'
             >
               {t('cta.docs')}
