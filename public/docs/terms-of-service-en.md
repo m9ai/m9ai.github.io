@@ -5,6 +5,13 @@ By using our services, you agree to be bound by these Terms of Service.
 
 ## 2. Description of Services
 We provide AI application development solutions and related services as described on our website.
+We also provide the following services:
+- Chatbot
+- Voice Recognition
+- Voice Synthesis
+- Text-to-Speech Conversion
+- Video Generation
+- Other Related Services
 
 ## 3. User Responsibilities
 - You must provide accurate information
@@ -21,7 +28,7 @@ We shall not be liable for any indirect, incidental, or consequential damages.
 We may terminate your access to our services for violation of these terms.
 
 ## 7. Governing Law
-These terms are governed by the laws of [Jurisdiction].
+These terms are governed by the laws of China.
 
 ## 8. Changes to Terms
 We may update these terms periodically.
