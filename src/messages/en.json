@@ -22,7 +22,10 @@
     "contact": {
       "title": "Contact Us",
       "description": "If you have any questions or cooperation intentions, please contact us through the following methods:",
-      "emailLabel": "Email"
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "locationLabel": "Location",
+      "wechatLabel": "WeChat"
     }
   },
   "title": "Metasequoia Studio",
@@ -30,7 +33,6 @@
   "description": "Providing customers with large model privatization deployment, application development and intelligent agent customization services",
   "learnMore": "Learn More →",
   "form": "Form",
-
   "home": {
     "title": "Welcome to Metasequoia Studio",
     "subtitle": "AI Solutions for Enterprise",
@@ -81,6 +83,8 @@
     "pageTitle": "Our Services",
     "sectionTitle": "Our Core Services",
     "sectionDescription": "Providing comprehensive AI application development solutions to meet the needs of customers in different industries",
+    "sectionTag": "Services",
+    "viewAllServices": "View All Services",
     "cta": {
       "consultExpert": "Consult Expert",
       "readyForAIDescription": "Ready to start your AI transformation journey? Our expert team is ready to support you",
@@ -257,6 +261,7 @@
     "services": "Services",
     "docs": "Docs",
     "store": "Store",
+    "cta": "Get Started",
     "menu": {
       "home": "Home",
       "services": "Services",
@@ -276,6 +281,13 @@
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "contactUs": "Contact Us",
+    "description": "Enterprise-grade AI solutions provider specializing in model deployment, application development and intelligent agent customization",
+    "services": "Services",
+    "company": "Company",
+    "legal": "Legal",
+    "madeWith": "Made with",
+    "allRightsReserved": ". All rights reserved.",
+    "backToTop": "Back to Top",
     "links": {
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
@@ -326,7 +338,6 @@
       "confirm": "Confirm"
     }
   },
-
   "contact": {
     "title": "Contact Us",
     "submit": "Send Message",
@@ -341,19 +352,33 @@
     }
   },
   "hero": {
-    "title": "Metasequoia Studio",
-    "subtitle": "Low-Cost AI Agent Service Platform",
-    "description": "Providing customers with large model privatization deployment, application development and intelligent agent customization services",
+    "badge": "AI-Powered Solutions",
+    "titleLine1": "Transform Your",
+    "titleLine2": "Business with AI",
+    "description": "Enterprise-grade AI solutions for model deployment, application development, and intelligent agent customization. Scale your business with cutting-edge technology.",
     "cta": {
       "explore": "Explore Services",
       "docs": "View Documentation"
+    },
+    "stats": {
+      "clients": "Enterprise Clients",
+      "uptime": "Uptime SLA",
+      "support": "Expert Support",
+      "efficiency": "Efficiency Gain"
     }
+  },
+  "theme": {
+    "title": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   },
   "cta": {
     "explore": "Explore Services",
     "docs": "View Documentation"
   },
   "collaboration": {
+    "sectionTag": "Get In Touch",
     "sectionTitle": "Collaborate Now",
     "sectionDescription": "Fill out the form or contact us through the following methods, and we will communicate with you as soon as possible",
     "form": {
@@ -363,17 +388,20 @@
       "contactPlaceholder": "Phone or email",
       "messageLabel": "Message",
       "messagePlaceholder": "Please briefly describe your needs",
-      "submitButton": "Submit Collaboration Request"
+      "submitButton": "Submit Collaboration Request",
+      "submitting": "Submitting..."
     },
     "submitSuccess": {
       "title": "Submission Successful!",
       "message": "Thank you for your inquiry, our service consultant will contact you within 1-2 business days"
     },
+    "sendAnother": "Send Another Message",
     "toast": {
       "success": "Submission Successful!"
     },
     "contact": {
       "wechat": "Scan WeChat QR Code",
+      "scanQR": "Scan QR code to add on WeChat",
       "email": "Send Email",
       "responseTime": "We will reply to you within 1-2 business days"
     }
@@ -381,8 +409,12 @@
   "partners": {
     "title": "Technology Partners",
     "description": "Establish strategic cooperation with industry-leading enterprises to jointly promote AI technology innovation and application",
+    "sectionTag": "Our Partners",
     "sectionTitle": "Technology Partners",
     "sectionDescription": "Developed based on open source frameworks such as LangChain and FastAPI",
+    "learnMore": "Learn More",
+    "joinPartners": "Want to become a partner?",
+    "contactUs": "Contact us",
     "companies": {
       "langchain": {
         "description": "Leading large language model application development framework"
@@ -399,6 +431,7 @@
     }
   },
   "cases": {
+    "sectionTag": "Success Stories",
     "sectionTitle": "Case Studies",
     "sectionDescription": "Explore our successfully implemented projects using large model technology",
     "viewDetails": "View Details →",
@@ -426,17 +459,17 @@
     ]
   },
   "Store": {
-    "title": "Metasequoia AI App Store",
+    "title": "App Store",
     "description": "Explore our AI applications to enhance your productivity and creativity",
     "searchPlaceholder": "Search apps...",
     "types": {
-      "all": "All",
+      "all": "All Types",
       "miniProgram": "Mini Program",
       "h5": "H5",
       "app": "App"
     },
     "categories": {
-      "all": "All",
+      "all": "All Categories",
       "tools": "Tools",
       "creativity": "Creativity",
       "development": "Development",
@@ -444,6 +477,8 @@
     },
     "noAppsFound": "No matching apps found",
     "clearFilters": "Clear filters",
+    "showingResults": "Showing {count} of {total} apps",
+    "tryAdjustingFilters": "Try adjusting your search or filters",
     "meta": {
       "title": "App Store | Metasequoia Studio",
       "description": "Explore our AI applications to enhance your productivity and creativity"
@@ -453,12 +488,23 @@
     "loading": "Loading document...",
     "meta": {
       "title": "Documentation | Metasequoia Studio",
-      "description": "Metasequoia Studio Documentation Center"
+      "description": "Metasequoia Studio Documentation Center - Product guides, tutorials and technical reference"
     },
     "errors": {
       "title": "Error",
       "loadFailed": "Failed to load document",
       "notFound": "Document not found"
+    },
+    "search": {
+      "placeholder": "Search documentation...",
+      "noResults": "No matching documents found",
+      "tryDifferent": "Try different keywords"
+    },
+    "categories": {
+      "all": "All",
+      "gettingStarted": "Getting Started",
+      "technical": "Technical Docs",
+      "help": "Help"
     }
   }
 }

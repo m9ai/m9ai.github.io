@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
 import Contact from './Contact';
-import { routing } from '@/i18n/routing';
 
 export const metadata: Metadata = {
   title: '联系我们 | 水杉智境工作室',
@@ -8,13 +8,15 @@ export const metadata: Metadata = {
 };
 
 // 添加静态参数生成函数，指定支持的语言
- export async function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}));
+export async function generateStaticParams() {
+  return [
+    { locale: 'zh' },
+    { locale: 'en' }
+  ];
 }
 
-
-export default function Page() {
-  return (
-    <Contact />
-  )
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  return <Contact />;
 }

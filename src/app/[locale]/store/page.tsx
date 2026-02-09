@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Store from "./Store"
-import { routing } from '@/i18n/routing';
 
 // 动态生成元数据
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const t = await getTranslations({ locale: (await params).locale, namespace: 'Store' });
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Store' });
   return {
     title: t('meta.title'),
     description: t('meta.description'),
@@ -13,10 +13,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 // 添加静态参数生成函数，指定支持的语言
- export async function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}));
+export async function generateStaticParams() {
+  return [
+    { locale: 'zh' },
+    { locale: 'en' }
+  ];
 }
 
-export default function Page() {
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return <Store />
 }

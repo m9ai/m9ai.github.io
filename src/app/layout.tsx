@@ -13,6 +13,10 @@ export default async function RootLayout({ children,
   setRequestLocale(locale);
 
   return (
-    <>{children}</>
+    <html lang={locale}>
+      <body className="antialiased">
+        {children}
+      </body>
+    </html>
   );
 }

@@ -12,5 +12,5 @@ export function detectLocale() {
   if (typeof window === 'undefined') return 'zh';
   
   const userLang = window.navigator.language.split('-')[0];
-  return userLang;
+  return routing.locales.includes(userLang as Locale) ? userLang : 'zh';
 }

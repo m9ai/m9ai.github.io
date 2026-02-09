@@ -22,7 +22,10 @@
     "contact": {
       "title": "联系我们",
       "description": "如有任何问题或合作意向，请通过以下方式联系我们：",
-      "emailLabel": "邮箱"
+      "emailLabel": "邮箱",
+      "phoneLabel": "电话",
+      "locationLabel": "地址",
+      "wechatLabel": "微信"
     }
   },
   "title": "水杉智境工作室",
@@ -84,6 +87,8 @@
     "pageTitle": "我们的服务",
     "sectionTitle": "我们的核心服务",
     "sectionDescription": "提供全方位的 AI 应用开发解决方案，满足不同行业客户需求",
+    "sectionTag": "服务",
+    "viewAllServices": "查看全部服务",
     "cta": {
       "consultExpert": "咨询专家",
       "readyForAIDescription": "准备好开启您的AI转型之旅了吗？我们的专家团队随时为您提供支持",
@@ -263,6 +268,7 @@
     "services": "服务",
     "docs": "文档",
     "store": "商店",
+    "cta": "开始合作",
     "menu": {
       "home": "首页",
       "services": "服务",
@@ -282,6 +288,13 @@
     "privacyPolicy": "隐私政策",
     "termsOfService": "服务条款",
     "contactUs": "联系我们",
+    "description": "企业级AI解决方案提供商，专注于大模型部署、应用开发和智能体定制",
+    "services": "服务",
+    "company": "公司",
+    "legal": "法律",
+    "madeWith": "用",
+    "allRightsReserved": "制作，保留所有权利。",
+    "backToTop": "返回顶部",
     "links": {
       "privacy": "隐私政策",
       "terms": "服务条款",
@@ -360,8 +373,12 @@
     ]
   },
   "partners": {
+    "sectionTag": "合作伙伴",
     "sectionTitle": "技术合作伙伴",
     "sectionDescription": "基于LangChain和FastAPI等开源框架开发",
+    "learnMore": "了解更多",
+    "joinPartners": "想要成为合作伙伴？",
+    "contactUs": "联系我们",
     "companies": {
       "langchain": {
         "description": "领先的大语言模型应用开发框架"
@@ -378,6 +395,7 @@
     }
   },
   "cases": {
+    "sectionTag": "成功案例",
     "sectionTitle": "案例研究",
     "sectionDescription": "探索我们使用大模型技术成功实施的项目",
     "viewDetails": "查看详情 →",
@@ -409,19 +427,33 @@
     "submit": "发送消息"
   },
   "hero": {
-    "title": "水杉智境工作室",
-    "subtitle": "低成本智能体服务平台",
-    "description": "为客户提供大模型私有化部署、应用开发及智能体定制服务",
+    "badge": "AI驱动的解决方案",
+    "titleLine1": "用AI技术",
+    "titleLine2": "赋能您的业务",
+    "description": "为企业提供大模型私有化部署、应用开发及智能体定制服务，助力数字化转型",
     "cta": {
       "explore": "探索服务",
       "docs": "查看文档"
+    },
+    "stats": {
+      "clients": "企业客户",
+      "uptime": "服务可用性",
+      "support": "专家支持",
+      "efficiency": "效率提升"
     }
+  },
+  "theme": {
+    "title": "主题",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "系统"
   },
   "cta": {
     "explore": "探索服务",
     "docs": "查看文档"
   },
   "collaboration": {
+    "sectionTag": "联系我们",
     "sectionTitle": "一键合作",
     "sectionDescription": "填写表单或通过以下方式与我们取得联系，我们将尽快与您沟通",
     "form": {
@@ -431,33 +463,36 @@
       "contactPlaceholder": "电话或邮箱",
       "messageLabel": "备注",
       "messagePlaceholder": "请简要描述您的需求",
-      "submitButton": "提交合作申请"
+      "submitButton": "提交合作申请",
+      "submitting": "提交中..."
     },
     "submitSuccess": {
       "title": "提交成功！",
       "message": "感谢您的咨询，我们的服务顾问将在1-2个工作日内与您联系"
     },
+    "sendAnother": "发送另一条消息",
     "toast": {
       "success": "提交成功！"
     },
     "contact": {
       "wechat": "扫码加微信",
+      "scanQR": "扫描二维码添加微信",
       "email": "发送邮件",
       "responseTime": "我们将在1-2个工作日内回复您"
     }
   },
   "Store": {
-    "title": "水杉智境应用商店",
+    "title": "应用商店",
     "description": "探索我们开发的AI应用，提升您的工作效率和创造力",
     "searchPlaceholder": "搜索应用...",
     "types": {
-      "all": "全部",
+      "all": "全部类型",
       "miniProgram": "小程序",
       "h5": "H5",
       "app": "App"
     },
     "categories": {
-      "all": "全部",
+      "all": "全部分类",
       "tools": "工具",
       "creativity": "创意",
       "development": "开发",
@@ -465,6 +500,8 @@
     },
     "noAppsFound": "未找到匹配的应用",
     "clearFilters": "清除筛选条件",
+    "showingResults": "显示 {count} 个应用，共 {total} 个",
+    "tryAdjustingFilters": "尝试调整搜索词或筛选条件",
     "meta": {
       "title": "应用商店 | 水杉智境工作室",
       "description": "探索我们开发的AI应用，提升您的工作效率和创造力"
@@ -474,12 +511,23 @@
     "loading": "加载文档中...",
     "meta": {
       "title": "文档中心 | 水杉智境工作室",
-      "description": "水杉智境工作室的文档中心"
+      "description": "水杉智境工作室的文档中心，提供产品介绍、使用指南和技术文档"
     },
     "errors": {
       "title": "错误",
       "loadFailed": "获取文档失败",
       "notFound": "文档未找到"
+    },
+    "search": {
+      "placeholder": "搜索文档...",
+      "noResults": "未找到匹配的文档",
+      "tryDifferent": "尝试使用不同的关键词"
+    },
+    "categories": {
+      "all": "全部",
+      "gettingStarted": "入门",
+      "technical": "技术文档",
+      "help": "帮助"
     }
   }
 }

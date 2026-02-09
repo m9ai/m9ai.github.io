@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ServiceDetailClient from './components/ServiceDetailClient';
 import { services } from '@/data/services';
 
@@ -23,24 +23,20 @@ export async function generateMetadata({
 }
 
 // 添加静态参数生成函数，指定支持的语言
-// Update static params generation to include both locale and service ID
 export async function generateStaticParams() {
-  // Get all possible service IDs from the services data
-  const serviceIds = services.map(service => service.id);
-  
-  // Generate combinations of locale and service ID
-  return serviceIds.flatMap(id => [
-    { locale: 'zh', id },
-    { locale: 'en', id }
+  return services.flatMap(service => [
+    { locale: 'zh', id: service.id },
+    { locale: 'en', id: service.id }
   ]);
 }
 
 export default async function ServiceDetailPage({
   params
 }: { 
-  params: Promise<{ id: string }>
+  params: Promise<{ locale: string; id: string }>
 }) {
-  const { id } = await params;
+  const { id, locale } = await params;
+  setRequestLocale(locale);
   const service = services.find(s => s.id === id);
   if (!service) return <div>服务不存在</div>;
 
