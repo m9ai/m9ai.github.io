@@ -6,12 +6,15 @@
     "deploy:local": "pnpm build && npx serve out",
     "dev": "next dev --turbopack",
     "build": "next build",
+    "prebuild": "node src/scripts/generate-search-index.js",
     "postbuild": "next-sitemap",
     "vercel-build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-search-index": "node src/scripts/generate-search-index.js"
   },
   "dependencies": {
+    "fuse.js": "^7.1.0",
     "@heroicons/react": "^2.2.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",

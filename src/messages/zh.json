@@ -281,6 +281,26 @@
     "language": "语言",
     "themeToggle": "切换主题"
   },
+  "search": {
+    "buttonLabel": "搜索",
+    "placeholder": "搜索服务、文档、页面...",
+    "loading": "加载搜索索引...",
+    "results": "搜索结果",
+    "noResults": "未找到相关结果",
+    "tryDifferentKeywords": "请尝试其他关键词",
+    "quickAccess": "快捷入口",
+    "quickLinks": {
+      "services": "服务",
+      "docs": "文档",
+      "store": "应用商店",
+      "contact": "联系我们"
+    },
+    "proTip": "AI 智能搜索",
+    "proTipContent": "支持模糊匹配和语义搜索，输入关键词即可快速找到相关内容",
+    "navigate": "导航",
+    "select": "选择",
+    "poweredBy": "AI 驱动搜索"
+  },
   "footer": {
     "logoAlt": "水杉智境工作室标志",
     "logoText": "水杉智境",
@@ -290,7 +310,7 @@
     "contactUs": "联系我们",
     "description": "企业级AI解决方案提供商，专注于大模型部署、应用开发和智能体定制",
     "services": "服务",
-    "company": "公司",
+    "company": "工作室",
     "legal": "法律",
     "madeWith": "用",
     "allRightsReserved": "制作，保留所有权利。",

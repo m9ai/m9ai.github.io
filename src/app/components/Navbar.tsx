@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/lib/navigation';
 import { routing } from '@/i18n/routing';
 import { useTheme } from '@/app/contexts/ThemeContext';
+import SearchButton from './SearchButton';
 import { 
   Bars3Icon, 
   XMarkIcon, 
@@ -139,8 +140,11 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right Section: Theme, Language, Mobile Menu */}
+          {/* Right Section: Search, Theme, Language, Mobile Menu */}
           <div className="flex items-center gap-2">
+            {/* Search Button */}
+            <SearchButton />
+
             {/* Theme Toggle Dropdown */}
             <div className="relative dropdown-container hidden sm:block">
               <button
