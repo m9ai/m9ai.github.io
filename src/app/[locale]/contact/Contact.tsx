@@ -177,8 +177,8 @@ export default function ContactPage() {
               {
                 icon: <PhoneIcon className="w-6 h-6" />,
                 label: t('contact.phoneLabel') || '电话',
-                value: '+86 138-xxxx-xxxx',
-                href: 'tel:+8613800138000',
+                value: '+86 176-0213-5810',
+                href: 'tel:+8617602135810',
                 color: 'bg-green-500',
               },
               {
