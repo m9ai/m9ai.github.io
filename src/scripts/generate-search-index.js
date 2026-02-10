@@ -57,9 +57,7 @@ async function generateSearchIndex() {
     
     // 获取中英文翻译
     const titleZh = getNestedValue(messagesZh, titleKey);
-    const titleEn = getNestedValue(messagesEn, titleKey);
     const descZh = getNestedValue(messagesZh, descKey);
-    const descEn = getNestedValue(messagesEn, descKey);
     const detailsZh = getNestedValue(messagesZh, detailsKey);
     const detailsEn = getNestedValue(messagesEn, detailsKey);
     
@@ -112,7 +110,37 @@ async function generateSearchIndex() {
     }
   }
 
-  // 3. 添加其他重要页面
+  // 3. 添加案例到索引
+  const caseSlugs = [
+    'enterprise-service',
+    'healthcare',
+    'fintech',
+    'education',
+    'architecture',
+    'manufacturing',
+    'law-firm',
+    'accounting',
+  ];
+
+  caseSlugs.forEach((slug, index) => {
+    const title = getNestedValue(messagesZh, `cases.studies.${index}.title`);
+    const description = getNestedValue(messagesZh, `cases.studies.${index}.description`);
+    const category = getNestedValue(messagesZh, `cases.studies.${index}.category`);
+    const challenge = getNestedValue(messagesZh, `cases.studies.${index}.challenge`);
+    const solution = getNestedValue(messagesZh, `cases.studies.${index}.solution`);
+    
+    searchItems.push({
+      id: `case-${slug}`,
+      title: title,
+      description: description,
+      content: `${challenge} ${solution}`,
+      url: `/cases/${slug}`,
+      type: 'case',
+      category: category,
+    });
+  });
+
+  // 4. 添加其他重要页面
   const staticPages = [
     { id: 'page-home', title: '首页', description: '水杉智境工作室 - 企业级 AI 解决方案', url: '/' },
     { id: 'page-services', title: '服务', description: '探索我们的 AI 服务解决方案', url: '/services' },

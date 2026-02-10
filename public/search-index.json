@@ -27,6 +27,22 @@
     "category": "aiService"
   },
   {
+    "id": "doc-api-integration",
+    "title": "API 集成开发指南",
+    "description": "学习如何将大模型能力集成到您的应用程序中",
+    "content": "API 集成开发指南 概述 本文档介绍如何通过 API 将大语言模型能力集成到您的应用程序中，支持多种编程语言和框架。 快速开始 获取 API 密钥 1. 登录控制台: https://console.m9ai.work 2. 进入「API 管理」页面 3. 点击「创建密钥」，复制生成的 API Key 基础请求示例 cURL bash curl -X POST \"https://api.m9ai.work/v1/chat/completions\" \\   -H \"Authorization: Bearer YOURAPIKEY\" \\   -H \"Content-Type: application/json\" \\   -d '{     \"model\": \"gpt-4\",     \"messages\": [       {\"role\": \"user\", \"content\": \"你好！\"}     ]   }' Python python from openai import OpenAI client = OpenAI(     apikey=\"YOURAPIKEY\",     baseurl=\"https://api.m9ai.work/v1\" ) response = client.chat.completions.create(     model=\"gpt-4\",     messages=[         {\"role\": \"user\", \"content\": \"你好！\"}     ] ) print(response.choices[0].message.content) JavaScript javascript import OpenAI from 'openai'; const client = new OpenAI({   apiKey: 'YOURAPIKEY',   baseURL: 'https://api.m9ai.work/v1', }); async function chat() {   const response = await client.chat.completions.create({     model: 'gpt-4',     messages: [{ role: 'user', content: '你好！' }",
+    "url": "/docs/api-integration",
+    "type": "doc",
+    "category": "开发指南",
+    "tags": [
+      "API",
+      "集成",
+      "SDK",
+      "RESTful",
+      "开发"
+    ]
+  },
+  {
     "id": "doc-api-reference",
     "title": "API 文档",
     "description": "水杉智境 API 接口文档，包含认证方式、基础 URL、接口列表和错误处理说明",
@@ -71,10 +87,25 @@
     ]
   },
   {
+    "id": "doc-knowledge-base",
+    "title": "本地知识库搭建指南",
+    "description": "学习如何构建企业级本地知识库，实现私有数据的智能检索与问答",
+    "content": "本地知识库搭建指南 概述 本地知识库（Local Knowledge Base）是企业 AI 应用的核心基础设施。通过将企业私有文档、数据转化为可检索的知识，结合大语言模型的理解能力，实现智能问答、文档分析、知识挖掘等功能。 核心架构 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐ │   文档输入       │────▶│  文档处理引擎    │────▶│  向量数据库      │ │  (PDF/Word/等)  │     │ (解析/分块/嵌入) │     │  (Milvus/PGVector)│ └─────────────────┘     └─────────────────┘     └─────────────────┘                                                         │ ┌─────────────────┐     ┌─────────────────┐            │ │   用户提问       │────▶│   RAG 检索引擎   │◀───────────┘ │  (自然语言)      │     │ (向量相似度搜索)  │ └─────────────────┘     └─────────────────┘                                 │                                 ▼                         ┌─────────────────┐                         │   大语言模型     │                         │  (生成回答)      │                         └─────────────────┘ 环境准备 系统要求 - CPU: 4核及以上 - 内存: 16GB 及以上 - 存储: 100GB SSD 及以上 - GPU: 可选，推荐用于 Embedding 加速 依赖安装 bash Python 环境 python -m pip install langchain langc",
+    "url": "/docs/knowledge-base",
+    "type": "doc",
+    "category": "进阶教程",
+    "tags": [
+      "知识库",
+      "RAG",
+      "向量数据库",
+      "数据安全"
+    ]
+  },
+  {
     "id": "doc-model-deployment",
     "title": "模型部署指南",
     "description": "提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化",
-    "content": "模型部署指南 概述 我们提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化。 支持的模型 - GPT 系列 - LLaMA 及其衍生模型 - 文心一言 - 讯飞星火 - 以及更多... 部署流程 1. 需求评估 联系我们进行需求评估，确定最适合的模型和硬件配置。 2. 环境准备 根据评估结果准备服务器环境，包括： - GPU 配置 - 存储空间 - 网络环境 3. 模型部署 我们的工程师将协助完成模型部署和配置。 4. 测试验收 进行功能测试和性能调优，确保满足业务需求。 核心优势 - 支持主流大模型全覆盖：包含 GPT 系列、LLaMA、文心一言、讯飞星火等 10+ 主流大模型的本地化适配 - 数据安全与隐私保护：模型部署在客户自有服务器，数据不出本地网络，满足合规要求 - 深度定制与微调：基于客户业务数据进行模型微调，提升特定场景下的响应质量 - 性能优化与资源管理：针对不同硬件环境优化模型推理速度，降低显存占用 联系我们 如需了解更多详情，请 联系我们。",
+    "content": "模型部署指南 概述 我们提供主流大模型的本地化部署方案，帮助企业在自有基础设施上运行大语言模型，保障数据安全与隐私，支持自定义微调与性能优化。本指南涵盖从单机部署到分布式集群的完整方案。 支持的模型 开源模型 | 模型 | 参数量 | 显存需求 | 推荐用途 | |------|--------|----------|----------| | LLaMA 2/3 | 7B-70B | 16GB-160GB | 通用对话、文本生成 | | Qwen (通义千问) | 7B-72B | 16GB-160GB | 中文场景、代码生成 | | ChatGLM3 | 6B | 14GB | 中文对话、轻量级部署 | | Baichuan2 | 7B-13B | 16GB-28GB | 中文场景、企业应用 | | Yi (零一万物) | 6B-34B | 14GB-80GB | 中英文混合场景 | 商用模型（需授权） - GPT 系列（通过 Azure OpenAI 私有化部署） - 文心一言企业版 - 讯飞星火企业版 系统要求 最低配置（7B 模型） - CPU: 8 核及以上 - 内存: 32GB 及以上 - 存储: 100GB SSD 及以上 - GPU: NVIDIA RTX 3090 / A10 / T4（24GB 显存） 推荐配置（13B-70B 模型） - CPU: 16 核及以上 - 内存: 64GB-256GB - 存储: 500GB NVMe SSD - GPU:    - 13B 模型: A100 40GB 或 RTX 4090   - 70B 模型: 2x A100 80GB 或 4x A10 软件环境 - 操作系统: Ubuntu 20.04/22.04 LTS, CentOS 7/8 - CUDA: 11.8 或 12.1 - Docker: 20.10+（推荐） - Python: 3.9-3.11 部署方式 方式一：Docker 快速部署（推荐） 1. 安装 Docker 和 NVIDIA Docker bash 安装 Docker curl -fsSL https://get.docker.com | sh 安装 NVIDIA Container Toolkit distribution=$(. /etc/os-release;echo $I",
     "url": "/docs/model-deployment",
     "type": "doc",
     "category": "技术文档",
@@ -82,7 +113,9 @@
       "模型部署",
       "私有化",
       "大模型",
-      "GPU"
+      "GPU",
+      "Docker",
+      "Kubernetes"
     ]
   },
   {
@@ -96,6 +129,22 @@
     "tags": []
   },
   {
+    "id": "doc-prompt-engineering",
+    "title": "提示词工程最佳实践",
+    "description": "掌握提示词设计技巧，提升大模型输出质量与可靠性",
+    "content": "提示词工程最佳实践 概述 提示词工程（Prompt Engineering）是通过设计和优化输入提示词，引导大语言模型（LLM）生成高质量、符合预期的输出的技术。良好的提示词设计是 AI 应用成功的关键。 提示词基本结构 标准格式 角色设定 你是[专业角色]，具备[相关经验/能力]。 任务描述 请完成以下任务：[具体任务] 输入数据 [需要处理的内容] 约束条件 - 条件1 - 条件2 - ... 输出格式 请以[格式]输出，包含以下要素： 1. 要素A 2. 要素B 3. ... 示例：产品文案生成 markdown 角色 你是一位资深的电商文案策划专家，拥有10年文案撰写经验，擅长挖掘产品卖点并转化为吸引人的文案。 任务 为以下产品撰写一则朋友圈推广文案。 产品信息 - 产品名称：智能颈椎按摩仪 - 核心功能：热敷+脉冲按摩+APP控制 - 目标人群：25-40岁办公室白领 - 价格区间：299-399元 - 卖点：15分钟快速缓解疲劳、静音设计、便携可折叠 要求 1. 开头要有吸引力，3秒内抓住注意力 2. 突出解决的具体痛点 3. 加入社会认同元素（如销量、好评） 4. 结尾有明确的行动号召 5. 字数控制在150字以内 6. 语气亲切自然，避免过度营销感 输出格式 直接输出文案内容，不需要额外解释。 核心技巧 1. 角色设定（Role Prompting） 通过设定专业角色，激活模型的领域知识： ❌ 一般：\"写一篇关于糖尿病的文章\" ✅ 优化：\"你是一位内分泌科主任医师，拥有20年临床经验。请用通俗语言向糖尿病患者解释血糖控制的重要性，包括： 1. 血糖失控的危害 2. 日常监测要点 3. 饮食控制原则 要求：专业准确但易懂，语气亲切关怀。\" 2. 思维链（Chain-of-Thought） 引导模型展示推理过程，提升复杂任务准确率： 请解答以下数学问题，并展示详细的推理步骤： 问题：一个水箱有2个进水管和1个排水管。A管单独注满需要6小时，B管单独注满需要4小时，排水管单独排空需要8小时。如果三管同时打开，需要多久注满水箱？ 思考过程： 1. 首先，我需要计算每个管子的工作效率... 2. 然后，计算三管同时工作时的净效率... 3. 最后，根据净效率计算注满时间... 请按以上思路详细解答。 3. 少样本学习（Few-Shot Learning） 通过",
+    "url": "/docs/prompt-engineering",
+    "type": "doc",
+    "category": "进阶教程",
+    "tags": [
+      "提示词",
+      "Prompt",
+      "提示工程",
+      "LLM优化",
+      "角色设定"
+    ]
+  },
+  {
     "id": "doc-terms-of-service",
     "title": "terms-of-service",
     "description": "",
@@ -104,6 +153,94 @@
     "type": "doc",
     "category": "文档",
     "tags": []
+  },
+  {
+    "id": "doc-workflow",
+    "title": "AI 工作流搭建实战",
+    "description": "使用可视化工具搭建自动化 AI 工作流，提升业务效率",
+    "content": "AI 工作流搭建实战 概述 AI 工作流（AI Workflow）是将大语言模型与业务流程相结合的自动化系统。通过可视化的流程编排工具，无需编写代码即可构建复杂的 AI 应用。 常见工作流类型 | 类型 | 应用场景 | 典型工具 | |------|----------|----------| | 内容生成 | 文章写作、营销文案 | Dify、Coze | | 数据处理 | 文档分析、信息提取 | LangFlow、Flowise | | 客服自动化 | 智能问答、工单处理 | Dify、FastGPT | | 代码辅助 | 代码生成、Code Review | Continue、Cursor | Dify 快速入门 环境部署 Docker 部署（推荐） bash 克隆仓库 git clone https://github.com/langgenius/dify.git cd dify/docker 启动服务 docker-compose up -d 访问 http://localhost/install 完成初始化 本地开发环境 bash 后端 cd api poetry install poetry shell flask db upgrade flask run --host 0.0.0.0 --port 5001 前端 cd web npm install npm run dev 第一个工作流：智能客服 步骤 1: 创建应用 1. 登录 Dify 控制台 2. 点击「创建应用」→「工作流编排」 3. 命名：智能客服助手 步骤 2: 设计流程 ┌─────────────┐ │   开始节点   │ 接收用户问题 └──────┬──────┘        ▼ ┌─────────────┐ │  意图识别    │ LLM 判断问题类型 │   (LLM)     │ └──────┬──────┘        ▼ ┌─────────────┐ │   条件分支   │ │  (IF/ELSE)  │ 技术问题？产品咨询？投诉？ └──────┬──────┘        ▼ ┌─────────────┐ │  知识检索    │ 从知识库搜索相关内容 │   (RAG)     │ └──────┬──────┘        ▼ ┌────",
+    "url": "/docs/workflow",
+    "type": "doc",
+    "category": "进阶教程",
+    "tags": [
+      "工作流",
+      "自动化",
+      "Dify",
+      "智能体",
+      "业务流程"
+    ]
+  },
+  {
+    "id": "case-enterprise-service",
+    "title": "智能客服系统",
+    "description": "基于大语言模型的智能客服解决方案，提升客户满意度30%",
+    "content": "某大型电商企业面临客服人力成本高、响应慢、服务质量不稳定等问题 部署私有化大模型客服系统，实现7×24小时智能应答，支持多轮对话和情感分析",
+    "url": "/cases/enterprise-service",
+    "type": "case",
+    "category": "企业服务"
+  },
+  {
+    "id": "case-healthcare",
+    "title": "医疗数据分析平台",
+    "description": "利用AI技术分析医疗数据，辅助医生诊断决策",
+    "content": "三甲医院日均门诊量超万人，医生诊断压力大，病历书写耗时 构建医疗AI助手，集成电子病历系统，提供诊断建议和治疗方案参考",
+    "url": "/cases/healthcare",
+    "type": "case",
+    "category": "医疗健康"
+  },
+  {
+    "id": "case-fintech",
+    "title": "金融风控系统",
+    "description": "实时监控交易风险，识别异常行为准确率达到98%",
+    "content": "某银行信用卡欺诈损失严重，传统规则引擎误报率高 基于大模型的智能风控系统，实时分析交易行为，动态调整风控策略",
+    "url": "/cases/fintech",
+    "type": "case",
+    "category": "金融科技"
+  },
+  {
+    "id": "case-education",
+    "title": "教育内容生成工具",
+    "description": "自动生成个性化学习内容，适配不同学习风格",
+    "content": "教育培训机构内容生产慢，无法满足个性化教学需求 AI教学助手，一键生成课件、习题、讲解视频脚本，支持多难度层级",
+    "url": "/cases/education",
+    "type": "case",
+    "category": "在线教育"
+  },
+  {
+    "id": "case-architecture",
+    "title": "AI辅助建筑设计平台",
+    "description": "智能化生成设计方案，优化建筑能耗与空间布局",
+    "content": "某建筑设计院项目周期长，方案修改频繁，能耗优化依赖经验 AI建筑设计助手，根据需求自动生成多方案比选，实时计算能耗指标",
+    "url": "/cases/architecture",
+    "type": "case",
+    "category": "建筑设计"
+  },
+  {
+    "id": "case-manufacturing",
+    "title": "工业质检智能体",
+    "description": "AI视觉检测系统，实现生产缺陷实时识别与预警",
+    "content": "汽车零部件厂人工质检效率低，漏检率高，质量追溯困难 部署AI视觉质检系统，多工位实时检测，自动分类缺陷类型",
+    "url": "/cases/manufacturing",
+    "type": "case",
+    "category": "智能制造"
+  },
+  {
+    "id": "case-law-firm",
+    "title": "法律文档智能审查系统",
+    "description": "自动化合同审查与法律研究，提升律师工作效率",
+    "content": "某大型律所合同审查工作量大，法律检索耗时，知识管理分散 法律AI助手，智能审查合同条款，自动匹配相关判例和法规",
+    "url": "/cases/law-firm",
+    "type": "case",
+    "category": "律师事务所"
+  },
+  {
+    "id": "case-accounting",
+    "title": "智能审计分析平台",
+    "description": "AI驱动的财务数据分析，自动识别异常交易与风险",
+    "content": "会计师事务所审计项目多，数据处理量大，人工抽样审计覆盖面有限 智能审计系统，全量数据分析，自动标记异常，生成审计建议",
+    "url": "/cases/accounting",
+    "type": "case",
+    "category": "会计师事务所"
   },
   {
     "id": "page-home",

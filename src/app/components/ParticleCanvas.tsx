@@ -229,7 +229,7 @@ const ParticleCanvas = () => {
       window.removeEventListener('mousemove', handleMouseMoveRef.current);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isRendered]);
+  }, [isRendered, isDark]);
 
   return (
     <canvas

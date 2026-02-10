@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import { getAllDocSlugs, getDocBySlug, processMarkdown, getAllDocs } from '@/lib/docs';
+import { getAllDocSlugs, getDocBySlug, getAllDocs } from '@/lib/docs';
 import DocContent from './DocContent';
 
 interface DocPageProps {
@@ -25,8 +25,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: DocPageProps): Promise<Metadata> {
   try {
     const { slug, locale } = await params;
-    const doc = getDocBySlug(slug);
-    
+    const doc = await getDocBySlug(slug);
+
     return {
       title: `${doc.title} | 文档中心`,
       description: doc.description,
@@ -47,20 +47,24 @@ export default async function DocPage({ params }: DocPageProps) {
   try {
     const { slug, locale } = await params;
     setRequestLocale(locale);
-    const doc = getDocBySlug(slug);
-    const htmlContent = await processMarkdown(doc.content);
-    const allDocs = getAllDocs();
-    
+    const doc = await getDocBySlug(slug);
+
+    // 验证 htmlContent 是否有效
+    if (!doc.htmlContent || doc.htmlContent.trim() === '') {
+      console.error(`Empty htmlContent for doc: ${slug}`);
+      throw new Error('Failed to process markdown');
+    }
+
+    const allDocs = await getAllDocs();
+
     return (
-      <DocContent 
-        doc={{
-          ...doc,
-          htmlContent,
-        }}
+      <DocContent
+        doc={doc}
         allDocs={allDocs.map(d => ({ slug: d.slug, title: d.title, category: d.category }))}
       />
     );
-  } catch {
+  } catch (error) {
+    console.error('DocPage error:', error);
     notFound();
   }
 }

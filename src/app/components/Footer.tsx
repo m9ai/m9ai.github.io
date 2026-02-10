@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useState } from 'react';
 import { Link } from '@/lib/navigation';
 import { useTranslations } from 'next-intl';
 
@@ -28,17 +29,36 @@ const footerLinks = {
   ],
 };
 
+// 微信图标
+const WeChatIcon = () => (
+  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.49.49 0 0 1-.011-.175.49.49 0 0 1 .189-.38C23.063 18.369 24 16.672 24 14.783c0-3.354-3.16-6.007-7.062-5.925zm-2.92 2.691c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+  </svg>
+);
+
+// 视频号图标
+const VideoIcon = () => (
+  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+  </svg>
+);
+
+// 微信二维码数据
+const wechatLinks = [
+  {
+    name: '微信公众号',
+    qrCode: '/logos/w-logo-qr.jpg',
+    icon: <WeChatIcon />,
+  },
+  {
+    name: '微信视频号',
+    qrCode: '/logos/v-logo-qr.png',
+    icon: <VideoIcon />,
+  },
+];
+
 // Social links
 const socialLinks = [
-  { 
-    name: 'GitHub', 
-    href: 'https://github.com/m9ai', 
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-      </svg>
-    )
-  },
   { 
     name: 'Email', 
     href: 'mailto:c@m9ai.work', 
@@ -49,6 +69,7 @@ const socialLinks = [
 export default function Footer() {
   const t = useTranslations();
   const currentYear = new Date().getFullYear();
+  const [hoveredWechat, setHoveredWechat] = useState<string | null>(null);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -84,6 +105,43 @@ export default function Footer() {
               
               {/* Social links */}
               <div className="flex items-center gap-3">
+                {/* 微信图标组 */}
+                {wechatLinks.map((wechat) => (
+                  <div
+                    key={wechat.name}
+                    className="relative"
+                    onMouseEnter={() => setHoveredWechat(wechat.name)}
+                    onMouseLeave={() => setHoveredWechat(null)}
+                    onTouchStart={() => setHoveredWechat(wechat.name)}
+                  >
+                    <button
+                      className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-800 hover:bg-primary text-slate-400 hover:text-white transition-all"
+                      aria-label={wechat.name}
+                    >
+                      {wechat.icon}
+                    </button>
+                    {/* 二维码弹出层 */}
+                    {hoveredWechat === wechat.name && (
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 p-3 bg-white rounded-xl shadow-xl z-50 animate-in fade-in zoom-in duration-200">
+                        <div className="relative w-32 h-32 bg-slate-100 rounded-lg overflow-hidden">
+                          <Image
+                            src={wechat.qrCode}
+                            alt={wechat.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <p className="text-xs text-slate-600 text-center mt-2 font-medium">{wechat.name}</p>
+                        {/* 箭头 */}
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1">
+                          <div className="w-3 h-3 bg-white rotate-45"></div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                
+                {/* 邮件图标 */}
                 {socialLinks.map((social) => (
                   <Link
                     key={social.name}

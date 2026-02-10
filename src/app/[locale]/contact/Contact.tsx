@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import { useTranslations } from 'next-intl';
@@ -9,13 +9,17 @@ import {
   EnvelopeIcon,
   ArrowTopRightOnSquareIcon,
   UserIcon,
-  SparklesIcon,
   BuildingOffice2Icon,
   MapPinIcon,
   PhoneIcon,
   QrCodeIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  LightBulbIcon,
+  ShieldCheckIcon,
+  ArrowRightIcon,
 } from '@heroicons/react/24/outline';
-import CollaborationSection from '@/app/components/CollaborationSection';
+import FreeConsultation from '@/app/components/FreeConsultation';
 
 // 动画配置
 const containerVariants = {
@@ -44,12 +48,13 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-b from-primary/10 via-primary/5 to-white dark:from-primary/20 dark:via-primary/10 dark:to-slate-900 overflow-hidden">
+      {/* Hero Section - 突出免费AI咨询 */}
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-30" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
         </div>
 
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,24 +62,76 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
+            className="text-center max-w-4xl mx-auto"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-              <SparklesIcon className="w-4 h-4" />
-              Get In Touch
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              {t('title')}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-semibold mb-6"
+            >
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              限时免费开放
+            </motion.div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+              免费AI应用咨询顾问
             </h1>
-            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-              {t('about.description')}
+            <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-8">
+              不确定业务如何AI化？我们的专家为您提供30分钟免费咨询，
+              帮您梳理场景、评估可行性、规划实施路径
             </p>
+
+            {/* Value props */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-wrap justify-center gap-4 mb-10"
+            >
+              {[
+                { icon: CheckCircleIcon, text: '0元免费咨询' },
+                { icon: ClockIcon, text: '2小时内响应' },
+                { icon: LightBulbIcon, text: '专业顾问1对1' },
+                { icon: ShieldCheckIcon, text: '无任何附加条件' },
+              ].map((item, index) => (
+                <div key={index} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white">
+                  <item.icon className="w-5 h-5" />
+                  <span className="text-sm font-medium">{item.text}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <a
+                href="#free-consultation"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 font-bold rounded-xl shadow-lg hover:bg-slate-100 transition-all hover:shadow-xl hover:-translate-y-0.5"
+              >
+                立即预约免费咨询
+                <ArrowRightIcon className="w-5 h-5" />
+              </a>
+            </motion.div>
           </motion.div>
+        </div>
+
+        {/* Bottom wave */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" className="dark:fill-slate-900"/>
+          </svg>
         </div>
       </section>
 
+      {/* Free Consultation Section */}
+      <FreeConsultation />
+
       {/* About & Founder Section */}
-      <section ref={sectionRef} className="py-20 lg:py-28">
+      <section ref={sectionRef} className="py-20 lg:py-28 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -84,7 +141,7 @@ export default function ContactPage() {
           >
             {/* About Card */}
             <motion.div variants={itemVariants}>
-              <div className="h-full bg-white dark:bg-slate-800 rounded-3xl p-8 lg:p-10 border border-slate-200 dark:border-slate-700 shadow-soft hover:shadow-elevated transition-all duration-300">
+              <div className="h-full bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 lg:p-10 border border-slate-200 dark:border-slate-700 shadow-soft hover:shadow-elevated transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
                     <BuildingOffice2Icon className="w-6 h-6 text-primary" />
@@ -112,7 +169,7 @@ export default function ContactPage() {
 
             {/* Founder Card */}
             <motion.div variants={itemVariants}>
-              <div className="h-full bg-white dark:bg-slate-800 rounded-3xl p-8 lg:p-10 border border-slate-200 dark:border-slate-700 shadow-soft hover:shadow-elevated transition-all duration-300">
+              <div className="h-full bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 lg:p-10 border border-slate-200 dark:border-slate-700 shadow-soft hover:shadow-elevated transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center">
                     <UserIcon className="w-6 h-6 text-secondary" />
@@ -199,7 +256,7 @@ export default function ContactPage() {
               <motion.div key={index} variants={itemVariants}>
                 <Link
                   href={item.href}
-                  className="group block bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-primary/30 transition-all duration-300 shadow-card hover:shadow-elevated"
+                  className="group block bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-primary/30 transition-all duration-300 shadow-card hover:shadow-elevated"
                 >
                   <div className={`w-12 h-12 rounded-xl ${item.color} bg-opacity-10 flex items-center justify-center mb-4 text-${item.color.replace('bg-', '')}`}>
                     {item.icon}
@@ -214,9 +271,6 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </section>
-
-      {/* Contact Form Section - Reuse CollaborationSection */}
-      <CollaborationSection />
     </div>
   );
 }

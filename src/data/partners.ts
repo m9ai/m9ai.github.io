@@ -1,5 +1,3 @@
-import type { StaticImageData } from 'next/image';
-
 /**
  * 技术支持伙伴接口定义
  * 确保所有伙伴数据格式一致，提供类型安全

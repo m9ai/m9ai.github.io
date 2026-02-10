@@ -22,7 +22,7 @@ export const services: Service[] = [
     id: 'model-deployment',
     title: 'model-deployment.title',
     description: 'model-deployment.description',
-    imageUrl: '/bushu.jpg',
+    imageUrl: '/bushu.svg',
     category: 'aiService',
     detailsKey: 'model-deployment.details',
     coreAdvantages: [
@@ -47,7 +47,7 @@ export const services: Service[] = [
     id: 'model-application',
     title: 'model-application.title',
     description: 'model-application.description',
-    imageUrl: '/app.jpg',
+    imageUrl: '/app.svg',
     category: 'aiService',
     detailsKey: 'model-application.details',
     coreAdvantages: [
@@ -72,7 +72,7 @@ export const services: Service[] = [
     id: 'agent-development',
     title: 'agent-development.title',
     description: 'agent-development.description',
-    imageUrl: '/agent.jpg',
+    imageUrl: '/agent.svg',
     category: 'aiService',
     detailsKey: 'agent-development.details',
     coreAdvantages: [

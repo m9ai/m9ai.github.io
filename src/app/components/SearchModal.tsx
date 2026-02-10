@@ -16,6 +16,7 @@ import {
   HomeIcon,
   EnvelopeIcon,
   ShoppingBagIcon,
+  FolderIcon,
 } from '@heroicons/react/24/outline';
 import Fuse from 'fuse.js';
 
@@ -47,6 +48,7 @@ const typeIcons = {
   service: SparklesIcon,
   doc: DocumentTextIcon,
   page: HomeIcon,
+  case: FolderIcon,
 };
 
 // 类型标签映射
@@ -54,6 +56,7 @@ const typeLabels = {
   service: '服务',
   doc: '文档',
   page: '页面',
+  case: '案例',
 };
 
 // 搜索结果项组件
@@ -102,6 +105,8 @@ function SearchResultItem({
             ? 'bg-gradient-to-br from-indigo-500 to-purple-600'
             : item.type === 'doc'
             ? 'bg-gradient-to-br from-green-500 to-teal-600'
+            : item.type === 'case'
+            ? 'bg-gradient-to-br from-amber-500 to-orange-600'
             : 'bg-gradient-to-br from-slate-500 to-slate-600'
         }`}
       >
@@ -142,7 +147,6 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<TranslatedSearchItem[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [searchIndex, setSearchIndex] = useState<SearchItem[]>([]);
   const [fuse, setFuse] = useState<Fuse<SearchItem> | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -156,7 +160,6 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
       try {
         const response = await fetch('/search-index.json');
         const data = await response.json();
-        setSearchIndex(data);
 
         // 初始化 Fuse.js
         const fuseInstance = new Fuse<SearchItem>(data, {

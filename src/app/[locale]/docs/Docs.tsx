@@ -42,10 +42,42 @@ const docsData: Doc[] = [
     updatedAt: '2025-02-09',
   },
   {
+    id: 'knowledge-base',
+    title: '本地知识库搭建',
+    description: '学习如何构建企业级本地知识库，实现私有数据的智能检索与问答',
+    category: '进阶教程',
+    tags: ['knowledge', 'rag', 'vector-db'],
+    updatedAt: '2025-02-09',
+  },
+  {
+    id: 'workflow',
+    title: 'AI 工作流搭建实战',
+    description: '使用可视化工具搭建自动化 AI 工作流，提升业务效率',
+    category: '进阶教程',
+    tags: ['workflow', 'automation', 'dify'],
+    updatedAt: '2025-02-09',
+  },
+  {
+    id: 'prompt-engineering',
+    title: '提示词工程最佳实践',
+    description: '掌握提示词设计技巧，提升大模型输出质量与可靠性',
+    category: '进阶教程',
+    tags: ['prompt', 'llm', 'optimization'],
+    updatedAt: '2025-02-09',
+  },
+  {
+    id: 'api-integration',
+    title: 'API 集成开发指南',
+    description: '学习如何将大模型能力集成到您的应用程序中',
+    category: '开发指南',
+    tags: ['api', 'sdk', 'integration'],
+    updatedAt: '2025-02-09',
+  },
+  {
     id: 'api-reference',
-    title: 'API 文档',
+    title: 'API 参考文档',
     description: '查看我们提供的 API 接口文档和示例代码',
-    category: '技术文档',
+    category: '开发指南',
     tags: ['api', 'reference'],
     updatedAt: '2025-02-09',
   },
@@ -127,7 +159,6 @@ function CategoryTag({
 
 // 主文档页面组件
 export default function DocsHomePage() {
-  const t = useTranslations('Docs');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('全部');
   const [filteredDocs, setFilteredDocs] = useState<Doc[]>(docsData);

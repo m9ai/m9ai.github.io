@@ -397,6 +397,73 @@
     "explore": "Explore Services",
     "docs": "View Documentation"
   },
+  "consultation": {
+    "sectionTag": "Limited Time Free",
+    "sectionTitle": "Free AI Application Consultation",
+    "sectionDescription": "Unsure how to AI-enable your business? Our experts offer a free 30-minute consultation to help you identify scenarios, assess feasibility, and plan implementation",
+    "badge": "Now Open - Limited Time",
+    "valueProps": {
+      "free": "Free Consultation",
+      "response": "Response within 2 hours",
+      "expert": "1-on-1 Expert Advice",
+      "noObligation": "No Obligations"
+    },
+    "form": {
+      "title": "Book Your Free Consultation",
+      "subtitle": "Fill in the information below so our consultants can serve you better",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Enter your name",
+      "companyLabel": "Company Name",
+      "companyPlaceholder": "Enter company name",
+      "phoneLabel": "Phone Number",
+      "phonePlaceholder": "Enter phone number",
+      "businessTypeLabel": "Business Type",
+      "businessTypePlaceholder": "Select business type",
+      "painPointLabel": "Pain Points or Needs",
+      "painPointPlaceholder": "Briefly describe your business scenario and the problems you want to solve...",
+      "submitButton": "Book Free Consultation Now",
+      "submitting": "Submitting...",
+      "privacyNotice": "By submitting, you agree to our privacy policy. We will not share your information with third parties"
+    },
+    "process": {
+      "title": "Service Process",
+      "step1": {
+        "title": "Submit Request",
+        "desc": "Fill in basic info, response within 2 hours"
+      },
+      "step2": {
+        "title": "Deep Dive",
+        "desc": "30-minute 1-on-1 expert consultation"
+      },
+      "step3": {
+        "title": "Solution Delivery",
+        "desc": "Custom proposal within 3 business days"
+      },
+      "step4": {
+        "title": "Your Decision",
+        "desc": "Zero pressure, you decide whether to proceed"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "What does the free consultation include?",
+      "a1": "Our free consultation includes: 1) AI feasibility analysis for your business scenario; 2) Technical solution recommendations; 3) ROI estimation; 4) Implementation roadmap. The entire process takes about 30-45 minutes of in-depth discussion.",
+      "q2": "Am I obligated to purchase services after the consultation?",
+      "a2": "Absolutely not. The free consultation comes with no strings attached. You can decide whether to work with us based entirely on your own needs. Our goal is to help you clarify your AI application strategy—even if you don't choose us, we hope it's helpful.",
+      "q3": "What is the background of your consultants?",
+      "a3": "Our consultants come from well-known tech companies with 5+ years of AI project implementation experience, serving industries including finance, healthcare, manufacturing, and retail—helping 100+ companies complete AI transformation.",
+      "q4": "How soon will I hear back?",
+      "a4": "After submitting the form, we'll contact you within 2 business hours to arrange consultant matching. For urgent needs, please note in the remarks and we'll prioritize your request."
+    },
+    "trust": {
+      "title": "Trusted by 100+ Enterprise Clients",
+      "subtitle": "Spanning finance, healthcare, manufacturing, retail and more"
+    },
+    "success": {
+      "title": "Booking Successful!",
+      "message": "Our consultant will contact you within 2 business hours. Please keep your phone available"
+    }
+  },
   "collaboration": {
     "sectionTag": "Get In Touch",
     "sectionTitle": "Collaborate Now",
@@ -459,22 +526,114 @@
       {
         "category": "Enterprise Services",
         "title": "Intelligent Customer Service System",
-        "description": "LLM-based intelligent customer service solution increasing satisfaction by 30%"
+        "description": "LLM-based intelligent customer service solution increasing satisfaction by 30%",
+        "challenge": "A large e-commerce enterprise faced high customer service costs, slow response times, and unstable service quality",
+        "solution": "Deployed private LLM customer service system, enabling 7×24 intelligent responses with multi-turn dialogue and sentiment analysis",
+        "results": [
+          "Customer satisfaction increased by 30%",
+          "Human agent workload reduced by 60%",
+          "Average response time reduced from 5 minutes to 10 seconds",
+          "Issue resolution rate improved to 92%"
+        ],
+        "technologies": ["GPT-4", "RAG", "Sentiment Analysis", "Knowledge Graph"]
       },
       {
         "category": "Healthcare",
         "title": "Medical Data Analysis Platform",
-        "description": "AI-powered medical data analysis assisting doctor diagnosis decisions"
+        "description": "AI-powered medical data analysis assisting doctor diagnosis decisions",
+        "challenge": "A tertiary hospital with over 10,000 daily outpatient visits, doctors under high diagnostic pressure, time-consuming medical records",
+        "solution": "Built medical AI assistant integrated with EMR system, providing diagnostic suggestions and treatment plan references",
+        "results": [
+          "Medical record writing efficiency improved 3x",
+          "Diagnostic accuracy increased by 15%",
+          "Daily patient capacity increased by 25%",
+          "Patient waiting time reduced by 40%"
+        ],
+        "technologies": ["Medical NLP", "Knowledge Graph", "Multimodal Analysis", "Privacy Computing"]
       },
       {
         "category": "FinTech",
         "title": "Financial Risk Control System",
-        "description": "Real-time transaction monitoring with 98% accuracy in anomaly detection"
+        "description": "Real-time transaction monitoring with 98% accuracy in anomaly detection",
+        "challenge": "A bank suffered severe credit card fraud losses, traditional rule-based engines had high false positive rates",
+        "solution": "AI-powered intelligent risk control system analyzing transaction behavior in real-time, dynamically adjusting risk strategies",
+        "results": [
+          "Fraud detection accuracy reached 98%",
+          "False positive rate reduced by 70%",
+          "Risk response time shortened to milliseconds",
+          "Annual fraud losses reduced by 80M"
+        ],
+        "technologies": ["Time Series Analysis", "Graph Neural Networks", "Anomaly Detection", "Federated Learning"]
       },
       {
         "category": "Online Education",
         "title": "Educational Content Generation Tool",
-        "description": "Automatically generate personalized learning content for different learning styles"
+        "description": "Automatically generate personalized learning content for different learning styles",
+        "challenge": "Education and training institutions struggled with slow content production, unable to meet personalized teaching needs",
+        "solution": "AI teaching assistant generating courseware, exercises, and video scripts with one click, supporting multiple difficulty levels",
+        "results": [
+          "Content production efficiency improved 10x",
+          "Course development cycle shortened from 2 weeks to 2 days",
+          "Student completion rate increased by 35%",
+          "Teacher preparation time saved by 50%"
+        ],
+        "technologies": ["Content Generation", "Personalized Recommendation", "Knowledge Tracing", "Auto Assessment"]
+      },
+      {
+        "category": "Architecture",
+        "title": "AI-Assisted Architectural Design Platform",
+        "description": "Intelligent design generation and optimization for building energy consumption and spatial layout",
+        "challenge": "An architectural design institute faced long project cycles, frequent design changes, and energy optimization relying on experience",
+        "solution": "AI architectural design assistant generating multiple scheme comparisons based on requirements, real-time energy consumption calculation",
+        "results": [
+          "Design cycle shortened by 50%",
+          "Building energy consumption reduced by 20% on average",
+          "Client satisfaction increased by 45%",
+          "Design changes reduced by 60%"
+        ],
+        "technologies": ["Generative Design", "BIM Integration", "Energy Simulation", "Spatial Optimization"]
+      },
+      {
+        "category": "Smart Manufacturing",
+        "title": "Industrial Quality Inspection Agent",
+        "description": "AI vision inspection system for real-time defect detection and early warning",
+        "challenge": "An auto parts factory had low manual inspection efficiency, high miss rates, and difficult quality traceability",
+        "solution": "Deployed AI vision quality inspection system, real-time multi-station detection, automatic defect classification",
+        "results": [
+          "Inspection efficiency improved 8x",
+          "Miss rate reduced from 3% to 0.1%",
+          "Production line downtime reduced by 40%",
+          "Quality traceability time reduced from hours to seconds"
+        ],
+        "technologies": ["Computer Vision", "Edge Computing", "Digital Twin", "Predictive Maintenance"]
+      },
+      {
+        "category": "Law Firm",
+        "title": "Legal Document Intelligent Review System",
+        "description": "Automated contract review and legal research to improve lawyer productivity",
+        "challenge": "A large law firm faced heavy contract review workload, time-consuming legal research, and scattered knowledge management",
+        "solution": "Legal AI assistant for intelligent contract clause review, automatic matching of relevant cases and regulations",
+        "results": [
+          "Contract review efficiency improved 5x",
+          "Legal research time reduced by 80%",
+          "Contract risk identification accuracy reached 95%",
+          "Junior lawyer training cycle shortened by 50%"
+        ],
+        "technologies": ["Legal NLP", "Knowledge Graph", "Intelligent Retrieval", "Document Analysis"]
+      },
+      {
+        "category": "Accounting",
+        "title": "Intelligent Audit Analysis Platform",
+        "description": "AI-driven financial data analysis, automatic identification of abnormal transactions and risks",
+        "challenge": "Accounting firms had many audit projects, large data processing volumes, limited coverage of manual sampling audits",
+        "solution": "Intelligent audit system, full data analysis, automatic anomaly flagging, audit recommendation generation",
+        "results": [
+          "Audit efficiency improved 4x",
+          "Abnormal transaction detection rate increased to 96%",
+          "Audit coverage from sampling to full-scale",
+          "Audit report generation time reduced by 70%"
+        ],
+        "technologies": ["Financial NLP", "Anomaly Detection", "Data Mining", "Intelligent Report Generation"]
       }
     ]
   },

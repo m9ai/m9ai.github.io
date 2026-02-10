@@ -2,47 +2,88 @@
 
 import { useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/lib/navigation';
 import { motion, useInView, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
 import { 
   ChevronLeftIcon, 
   ChevronRightIcon,
   ArrowTopRightOnSquareIcon,
-  BuildingOfficeIcon,
+  BuildingOffice2Icon,
+  ScaleIcon,
+  CalculatorIcon,
   ShoppingBagIcon,
   AcademicCapIcon,
-  BanknotesIcon
+  BanknotesIcon,
+  HomeIcon,
+  Cog6ToothIcon
 } from '@heroicons/react/24/outline';
 
 // Case studies data with icons
 const caseStudies = [
   {
-    id: 0,
-    imageUrl: '/kefu.jpg',
-    icon: BuildingOfficeIcon,
+    id: 'enterprise-service',
+    slug: 'enterprise-service',
+    imageUrl: '/kefu.svg',
+    icon: BuildingOffice2Icon,
     color: 'from-blue-500 to-cyan-500',
     bgColor: 'bg-blue-50 dark:bg-blue-950/30',
   },
   {
-    id: 1,
-    imageUrl: '/yiliao.jpg',
+    id: 'healthcare',
+    slug: 'healthcare',
+    imageUrl: '/yiliao.svg',
     icon: AcademicCapIcon,
     color: 'from-violet-500 to-purple-500',
     bgColor: 'bg-violet-50 dark:bg-violet-950/30',
   },
   {
-    id: 2,
-    imageUrl: '/jinrong.jpg',
+    id: 'fintech',
+    slug: 'fintech',
+    imageUrl: '/jinrong.svg',
     icon: BanknotesIcon,
     color: 'from-emerald-500 to-teal-500',
     bgColor: 'bg-emerald-50 dark:bg-emerald-950/30',
   },
   {
-    id: 3,
-    imageUrl: '/jiaoyu.jpg',
+    id: 'education',
+    slug: 'education',
+    imageUrl: '/jiaoyu.svg',
     icon: ShoppingBagIcon,
     color: 'from-orange-500 to-red-500',
     bgColor: 'bg-orange-50 dark:bg-orange-950/30',
+  },
+  {
+    id: 'architecture',
+    slug: 'architecture',
+    imageUrl: '/arch.svg',
+    icon: HomeIcon,
+    color: 'from-amber-500 to-orange-500',
+    bgColor: 'bg-amber-50 dark:bg-amber-950/30',
+  },
+  {
+    id: 'manufacturing',
+    slug: 'manufacturing',
+    imageUrl: '/manufacturing.svg',
+    icon: Cog6ToothIcon,
+    color: 'from-slate-500 to-gray-500',
+    bgColor: 'bg-slate-50 dark:bg-slate-950/30',
+  },
+  {
+    id: 'law-firm',
+    slug: 'law-firm',
+    imageUrl: '/law.svg',
+    icon: ScaleIcon,
+    color: 'from-indigo-500 to-blue-600',
+    bgColor: 'bg-indigo-50 dark:bg-indigo-950/30',
+  },
+  {
+    id: 'accounting',
+    slug: 'accounting',
+    imageUrl: '/accounting.svg',
+    icon: CalculatorIcon,
+    color: 'from-green-500 to-emerald-600',
+    bgColor: 'bg-green-50 dark:bg-green-950/30',
   },
 ];
 
@@ -61,44 +102,46 @@ function CaseCard({ study, index, isActive }: { study: typeof caseStudies[0]; in
       }}
       transition={{ duration: 0.4 }}
     >
-      <div className="group relative bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-card hover:shadow-elevated transition-all duration-500">
-        {/* Image container */}
-        <div className="relative h-56 overflow-hidden">
-          <Image
-            src={study.imageUrl}
-            alt={t(`studies.${index}.title`)}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          
-          {/* Category badge */}
-          <div className="absolute top-4 left-4">
-            <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white backdrop-blur-sm`}>
-              <Icon className="w-3.5 h-3.5" />
-              {t(`studies.${index}.category`)}
-            </span>
+      <Link href={`/cases/${study.slug}`}>
+        <div className="group relative bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-card hover:shadow-elevated transition-all duration-500">
+          {/* Image container */}
+          <div className="relative h-56 overflow-hidden">
+            <Image
+              src={study.imageUrl}
+              alt={t(`studies.${index}.title`)}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+            
+            {/* Category badge */}
+            <div className="absolute top-4 left-4">
+              <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white backdrop-blur-sm`}>
+                <Icon className="w-3.5 h-3.5" />
+                {t(`studies.${index}.category`)}
+              </span>
+            </div>
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="p-6">
-          <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
-            {t(`studies.${index}.title`)}
-          </h3>
-          <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
-            {t(`studies.${index}.description`)}
-          </p>
-          
-          <button className="inline-flex items-center gap-2 text-primary font-medium text-sm group/btn">
-            <span>{t('viewDetails')}</span>
-            <ArrowTopRightOnSquareIcon className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-          </button>
-        </div>
+          {/* Content */}
+          <div className="p-6">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+              {t(`studies.${index}.title`)}
+            </h3>
+            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+              {t(`studies.${index}.description`)}
+            </p>
+            
+            <div className="inline-flex items-center gap-2 text-primary font-medium text-sm group/btn">
+              <span>{t('viewDetails')}</span>
+              <ArrowTopRightOnSquareIcon className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+            </div>
+          </div>
 
-        {/* Hover glow effect */}
-        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br ${study.color} opacity-5`} />
-      </div>
+          {/* Hover glow effect */}
+          <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br ${study.color} opacity-5`} />
+        </div>
+      </Link>
     </motion.div>
   );
 }

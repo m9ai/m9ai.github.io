@@ -16,13 +16,13 @@ updatedAt: 2025-02-09
 
 所有 API 请求需要在 Header 中包含 API Key：
 
-```
+```bash
 Authorization: Bearer YOUR_API_KEY
 ```
 
 ## 基础 URL
 
-```
+```bash
 https://api.m9ai.work/v1
 ```
 

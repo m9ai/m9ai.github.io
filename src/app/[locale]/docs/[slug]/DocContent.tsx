@@ -3,7 +3,6 @@
 import { Link } from '@/lib/navigation';
 import { motion } from 'motion/react';
 import {
-  ChevronLeftIcon,
   ClockIcon,
   TagIcon,
   FolderIcon,
@@ -39,6 +38,24 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
     // 客户端提取目录
     const extracted = extractHeadings(doc.htmlContent);
     setHeadings(extracted);
+
+    // 初始化 Mermaid
+    if (typeof window !== 'undefined' && (window as { mermaid?: { initialize: (config: object) => void; run: () => void } }).mermaid) {
+      const mermaid = (window as { mermaid?: { initialize: (config: object) => void; run: () => void } }).mermaid;
+      mermaid?.initialize({
+        startOnLoad: false,
+        theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true,
+          curve: 'basis',
+        },
+      });
+      // 渲染所有 mermaid 图表
+      setTimeout(() => {
+        mermaid?.run();
+      }, 100);
+    }
 
     // 监听滚动更新当前标题
     const observer = new IntersectionObserver(
@@ -191,7 +208,7 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
               className="bg-white dark:bg-slate-800 rounded-2xl p-8 lg:p-10 border border-slate-200 dark:border-slate-700 shadow-sm"
             >
               <div
-                className="prose dark:prose-invert max-w-none
+                className="doc-content prose dark:prose-invert max-w-none
                   prose-headings:scroll-mt-24
                   prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-8 prose-h1:text-slate-900 dark:prose-h1:text-white
                   prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-slate-900 dark:prose-h2:text-white prose-h2:border-b prose-h2:border-slate-200 dark:prose-h2:border-slate-700 prose-h2:pb-3
@@ -200,8 +217,8 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
                   prose-a:text-indigo-600 dark:prose-a:text-indigo-400 prose-a:no-underline hover:prose-a:underline
                   prose-strong:text-slate-900 dark:prose-strong:text-white prose-strong:font-semibold
                   prose-code:text-rose-600 dark:prose-code:text-rose-400 prose-code:bg-slate-100 dark:prose-code:bg-slate-700 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
-                  prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:p-5 prose-pre:rounded-xl prose-pre:overflow-x-auto
-                  prose-pre:code:text-inherit prose-pre:code:bg-transparent prose-pre:code:p-0
+                  prose-pre:!bg-[#0d1117] prose-pre:!p-0 prose-pre:rounded-xl prose-pre:overflow-x-auto prose-pre:my-6
+                  prose-pre:code:!text-inherit prose-pre:code:!bg-transparent prose-pre:code:!p-5
                   prose-ul:my-6 prose-ul:space-y-2
                   prose-ol:my-6 prose-ol:space-y-2
                   prose-li:text-slate-600 dark:prose-li:text-slate-300 prose-li:marker:text-indigo-500
@@ -209,7 +226,8 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
                   prose-hr:border-slate-200 dark:prose-hr:border-slate-700
                   prose-table:w-full prose-table:border-collapse
                   prose-th:border prose-th:border-slate-200 dark:prose-th:border-slate-700 prose-th:bg-slate-50 dark:prose-th:bg-slate-800 prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold
-                  prose-td:border prose-td:border-slate-200 dark:prose-td:border-slate-700 prose-td:px-4 prose-td:py-2"
+                  prose-td:border prose-td:border-slate-200 dark:prose-td:border-slate-700 prose-td:px-4 prose-td:py-2
+                  [&_.mermaid]:bg-slate-50 [&_.mermaid]:dark:bg-slate-900 [&_.mermaid]:p-4 [&_.mermaid]:rounded-xl [&_.mermaid]:my-6 [&_.mermaid]:flex [&_.mermaid]:justify-center"
                 dangerouslySetInnerHTML={{ __html: doc.htmlContent }}
               />
             </motion.article>

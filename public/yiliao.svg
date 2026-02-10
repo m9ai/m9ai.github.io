@@ -1,0 +1,146 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="medGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id="violetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ec4899"/>
+      <stop offset="100%" style="stop-color:#f43f5e"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#medGrad)"/>
+  
+  <!-- Grid Pattern -->
+  <pattern id="medGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.2"/>
+  </pattern>
+  <rect width="800" height="450" fill="url(#medGrid)"/>
+  
+  <!-- Heartbeat Line Background -->
+  <path d="M0 225 L200 225 L220 180 L250 280 L280 150 L310 300 L340 225 L800 225" 
+        fill="none" stroke="#8b5cf6" stroke-width="2" opacity="0.1"/>
+  
+  <!-- DNA Double Helix Left -->
+  <g transform="translate(80, 80)">
+    <g opacity="0.8">
+      <!-- Strand 1 -->
+      <path d="M40 0 Q80 40 40 80 Q0 120 40 160 Q80 200 40 240" 
+            fill="none" stroke="#8b5cf6" stroke-width="3">
+        <animate attributeName="d" 
+                 values="M40 0 Q80 40 40 80 Q0 120 40 160 Q80 200 40 240;M40 0 Q0 40 40 80 Q80 120 40 160 Q0 200 40 240;M40 0 Q80 40 40 80 Q0 120 40 160 Q80 200 40 240" 
+                 dur="4s" repeatCount="indefinite"/>
+      </path>
+      <!-- Strand 2 -->
+      <path d="M40 0 Q0 40 40 80 Q80 120 40 160 Q0 200 40 240" 
+            fill="none" stroke="#a855f7" stroke-width="3">
+        <animate attributeName="d" 
+                 values="M40 0 Q0 40 40 80 Q80 120 40 160 Q0 200 40 240;M40 0 Q80 40 40 80 Q0 120 40 160 Q80 200 40 240;M40 0 Q0 40 40 80 Q80 120 40 160 Q0 200 40 240" 
+                 dur="4s" repeatCount="indefinite"/>
+      </path>
+      <!-- Rungs -->
+      <line x1="25" y1="20" x2="55" y2="20" stroke="#c084fc" stroke-width="2" opacity="0.6"/>
+      <line x1="15" y1="60" x2="65" y2="60" stroke="#c084fc" stroke-width="2" opacity="0.6"/>
+      <line x1="25" y1="100" x2="55" y2="100" stroke="#c084fc" stroke-width="2" opacity="0.6"/>
+      <line x1="15" y1="140" x2="65" y2="140" stroke="#c084fc" stroke-width="2" opacity="0.6"/>
+      <line x1="25" y1="180" x2="55" y2="180" stroke="#c084fc" stroke-width="2" opacity="0.6"/>
+      <line x1="15" y1="220" x2="65" y2="220" stroke="#c084fc" stroke-width="2" opacity="0.6"/>
+    </g>
+  </g>
+  
+  <!-- Central Medical Cross / AI -->
+  <g transform="translate(350, 100)">
+    <!-- Outer Ring -->
+    <circle cx="50" cy="50" r="70" fill="none" stroke="#8b5cf6" stroke-width="2" opacity="0.3"/>
+    <circle cx="50" cy="50" r="55" fill="none" stroke="#a855f7" stroke-width="1.5" opacity="0.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="20s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Medical Cross -->
+    <rect x="35" y="20" width="30" height="60" fill="url(#violetGrad)" rx="4"/>
+    <rect x="20" y="35" width="60" height="30" fill="url(#violetGrad)" rx="4"/>
+    
+    <!-- AI Core -->
+    <circle cx="50" cy="50" r="15" fill="#1e293b" stroke="#ec4899" stroke-width="2"/>
+    <circle cx="50" cy="50" r="8" fill="#ec4899">
+      <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Heart Monitor Right -->
+  <g transform="translate(530, 80)">
+    <rect x="0" y="0" width="250" height="140" fill="#1e293b" stroke="#334155" stroke-width="2" rx="8"/>
+    <text x="15" y="25" fill="#94a3b8" font-size="12" font-family="system-ui">心电监测</text>
+    
+    <!-- Grid -->
+    <pattern id="ecgGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#334155" stroke-width="0.3" opacity="0.5"/>
+    </pattern>
+    <rect x="10" y="35" width="230" height="95" fill="url(#ecgGrid)" rx="4"/>
+    
+    <!-- ECG Line -->
+    <polyline points="10,82 40,82 50,82 55,60 60,105 65,40 70,90 75,82 100,82 120,82 125,60 130,105 135,40 140,90 145,82 170,82 190,82 195,60 200,105 205,40 210,90 215,82 240,82" 
+              fill="none" stroke="#ec4899" stroke-width="2">
+      <animate attributeName="stroke-dasharray" values="0,500;500,0" dur="2s" repeatCount="indefinite"/>
+    </polyline>
+    
+    <!-- Heart Rate -->
+    <text x="230" y="25" text-anchor="end" fill="#ec4899" font-size="14" font-weight="bold">72 BPM</text>
+  </g>
+  
+  <!-- Patient Records Bottom Right -->
+  <g transform="translate(530, 240)">
+    <rect x="0" y="0" width="250" height="150" fill="#1e293b" stroke="#334155" stroke-width="2" rx="8"/>
+    <text x="15" y="25" fill="#94a3b8" font-size="12" font-family="system-ui">AI 辅助诊断</text>
+    
+    <!-- Analysis Items -->
+    <rect x="15" y="40" width="220" height="30" fill="#0f172a" rx="4"/>
+    <circle cx="30" cy="55" r="6" fill="#10b981"/>
+    <text x="45" y="60" fill="#94a3b8" font-size="10">症状分析完成</text>
+    <text x="220" y="60" text-anchor="end" fill="#10b981" font-size="10">98%</text>
+    
+    <rect x="15" y="80" width="220" height="30" fill="#0f172a" rx="4"/>
+    <circle cx="30" cy="95" r="6" fill="#3b82f6">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <text x="45" y="100" fill="#94a3b8" font-size="10">影像识别中...</text>
+    <text x="220" y="100" text-anchor="end" fill="#3b82f6" font-size="10">85%</text>
+    
+    <rect x="15" y="120" width="220" height="20" fill="#0f172a" rx="4"/>
+    <rect x="20" y="127" width="100" height="6" fill="#8b5cf6" rx="3"/>
+    <text x="220" y="135" text-anchor="end" fill="#8b5cf6" font-size="9">生成报告</text>
+  </g>
+  
+  <!-- Floating Medical Icons -->
+  <g transform="translate(200, 350)">
+    <circle cx="20" cy="20" r="15" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+    <rect x="15" y="12" width="10" height="16" fill="#8b5cf6" rx="2"/>
+    <rect x="11" y="16" width="18" height="8" fill="#8b5cf6" rx="2"/>
+  </g>
+  
+  <g transform="translate(450, 380)">
+    <circle cx="20" cy="20" r="15" fill="#1e293b" stroke="#ec4899" stroke-width="2"/>
+    <path d="M20 30 C10 20 10 12 20 12 C30 12 30 20 20 30" fill="#ec4899"/>
+  </g>
+  
+  <!-- Data Flow -->
+  <circle cx="280" cy="150" r="3" fill="#8b5cf6" opacity="0">
+    <animate attributeName="cx" values="160;350" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="280" cy="200" r="3" fill="#a855f7" opacity="0">
+    <animate attributeName="cx" values="450;530" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Badge -->
+  <rect x="360" y="30" width="80" height="24" fill="url(#violetGrad)" rx="12"/>
+  <text x="400" y="47" text-anchor="middle" fill="white" font-size="11" font-family="system-ui">智慧医疗</text>
+</svg>

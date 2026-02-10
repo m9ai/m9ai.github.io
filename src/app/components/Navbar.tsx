@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
-import { Link, usePathname, useRouter } from '@/lib/navigation';
+import { Link, usePathname } from '@/lib/navigation';
 import { routing } from '@/i18n/routing';
 import { useTheme } from '@/app/contexts/ThemeContext';
 import SearchButton from './SearchButton';
@@ -28,7 +28,6 @@ const navItems = [
 export default function Navbar() {
   const locale = useLocale();
   const t = useTranslations();
-  const router = useRouter();
   const pathname = usePathname();
   const { theme, resolvedTheme, setTheme } = useTheme();
   

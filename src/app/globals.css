@@ -217,3 +217,28 @@ body {
   opacity: 0.03;
   pointer-events: none;
 }
+
+/* Code block styles for highlight.js compatibility */
+.prose pre {
+  background-color: #0d1117 !important;
+  margin: 0 !important;
+}
+
+.prose pre code {
+  display: block;
+  padding: 1.25rem !important;
+  background: transparent !important;
+  font-size: 0.875rem !important;
+  line-height: 1.7 !important;
+}
+
+/* Override hljs background */
+.hljs {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Ensure code blocks have proper styling */
+article pre {
+  position: relative;
+}
