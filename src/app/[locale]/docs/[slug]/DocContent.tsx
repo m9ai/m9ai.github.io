@@ -12,22 +12,11 @@ import {
 } from '@heroicons/react/24/outline';
 import type { Doc } from '@/lib/docs';
 import { useEffect, useState } from 'react';
+import { MarkdownRenderer } from '@/app/components/markdown';
 
 interface DocContentProps {
   doc: Doc;
   allDocs: Array<{ slug: string; title: string; category: string }>;
-}
-
-// 从 HTML 内容中提取标题生成目录
-function extractHeadings(htmlContent: string) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlContent, 'text/html');
-  const headings = doc.querySelectorAll('h2, h3');
-  return Array.from(headings).map((heading, index) => ({
-    id: heading.id || `heading-${index}`,
-    text: heading.textContent || '',
-    level: heading.tagName === 'H2' ? 2 : 3,
-  }));
 }
 
 export default function DocContent({ doc, allDocs }: DocContentProps) {
@@ -36,46 +25,42 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
 
   useEffect(() => {
     // 客户端提取目录
-    const extracted = extractHeadings(doc.htmlContent);
-    setHeadings(extracted);
+    const extractHeadings = () => {
+      const elements = document.querySelectorAll('h2[id], h3[id]');
+      return Array.from(elements).map((heading, index) => ({
+        id: heading.id || `heading-${index}`,
+        text: heading.textContent || '',
+        level: heading.tagName === 'H2' ? 2 : 3,
+      }));
+    };
 
-    // 初始化 Mermaid
-    if (typeof window !== 'undefined' && (window as { mermaid?: { initialize: (config: object) => void; run: () => void } }).mermaid) {
-      const mermaid = (window as { mermaid?: { initialize: (config: object) => void; run: () => void } }).mermaid;
-      mermaid?.initialize({
-        startOnLoad: false,
-        theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
-        flowchart: {
-          useMaxWidth: true,
-          htmlLabels: true,
-          curve: 'basis',
+    // 延迟提取，等待 Markdown 渲染完成
+    const timer = setTimeout(() => {
+      const extracted = extractHeadings();
+      setHeadings(extracted);
+
+      // 监听滚动更新当前标题
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveHeading(entry.target.id);
+            }
+          });
         },
+        { rootMargin: '-100px 0px -80% 0px' }
+      );
+
+      extracted.forEach((heading) => {
+        const element = document.getElementById(heading.id);
+        if (element) observer.observe(element);
       });
-      // 渲染所有 mermaid 图表
-      setTimeout(() => {
-        mermaid?.run();
-      }, 100);
-    }
 
-    // 监听滚动更新当前标题
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveHeading(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-100px 0px -80% 0px' }
-    );
+      return () => observer.disconnect();
+    }, 100);
 
-    extracted.forEach((heading) => {
-      const element = document.getElementById(heading.id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [doc.htmlContent]);
+    return () => clearTimeout(timer);
+  }, [doc.content]);
 
   // 按分类分组文档
   const docsByCategory = allDocs.reduce((acc, d) => {
@@ -86,7 +71,7 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-20">
-      {/* Header Navigation - 固定定位在 Navbar 下方 */}
+      {/* Header Navigation */}
       <header className="fixed top-16 lg:top-20 left-0 right-0 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-700">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
@@ -158,7 +143,6 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              {/* Category Badge */}
               <div className="flex items-center gap-3 mb-6">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-medium">
                   <FolderIcon className="w-3.5 h-3.5" />
@@ -170,19 +154,16 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
                 </span>
               </div>
 
-              {/* Title */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
                 {doc.title}
               </h1>
 
-              {/* Description */}
               {doc.description && (
                 <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
                   {doc.description}
                 </p>
               )}
 
-              {/* Tags */}
               {doc.tags && doc.tags.length > 0 && (
                 <div className="flex items-center gap-2 mt-4">
                   <TagIcon className="w-4 h-4 text-slate-400" />
@@ -200,36 +181,14 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
               )}
             </motion.div>
 
-            {/* Article Content */}
+            {/* Article Content - 使用 MarkdownRenderer */}
             <motion.article
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white dark:bg-slate-800 rounded-2xl p-8 lg:p-10 border border-slate-200 dark:border-slate-700 shadow-sm"
             >
-              <div
-                className="doc-content prose dark:prose-invert max-w-none
-                  prose-headings:scroll-mt-24
-                  prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-8 prose-h1:text-slate-900 dark:prose-h1:text-white
-                  prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-slate-900 dark:prose-h2:text-white prose-h2:border-b prose-h2:border-slate-200 dark:prose-h2:border-slate-700 prose-h2:pb-3
-                  prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-slate-800 dark:prose-h3:text-slate-200
-                  prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-4
-                  prose-a:text-indigo-600 dark:prose-a:text-indigo-400 prose-a:no-underline hover:prose-a:underline
-                  prose-strong:text-slate-900 dark:prose-strong:text-white prose-strong:font-semibold
-                  prose-code:text-rose-600 dark:prose-code:text-rose-400 prose-code:bg-slate-100 dark:prose-code:bg-slate-700 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
-                  prose-pre:!bg-[#0d1117] prose-pre:!p-0 prose-pre:rounded-xl prose-pre:overflow-x-auto prose-pre:my-6
-                  prose-pre:code:!text-inherit prose-pre:code:!bg-transparent prose-pre:code:!p-5
-                  prose-ul:my-6 prose-ul:space-y-2
-                  prose-ol:my-6 prose-ol:space-y-2
-                  prose-li:text-slate-600 dark:prose-li:text-slate-300 prose-li:marker:text-indigo-500
-                  prose-blockquote:border-l-4 prose-blockquote:border-indigo-500 prose-blockquote:bg-indigo-50/50 dark:prose-blockquote:bg-indigo-900/20 prose-blockquote:pl-4 prose-blockquote:py-2 prose-blockquote:pr-4 prose-blockquote:rounded-r-lg prose-blockquote:italic
-                  prose-hr:border-slate-200 dark:prose-hr:border-slate-700
-                  prose-table:w-full prose-table:border-collapse
-                  prose-th:border prose-th:border-slate-200 dark:prose-th:border-slate-700 prose-th:bg-slate-50 dark:prose-th:bg-slate-800 prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold
-                  prose-td:border prose-td:border-slate-200 dark:prose-td:border-slate-700 prose-td:px-4 prose-td:py-2
-                  [&_.mermaid]:bg-slate-50 [&_.mermaid]:dark:bg-slate-900 [&_.mermaid]:p-4 [&_.mermaid]:rounded-xl [&_.mermaid]:my-6 [&_.mermaid]:flex [&_.mermaid]:justify-center"
-                dangerouslySetInnerHTML={{ __html: doc.htmlContent }}
-              />
+              <MarkdownRenderer content={doc.content} />
             </motion.article>
 
             {/* Navigation Footer */}

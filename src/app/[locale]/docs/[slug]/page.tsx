@@ -48,13 +48,6 @@ export default async function DocPage({ params }: DocPageProps) {
     const { slug, locale } = await params;
     setRequestLocale(locale);
     const doc = await getDocBySlug(slug);
-
-    // 验证 htmlContent 是否有效
-    if (!doc.htmlContent || doc.htmlContent.trim() === '') {
-      console.error(`Empty htmlContent for doc: ${slug}`);
-      throw new Error('Failed to process markdown');
-    }
-
     const allDocs = await getAllDocs();
 
     return (
@@ -63,8 +56,7 @@ export default async function DocPage({ params }: DocPageProps) {
         allDocs={allDocs.map(d => ({ slug: d.slug, title: d.title, category: d.category }))}
       />
     );
-  } catch (error) {
-    console.error('DocPage error:', error);
+  } catch {
     notFound();
   }
 }

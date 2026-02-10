@@ -27,7 +27,7 @@ interface SearchItem {
   description: string;
   content: string;
   url: string;
-  type: 'service' | 'doc' | 'page';
+  type: 'service' | 'doc' | 'page' | 'case';
   category?: string;
   tags?: string[];
 }

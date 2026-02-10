@@ -16,19 +16,84 @@ updatedAt: 2025-02-10
 
 ### 开源模型
 
-| 模型 | 参数量 | 显存需求 | 推荐用途 |
-|------|--------|----------|----------|
-| LLaMA 2/3 | 7B-70B | 16GB-160GB | 通用对话、文本生成 |
-| Qwen (通义千问) | 7B-72B | 16GB-160GB | 中文场景、代码生成 |
-| ChatGLM3 | 6B | 14GB | 中文对话、轻量级部署 |
-| Baichuan2 | 7B-13B | 16GB-28GB | 中文场景、企业应用 |
-| Yi (零一万物) | 6B-34B | 14GB-80GB | 中英文混合场景 |
+| 模型 | 参数量 | 显存需求 | 推荐用途 | 特点 |
+|------|--------|----------|----------|------|
+| **DeepSeek** | 7B-67B | 16GB-140GB | 代码生成、数学推理 | 开源最强代码模型，支持 128K 长上下文 |
+| **Qwen (通义千问)** | 7B-72B | 16GB-160GB | 中文场景、代码生成 | 中文理解优秀，支持 function call |
+| **LLaMA 2/3** | 7B-70B | 16GB-160GB | 通用对话、文本生成 | 生态丰富，社区支持广泛 |
+| **Yi (零一万物)** | 6B-34B | 14GB-80GB | 中英文混合场景 | 中文表现优异，支持长文本 |
+| **ChatGLM3** | 6B | 14GB | 中文对话、轻量级部署 | 低资源占用，适合边缘部署 |
+| **Baichuan2** | 7B-13B | 16GB-28GB | 中文场景、企业应用 | 商用友好，中文知识丰富 |
+| **Mistral** | 7B-8x7B | 16GB-90GB | 多语言推理 | MoE 架构，推理效率高 |
+
+#### 特色模型详解
+
+##### DeepSeek 系列
+DeepSeek 是目前最强的开源代码大模型，特别适合开发场景：
+
+- **DeepSeek-Coder-33B**: 代码生成能力接近 GPT-4
+- **DeepSeek-V2**: 采用 MLA 架构，推理成本低，支持 128K 上下文
+- **DeepSeek-Math**: 数学推理专项优化，竞赛级表现
+
+```bash
+# DeepSeek 快速部署
+docker pull m9ai/deepseek-coder-33b:latest
+docker run -d --gpus all -p 8000:8000 m9ai/deepseek-coder-33b:latest
+```
+
+##### Kimi 系列 (Moonshot)
+Kimi 以超长上下文窗口著称，适合文档分析场景：
+
+- **Kimi-V1**: 支持 200K 超长上下文
+- **Kimi-V1.5**: 多模态能力，支持图像理解
+- **适用场景**: 长文档摘要、法律合同分析、论文研读
+
+```bash
+# Kimi 模型部署（需申请授权）
+docker run -d \
+  -e MOONSHOT_API_KEY=your_key \
+  -p 8000:8000 \
+  m9ai/kimi-v1:latest
+```
 
 ### 商用模型（需授权）
 
-- GPT 系列（通过 Azure OpenAI 私有化部署）
-- 文心一言企业版
-- 讯飞星火企业版
+| 模型 | 部署方式 | 适用场景 |
+|------|----------|----------|
+| GPT 系列 | Azure OpenAI 私有化 | 通用对话、复杂推理 |
+| 文心一言企业版 | 百度智能云私有化 | 中文企业应用 |
+| 讯飞星火企业版 | 讯飞云平台 | 语音识别、教育场景 |
+| **Kimi** | 月之暗面私有化部署 | 长文档分析、法律金融 |
+
+---
+
+## 模型选型指南
+
+根据不同业务场景选择合适的模型：
+
+### 代码开发场景
+**首选**: DeepSeek-Coder-33B
+- 代码生成准确率最高
+- 支持 128K 长代码文件分析
+- 精通 Python、Java、JavaScript 等主流语言
+
+### 中文对话场景
+**首选**: Qwen2.5-72B
+- 中文理解能力业界领先
+- 支持 function call 工具调用
+- 中文知识库丰富
+
+### 长文档分析场景
+**首选**: Kimi-V1
+- 200K 超长上下文窗口
+- 适合论文、合同、报告分析
+- 信息提取准确率高
+
+### 轻量级部署场景
+**首选**: ChatGLM3-6B 或 DeepSeek-7B
+- 单张消费级显卡可运行
+- 响应速度快
+- 适合边缘设备部署
 
 ## 系统要求
 
@@ -78,11 +143,14 @@ sudo systemctl restart docker
 #### 2. 拉取模型镜像
 
 ```bash
-# LLaMA 2 7B 示例
-docker pull m9ai/llama2-7b:latest
+# DeepSeek Coder 33B（推荐）
+docker pull m9ai/deepseek-coder-33b:latest
 
-# 通义千问 7B
-docker pull m9ai/qwen-7b:latest
+# 通义千问 72B
+docker pull m9ai/qwen2.5-72b:latest
+
+# LLaMA 2 7B
+docker pull m9ai/llama2-7b:latest
 ```
 
 #### 3. 启动容器
@@ -103,12 +171,20 @@ docker run -d \
 ```bash
 curl http://localhost:8000/v1/models
 
-# 测试对话
+# 测试对话（DeepSeek 示例）
 curl -X POST http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "llama-2-7b",
-    "messages": [{"role": "user", "content": "你好"}]
+    "model": "deepseek-coder-33b",
+    "messages": [{"role": "user", "content": "用 Python 写一个快速排序算法"}]
+  }'
+
+# 测试长文本（Kimi 示例）
+curl -X POST http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "kimi-v1",
+    "messages": [{"role": "user", "content": "请总结这篇论文的主要内容..."}]
   }'
 ```
 
@@ -256,6 +332,8 @@ model = AutoModelForCausalLM.from_pretrained(
 
 | 模型 | 原始显存 | 8-bit 显存 | 4-bit 显存 | 性能损失 |
 |------|----------|------------|------------|----------|
+| DeepSeek-Coder-33B | 66GB | 38GB | 22GB | <3% |
+| Qwen2.5-72B | 144GB | 82GB | 48GB | <4% |
 | LLaMA2-7B | 14GB | 8GB | 5GB | <3% |
 | LLaMA2-13B | 26GB | 15GB | 9GB | <5% |
 | LLaMA2-70B | 140GB | 80GB | 48GB | <5% |
@@ -316,15 +394,25 @@ client = OpenAI(
     api_key="dummy"  # 本地部署可不设置
 )
 
-# 对话 completion
+# DeepSeek 代码生成示例
 response = client.chat.completions.create(
-    model="llama-2-7b",
+    model="deepseek-coder-33b",
     messages=[
-        {"role": "system", "content": "你是一个专业的 AI 助手"},
-        {"role": "user", "content": "解释一下量子计算"}
+        {"role": "system", "content": "你是一个专业程序员"},
+        {"role": "user", "content": "用 Python 实现一个 LRU 缓存"}
     ],
-    temperature=0.7,
-    max_tokens=1024
+    temperature=0.3,
+    max_tokens=2048
+)
+
+# Kimi 长文档分析示例
+response = client.chat.completions.create(
+    model="kimi-v1",
+    messages=[
+        {"role": "user", "content": "请分析这份 50 页的报告，提取核心观点..."}
+    ],
+    temperature=0.5,
+    max_tokens=4096
 )
 
 print(response.choices[0].message.content)

@@ -29,6 +29,9 @@ A: 您可以通过以下方式开始：
 A: 我们支持主流的大语言模型，包括：
 - OpenAI GPT 系列
 - Meta LLaMA 系列
+- DeepSee 系列
+- Qwen AI 系列
+- Kimi AI 系列
 - 百度文心一言
 - 讯飞星火
 - 以及其他开源模型
