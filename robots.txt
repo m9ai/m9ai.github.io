@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://m9ai.work
+
+# Sitemaps
+Sitemap: https://m9ai.work/sitemap.xml

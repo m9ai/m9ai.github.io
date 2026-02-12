@@ -1,0 +1,290 @@
+1:"$Sreact.fragment"
+4:I[50543,[],""]
+5:I[94707,[],""]
+7:I[76813,[],"OutletBoundary"]
+9:I[29979,[],"AsyncMetadataOutlet"]
+b:I[76813,[],"ViewportBoundary"]
+d:I[76813,[],"MetadataBoundary"]
+e:"$Sreact.suspense"
+10:I[70069,[],""]
+:HL["/_next/static/css/b2aa10a3cb761d2f.css","style"]
+0:{"P":null,"b":"n-OaHVlfcIetbxWrGFmpn","p":"","c":["","en","docs","api-integration",""],"i":false,"f":[[["",{"children":[["locale","en","d"],{"children":["docs",{"children":[["slug","api-integration","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/b2aa10a3cb761d2f.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":[["locale","en","d"],["$","$1","c",{"children":[null,"$L3"]}],{"children":["docs",["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","api-integration","d"],["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L6",null,["$","$L7",null,{"children":["$L8",["$","$L9",null,{"promise":"$@a"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Lb",null,{"children":"$Lc"}],null],["$","$Ld",null,{"children":["$","div",null,{"hidden":true,"children":["$","$e",null,{"fallback":null,"children":"$Lf"}]}]}]]}],false]],"m":"$undefined","G":["$10",[]],"s":false,"S":true}
+11:I[44963,["6752","static/chunks/6752-90baefdcb051c3c1.js","2346","static/chunks/2346-8f59889a5170c5da.js","4345","static/chunks/app/not-found-ffca88c5e945e772.js"],"default"]
+12:I[33084,["6752","static/chunks/6752-90baefdcb051c3c1.js","1909","static/chunks/1909-ac3fe94adcf1a95e.js","2346","static/chunks/2346-8f59889a5170c5da.js","1278","static/chunks/1278-1b71cee32080193b.js","1399","static/chunks/1399-c867858dd6d3be69.js","8450","static/chunks/app/%5Blocale%5D/layout-41f8cce3b90dae17.js"],"ThemeProvider"]
+14:I[86653,["6752","static/chunks/6752-90baefdcb051c3c1.js","1909","static/chunks/1909-ac3fe94adcf1a95e.js","2346","static/chunks/2346-8f59889a5170c5da.js","1278","static/chunks/1278-1b71cee32080193b.js","1399","static/chunks/1399-c867858dd6d3be69.js","8450","static/chunks/app/%5Blocale%5D/layout-41f8cce3b90dae17.js"],"default"]
+2:["$","html",null,{"lang":"$undefined","children":["$","body",null,{"className":"antialiased","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L11",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]
+3:["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","meta",null,{"name":"viewport","content":"width=device-width, initial-scale=1.0"}],["$","meta",null,{"name":"author","content":"Metasequoia AI Studio"}],["$","link",null,{"rel":"manifest","href":"/manifest.json"}],["$","meta",null,{"name":"theme-color","content":"#000000"}]]}],["$","body",null,{"className":"antialiased","children":[["$","$L12",null,{"children":"$L13"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n          if ('serviceWorker' in navigator) {\n            window.addEventListener('load', function() {\n              navigator.serviceWorker.register('/m9ai-sw.js').then(function(registration) {\n                console.log('ServiceWorker registration successful with scope: ', registration.scope);\n              }).catch(function(err) {\n                console.log('ServiceWorker registration failed: ', err);\n              });\n            });\n          }\n        "}}],["$","$L14",null,{}]]}]]}]
+15:I[7765,["6752","static/chunks/6752-90baefdcb051c3c1.js","1909","static/chunks/1909-ac3fe94adcf1a95e.js","8267","static/chunks/8267-dd1b836d6e85c2aa.js","4078","static/chunks/4078-f6abe0d6c13465e4.js","8143","static/chunks/app/%5Blocale%5D/docs/%5Bslug%5D/page-1401b27bc56f3599.js"],"default"]
+16:T15d2,
+# API 集成开发指南
+
+## 概述
+
+本文档介绍如何通过 API 将大语言模型能力集成到您的应用程序中，支持多种编程语言和框架。
+
+## 快速开始
+
+### 获取 API 密钥
+
+1. 登录控制台: https://console.m9ai.work
+2. 进入「API 管理」页面
+3. 点击「创建密钥」，复制生成的 API Key
+
+### 基础请求示例
+
+**cURL**
+```bash
+curl -X POST "https://api.m9ai.work/v1/chat/completions" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4",
+    "messages": [
+      {"role": "user", "content": "你好！"}
+    ]
+  }'
+```
+
+**Python**
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="YOUR_API_KEY",
+    base_url="https://api.m9ai.work/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {"role": "user", "content": "你好！"}
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+**JavaScript**
+```javascript
+import OpenAI from 'openai';
+
+const client = new OpenAI({
+  apiKey: 'YOUR_API_KEY',
+  baseURL: 'https://api.m9ai.work/v1',
+});
+
+async function chat() {
+  const response = await client.chat.completions.create({
+    model: 'gpt-4',
+    messages: [{ role: 'user', content: '你好！' }],
+  });
+  
+  console.log(response.choices[0].message.content);
+}
+
+chat();
+```
+
+## API 参考
+
+### 对话补全
+
+**Endpoint**: `POST /v1/chat/completions`
+
+**请求参数**
+
+| 参数 | 类型 | 必需 | 描述 |
+|------|------|------|------|
+| model | string | 是 | 模型名称: gpt-4, gpt-3.5-turbo |
+| messages | array | 是 | 消息列表 |
+| temperature | float | 否 | 随机性 (0-2), 默认 0.7 |
+| max_tokens | integer | 否 | 最大生成 token 数 |
+| stream | boolean | 否 | 是否流式输出 |
+
+**响应格式**
+```json
+{
+  "id": "chatcmpl-xxx",
+  "object": "chat.completion",
+  "created": 1677652288,
+  "model": "gpt-4",
+  "choices": [{
+    "index": 0,
+    "message": {
+      "role": "assistant",
+      "content": "你好！有什么可以帮助你的吗？"
+    },
+    "finish_reason": "stop"
+  }],
+  "usage": {
+    "prompt_tokens": 9,
+    "completion_tokens": 12,
+    "total_tokens": 21
+  }
+}
+```
+
+### 文本嵌入
+
+**Endpoint**: `POST /v1/embeddings`
+
+```python
+response = client.embeddings.create(
+    model="text-embedding-ada-002",
+    input="要嵌入的文本"
+)
+
+embedding = response.data[0].embedding
+```
+
+### 流式输出
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "讲个故事"}],
+    stream=True
+)
+
+for chunk in response:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="")
+```
+
+## 高级用法
+
+### 函数调用
+
+```python
+def get_weather(location, unit="celsius"):
+    # 实际天气查询逻辑
+    return {"temperature": 25, "condition": "sunny"}
+
+tools = [{
+    "type": "function",
+    "function": {
+        "name": "get_weather",
+        "description": "获取指定位置的天气信息",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "城市名称，如北京、上海"
+                },
+                "unit": {
+                    "type": "string",
+                    "enum": ["celsius", "fahrenheit"],
+                    "description": "温度单位"
+                }
+            },
+            "required": ["location"]
+        }
+    }
+}]
+
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "北京今天天气怎么样？"}],
+    tools=tools,
+    tool_choice="auto"
+)
+
+# 处理函数调用
+if response.choices[0].finish_reason == "tool_calls":
+    tool_call = response.choices[0].message.tool_calls[0]
+    function_name = tool_call.function.name
+    arguments = json.loads(tool_call.function.arguments)
+    
+    if function_name == "get_weather":
+        result = get_weather(**arguments)
+        print(result)
+```
+
+### 错误处理
+
+```python
+from openai import APIError, RateLimitError, AuthenticationError
+
+try:
+    response = client.chat.completions.create(...)
+except AuthenticationError:
+    print("API 密钥无效，请检查配置")
+except RateLimitError:
+    print("请求过于频繁，请稍后重试")
+except APIError as e:
+    print(f"API 错误: {e.message}")
+```
+
+## 最佳实践
+
+### 1. 连接池配置
+
+```python
+import httpx
+
+# 自定义 HTTP 客户端
+http_client = httpx.Client(
+    limits=httpx.Limits(
+        max_connections=100,
+        max_keepalive_connections=20
+    ),
+    timeout=httpx.Timeout(60.0)
+)
+
+client = OpenAI(
+    api_key="YOUR_API_KEY",
+    base_url="https://api.m9ai.work/v1",
+    http_client=http_client
+)
+```
+
+### 2. 重试策略
+
+```python
+from tenacity import retry, stop_after_attempt, wait_exponential
+
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=1, min=4, max=10)
+)
+def chat_with_retry(messages):
+    return client.chat.completions.create(
+        model="gpt-4",
+        messages=messages
+    )
+```
+
+### 3. 请求超时设置
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=messages,
+    timeout=30.0  # 30秒超时
+)
+```
+
+## SDK 下载
+
+- **Python**: `pip install openai`
+- **JavaScript**: `npm install openai`
+- **Go**: `go get github.com/sashabaranov/go-openai`
+- **Java**: Maven/Gradle 依赖见文档
+
+## 更多资源
+
+- 完整 API 文档: https://docs.m9ai.work/api
+- 示例代码: https://github.com/m9ai/examples
+- 技术支持: c@m9ai.work
+6:["$","$L15",null,{"doc":{"slug":"api-integration","title":"API 集成开发指南","description":"学习如何将大模型能力集成到您的应用程序中","category":"开发指南","tags":["API","集成","SDK","RESTful","开发"],"updatedAt":"2025-02-09","content":"$16"},"allDocs":[{"slug":"api-integration","title":"API 集成开发指南","category":"开发指南"},{"slug":"api-reference","title":"API 文档","category":"技术文档"},{"slug":"faq","title":"常见问题","category":"帮助中心"},{"slug":"introduction","title":"欢迎使用水杉智境工作室","category":"入门指南"},{"slug":"knowledge-base","title":"本地知识库搭建指南","category":"进阶教程"},{"slug":"model-deployment","title":"模型部署指南","category":"技术文档"},{"slug":"privacy-policy-en","title":"privacy-policy-en","category":"其他"},{"slug":"privacy-policy","title":"privacy-policy","category":"其他"},{"slug":"prompt-engineering","title":"提示词工程最佳实践","category":"进阶教程"},{"slug":"terms-of-service-en","title":"terms-of-service-en","category":"其他"},{"slug":"terms-of-service","title":"terms-of-service","category":"其他"},{"slug":"workflow","title":"AI 工作流搭建实战","category":"进阶教程"}]}]
+17:I[3338,["6752","static/chunks/6752-90baefdcb051c3c1.js","1909","static/chunks/1909-ac3fe94adcf1a95e.js","2346","static/chunks/2346-8f59889a5170c5da.js","1278","static/chunks/1278-1b71cee32080193b.js","1399","static/chunks/1399-c867858dd6d3be69.js","8450","static/chunks/app/%5Blocale%5D/layout-41f8cce3b90dae17.js"],"default"]
+13:["$","$L17",null,{"formats":"$undefined","locale":"zh","messages":{"meta":{"defaultTitle":"Metasequoia AI Studio","defaultDescription":"Metasequoia AI Studio provides private deployment of large models, application development and intelligent agent customization services","privacyPolicyTitle":"Privacy Policy","privacyPolicyDescription":"This Privacy Policy explains how we collect, use, and safeguard your personal information when you use our website and services.","termsOfServiceTitle":"Terms of Service","termsOfServiceDescription":"These Terms of Service outline the rules and regulations governing the use of our website and services."},"Contact":{"title":"Contact Us","about":{"title":"About Us","description":"Metasequoia AI Studio is a team focused on innovative technology solutions, dedicated to providing high-quality products and services to clients. We specialize in AGI application solutions, helping enterprises achieve digital and intelligent transformation."},"founder":{"title":"Founder","name":"Jian Zhang","description":"Founder of Metasequoia AI Studio, with years of experience in software development and team management, specializing in AI technology applications and user experience. Has participated in the design and development of multiple large-scale projects, passionate about open-source technology and innovative solutions.","viewProfile":"View Profile"},"contact":{"title":"Contact Us","description":"If you have any questions or cooperation intentions, please contact us through the following methods:","emailLabel":"Email","phoneLabel":"Phone","locationLabel":"Location","wechatLabel":"WeChat"}},"title":"Metasequoia Studio","subtitle":"Low-Cost AI Agent Service Platform","description":"Providing customers with large model privatization deployment, application development and intelligent agent customization services","learnMore":"Learn More →","form":"Form","home":{"title":"Welcome to Metasequoia Studio","subtitle":"AI Solutions for Enterprise","description":"We provide cutting-edge AI development services to help businesses transform digitally","features":{"title":"Our Core Features","items":[{"title":"Custom AI Models","description":"Tailor-made large language models trained on your specific business data"},{"title":"Seamless Integration","description":"Connect AI capabilities with your existing systems and workflows"},{"title":"Data Security","description":"Enterprise-grade security protocols to protect your sensitive information"},{"title":"Scalable Architecture","description":"Solutions that grow with your business needs and user base"}]},"testimonials":{"title":"What Our Clients Say","items":[{"quote":"The AI solution transformed our customer service operations, reducing response times by 60%","author":"CTO, Tech Innovations Inc."},{"quote":"Their personalized approach to AI development helped us achieve our business goals faster than expected","author":"CEO, Digital Transformation Group"}]}},"services":{"meta":{"title":"AI Services | Metasequoia Studio","description":"Enterprise-grade AI solutions including private model deployment, application development and agent development"},"categories":{"aiService":"AI Service"},"pageTitle":"Our Services","sectionTitle":"Our Core Services","sectionDescription":"Providing comprehensive AI application development solutions to meet the needs of customers in different industries","sectionTag":"Services","viewAllServices":"View All Services","cta":{"consultExpert":"Consult Expert","readyForAIDescription":"Ready to start your AI transformation journey? Our expert team is ready to support you","readyForAI":"Ready for AI","consultSolution":"Consult Solution","learnMore":"Learn More"},"learnMore":"Learn More","sections":{"coreAdvantages":"Core Advantages","scenarios":"Scenarios","technicalFeatures":"Technical Features","caseStudies":"Case Studies"},"backToList":"Back to Service List","model-deployment":{"title":"Model Deployment","description":"Deploy large language models in the customer's own server environment to ensure data security and privacy protection","details":"Provide localized deployment solutions for mainstream large models, ensuring data security and privacy, supporting custom fine-tuning and performance optimization.","coreAdvantages":{"supportAllModels":{"title":"Support for All Major Models","description":"Local adaptation of 10+ mainstream large models including GPT series, LLaMA, Wenxin Yiyan, and iFlytek Spark"},"dataSecurity":{"title":"Data Security and Privacy Protection","description":"Models deployed on customer's own servers with data never leaving local network"},"customization":{"title":"Deep Customization and Fine-tuning","description":"Model fine-tuning based on customer business data to improve response quality"},"performanceOptimization":{"title":"Performance Optimization and Resource Management","description":"Optimize model inference speed and reduce memory usage for different hardware"}},"scenarios":{"dataSensitiveIndustries":{"title":"Data-Sensitive Industries","description":"Localized deployment solutions for finance, healthcare and other privacy-sensitive industries"},"localResponse":{"title":"Low-Latency Local Response","description":"Local deployment meeting real-time interaction needs with 90% faster response"}},"technicalFeatures":{"toolchain":{"title":"One-Stop Deployment Toolchain","description":"Automated deployment scripts and monitoring dashboard simplifying operations"},"hybridDeployment":{"title":"Hybrid Deployment Mode","description":"Support local + cloud hybrid deployment balancing cost and performance"}},"cases":[{"title":"State-Owned Bank Intelligent Customer Service","description":"Local model deployment handling 100,000+ daily customer inquiries with 92% accuracy"}]},"model-application":{"title":"LLM Application Development","description":"Build enterprise-level applications based on large language models for intelligent customer service and content generation","details":"Custom development of enterprise-level applications based on large models, integrating business system data for intelligent upgrading.","coreAdvantages":{"multimodal":{"title":"Multimodal Interaction Capability","description":"Comprehensive interaction experience integrating text, voice and images"},"lowCode":{"title":"Low-Code Rapid Development","description":"Visual configuration platform reducing AI application development threshold"},"businessIntegration":{"title":"Deep Business System Integration","description":"Seamless connection with CRM, ERP and other enterprise systems"}},"scenarios":{"intelligentInteraction":{"title":"Intelligent Interaction System","description":"Enterprise intelligent customer service, voice assistants and other NLP interaction products"},"contentCreation":{"title":"Content Creation Platform","description":"Automated copywriting generation, intelligent typesetting and multi-platform publishing"},"dataIntelligence":{"title":"Data Intelligence Analysis","description":"Unstructured data parsing and intelligent report generation"}},"technicalFeatures":{"apiManagement":{"title":"Comprehensive API Management","description":"Standardized interface design supporting high concurrent requests and traffic control"},"monitoring":{"title":"End-to-End Monitoring","description":"User behavior analysis and model performance monitoring for continuous optimization"}},"cases":[{"title":"Online Education Intelligent Q&A Platform","description":"AI tutoring system for K12 education institutions covering 85% of common subject questions"}]},"agent-development":{"title":"AI Agent Development","description":"Develop AI agents with autonomous decision-making capabilities to automate complex business processes","details":"Custom development of AI agents with task planning, tool usage and autonomous learning capabilities to empower enterprise automation.","coreAdvantages":{"autonomousPlanning":{"title":"Autonomous Task Planning","description":"Decompose complex tasks based on goals and dynamically adjust execution strategies"},"toolIntegration":{"title":"Multi-Tool Integration","description":"Connect internal enterprise systems and external APIs to expand agent capabilities"},"memoryManagement":{"title":"Long-Term Memory Management","description":"Context understanding and long-term memory storage supporting coherent dialogue"}},"scenarios":{"automation":{"title":"Process Automation","description":"Automated processing of repetitive tasks like expense reimbursement and contract review"},"complexProcess":{"title":"Complex Business Processes","description":"Multi-step complex task processing for R&D project management and market analysis"}},"technicalFeatures":{"decisionFramework":{"title":"Reinforcement Learning Decision Framework","description":"Continuously optimize decision models based on environmental feedback"},"humanMachine":{"title":"Human-Machine Collaboration Mechanism","description":"Human intervention at key decision nodes to ensure task accuracy"}},"cases":[{"title":"E-Commerce Intelligent Operations Assistant","description":"Automated product listing, inventory management and marketing planning increasing efficiency by 60%"}]},"education":{"title":"Education Industry Solutions","description":"AI-assisted teaching system with personalized learning path planning and intelligent Q&A"},"finance":{"title":"Financial Risk Control System","description":"Intelligent risk assessment and fraud detection to enhance financial security levels"},"healthcare":{"title":"Medical Auxiliary Diagnosis","description":"Medical image analysis and auxiliary diagnosis suggestions to improve diagnostic accuracy"}},"navbar":{"logo":"Metasequoia AI","services":"Services","docs":"Docs","store":"Store","cta":"Get Started","menu":{"home":"Home","services":"Services","cases":"Cases","partners":"Partners","contact":"Contact","store":"Store","docs":"Docs"},"language":"Language","themeToggle":"Toggle Theme"},"search":{"buttonLabel":"Search","placeholder":"Search services, docs, pages...","loading":"Loading search index...","results":"Search Results","noResults":"No results found","tryDifferentKeywords":"Try different keywords","quickAccess":"Quick Access","quickLinks":{"services":"Services","docs":"Documentation","store":"App Store","contact":"Contact"},"proTip":"AI Smart Search","proTipContent":"Supports fuzzy matching and semantic search, just type keywords to find relevant content quickly","navigate":"Navigate","select":"Select","poweredBy":"AI-Powered Search"},"footer":{"logoAlt":"Metasequoia Studio Logo","logoText":"Metasequoia AI","copyright":"© 2025 Metasequoia Studio. All rights reserved.","privacyPolicy":"Privacy Policy","termsOfService":"Terms of Service","contactUs":"Contact Us","description":"Enterprise-grade AI solutions provider specializing in model deployment, application development and intelligent agent customization","services":"Services","company":"Studio","legal":"Legal","madeWith":"Made with","allRightsReserved":". All rights reserved.","backToTop":"Back to Top","links":{"privacy":"Privacy Policy","terms":"Terms of Service","sitemap":"Sitemap"},"contact":{"email":"Contact Email","phone":"Contact Phone"}},"common":{"buttons":{"submit":"Submit","cancel":"Cancel","save":"Save","close":"Close","learnMore":"Learn More"},"errors":{"networkError":"Network error, please try again later","serverError":"Server error, please contact administrator","notFound":"Resource not found","permissionDenied":"Permission denied"},"notifications":{"info":"Information","warning":"Warning","success":"Success","error":"Error","confirmDelete":"Are you sure you want to delete this item?"},"validation":{"required":"This field is required","email":"Please enter a valid email address","minLength":"Minimum length is {min} characters","maxLength":"Maximum length is {max} characters","pattern":"Please match the required format","numeric":"Please enter a number","url":"Please enter a valid URL"},"labels":{"search":"Search","filter":"Filter","sort":"Sort","loading":"Loading...","error":"Error","success":"Success","confirm":"Confirm"}},"contact":{"title":"Contact Us","submit":"Send Message","form":{"nameLabel":"Name","namePlaceholder":"Please enter your name","contactLabel":"Contact Information","contactPlaceholder":"Phone or email","messageLabel":"Message","messagePlaceholder":"Please briefly describe your needs","submitButton":"Submit Collaboration Request"}},"hero":{"badge":"AI-Powered Solutions","titleLine1":"Transform Your","titleLine2":"Business with AI","description":"Enterprise-grade AI solutions for model deployment, application development, and intelligent agent customization. Scale your business with cutting-edge technology.","cta":{"explore":"Explore Services","docs":"View Documentation"},"stats":{"clients":"Enterprise Clients","uptime":"Uptime SLA","support":"Expert Support","efficiency":"Efficiency Gain"}},"theme":{"title":"Theme","light":"Light","dark":"Dark","system":"System"},"cta":{"explore":"Explore Services","docs":"View Documentation"},"consultation":{"sectionTag":"Limited Time Free","sectionTitle":"Free AI Application Consultation","sectionDescription":"Unsure how to AI-enable your business? Our experts offer a free 30-minute consultation to help you identify scenarios, assess feasibility, and plan implementation","badge":"Now Open - Limited Time","valueProps":{"free":"Free Consultation","response":"Response within 2 hours","expert":"1-on-1 Expert Advice","noObligation":"No Obligations"},"form":{"title":"Book Your Free Consultation","subtitle":"Fill in the information below so our consultants can serve you better","nameLabel":"Your Name","namePlaceholder":"Enter your name","companyLabel":"Company Name","companyPlaceholder":"Enter company name","phoneLabel":"Phone Number","phonePlaceholder":"Enter phone number","businessTypeLabel":"Business Type","businessTypePlaceholder":"Select business type","painPointLabel":"Pain Points or Needs","painPointPlaceholder":"Briefly describe your business scenario and the problems you want to solve...","submitButton":"Book Free Consultation Now","submitting":"Submitting...","privacyNotice":"By submitting, you agree to our privacy policy. We will not share your information with third parties"},"process":{"title":"Service Process","step1":{"title":"Submit Request","desc":"Fill in basic info, response within 2 hours"},"step2":{"title":"Deep Dive","desc":"30-minute 1-on-1 expert consultation"},"step3":{"title":"Solution Delivery","desc":"Custom proposal within 3 business days"},"step4":{"title":"Your Decision","desc":"Zero pressure, you decide whether to proceed"}},"faq":{"title":"Frequently Asked Questions","q1":"What does the free consultation include?","a1":"Our free consultation includes: 1) AI feasibility analysis for your business scenario; 2) Technical solution recommendations; 3) ROI estimation; 4) Implementation roadmap. The entire process takes about 30-45 minutes of in-depth discussion.","q2":"Am I obligated to purchase services after the consultation?","a2":"Absolutely not. The free consultation comes with no strings attached. You can decide whether to work with us based entirely on your own needs. Our goal is to help you clarify your AI application strategy—even if you don't choose us, we hope it's helpful.","q3":"What is the background of your consultants?","a3":"Our consultants come from well-known tech companies with 5+ years of AI project implementation experience, serving industries including finance, healthcare, manufacturing, and retail—helping 100+ companies complete AI transformation.","q4":"How soon will I hear back?","a4":"After submitting the form, we'll contact you within 2 business hours to arrange consultant matching. For urgent needs, please note in the remarks and we'll prioritize your request."},"trust":{"title":"Trusted by 100+ Enterprise Clients","subtitle":"Spanning finance, healthcare, manufacturing, retail and more"},"success":{"title":"Booking Successful!","message":"Our consultant will contact you within 2 business hours. Please keep your phone available"}},"collaboration":{"sectionTag":"Get In Touch","sectionTitle":"Collaborate Now","sectionDescription":"Fill out the form or contact us through the following methods, and we will communicate with you as soon as possible","form":{"nameLabel":"Name","namePlaceholder":"Please enter your name","contactLabel":"Contact Information","contactPlaceholder":"Phone or email","messageLabel":"Message","messagePlaceholder":"Please briefly describe your needs","submitButton":"Submit Collaboration Request","submitting":"Submitting..."},"submitSuccess":{"title":"Submission Successful!","message":"Thank you for your inquiry, our service consultant will contact you within 1-2 business days"},"sendAnother":"Send Another Message","toast":{"success":"Submission Successful!"},"contact":{"wechat":"Scan WeChat QR Code","scanQR":"Scan QR code to add on WeChat","email":"Send Email","responseTime":"We will reply to you within 1-2 business days"}},"partners":{"title":"Technology Partners","description":"Establish strategic cooperation with industry-leading enterprises to jointly promote AI technology innovation and application","sectionTag":"Our Partners","sectionTitle":"Technology Partners","sectionDescription":"Developed based on open source frameworks such as LangChain and FastAPI","learnMore":"Learn More","joinPartners":"Want to become a partner?","contactUs":"Contact us","companies":{"langchain":{"description":"Leading large language model application development framework"},"fastapi":{"description":"High-performance API development framework"},"dify":{"description":"Low-code/no-code AI application development platform"},"nextjs":{"description":"SEO-friendly full-stack application development framework"}}},"cases":{"sectionTag":"Success Stories","sectionTitle":"Case Studies","sectionDescription":"Explore our successfully implemented projects using large model technology","viewDetails":"View Details →","studies":[{"category":"Enterprise Services","title":"Intelligent Customer Service System","description":"LLM-based intelligent customer service solution increasing satisfaction by 30%","challenge":"A large e-commerce enterprise faced high customer service costs, slow response times, and unstable service quality","solution":"Deployed private LLM customer service system, enabling 7×24 intelligent responses with multi-turn dialogue and sentiment analysis","results":["Customer satisfaction increased by 30%","Human agent workload reduced by 60%","Average response time reduced from 5 minutes to 10 seconds","Issue resolution rate improved to 92%"],"technologies":["GPT-4","RAG","Sentiment Analysis","Knowledge Graph"]},{"category":"Healthcare","title":"Medical Data Analysis Platform","description":"AI-powered medical data analysis assisting doctor diagnosis decisions","challenge":"A tertiary hospital with over 10,000 daily outpatient visits, doctors under high diagnostic pressure, time-consuming medical records","solution":"Built medical AI assistant integrated with EMR system, providing diagnostic suggestions and treatment plan references","results":["Medical record writing efficiency improved 3x","Diagnostic accuracy increased by 15%","Daily patient capacity increased by 25%","Patient waiting time reduced by 40%"],"technologies":["Medical NLP","Knowledge Graph","Multimodal Analysis","Privacy Computing"]},{"category":"FinTech","title":"Financial Risk Control System","description":"Real-time transaction monitoring with 98% accuracy in anomaly detection","challenge":"A bank suffered severe credit card fraud losses, traditional rule-based engines had high false positive rates","solution":"AI-powered intelligent risk control system analyzing transaction behavior in real-time, dynamically adjusting risk strategies","results":["Fraud detection accuracy reached 98%","False positive rate reduced by 70%","Risk response time shortened to milliseconds","Annual fraud losses reduced by 80M"],"technologies":["Time Series Analysis","Graph Neural Networks","Anomaly Detection","Federated Learning"]},{"category":"Online Education","title":"Educational Content Generation Tool","description":"Automatically generate personalized learning content for different learning styles","challenge":"Education and training institutions struggled with slow content production, unable to meet personalized teaching needs","solution":"AI teaching assistant generating courseware, exercises, and video scripts with one click, supporting multiple difficulty levels","results":["Content production efficiency improved 10x","Course development cycle shortened from 2 weeks to 2 days","Student completion rate increased by 35%","Teacher preparation time saved by 50%"],"technologies":["Content Generation","Personalized Recommendation","Knowledge Tracing","Auto Assessment"]},{"category":"Architecture","title":"AI-Assisted Architectural Design Platform","description":"Intelligent design generation and optimization for building energy consumption and spatial layout","challenge":"An architectural design institute faced long project cycles, frequent design changes, and energy optimization relying on experience","solution":"AI architectural design assistant generating multiple scheme comparisons based on requirements, real-time energy consumption calculation","results":["Design cycle shortened by 50%","Building energy consumption reduced by 20% on average","Client satisfaction increased by 45%","Design changes reduced by 60%"],"technologies":["Generative Design","BIM Integration","Energy Simulation","Spatial Optimization"]},{"category":"Smart Manufacturing","title":"Industrial Quality Inspection Agent","description":"AI vision inspection system for real-time defect detection and early warning","challenge":"An auto parts factory had low manual inspection efficiency, high miss rates, and difficult quality traceability","solution":"Deployed AI vision quality inspection system, real-time multi-station detection, automatic defect classification","results":["Inspection efficiency improved 8x","Miss rate reduced from 3% to 0.1%","Production line downtime reduced by 40%","Quality traceability time reduced from hours to seconds"],"technologies":["Computer Vision","Edge Computing","Digital Twin","Predictive Maintenance"]},{"category":"Law Firm","title":"Legal Document Intelligent Review System","description":"Automated contract review and legal research to improve lawyer productivity","challenge":"A large law firm faced heavy contract review workload, time-consuming legal research, and scattered knowledge management","solution":"Legal AI assistant for intelligent contract clause review, automatic matching of relevant cases and regulations","results":["Contract review efficiency improved 5x","Legal research time reduced by 80%","Contract risk identification accuracy reached 95%","Junior lawyer training cycle shortened by 50%"],"technologies":["Legal NLP","Knowledge Graph","Intelligent Retrieval","Document Analysis"]},{"category":"Accounting","title":"Intelligent Audit Analysis Platform","description":"AI-driven financial data analysis, automatic identification of abnormal transactions and risks","challenge":"Accounting firms had many audit projects, large data processing volumes, limited coverage of manual sampling audits","solution":"Intelligent audit system, full data analysis, automatic anomaly flagging, audit recommendation generation","results":["Audit efficiency improved 4x","Abnormal transaction detection rate increased to 96%","Audit coverage from sampling to full-scale","Audit report generation time reduced by 70%"],"technologies":["Financial NLP","Anomaly Detection","Data Mining","Intelligent Report Generation"]}]},"Store":{"title":"App Store","description":"Explore our AI applications to enhance your productivity and creativity","searchPlaceholder":"Search apps...","types":{"all":"All Types","miniProgram":"Mini Program","h5":"H5","app":"App"},"categories":{"all":"All Categories","tools":"Tools","creativity":"Creativity","development":"Development","business":"Business"},"noAppsFound":"No matching apps found","clearFilters":"Clear filters","showingResults":"Showing {count} of {total} apps","tryAdjustingFilters":"Try adjusting your search or filters","meta":{"title":"App Store | Metasequoia Studio","description":"Explore our AI applications to enhance your productivity and creativity"}},"Docs":{"loading":"Loading document...","meta":{"title":"Documentation | Metasequoia Studio","description":"Metasequoia Studio Documentation Center - Product guides, tutorials and technical reference"},"errors":{"title":"Error","loadFailed":"Failed to load document","notFound":"Document not found"},"search":{"placeholder":"Search documentation...","noResults":"No matching documents found","tryDifferent":"Try different keywords"},"categories":{"all":"All","gettingStarted":"Getting Started","technical":"Technical Docs","help":"Help"}}},"now":"$undefined","timeZone":"UTC","children":"$L18"}]
+19:I[25554,["6752","static/chunks/6752-90baefdcb051c3c1.js","1909","static/chunks/1909-ac3fe94adcf1a95e.js","2346","static/chunks/2346-8f59889a5170c5da.js","1278","static/chunks/1278-1b71cee32080193b.js","1399","static/chunks/1399-c867858dd6d3be69.js","8450","static/chunks/app/%5Blocale%5D/layout-41f8cce3b90dae17.js"],"default"]
+1a:I[821,["6752","static/chunks/6752-90baefdcb051c3c1.js","1909","static/chunks/1909-ac3fe94adcf1a95e.js","2346","static/chunks/2346-8f59889a5170c5da.js","1278","static/chunks/1278-1b71cee32080193b.js","1399","static/chunks/1399-c867858dd6d3be69.js","8450","static/chunks/app/%5Blocale%5D/layout-41f8cce3b90dae17.js"],"default"]
+18:["$","div",null,{"className":"flex flex-col min-h-screen","children":[["$","$L19",null,{}],["$","main",null,{"className":"flex-grow","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L1a",null,{}]]}]
+c:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+8:null
+1b:I[82435,[],"IconMark"]
+a:{"metadata":[["$","title","0",{"children":"API 集成开发指南 | 文档中心"}],["$","meta","1",{"name":"description","content":"学习如何将大模型能力集成到您的应用程序中"}],["$","link","2",{"rel":"canonical","href":"/en/docs/api-integration"}],["$","meta","3",{"property":"og:title","content":"Metasequoia Studio"}],["$","meta","4",{"property":"og:description","content":"Providing customers with large model privatization deployment, application development and intelligent agent customization services"}],["$","meta","5",{"property":"og:image","content":"http://localhost:3000/favicon.jpg"}],["$","meta","6",{"property":"og:type","content":"website"}],["$","meta","7",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","8",{"name":"twitter:title","content":"Metasequoia Studio"}],["$","meta","9",{"name":"twitter:description","content":"Providing customers with large model privatization deployment, application development and intelligent agent customization services"}],["$","meta","10",{"name":"twitter:image","content":"http://localhost:3000/favicon.jpg"}],["$","link","11",{"rel":"icon","href":"/favicon.jpg"}],["$","$L1b","12",{}]],"error":null,"digest":"$undefined"}
+f:"$a:metadata"
