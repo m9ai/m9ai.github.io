@@ -1,0 +1,159 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="accGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="chartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#34d399"/>
+      <stop offset="100%" style="stop-color:#10b981"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#accGrad)"/>
+  
+  <!-- Grid Pattern -->
+  <pattern id="accGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.2"/>
+  </pattern>
+  <rect width="800" height="450" fill="url(#accGrid)"/>
+  
+  <!-- Calculator Left -->
+  <g transform="translate(100, 150)">
+    <rect x="0" y="0" width="120" height="160" fill="#1e293b" stroke="#334155" stroke-width="2" rx="8"/>
+    <!-- Screen -->
+    <rect x="15" y="15" width="90" height="40" fill="#0f172a" stroke="#10b981" stroke-width="1" rx="4"/>
+    <text x="95" y="42" text-anchor="end" fill="#10b981" font-size="16" font-family="monospace">888,888</text>
+    <!-- Buttons -->
+    <rect x="15" y="65" width="18" height="15" fill="#334155" rx="2"/>
+    <rect x="40" y="65" width="18" height="15" fill="#334155" rx="2"/>
+    <rect x="65" y="65" width="18" height="15" fill="#334155" rx="2"/>
+    <rect x="90" y="65" width="18" height="15" fill="#f59e0b" rx="2"/>
+    
+    <rect x="15" y="85" width="18" height="15" fill="#475569" rx="2"/>
+    <rect x="40" y="85" width="18" height="15" fill="#475569" rx="2"/>
+    <rect x="65" y="85" width="18" height="15" fill="#475569" rx="2"/>
+    <rect x="90" y="85" width="18" height="15" fill="#f59e0b" rx="2"/>
+    
+    <rect x="15" y="105" width="18" height="15" fill="#475569" rx="2"/>
+    <rect x="40" y="105" width="18" height="15" fill="#475569" rx="2"/>
+    <rect x="65" y="105" width="18" height="15" fill="#475569" rx="2"/>
+    <rect x="90" y="105" width="18" height="15" fill="#f59e0b" rx="2"/>
+    
+    <rect x="15" y="125" width="43" height="15" fill="#475569" rx="2"/>
+    <rect x="65" y="125" width="18" height="15" fill="#475569" rx="2"/>
+    <rect x="90" y="125" width="18" height="15" fill="#ef4444" rx="2"/>
+  </g>
+  
+  <!-- Central Chart Area -->
+  <rect x="280" y="100" width="240" height="250" fill="#1e293b" stroke="#334155" stroke-width="1" rx="8"/>
+  
+  <!-- Bar Chart -->
+  <g transform="translate(300, 200)">
+    <!-- Y Axis -->
+    <line x1="0" y1="0" x2="0" y2="120" stroke="#475569" stroke-width="1"/>
+    <!-- X Axis -->
+    <line x1="0" y1="120" x2="200" y2="120" stroke="#475569" stroke-width="1"/>
+    
+    <!-- Bars with Animation -->
+    <rect x="20" y="60" width="25" height="60" fill="url(#greenGrad)" rx="2">
+      <animate attributeName="height" values="0;60" dur="1s" fill="freeze"/>
+      <animate attributeName="y" values="120;60" dur="1s" fill="freeze"/>
+    </rect>
+    <rect x="60" y="40" width="25" height="80" fill="url(#chartGrad)" rx="2">
+      <animate attributeName="height" values="0;80" dur="1s" begin="0.2s" fill="freeze"/>
+      <animate attributeName="y" values="120;40" dur="1s" begin="0.2s" fill="freeze"/>
+    </rect>
+    <rect x="100" y="30" width="25" height="90" fill="url(#greenGrad)" rx="2">
+      <animate attributeName="height" values="0;90" dur="1s" begin="0.4s" fill="freeze"/>
+      <animate attributeName="y" values="120;30" dur="1s" begin="0.4s" fill="freeze"/>
+    </rect>
+    <rect x="140" y="50" width="25" height="70" fill="url(#chartGrad)" rx="2">
+      <animate attributeName="height" values="0;70" dur="1s" begin="0.6s" fill="freeze"/>
+      <animate attributeName="y" values="120;50" dur="1s" begin="0.6s" fill="freeze"/>
+    </rect>
+    
+    <!-- Value Labels -->
+    <text x="32" y="50" text-anchor="middle" fill="#10b981" font-size="8">Q1</text>
+    <text x="72" y="30" text-anchor="middle" fill="#10b981" font-size="8">Q2</text>
+    <text x="112" y="20" text-anchor="middle" fill="#10b981" font-size="8">Q3</text>
+    <text x="152" y="40" text-anchor="middle" fill="#10b981" font-size="8">Q4</text>
+  </g>
+  
+  <!-- Chart Title -->
+  <text x="400" y="140" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="system-ui">财务增长趋势</text>
+  
+  <!-- Pie Chart Right -->
+  <g transform="translate(600, 200)">
+    <circle cx="60" cy="60" r="50" fill="none" stroke="#10b981" stroke-width="20" stroke-dasharray="78.5 235.5" transform="rotate(-90 60 60)"/>
+    <circle cx="60" cy="60" r="50" fill="none" stroke="#3b82f6" stroke-width="20" stroke-dasharray="62.8 251.2" stroke-dashoffset="-78.5" transform="rotate(-90 60 60)"/>
+    <circle cx="60" cy="60" r="50" fill="none" stroke="#f59e0b" stroke-width="20" stroke-dasharray="47.1 266.9" stroke-dashoffset="-141.3" transform="rotate(-90 60 60)"/>
+    <circle cx="60" cy="60" r="50" fill="none" stroke="#ef4444" stroke-width="20" stroke-dasharray="47.1 266.9" stroke-dashoffset="-188.4" transform="rotate(-90 60 60)"/>
+    
+    <!-- Center -->
+    <circle cx="60" cy="60" r="25" fill="#1e293b"/>
+    <text x="60" y="65" text-anchor="middle" fill="#10b981" font-size="10" font-family="system-ui">分析</text>
+  </g>
+  
+  <!-- Pie Chart Labels -->
+  <rect x="580" y="280" width="140" height="80" fill="#1e293b" stroke="#334155" stroke-width="1" rx="4"/>
+  <circle cx="595" cy="295" r="5" fill="#10b981"/>
+  <text x="610" y="299" fill="#94a3b8" font-size="10">收入 35%</text>
+  <circle cx="595" cy="315" r="5" fill="#3b82f6"/>
+  <text x="610" y="319" fill="#94a3b8" font-size="10">成本 28%</text>
+  <circle cx="650" cy="295" r="5" fill="#f59e0b"/>
+  <text x="665" y="299" fill="#94a3b8" font-size="10">税费 21%</text>
+  <circle cx="650" cy="315" r="5" fill="#ef4444"/>
+  <text x="665" y="319" fill="#94a3b8" font-size="10">其他 16%</text>
+  
+  <!-- Data Tables -->
+  <rect x="280" y="370" width="440" height="60" fill="#1e293b" stroke="#334155" stroke-width="1" rx="4"/>
+  <line x1="280" y1="395" x2="720" y2="395" stroke="#334155" stroke-width="1"/>
+  <line x1="400" y1="370" x2="400" y2="430" stroke="#334155" stroke-width="1"/>
+  <line x1="520" y1="370" x2="520" y2="430" stroke="#334155" stroke-width="1"/>
+  <line x1="640" y1="370" x2="640" y2="430" stroke="#334155" stroke-width="1"/>
+  <text x="340" y="390" text-anchor="middle" fill="#94a3b8" font-size="10">科目</text>
+  <text x="460" y="390" text-anchor="middle" fill="#94a3b8" font-size="10">预算</text>
+  <text x="580" y="390" text-anchor="middle" fill="#94a3b8" font-size="10">实际</text>
+  <text x="680" y="390" text-anchor="middle" fill="#94a3b8" font-size="10">差异</text>
+  
+  <text x="340" y="415" text-anchor="middle" fill="#10b981" font-size="10">营业收入</text>
+  <text x="460" y="415" text-anchor="middle" fill="#94a3b8" font-size="10">500W</text>
+  <text x="580" y="415" text-anchor="middle" fill="#94a3b8" font-size="10">568W</text>
+  <text x="680" y="415" text-anchor="middle" fill="#10b981" font-size="10">+13.6%</text>
+  
+  <!-- Floating Data Points -->
+  <circle cx="250" cy="120" r="3" fill="#10b981" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="550" cy="150" r="3" fill="#34d399" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Connection Lines -->
+  <line x1="220" y1="230" x2="280" y2="275" stroke="#10b981" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+  <line x1="520" y1="275" x2="600" y2="250" stroke="#10b981" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+  
+  <!-- AI Analysis Indicator -->
+  <g transform="translate(400, 60)">
+    <rect x="-60" y="0" width="120" height="28" fill="url(#greenGrad)" rx="14" opacity="0.9"/>
+    <text x="0" y="19" text-anchor="middle" fill="white" font-size="11" font-family="system-ui">AI 财务分析</text>
+    
+    <!-- Pulse Animation -->
+    <circle cx="0" cy="14" r="15" fill="#10b981" opacity="0">
+      <animate attributeName="r" values="15;25;15" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Decorative Elements -->
+  <path d="M30 30 L55 30 L55 55" fill="none" stroke="#10b981" stroke-width="2" opacity="0.4"/>
+  <path d="M770 30 L745 30 L745 55" fill="none" stroke="#10b981" stroke-width="2" opacity="0.4"/>
+  <path d="M30 420 L55 420 L55 395" fill="none" stroke="#10b981" stroke-width="2" opacity="0.4"/>
+  <path d="M770 420 L745 420 L745 395" fill="none" stroke="#10b981" stroke-width="2" opacity="0.4"/>
+</svg>

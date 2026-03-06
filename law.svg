@@ -1,0 +1,126 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lawGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id="scalesGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#lawGrad)"/>
+  
+  <!-- Subtle Pattern -->
+  <pattern id="lawPattern" width="100" height="100" patternUnits="userSpaceOnUse">
+    <circle cx="50" cy="50" r="1" fill="#334155" opacity="0.3"/>
+  </pattern>
+  <rect width="800" height="450" fill="url(#lawPattern)"/>
+  
+  <!-- Bookshelf Background -->
+  <rect x="50" y="200" width="200" height="180" fill="#1e293b" stroke="#334155" stroke-width="1" rx="4"/>
+  <line x1="50" y1="240" x2="250" y2="240" stroke="#334155" stroke-width="1"/>
+  <line x1="50" y1="280" x2="250" y2="280" stroke="#334155" stroke-width="1"/>
+  <line x1="50" y1="320" x2="250" y2="320" stroke="#334155" stroke-width="1"/>
+  <line x1="50" y1="360" x2="250" y2="360" stroke="#334155" stroke-width="1"/>
+  
+  <!-- Books -->
+  <rect x="70" y="210" width="15" height="30" fill="#7c3aed" opacity="0.8"/>
+  <rect x="90" y="205" width="12" height="35" fill="#6366f1" opacity="0.8"/>
+  <rect x="108" y="215" width="18" height="25" fill="#4f46e5" opacity="0.8"/>
+  <rect x="132" y="208" width="14" height="32" fill="#8b5cf6" opacity="0.8"/>
+  
+  <rect x="65" y="250" width="20" height="30" fill="#6366f1" opacity="0.7"/>
+  <rect x="90" y="245" width="15" height="35" fill="#4f46e5" opacity="0.7"/>
+  <rect x="112" y="255" width="18" height="25" fill="#7c3aed" opacity="0.7"/>
+  
+  <rect x="80" y="290" width="16" height="30" fill="#8b5cf6" opacity="0.6"/>
+  <rect x="102" y="285" width="20" height="35" fill="#6366f1" opacity="0.6"/>
+  
+  <!-- Scales of Justice - Center -->
+  <g transform="translate(400, 200)">
+    <!-- Base -->
+    <rect x="-40" y="120" width="80" height="15" fill="url(#scalesGrad)" rx="3"/>
+    <rect x="-8" y="60" width="16" height="60" fill="url(#scalesGrad)"/>
+    
+    <!-- Crossbar -->
+    <rect x="-100" y="55" width="200" height="6" fill="url(#scalesGrad)" rx="3"/>
+    
+    <!-- Left Scale -->
+    <line x1="-80" y1="58" x2="-80" y2="90" stroke="url(#scalesGrad)" stroke-width="2"/>
+    <path d="M-110 90 Q-80 105 -50 90 L-60 80 L-100 80 Z" fill="none" stroke="url(#scalesGrad)" stroke-width="2"/>
+    <!-- Left Pan -->
+    <ellipse cx="-80" cy="95" rx="25" ry="8" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+    
+    <!-- Right Scale -->
+    <line x1="80" y1="58" x2="80" y2="90" stroke="url(#scalesGrad)" stroke-width="2"/>
+    <path d="M50 90 Q80 105 110 90 L100 80 L60 80 Z" fill="none" stroke="url(#scalesGrad)" stroke-width="2"/>
+    <!-- Right Pan -->
+    <ellipse cx="80" cy="95" rx="25" ry="8" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+    
+    <!-- Center Decoration -->
+    <circle cx="0" cy="30" r="15" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+    <text x="0" y="36" text-anchor="middle" fill="#fbbf24" font-size="16" font-family="serif">⚖</text>
+    
+    <!-- AI Glow Effect -->
+    <circle cx="0" cy="30" r="25" fill="url(#scalesGrad)" opacity="0.2">
+      <animate attributeName="r" values="25;30;25" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;0.1;0.2" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Digital Documents - Right Side -->
+  <rect x="550" y="180" width="180" height="220" fill="#1e293b" stroke="#334155" stroke-width="1" rx="8"/>
+  <rect x="560" y="190" width="160" height="40" fill="#0f172a" stroke="#6366f1" stroke-width="1" rx="4"/>
+  <text x="640" y="217" text-anchor="middle" fill="#6366f1" font-size="12" font-family="system-ui">合同智能审查</text>
+  
+  <!-- Document Content Lines -->
+  <line x1="570" y1="250" x2="710" y2="250" stroke="#475569" stroke-width="2"/>
+  <line x1="570" y1="270" x2="690" y2="270" stroke="#475569" stroke-width="1" opacity="0.7"/>
+  <line x1="570" y1="285" x2="700" y2="285" stroke="#475569" stroke-width="1" opacity="0.7"/>
+  <line x1="570" y1="300" x2="680" y2="300" stroke="#475569" stroke-width="1" opacity="0.7"/>
+  <line x1="570" y1="315" x2="710" y2="315" stroke="#475569" stroke-width="1" opacity="0.7"/>
+  <line x1="570" y1="330" x2="670" y2="330" stroke="#475569" stroke-width="1" opacity="0.7"/>
+  
+  <!-- AI Analysis Highlight -->
+  <rect x="565" y="350" width="150" height="40" fill="#6366f1" opacity="0.1" rx="4"/>
+  <text x="640" y="375" text-anchor="middle" fill="#6366f1" font-size="10" font-family="system-ui">AI 风险识别: 3处</text>
+  
+  <!-- Floating Analysis Points -->
+  <circle cx="300" cy="100" r="4" fill="#fbbf24" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="500" cy="120" r="4" fill="#6366f1" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="350" cy="350" r="4" fill="#fbbf24" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Connection Lines -->
+  <line x1="300" y1="100" x2="350" y2="200" stroke="#fbbf24" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+  <line x1="500" y1="120" x2="450" y2="200" stroke="#6366f1" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+  <line x1="550" y1="280" x2="480" y2="280" stroke="#6366f1" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+  
+  <!-- Data Flow Animation -->
+  <circle cx="515" cy="280" r="3" fill="#6366f1" opacity="0">
+    <animate attributeName="cx" values="550;480" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- AI Badge -->
+  <rect x="360" y="40" width="80" height="24" rx="12" fill="url(#scalesGrad)" opacity="0.9"/>
+  <text x="400" y="57" text-anchor="middle" fill="white" font-size="11" font-family="system-ui">法律 AI</text>
+  
+  <!-- Decorative Corner Elements -->
+  <path d="M30 30 L60 30 L60 60" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+  <path d="M770 30 L740 30 L740 60" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+  <path d="M30 420 L60 420 L60 390" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+  <path d="M770 420 L740 420 L740 390" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+</svg>
