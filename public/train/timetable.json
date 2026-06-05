@@ -10,7 +10,7 @@
     },
     {
       "no": "S1201",
-      "type": "express",
+      "type": "normal",
       "t": {
         "shanghainan": "05:50",
         "chunshen": {
@@ -1029,10 +1029,22 @@
       "type": "express",
       "t": {
         "jinshanwei": "07:33",
-        "yexie": "07:45",
-        "xinqiao": "07:56",
-        "chunshen": "08:05",
-        "xinzhuang": "08:17",
+        "tinglin": {
+            "arrive": "07:45",
+            "depart": "07:47"
+        },
+        "chedun": {
+            "arrive": "07:56",
+            "depart": "07:58"
+        },
+        "xinqiao": {
+            "arrive": "08:05",
+            "depart": "08:07"
+        },
+        "chunshen": {
+            "arrive": "08:15",
+            "depart": "08:17"
+        },
         "shanghainan": "08:30"
       }
     },
@@ -1294,11 +1306,7 @@
           "arrive": "12:17",
           "depart": "12:18"
         },
-        "xinzhuang": {
-          "arrive": "12:25",
-          "depart": "12:26"
-        },
-        "shanghainan": "12:34"
+        "xinzhuang": "12:25"
       }
     },
     {
@@ -1426,11 +1434,7 @@
           "arrive": "15:11",
           "depart": "15:12"
         },
-        "xinzhuang": {
-          "arrive": "15:17",
-          "depart": "15:18"
-        },
-        "shanghainan": "15:27"
+        "xinzhuang": "15:17"
       }
     },
     {
