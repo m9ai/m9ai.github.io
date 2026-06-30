@@ -1,0 +1,21 @@
+{
+  "name": "水杉智境工作室",
+  "short_name": "水杉智境",
+  "description": "低成本智能体服务平台，提供大模型私有化部署、应用开发和智能体开发等服务",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/favicon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

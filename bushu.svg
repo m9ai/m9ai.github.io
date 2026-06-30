@@ -1,0 +1,175 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="deployGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#06b6d4;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#deployGrad)"/>
+  
+  <!-- Server Room Grid -->
+  <pattern id="serverGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1" opacity="0.5"/>
+  </pattern>
+  <rect width="800" height="450" fill="url(#serverGrid)"/>
+  
+  <!-- Server Racks Left -->
+  <g transform="translate(50, 50)">
+    <rect x="0" y="0" width="120" height="350" fill="#1e293b" stroke="#334155" stroke-width="2" rx="4"/>
+    <!-- Server Units -->
+    <rect x="10" y="20" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="55" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="90" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="125" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="160" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="195" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="230" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="265" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="300" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <!-- LED Indicators -->
+    <circle cx="90" cy="32" r="4" fill="#10b981">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="102" cy="32" r="4" fill="#3b82f6"/>
+    <circle cx="90" cy="67" r="4" fill="#10b981"/>
+    <circle cx="102" cy="67" r="4" fill="#3b82f6">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="90" cy="102" r="4" fill="#f59e0b">
+      <animate attributeName="opacity" values="1;0.3;1" dur="0.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="102" cy="102" r="4" fill="#10b981"/>
+  </g>
+  
+  <!-- Server Racks Right -->
+  <g transform="translate(630, 50)">
+    <rect x="0" y="0" width="120" height="350" fill="#1e293b" stroke="#334155" stroke-width="2" rx="4"/>
+    <!-- Server Units -->
+    <rect x="10" y="20" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="55" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="90" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="125" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="160" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="195" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="230" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="265" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <rect x="10" y="300" width="100" height="25" fill="#0f172a" stroke="#334155" rx="2"/>
+    <!-- LED Indicators -->
+    <circle cx="18" cy="32" r="4" fill="#3b82f6"/>
+    <circle cx="30" cy="32" r="4" fill="#10b981">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="18" cy="67" r="4" fill="#10b981"/>
+    <circle cx="30" cy="67" r="4" fill="#3b82f6"/>
+    <circle cx="18" cy="102" r="4" fill="#3b82f6">
+      <animate attributeName="opacity" values="1;0.3;1" dur="0.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="30" cy="102" r="4" fill="#10b981"/>
+  </g>
+  
+  <!-- Central AI Chip -->
+  <g transform="translate(300, 100)">
+    <!-- Glow Effect -->
+    <rect x="-20" y="-20" width="240" height="240" fill="url(#glowGrad)" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Chip Base -->
+    <rect x="0" y="0" width="200" height="200" fill="#1e293b" stroke="#334155" stroke-width="2" rx="8"/>
+    
+    <!-- Inner Chip -->
+    <rect x="40" y="40" width="120" height="120" fill="#0f172a" stroke="url(#chipGrad)" stroke-width="3" rx="4"/>
+    
+    <!-- Circuit Pattern -->
+    <line x1="40" y1="70" x2="10" y2="70" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="40" y1="100" x2="10" y2="100" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="40" y1="130" x2="10" y2="130" stroke="#3b82f6" stroke-width="2"/>
+    
+    <line x1="160" y1="70" x2="190" y2="70" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="160" y1="100" x2="190" y2="100" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="160" y1="130" x2="190" y2="130" stroke="#3b82f6" stroke-width="2"/>
+    
+    <line x1="70" y1="40" x2="70" y2="10" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="100" y1="40" x2="100" y2="10" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="130" y1="40" x2="130" y2="10" stroke="#3b82f6" stroke-width="2"/>
+    
+    <line x1="70" y1="160" x2="70" y2="190" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="100" y1="160" x2="100" y2="190" stroke="#3b82f6" stroke-width="2"/>
+    <line x1="130" y1="160" x2="130" y2="190" stroke="#3b82f6" stroke-width="2"/>
+    
+    <!-- CPU Core -->
+    <rect x="75" y="75" width="50" height="50" fill="url(#chipGrad)" rx="4"/>
+    <text x="100" y="105" text-anchor="middle" fill="white" font-size="10" font-weight="bold">AI</text>
+    
+    <!-- Connection Points -->
+    <circle cx="10" cy="70" r="4" fill="#06b6d4"/>
+    <circle cx="10" cy="100" r="4" fill="#06b6d4"/>
+    <circle cx="10" cy="130" r="4" fill="#06b6d4"/>
+    <circle cx="190" cy="70" r="4" fill="#06b6d4"/>
+    <circle cx="190" cy="100" r="4" fill="#06b6d4"/>
+    <circle cx="190" cy="130" r="4" fill="#06b6d4"/>
+    <circle cx="70" cy="10" r="4" fill="#06b6d4"/>
+    <circle cx="100" cy="10" r="4" fill="#06b6d4"/>
+    <circle cx="130" cy="10" r="4" fill="#06b6d4"/>
+    <circle cx="70" cy="190" r="4" fill="#06b6d4"/>
+    <circle cx="100" cy="190" r="4" fill="#06b6d4"/>
+    <circle cx="130" cy="190" r="4" fill="#06b6d4"/>
+  </g>
+  
+  <!-- Connection Lines to Servers -->
+  <line x1="180" y1="150" x2="300" y2="170" stroke="#06b6d4" stroke-width="1.5" opacity="0.5" stroke-dasharray="4,4">
+    <animate attributeName="stroke-dashoffset" values="0;8" dur="1s" repeatCount="indefinite"/>
+  </line>
+  <line x1="180" y1="200" x2="300" y2="200" stroke="#06b6d4" stroke-width="1.5" opacity="0.5" stroke-dasharray="4,4">
+    <animate attributeName="stroke-dashoffset" values="0;8" dur="1s" begin="0.3s" repeatCount="indefinite"/>
+  </line>
+  <line x1="180" y1="250" x2="300" y2="230" stroke="#06b6d4" stroke-width="1.5" opacity="0.5" stroke-dasharray="4,4">
+    <animate attributeName="stroke-dashoffset" values="0;8" dur="1s" begin="0.6s" repeatCount="indefinite"/>
+  </line>
+  
+  <line x1="500" y1="170" x2="630" y2="150" stroke="#06b6d4" stroke-width="1.5" opacity="0.5" stroke-dasharray="4,4">
+    <animate attributeName="stroke-dashoffset" values="0;8" dur="1s" repeatCount="indefinite"/>
+  </line>
+  <line x1="500" y1="200" x2="630" y2="200" stroke="#06b6d4" stroke-width="1.5" opacity="0.5" stroke-dasharray="4,4">
+    <animate attributeName="stroke-dashoffset" values="0;8" dur="1s" begin="0.3s" repeatCount="indefinite"/>
+  </line>
+  <line x1="500" y1="230" x2="630" y2="250" stroke="#06b6d4" stroke-width="1.5" opacity="0.5" stroke-dasharray="4,4">
+    <animate attributeName="stroke-dashoffset" values="0;8" dur="1s" begin="0.6s" repeatCount="indefinite"/>
+  </line>
+  
+  <!-- Data Flow Particles -->
+  <circle cx="240" cy="160" r="3" fill="#06b6d4" opacity="0">
+    <animate attributeName="cx" values="180;300" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="240" cy="200" r="3" fill="#3b82f6" opacity="0">
+    <animate attributeName="cx" values="180;300" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="565" cy="160" r="3" fill="#06b6d4" opacity="0">
+    <animate attributeName="cx" values="500;630" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Bottom Status Bar -->
+  <rect x="200" y="380" width="400" height="40" fill="#1e293b" stroke="#334155" stroke-width="1" rx="4"/>
+  <text x="220" y="405" fill="#94a3b8" font-size="12">部署状态: </text>
+  <text x="290" y="405" fill="#10b981" font-size="12" font-weight="bold">运行中</text>
+  <text x="380" y="405" fill="#64748b" font-size="12">|</text>
+  <text x="400" y="405" fill="#94a3b8" font-size="12">GPU利用率: </text>
+  <text x="480" y="405" fill="#06b6d4" font-size="12" font-weight="bold">87%</text>
+  <text x="530" y="405" fill="#64748b" font-size="12">|</text>
+  <text x="550" y="405" fill="#94a3b8" font-size="12">响应: </text>
+  <text x="590" y="405" fill="#10b981" font-size="12" font-weight="bold">12ms</text>
+</svg>
