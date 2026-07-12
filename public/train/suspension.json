@@ -4,7 +4,7 @@
   "suspensions": [
     {
       "date": "2026-07-12",
-      "reason": "受台风巴威影响",
+      "reason": "台风巴威影响",
       "trains": ["*"]
     }
   ]
