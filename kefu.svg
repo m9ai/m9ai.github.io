@@ -1,0 +1,135 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="csGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#csGrad)"/>
+  
+  <!-- Grid Pattern -->
+  <pattern id="csGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.3"/>
+  </pattern>
+  <rect width="800" height="450" fill="url(#csGrid)"/>
+  
+  <!-- Chat Interface Left -->
+  <g transform="translate(50, 80)">
+    <rect x="0" y="0" width="220" height="300" fill="#1e293b" stroke="#334155" stroke-width="2" rx="12"/>
+    <!-- Header -->
+    <rect x="0" y="0" width="220" height="50" fill="#2563eb" rx="12"/>
+    <rect x="0" y="25" width="220" height="25" fill="#2563eb"/>
+    <circle cx="35" cy="25" r="15" fill="#60a5fa"/>
+    <text x="60" y="30" fill="white" font-size="12" font-family="system-ui">AI 客服助手</text>
+    
+    <!-- Chat Messages -->
+    <rect x="15" y="65" width="140" height="35" fill="#334155" rx="8"/>
+    <rect x="20" y="75" width="100" height="6" fill="#64748b" rx="3"/>
+    <rect x="20" y="85" width="80" height="6" fill="#64748b" rx="3"/>
+    
+    <rect x="65" y="110" width="140" height="45" fill="#2563eb" rx="8"/>
+    <rect x="75" y="120" width="100" height="6" fill="#93c5fd" rx="3"/>
+    <rect x="75" y="130" width="120" height="6" fill="#93c5fd" rx="3"/>
+    <rect x="75" y="140" width="90" height="6" fill="#93c5fd" rx="3"/>
+    
+    <rect x="15" y="165" width="120" height="35" fill="#334155" rx="8"/>
+    <rect x="20" y="175" width="80" height="6" fill="#64748b" rx="3"/>
+    <rect x="20" y="185" width="100" height="6" fill="#64748b" rx="3"/>
+    
+    <!-- Input Area -->
+    <rect x="15" y="250" width="190" height="40" fill="#0f172a" stroke="#334155" rx="8"/>
+    <text x="30" y="275" fill="#64748b" font-size="11">请输入您的问题...</text>
+  </g>
+  
+  <!-- AI Brain Center -->
+  <g transform="translate(320, 100)">
+    <!-- Neural Network -->
+    <circle cx="80" cy="80" r="60" fill="none" stroke="url(#blueGrad)" stroke-width="2" opacity="0.3"/>
+    <circle cx="80" cy="80" r="45" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="80" cy="80" r="30" fill="#1e293b" stroke="#06b6d4" stroke-width="2"/>
+    
+    <!-- Nodes -->
+    <circle cx="80" cy="30" r="8" fill="#3b82f6">
+      <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="130" cy="80" r="8" fill="#06b6d4">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="80" cy="130" r="8" fill="#3b82f6">
+      <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="30" cy="80" r="8" fill="#06b6d4">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Connections -->
+    <line x1="80" y1="38" x2="80" y2="50" stroke="#3b82f6" stroke-width="1.5" opacity="0.6"/>
+    <line x1="122" y1="80" x2="110" y2="80" stroke="#06b6d4" stroke-width="1.5" opacity="0.6"/>
+    <line x1="80" y1="122" x2="80" y2="110" stroke="#3b82f6" stroke-width="1.5" opacity="0.6"/>
+    <line x1="38" y1="80" x2="50" y2="80" stroke="#06b6d4" stroke-width="1.5" opacity="0.6"/>
+    
+    <!-- AI Label -->
+    <rect x="45" y="155" width="70" height="24" fill="url(#blueGrad)" rx="12"/>
+    <text x="80" y="172" text-anchor="middle" fill="white" font-size="11" font-family="system-ui">NLP 引擎</text>
+  </g>
+  
+  <!-- Analytics Dashboard Right -->
+  <g transform="translate(530, 80)">
+    <rect x="0" y="0" width="220" height="300" fill="#1e293b" stroke="#334155" stroke-width="2" rx="12"/>
+    
+    <!-- Header -->
+    <text x="20" y="30" fill="#94a3b8" font-size="12" font-family="system-ui">服务数据分析</text>
+    
+    <!-- Stats Cards -->
+    <rect x="15" y="45" width="90" height="60" fill="#0f172a" stroke="#334155" rx="8"/>
+    <text x="25" y="70" fill="#64748b" font-size="10">响应时间</text>
+    <text x="25" y="92" fill="#06b6d4" font-size="18" font-weight="bold">0.3s</text>
+    
+    <rect x="115" y="45" width="90" height="60" fill="#0f172a" stroke="#334155" rx="8"/>
+    <text x="125" y="70" fill="#64748b" font-size="10">解决率</text>
+    <text x="125" y="92" fill="#10b981" font-size="18" font-weight="bold">94%</text>
+    
+    <!-- Chart -->
+    <rect x="15" y="115" width="190" height="100" fill="#0f172a" stroke="#334155" rx="8"/>
+    <text x="25" y="135" fill="#64748b" font-size="10">会话量趋势</text>
+    
+    <!-- Mini Chart Bars -->
+    <rect x="25" y="180" width="12" height="20" fill="#3b82f6" rx="2"/>
+    <rect x="45" y="170" width="12" height="30" fill="#3b82f6" rx="2"/>
+    <rect x="65" y="160" width="12" height="40" fill="#06b6d4" rx="2"/>
+    <rect x="85" y="175" width="12" height="25" fill="#3b82f6" rx="2"/>
+    <rect x="105" y="155" width="12" height="45" fill="#06b6d4" rx="2"/>
+    <rect x="125" y="165" width="12" height="35" fill="#3b82f6" rx="2"/>
+    <rect x="145" y="150" width="12" height="50" fill="#10b981" rx="2"/>
+    <rect x="165" y="160" width="12" height="40" fill="#06b6d4" rx="2"/>
+    
+    <!-- Bottom Stats -->
+    <rect x="15" y="225" width="190" height="60" fill="#0f172a" stroke="#334155" rx="8"/>
+    <text x="25" y="245" fill="#64748b" font-size="10">用户满意度</text>
+    <rect x="25" y="255" width="170" height="8" fill="#334155" rx="4"/>
+    <rect x="25" y="255" width="160" height="8" fill="#f59e0b" rx="4"/>
+    <text x="195" y="275" text-anchor="end" fill="#f59e0b" font-size="12">4.8/5.0</text>
+  </g>
+  
+  <!-- Floating Elements -->
+  <circle cx="300" cy="350" r="4" fill="#3b82f6" opacity="0.6">
+    <animate attributeName="cy" values="350;340;350" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="500" cy="380" r="4" fill="#06b6d4" opacity="0.6">
+    <animate attributeName="cy" values="380;370;380" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Connection Lines -->
+  <line x1="270" y1="230" x2="320" y2="180" stroke="#3b82f6" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+  <line x1="400" y1="180" x2="530" y2="230" stroke="#06b6d4" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+  
+  <!-- Badge -->
+  <rect x="360" y="30" width="80" height="24" fill="url(#blueGrad)" rx="12"/>
+  <text x="400" y="47" text-anchor="middle" fill="white" font-size="11" font-family="system-ui">智能客服</text>
+</svg>
