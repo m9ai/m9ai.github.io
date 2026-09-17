@@ -1,0 +1,285 @@
+[
+  {
+    "id": "service-model-deployment",
+    "title": "模型部署",
+    "description": "在客户自有服务器环境中部署大语言模型，确保数据安全与隐私保护",
+    "content": "提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化。 Provide localized deployment solutions for mainstream large models, ensuring data security and privacy, supporting custom fine-tuning and performance optimization.",
+    "url": "/services/model-deployment",
+    "type": "service",
+    "category": "aiService"
+  },
+  {
+    "id": "service-model-application",
+    "title": "大模型应用开发",
+    "description": "基于大语言模型构建企业级应用，实现智能客服、内容生成等场景",
+    "content": "定制开发基于大模型的企业级应用，打通业务系统数据，实现智能化升级。 Custom development of enterprise-level applications based on large models, integrating business system data for intelligent upgrading.",
+    "url": "/services/model-application",
+    "type": "service",
+    "category": "aiService"
+  },
+  {
+    "id": "service-agent-development",
+    "title": "智能体开发",
+    "description": "开发具备自主决策能力的AI智能体，自动化复杂业务流程",
+    "content": "定制开发具备任务规划、工具使用和自主学习能力的AI智能体，赋能企业自动化。 Custom development of AI agents with task planning, tool usage and autonomous learning capabilities to empower enterprise automation.",
+    "url": "/services/agent-development",
+    "type": "service",
+    "category": "aiService"
+  },
+  {
+    "id": "doc-api-integration",
+    "title": "API 集成开发指南",
+    "description": "学习如何将大模型能力集成到您的应用程序中",
+    "content": "API 集成开发指南 概述 本文档介绍如何通过 API 将大语言模型能力集成到您的应用程序中，支持多种编程语言和框架。 快速开始 获取 API 密钥 1. 登录控制台: https://console.m9ai.work 2. 进入「API 管理」页面 3. 点击「创建密钥」，复制生成的 API Key 基础请求示例 cURL bash curl -X POST \"https://api.m9ai.work/v1/chat/completions\" \\   -H \"Authorization: Bearer YOURAPIKEY\" \\   -H \"Content-Type: application/json\" \\   -d '{     \"model\": \"gpt-4\",     \"messages\": [       {\"role\": \"user\", \"content\": \"你好！\"}     ]   }' Python python from openai import OpenAI client = OpenAI(     apikey=\"YOURAPIKEY\",     baseurl=\"https://api.m9ai.work/v1\" ) response = client.chat.completions.create(     model=\"gpt-4\",     messages=[         {\"role\": \"user\", \"content\": \"你好！\"}     ] ) print(response.choices[0].message.content) JavaScript javascript import OpenAI from 'openai'; const client = new OpenAI({   apiKey: 'YOURAPIKEY',   baseURL: 'https://api.m9ai.work/v1', }); async function chat() {   const response = await client.chat.completions.create({     model: 'gpt-4',     messages: [{ role: 'user', content: '你好！' }",
+    "url": "/docs/api-integration",
+    "type": "doc",
+    "category": "开发指南",
+    "tags": [
+      "API",
+      "集成",
+      "SDK",
+      "RESTful",
+      "开发"
+    ]
+  },
+  {
+    "id": "doc-api-reference",
+    "title": "API 文档",
+    "description": "水杉智境 API 接口文档，包含认证方式、基础 URL、接口列表和错误处理说明",
+    "content": "API 文档 概述 我们提供 RESTful API 接口，方便您将 AI 能力集成到自己的应用中。 认证 所有 API 请求需要在 Header 中包含 API Key： bash Authorization: Bearer YOURAPIKEY 基础 URL bash https://api.m9ai.work/v1 接口列表 文本生成 POST /chat/completions 请求参数： json {   \"model\": \"gpt-4\",   \"messages\": [     {\"role\": \"user\", \"content\": \"你好\"}   ] } 嵌入向量 POST /embeddings 请求参数： json {   \"model\": \"text-embedding-ada-002\",   \"input\": \"需要生成嵌入的文本\" } 错误处理 API 使用标准 HTTP 状态码： - 200: 成功 - 400: 请求参数错误 - 401: 认证失败 - 429: 请求频率限制 - 500: 服务器内部错误 联系我们 如需 API 访问权限，请 联系我们。",
+    "url": "/docs/api-reference",
+    "type": "doc",
+    "category": "技术文档",
+    "tags": [
+      "API",
+      "RESTful",
+      "接口文档",
+      "开发指南"
+    ]
+  },
+  {
+    "id": "doc-faq",
+    "title": "常见问题",
+    "description": "水杉智境工作室常见问题解答，包含服务咨询、技术支持和合作方式",
+    "content": "常见问题 一般问题 Q: 你们提供哪些服务？ A: 我们提供三大核心服务： 1. 模型部署 - 在私有环境部署大语言模型 2. 应用开发 - 基于大模型构建企业级应用 3. 智能体开发 - 开发具备自主决策能力的 AI 智能体 Q: 如何开始合作？ A: 您可以通过以下方式开始： 1. 访问 服务页面 了解详情 2. 填写 联系表单 描述您的需求 3. 直接发送邮件至 c@m9ai.work Q: 支持哪些大模型？ A: 我们支持主流的大语言模型，包括： - OpenAI GPT 系列 - Meta LLaMA 系列 - DeepSee 系列 - Qwen AI 系列 - Kimi AI 系列 - 百度文心一言 - 讯飞星火 - 以及其他开源模型 技术问题 Q: 私有化部署是否安全？ A: 是的，私有化部署将模型和数据保存在您自己的服务器上，数据不会离开您的网络环境，满足各类合规要求。 Q: 需要什么样的硬件配置？ A: 硬件需求取决于具体的模型和使用场景。一般来说： - 小型模型：单张消费级显卡（如 RTX 4090） - 中型模型：单张/多张专业显卡（如 A100） - 大型模型：多卡集群 我们会在需求评估阶段提供具体的硬件建议。 Q: 是否提供技术支持？ A: 是的，我们提供 7×24 小时技术支持，确保您的业务正常运行。 其他问题 如有其他问题，请随时 联系我们。",
+    "url": "/docs/faq",
+    "type": "doc",
+    "category": "帮助中心",
+    "tags": [
+      "FAQ",
+      "常见问题",
+      "帮助",
+      "支持"
+    ]
+  },
+  {
+    "id": "doc-introduction",
+    "title": "欢迎使用水杉智境工作室",
+    "description": "水杉智境工作室提供企业级 AI 解决方案，包括大模型私有化部署、应用开发和智能体定制服务",
+    "content": "欢迎使用水杉智境工作室 简介 水杉智境工作室（Metasequoia AI Studio）是一家专注于企业级 AI 解决方案的技术团队。我们提供大模型私有化部署、应用开发和智能体定制服务。 核心服务 1. 模型部署 在客户自有服务器环境中部署大语言模型，确保数据安全与隐私保护。 2. 大模型应用开发 基于大语言模型构建企业级应用，实现智能客服、内容生成等场景。 3. 智能体开发 开发具备自主决策能力的 AI 智能体，自动化复杂业务流程。 快速开始 访问我们的 服务页面 了解更多详情，或通过 应用商店 探索现成的 AI 应用。 联系我们 如有任何问题，请通过以下方式联系我们： - 邮箱：c@m9ai.work - 微信：扫码添加（见官网底部）",
+    "url": "/docs/introduction",
+    "type": "doc",
+    "category": "入门指南",
+    "tags": [
+      "入门",
+      "介绍",
+      "快速开始"
+    ]
+  },
+  {
+    "id": "doc-knowledge-base",
+    "title": "本地知识库搭建指南",
+    "description": "学习如何构建企业级本地知识库，实现私有数据的智能检索与问答",
+    "content": "本地知识库搭建指南 概述 本地知识库（Local Knowledge Base）是企业 AI 应用的核心基础设施。通过将企业私有文档、数据转化为可检索的知识，结合大语言模型的理解能力，实现智能问答、文档分析、知识挖掘等功能。 核心架构 mermaid flowchart LR     subgraph Input[\"数据输入\"]         A[📄 文档输入<br/>PDF/Word/等]         F[💬 用户提问<br/>自然语言]     end          subgraph Processing[\"处理层\"]         B[⚙️ 文档处理引擎<br/>解析/分块/嵌入]         D[🔍 RAG 检索引擎<br/>向量相似度搜索]     end          subgraph Storage[\"存储层\"]         C[🗄️ 向量数据库<br/>Milvus/PGVector]     end          subgraph Output[\"输出层\"]         E[🤖 大语言模型<br/>生成回答]     end          A --> B     B --> C     C --> D     F --> D     D --> E 环境准备 系统要求 - CPU: 4核及以上 - 内存: 16GB 及以上 - 存储: 100GB SSD 及以上 - GPU: 可选，推荐用于 Embedding 加速 依赖安装 bash Python 环境 python -m pip install langchain langchain-community 向量数据库 pip install pymilvus  或 pgvector 文档解析 pip install pypdf unstructured Embedding 模型 pip install sentence-transformers 快速开始 1. 初始化向量数据库 使用 Milvus 作为向量存储： bash Docker 启动 Milvus docker-compose -f milvus-standalone-docker-compose.yml up -d 或使用 PostgreSQL + pgvector： sql -- 创建向",
+    "url": "/docs/knowledge-base",
+    "type": "doc",
+    "category": "进阶教程",
+    "tags": [
+      "知识库",
+      "RAG",
+      "向量数据库",
+      "数据安全"
+    ]
+  },
+  {
+    "id": "doc-model-deployment",
+    "title": "模型部署指南",
+    "description": "提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化",
+    "content": "模型部署指南 概述 我们提供主流大模型的本地化部署方案，帮助企业在自有基础设施上运行大语言模型，保障数据安全与隐私，支持自定义微调与性能优化。本指南涵盖从单机部署到分布式集群的完整方案。 支持的模型 开源模型 | 模型 | 参数量 | 显存需求 | 推荐用途 | 特点 | |------|--------|----------|----------|------| | DeepSeek | 7B-67B | 16GB-140GB | 代码生成、数学推理 | 开源最强代码模型，支持 128K 长上下文 | | Qwen (通义千问) | 7B-72B | 16GB-160GB | 中文场景、代码生成 | 中文理解优秀，支持 function call | | LLaMA 2/3 | 7B-70B | 16GB-160GB | 通用对话、文本生成 | 生态丰富，社区支持广泛 | | Yi (零一万物) | 6B-34B | 14GB-80GB | 中英文混合场景 | 中文表现优异，支持长文本 | | ChatGLM3 | 6B | 14GB | 中文对话、轻量级部署 | 低资源占用，适合边缘部署 | | Baichuan2 | 7B-13B | 16GB-28GB | 中文场景、企业应用 | 商用友好，中文知识丰富 | | Mistral | 7B-8x7B | 16GB-90GB | 多语言推理 | MoE 架构，推理效率高 | 特色模型详解 DeepSeek 系列 DeepSeek 是目前最强的开源代码大模型，特别适合开发场景： - DeepSeek-Coder-33B: 代码生成能力接近 GPT-4 - DeepSeek-V2: 采用 MLA 架构，推理成本低，支持 128K 上下文 - DeepSeek-Math: 数学推理专项优化，竞赛级表现 bash DeepSeek 快速部署 docker pull m9ai/deepseek-coder-33b:latest docker run -d --gpus all -p 8000:8000 m9ai/deepseek-coder-33b:latest Kimi 系列 (Moonshot) Kimi 以超长上下文窗口著称，适合文档分析场景： - Kimi-V1: 支持 200K 超长上下文 - Kimi-V1.5",
+    "url": "/docs/model-deployment",
+    "type": "doc",
+    "category": "技术文档",
+    "tags": [
+      "模型部署",
+      "私有化",
+      "大模型",
+      "GPU",
+      "Docker",
+      "Kubernetes"
+    ]
+  },
+  {
+    "id": "doc-privacy-policy",
+    "title": "privacy-policy",
+    "description": "",
+    "content": "隐私政策 1. 引言 欢迎使用我们的服务。我们尊重您的隐私，并致力于保护您的个人信息。本隐私政策解释了我们如何收集、使用、存储和保护您的信息，以及您对这些信息的权利。 2. 信息收集 我们可能会收集以下类型的信息： - 个人身份信息：如姓名、电子邮件地址、电话号码等，当您注册账户或使用我们的服务时提供。 - 使用数据：如您使用我们服务的方式、访问的页面、停留时间等。 - 设备信息：如您使用的设备类型、操作系统、IP地址等。 3. 信息使用 我们收集的信息将用于： - 提供、维护和改进我们的服务 - 开发新功能和服务 - 理解用户如何使用我们的服务，以优化用户体验 - 与您沟通，发送服务相关通知 4. 信息存储与保护 我们采用行业标准的安全措施保护您的个人信息，防止未授权访问、使用或披露。您的信息将存储在安全的服务器上，并仅在必要的时间内保留。 5. 第三方共享 我们不会向第三方出售或出租您的个人信息。在以下情况下，我们可能会共享您的信息： - 获得您的明确同意 - 遵守法律法规或响应法律要求 - 保护我们的权利、财产或安全，以及用户和公众的安全 6. 您的权利 您有权访问、更正或删除您的个人信息。您也可以随时撤回对信息收集和使用的同意。如需行使这些权利，请联系我们。 7. 政策更新 我们可能会不时更新本隐私政策。任何更改将在发布后生效，我们会通过适当方式通知您。 8. 联系我们 如有任何关于本隐私政策的问题，请通过以下方式联系我们： - 电子邮件：c@m9ai.work",
+    "url": "/docs/privacy-policy",
+    "type": "doc",
+    "category": "文档",
+    "tags": []
+  },
+  {
+    "id": "doc-prompt-engineering",
+    "title": "提示词工程最佳实践",
+    "description": "掌握提示词设计技巧，提升大模型输出质量与可靠性",
+    "content": "提示词工程最佳实践 概述 提示词工程（Prompt Engineering）是通过设计和优化输入提示词，引导大语言模型（LLM）生成高质量、符合预期的输出的技术。良好的提示词设计是 AI 应用成功的关键。 提示词基本结构 标准格式 markdown 角色设定 你是[专业角色]，具备[相关经验/能力]。 任务描述 请完成以下任务：[具体任务] 输入数据 [需要处理的内容] 约束条件 - 条件1 - 条件2 - ... 输出格式 请以[格式]输出，包含以下要素： 1. 要素A 2. 要素B 3. ... 示例：产品文案生成 markdown 角色 你是一位资深的电商文案策划专家，拥有10年文案撰写经验，擅长挖掘产品卖点并转化为吸引人的文案。 任务 为以下产品撰写一则朋友圈推广文案。 产品信息 - 产品名称：智能颈椎按摩仪 - 核心功能：热敷+脉冲按摩+APP控制 - 目标人群：25-40岁办公室白领 - 价格区间：299-399元 - 卖点：15分钟快速缓解疲劳、静音设计、便携可折叠 要求 1. 开头要有吸引力，3秒内抓住注意力 2. 突出解决的具体痛点 3. 加入社会认同元素（如销量、好评） 4. 结尾有明确的行动号召 5. 字数控制在150字以内 6. 语气亲切自然，避免过度营销感 输出格式 直接输出文案内容，不需要额外解释。 核心技巧 1. 角色设定（Role Prompting） 通过设定专业角色，激活模型的领域知识： markdown ❌ 一般：\"写一篇关于糖尿病的文章\" ✅ 优化：\"你是一位内分泌科主任医师，拥有20年临床经验。请用通俗语言向糖尿病患者解释血糖控制的重要性，包括： 1. 血糖失控的危害 2. 日常监测要点 3. 饮食控制原则 要求：专业准确但易懂，语气亲切关怀。\" 2. 思维链（Chain-of-Thought） 引导模型展示推理过程，提升复杂任务准确率： markdown 请解答以下数学问题，并展示详细的推理步骤： 问题：一个水箱有2个进水管和1个排水管。A管单独注满需要6小时，B管单独注满需要4小时，排水管单独排空需要8小时。如果三管同时打开，需要多久注满水箱？ 思考过程： 1. 首先，我需要计算每个管子的工作效率... 2. 然后，计算三管同时工作时的净效率... 3. 最后，根据净效率计算注满时间... 请按以上思路详细解答。 3. ",
+    "url": "/docs/prompt-engineering",
+    "type": "doc",
+    "category": "进阶教程",
+    "tags": [
+      "提示词",
+      "Prompt",
+      "提示工程",
+      "LLM优化",
+      "角色设定"
+    ]
+  },
+  {
+    "id": "doc-terms-of-service",
+    "title": "terms-of-service",
+    "description": "",
+    "content": "服务条款 1. 接受条款 通过使用我们的服务，您同意遵守本服务条款。如果您不同意这些条款，请不要使用我们的服务。 2. 服务说明 我们提供的服务包括但不限于： - 聊天功能 - 语音识别 - 语音合成 - 文本到语音转换 - 视频生成 - 其他相关服务 我们保留随时修改、暂停或终止服务的权利，恕不另行通知。 3. 用户责任 您同意： - 仅将服务用于合法目的 - 不侵犯任何第三方的权利 - 不干扰或损害服务的安全性和正常运行 - 提供准确、完整的信息 4. 知识产权 我们服务中的所有内容，包括但不限于文本、图像、商标、代码等，均受知识产权法律保护。未经我们书面许可，您不得复制、修改、分发或使用这些内容。 5. 免责声明 我们的服务按\"现状\"提供，不提供任何明示或暗示的保证。我们不对服务的可靠性、准确性或完整性作出任何承诺。 6. 责任限制 在法律允许的范围内，我们不对任何间接、偶然、特殊或后果性损害承担责任，包括但不限于利润损失、数据丢失等。 7. 条款修改 我们可能会不时更新本服务条款。任何更改将在发布后生效，建议您定期查看本页面。 8. 终止 我们有权在任何时候终止您对服务的访问，如有违反本条款的行为。 9. 适用法律 本服务条款受中国法律管辖，任何争议将提交中国法院解决。 10. 联系我们 如有任何关于本服务条款的问题，请通过以下方式联系我们： - 电子邮件：c@m9ai.work",
+    "url": "/docs/terms-of-service",
+    "type": "doc",
+    "category": "文档",
+    "tags": []
+  },
+  {
+    "id": "doc-workflow",
+    "title": "AI 工作流搭建实战",
+    "description": "使用可视化工具搭建自动化 AI 工作流，提升业务效率",
+    "content": "AI 工作流搭建实战 概述 AI 工作流（AI Workflow）是将大语言模型与业务流程相结合的自动化系统。通过可视化的流程编排工具，无需编写代码即可构建复杂的 AI 应用。 常见工作流类型 | 类型 | 应用场景 | 典型工具 | |------|----------|----------| | 内容生成 | 文章写作、营销文案 | Dify、Coze | | 数据处理 | 文档分析、信息提取 | LangFlow、Flowise | | 客服自动化 | 智能问答、工单处理 | Dify、FastGPT | | 代码辅助 | 代码生成、Code Review | Continue、Cursor | Dify 快速入门 环境部署 Docker 部署（推荐） bash 克隆仓库 git clone https://github.com/langgenius/dify.git cd dify/docker 启动服务 docker-compose up -d 访问 http://localhost/install 完成初始化 本地开发环境 bash 后端 cd api poetry install poetry shell flask db upgrade flask run --host 0.0.0.0 --port 5001 前端 cd web npm install npm run dev 第一个工作流：智能客服 步骤 1: 创建应用 1. 登录 Dify 控制台 2. 点击「创建应用」→「工作流编排」 3. 命名：智能客服助手 步骤 2: 设计流程 mermaid flowchart LR     A[\"开始节点<br/>接收用户问题\"] --> B[\"意图识别 (LLM)<br/>LLM 判断问题类型\"]     B --> C[\"条件分支 (IF/ELSE)<br/>技术问题？产品咨询？投诉？\"]     C --> D[\"知识检索 (RAG)<br/>从知识库搜索相关内容\"]     D --> E[\"答案生成 (LLM)<br/>LLM 生成回复\"]     E --> F[\"结束节点<br/>输出最终回答\"] 步骤 3: 配置节点 意图识别节点配置： json {   \"model\": \"gpt-4\",   \"temperature\": 0.3,   ",
+    "url": "/docs/workflow",
+    "type": "doc",
+    "category": "进阶教程",
+    "tags": [
+      "工作流",
+      "自动化",
+      "Dify",
+      "智能体",
+      "业务流程"
+    ]
+  },
+  {
+    "id": "case-enterprise-service",
+    "title": "智能客服系统",
+    "description": "基于大语言模型的智能客服解决方案，提升客户满意度30%",
+    "content": "某大型电商企业面临客服人力成本高、响应慢、服务质量不稳定等问题 部署私有化大模型客服系统，实现7×24小时智能应答，支持多轮对话和情感分析",
+    "url": "/cases/enterprise-service",
+    "type": "case",
+    "category": "企业服务"
+  },
+  {
+    "id": "case-healthcare",
+    "title": "医疗数据分析平台",
+    "description": "利用AI技术分析医疗数据，辅助医生诊断决策",
+    "content": "三甲医院日均门诊量超万人，医生诊断压力大，病历书写耗时 构建医疗AI助手，集成电子病历系统，提供诊断建议和治疗方案参考",
+    "url": "/cases/healthcare",
+    "type": "case",
+    "category": "医疗健康"
+  },
+  {
+    "id": "case-fintech",
+    "title": "金融风控系统",
+    "description": "实时监控交易风险，识别异常行为准确率达到98%",
+    "content": "某银行信用卡欺诈损失严重，传统规则引擎误报率高 基于大模型的智能风控系统，实时分析交易行为，动态调整风控策略",
+    "url": "/cases/fintech",
+    "type": "case",
+    "category": "金融科技"
+  },
+  {
+    "id": "case-education",
+    "title": "教育内容生成工具",
+    "description": "自动生成个性化学习内容，适配不同学习风格",
+    "content": "教育培训机构内容生产慢，无法满足个性化教学需求 AI教学助手，一键生成课件、习题、讲解视频脚本，支持多难度层级",
+    "url": "/cases/education",
+    "type": "case",
+    "category": "在线教育"
+  },
+  {
+    "id": "case-architecture",
+    "title": "AI辅助建筑设计平台",
+    "description": "智能化生成设计方案，优化建筑能耗与空间布局",
+    "content": "某建筑设计院项目周期长，方案修改频繁，能耗优化依赖经验 AI建筑设计助手，根据需求自动生成多方案比选，实时计算能耗指标",
+    "url": "/cases/architecture",
+    "type": "case",
+    "category": "建筑设计"
+  },
+  {
+    "id": "case-manufacturing",
+    "title": "工业质检智能体",
+    "description": "AI视觉检测系统，实现生产缺陷实时识别与预警",
+    "content": "汽车零部件厂人工质检效率低，漏检率高，质量追溯困难 部署AI视觉质检系统，多工位实时检测，自动分类缺陷类型",
+    "url": "/cases/manufacturing",
+    "type": "case",
+    "category": "智能制造"
+  },
+  {
+    "id": "case-law-firm",
+    "title": "法律文档智能审查系统",
+    "description": "自动化合同审查与法律研究，提升律师工作效率",
+    "content": "某大型律所合同审查工作量大，法律检索耗时，知识管理分散 法律AI助手，智能审查合同条款，自动匹配相关判例和法规",
+    "url": "/cases/law-firm",
+    "type": "case",
+    "category": "律师事务所"
+  },
+  {
+    "id": "case-accounting",
+    "title": "智能审计分析平台",
+    "description": "AI驱动的财务数据分析，自动识别异常交易与风险",
+    "content": "会计师事务所审计项目多，数据处理量大，人工抽样审计覆盖面有限 智能审计系统，全量数据分析，自动标记异常，生成审计建议",
+    "url": "/cases/accounting",
+    "type": "case",
+    "category": "会计师事务所"
+  },
+  {
+    "id": "page-home",
+    "title": "首页",
+    "description": "水杉智境工作室 - 企业级 AI 解决方案",
+    "url": "/",
+    "content": "水杉智境工作室 - 企业级 AI 解决方案",
+    "type": "page"
+  },
+  {
+    "id": "page-services",
+    "title": "服务",
+    "description": "探索我们的 AI 服务解决方案",
+    "url": "/services",
+    "content": "探索我们的 AI 服务解决方案",
+    "type": "page"
+  },
+  {
+    "id": "page-store",
+    "title": "应用商店",
+    "description": "发现实用的 AI 应用和工具",
+    "url": "/store",
+    "content": "发现实用的 AI 应用和工具",
+    "type": "page"
+  },
+  {
+    "id": "page-docs",
+    "title": "文档",
+    "description": "产品文档和使用指南",
+    "url": "/docs",
+    "content": "产品文档和使用指南",
+    "type": "page"
+  },
+  {
+    "id": "page-contact",
+    "title": "联系我们",
+    "description": "与我们取得联系",
+    "url": "/contact",
+    "content": "与我们取得联系",
+    "type": "page"
+  }
+]
