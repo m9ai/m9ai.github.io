@@ -1,9 +1,16 @@
 import React from 'react';
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 
 
 import "@/app/globals.css";
+
+// viewport / theme-color 改由 metadata API 输出，避免与 <head> 里手写的标签重复
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#000000',
+};
 import { ThemeProvider } from '@/app/contexts/ThemeContext';
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
@@ -71,10 +78,8 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="author" content={locale === 'zh' ? '水杉智境工作室' : 'Metasequoia AI Studio'} />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#000000" />
         {/* 阻塞式脚本：在首屏渲染前同步应用已保存的主题，避免暗色模式闪白(FOUC)。
             ThemeContext 挂载后会接管并保持一致。 */}
         <script
