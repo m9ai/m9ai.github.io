@@ -101,7 +101,10 @@ export default async function RootLayout({
         className="antialiased"
       >
         <ThemeProvider>
-          <NextIntlClientProvider messages={messages}>
+          {/* 显式传入 locale：这是 translations 切换后客户端 useLocale() 与
+              createNavigation 生成的 Link 前缀的唯一权威来源，
+              不要依赖 Provider 内部推断。 */}
+          <NextIntlClientProvider locale={locale} messages={messages}>
             <div className="flex flex-col min-h-screen">
               <Navbar />
               <main className="flex-grow">
