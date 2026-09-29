@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Tailwind v4 的 dark 变体默认绑定 @media (prefers-color-scheme: dark)，
+   这会导致手动切换主题无效。改为基于 .dark 类匹配，
+   使 ThemeContext 在 <html> 上添加的 dark/light 类真正生效。 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @keyframes pulse {
   0%, 100% {
     opacity: 0.2;

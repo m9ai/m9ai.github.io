@@ -75,6 +75,27 @@ export default async function RootLayout({
         <meta name="author" content={locale === 'zh' ? '水杉智境工作室' : 'Metasequoia AI Studio'} />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />
+        {/* 阻塞式脚本：在首屏渲染前同步应用已保存的主题，避免暗色模式闪白(FOUC)。
+            ThemeContext 挂载后会接管并保持一致。 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+(function () {
+  try {
+    var stored = localStorage.getItem('theme');
+    var theme = (stored === 'light' || stored === 'dark' || stored === 'system') ? stored : 'system';
+    var resolved = theme === 'system'
+      ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+      : theme;
+    var root = document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(resolved);
+    root.setAttribute('data-theme', resolved);
+  } catch (e) {}
+})();
+`.trim(),
+          }}
+        />
       </head>
       <body
         className="antialiased"
