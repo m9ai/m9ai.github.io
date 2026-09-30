@@ -484,7 +484,8 @@
     },
     "sendAnother": "Send Another Message",
     "toast": {
-      "success": "Submission Successful!"
+      "success": "Submission Successful!",
+      "error": "Submission failed, please try again later"
     },
     "contact": {
       "wechat": "Scan WeChat QR Code",

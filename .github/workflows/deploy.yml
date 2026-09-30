@@ -39,6 +39,9 @@ jobs:
 
       - name: Build
         run: pnpm build
+        env:
+          # 在仓库 Settings → Secrets and variables → Actions → Variables 中配置
+          NEXT_PUBLIC_API_BASE_URL: ${{ vars.NEXT_PUBLIC_API_BASE_URL }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4

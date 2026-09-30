@@ -14,6 +14,7 @@ import {
   QrCodeIcon
 } from '@heroicons/react/24/outline';
 import { Link } from '@/lib/navigation';
+import { LeadSubmitError, submitLead } from '@/lib/leads';
 
 interface FormData {
   name: string;
@@ -94,23 +95,23 @@ export default function CollaborationSection() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+      // 提交到统一后端 m9ai-server
+      await submitLead({
+        source: 'contact',
+        name: formData.name,
+        contact: formData.contact,
+        message: formData.message || undefined,
       });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.error || 'Submit failed');
-      }
 
       setIsSuccess(true);
       setFormData({ name: '', contact: '', message: '' });
       toast.success(t('toast.success'));
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Submit failed, please try again later';
-      toast.error(errorMessage);
+      // 字段级校验错误直接透传服务端文案，其余统一走本地化文案
+      const serverMessage = error instanceof LeadSubmitError && error.code === 'VALIDATION_ERROR';
+      toast.error(
+        serverMessage && error instanceof Error ? error.message : t('toast.error'),
+      );
     } finally {
       setIsSubmitting(false);
     }

@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'motion/react';
 import toast, { Toaster } from 'react-hot-toast';
+import { submitLead } from '@/lib/leads';
 import { 
   PaperAirplaneIcon,
   CheckCircleIcon,
@@ -114,14 +115,15 @@ export default function FreeConsultation() {
     setIsSubmitting(true);
 
     try {
-      // 发送数据到后端 API
-      const response = await fetch('/api/consultation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+      // 提交到统一后端 m9ai-server
+      await submitLead({
+        source: 'consultation',
+        name: formData.name,
+        contact: formData.phone,
+        company: formData.company,
+        businessType: formData.businessType,
+        message: formData.painPoint || undefined,
       });
-
-      if (!response.ok) throw new Error('Submit failed');
 
       // 发送 Clarity 自定义事件追踪转化
       if (typeof window !== 'undefined' && window.clarity) {
@@ -133,8 +135,8 @@ export default function FreeConsultation() {
 
       setIsSuccess(true);
       toast.success('预约成功！我们会尽快与您联系');
-    } catch {
-      toast.error('提交失败，请稍后重试');
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : '提交失败，请稍后重试');
     } finally {
       setIsSubmitting(false);
     }

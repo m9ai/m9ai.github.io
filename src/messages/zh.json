@@ -624,7 +624,8 @@
     },
     "sendAnother": "发送另一条消息",
     "toast": {
-      "success": "提交成功！"
+      "success": "提交成功！",
+      "error": "提交失败，请稍后重试"
     },
     "contact": {
       "wechat": "扫码加微信",
