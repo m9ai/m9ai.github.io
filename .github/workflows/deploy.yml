@@ -41,8 +41,9 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          # 在仓库 Settings → Secrets and variables → Actions → Variables 中配置
-          NEXT_PUBLIC_API_BASE_URL: ${{ vars.NEXT_PUBLIC_API_BASE_URL }}
+          # 在仓库 Settings → Secrets and variables → Actions → Variables 中配置。
+          # 该值非敏感，给兜底，避免漏配 Variables 时线上表单全部不可用。
+          NEXT_PUBLIC_API_BASE_URL: ${{ vars.NEXT_PUBLIC_API_BASE_URL || 'https://api.m9ai.work' }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
