@@ -63,11 +63,13 @@ const withMDXConfig = withMDX({
 // PWA 插件配置
 const withPWAConfig = withPWA({
   dest: 'public',
-  register: true,
+  register: false, // 已在 layout.tsx 手动注册，避免重复注册
   skipWaiting: true,
   sw: 'm9ai-sw.js',
   scope: '/',
-  // exclude: ['/_next/app-build-manifest.json'] // 使用字符串路径而非正则表达式
+  // App Router 的构建清单不会被静态导出，precache 它会 404 并导致 SW install 失败。
+  // 注意：workbox 的 exclude 只接受正则/函数，字符串无效。
+  buildExcludes: [/app-build-manifest\.json$/i],
 });
 
 // 插件组合 (next-intl 必须是最外层)

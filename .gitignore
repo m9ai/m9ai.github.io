@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# next-pwa 构建产物（构建时生成到 public，再由 export 复制到 out）
+/public/m9ai-sw.js
+/public/workbox-*.js

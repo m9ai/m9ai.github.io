@@ -21,7 +21,8 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 8
+          # pnpm-lock.yaml 是 lockfileVersion 9.0，pnpm 8 读不了
+          version: 10
 
       - name: Cache Next.js build
         uses: actions/cache@v3
