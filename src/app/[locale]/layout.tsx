@@ -76,7 +76,9 @@ export default async function RootLayout({
   }[locale];
 
   return (
-    <html lang={locale}>
+    // suppressHydrationWarning：下面的阻塞脚本会在水合前写入 class/data-theme，
+    // 服务端 HTML 与客户端 DOM 的 html 属性必然不同，这是预期行为（next-themes 同做法）
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <meta name="author" content={locale === 'zh' ? '水杉智境工作室' : 'Metasequoia AI Studio'} />
         <link rel="manifest" href="/manifest.json" />
