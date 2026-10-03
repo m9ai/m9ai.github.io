@@ -215,7 +215,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-slate-500 text-sm flex items-center gap-1">
               © {currentYear} {t('footer.logoText')}. {t('footer.madeWith') || 'Made with'}
-              <HeartIcon className="w-4 h-4 text-accent inline" />
+              <HeartIcon className="w-4 h-4 text-primary inline" aria-hidden="true" />
               {t('footer.allRightsReserved') || 'All rights reserved.'}
             </p>
             

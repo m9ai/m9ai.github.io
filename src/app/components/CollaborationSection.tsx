@@ -218,7 +218,7 @@ export default function CollaborationSection() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-600 text-white font-semibold rounded-xl transition-all hover:shadow-glow disabled:opacity-50 disabled:cursor-not-allowed btn-shine"
+                      className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all hover:shadow-glow disabled:opacity-50 disabled:cursor-not-allowed btn-shine"
                     >
                       {isSubmitting ? (
                         <>

@@ -110,33 +110,25 @@ async function generateSearchIndex() {
     }
   }
 
-  // 3. 添加案例到索引
-  const caseSlugs = [
-    'enterprise-service',
-    'healthcare',
-    'fintech',
-    'education',
-    'architecture',
-    'manufacturing',
-    'law-firm',
-    'accounting',
-  ];
+  // 3. 添加场景到索引（studies 以 slug 为 key，直接用 key 列表即可，无需维护下标）
+  const caseSlugs = Object.keys(messagesZh.cases.studies);
 
-  caseSlugs.forEach((slug, index) => {
-    const title = getNestedValue(messagesZh, `cases.studies.${index}.title`);
-    const description = getNestedValue(messagesZh, `cases.studies.${index}.description`);
-    const category = getNestedValue(messagesZh, `cases.studies.${index}.category`);
-    const challenge = getNestedValue(messagesZh, `cases.studies.${index}.challenge`);
-    const solution = getNestedValue(messagesZh, `cases.studies.${index}.solution`);
-    
+  caseSlugs.forEach((slug) => {
+    // getNestedValue 只返回字符串，这里直接取值以便拿到数组字段
+    const study = messagesZh.cases.studies[slug];
+    const painPoints = study.painPoints || '';
+    const architecture = Array.isArray(study.architecture) ? study.architecture : [];
+    const outcomes = Array.isArray(study.outcomes) ? study.outcomes : [];
+    const technologies = Array.isArray(study.technologies) ? study.technologies : [];
+
     searchItems.push({
       id: `case-${slug}`,
-      title: title,
-      description: description,
-      content: `${challenge} ${solution}`,
+      title: study.title,
+      description: study.description,
+      content: [painPoints, ...architecture, ...outcomes, ...technologies].join(' '),
       url: `/cases/${slug}`,
       type: 'case',
-      category: category,
+      category: study.category,
     });
   });
 

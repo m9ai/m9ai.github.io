@@ -19,7 +19,7 @@ interface AppCardProps {
 // Category colors
 const categoryColors: Record<string, string> = {
   '工具': 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
-  '创意': 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+  '创意': 'bg-slate-100 text-primary dark:bg-slate-800/30 dark:text-primary',
   '开发': 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
   '商务': 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300',
 };
@@ -27,8 +27,8 @@ const categoryColors: Record<string, string> = {
 // Type colors
 const typeColors: Record<string, string> = {
   '小程序': 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
-  'H5': 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300',
-  'App': 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
+  'H5': 'bg-slate-100 text-primary dark:bg-slate-800/30 dark:text-primary',
+  'App': 'bg-primary/10 text-primary dark:bg-primary/10 dark:text-primary',
 };
 
 // Render star rating

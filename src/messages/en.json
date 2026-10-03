@@ -1,7 +1,7 @@
 {
   "meta": {
     "defaultTitle": "Metasequoia AI Studio",
-    "defaultDescription": "Metasequoia AI Studio provides private deployment of large models, application development and intelligent agent customization services",
+    "defaultDescription": "Metasequoia AI Studio ships production-ready AI agent systems: private inference deployment, agent workflow orchestration, MCP tool integration, multimodal document processing, and end-to-end applications.",
     "privacyPolicyTitle": "Privacy Policy",
     "privacyPolicyDescription": "This Privacy Policy explains how we collect, use, and safeguard your personal information when you use our website and services.",
     "termsOfServiceTitle": "Terms of Service",
@@ -11,7 +11,7 @@
     "title": "Contact Us",
     "about": {
       "title": "About Us",
-      "description": "Metasequoia AI Studio is a team focused on innovative technology solutions, dedicated to providing high-quality products and services to clients. We specialize in AGI application solutions, helping enterprises achieve digital and intelligent transformation."
+      "description": "Metasequoia AI Studio is a delivery team focused on agent workflows and agentic engineering. We don't hand over models or demos — we integrate agents into your systems, run them in production, and stay accountable for the results."
     },
     "founder": {
       "title": "Founder",
@@ -28,9 +28,9 @@
       "wechatLabel": "WeChat"
     }
   },
-  "title": "Metasequoia Studio",
-  "subtitle": "Low-Cost AI Agent Service Platform",
-  "description": "Providing customers with large model privatization deployment, application development and intelligent agent customization services",
+  "title": "Metasequoia AI Studio",
+  "subtitle": "Agent Workflows & Agentic Engineering",
+  "description": "From private inference to production agent workflows — delivering enterprise agent systems that are controllable, measurable, and maintainable.",
   "learnMore": "Learn More →",
   "form": "Form",
   "home": {
@@ -74,21 +74,21 @@
   },
   "services": {
     "meta": {
-      "title": "AI Services | Metasequoia Studio",
-      "description": "Enterprise-grade AI solutions including private model deployment, application development and agent development"
+      "title": "AI Services | Metasequoia AI Studio",
+      "description": "Three layers of capability — private inference deployment, multimodal AI applications, and agent system delivery — to ship enterprise agent systems into production."
     },
     "categories": {
       "aiService": "AI Service"
     },
-    "pageTitle": "Our Services",
-    "sectionTitle": "Our Core Services",
-    "sectionDescription": "Providing comprehensive AI application development solutions to meet the needs of customers in different industries",
+    "pageTitle": "Delivery Capabilities",
+    "sectionTitle": "A Three-Layer Delivery Path",
+    "sectionDescription": "From inference infrastructure to agent systems — we deliver all three layers end to end, or plug into whichever layer you need",
     "sectionTag": "Services",
     "viewAllServices": "View All Services",
     "cta": {
       "consultExpert": "Consult Expert",
-      "readyForAIDescription": "Ready to start your AI transformation journey? Our expert team is ready to support you",
-      "readyForAI": "Ready for AI",
+      "readyForAIDescription": "From scenario assessment to production rollout, our delivery team works alongside you. Talk to us for 30 minutes before deciding anything.",
+      "readyForAI": "Ready to Ship Your Agent",
       "consultSolution": "Consult Solution",
       "learnMore": "Learn More"
     },
@@ -101,45 +101,45 @@
     },
     "backToList": "Back to Service List",
     "model-deployment": {
-      "title": "Model Deployment",
-      "description": "Deploy large language models in the customer's own server environment to ensure data security and privacy protection",
-      "details": "Provide localized deployment solutions for mainstream large models, ensuring data security and privacy, supporting custom fine-tuning and performance optimization.",
+      "title": "Private Inference Deployment",
+      "description": "Build an inference layer on your own servers or private cloud — data never leaves your network, and cost stays predictable.",
+      "details": "Model selection and deployment, quantization, compression, monitoring and capacity planning on vLLM and Ollama — exposing an OpenAI-compatible inference service to the agents above it.",
       "coreAdvantages": {
         "supportAllModels": {
-          "title": "Support for All Major Models",
-          "description": "Local adaptation of 10+ mainstream large models including GPT series, LLaMA, Wenxin Yiyan, and iFlytek Spark"
-        },
-        "dataSecurity": {
-          "title": "Data Security and Privacy Protection",
-          "description": "Models deployed on customer's own servers with data never leaving local network"
-        },
-        "customization": {
-          "title": "Deep Customization and Fine-tuning",
-          "description": "Model fine-tuning based on customer business data to improve response quality"
+          "title": "Every Major Open-Weight Model",
+          "description": "Private deployment for DeepSeek, Qwen, GLM, Kimi, Llama, Mistral and more — selected against your quality targets and VRAM budget"
         },
         "performanceOptimization": {
-          "title": "Performance Optimization and Resource Management",
-          "description": "Optimize model inference speed and reduce memory usage for different hardware"
+          "title": "Throughput and Cost Tuning",
+          "description": "AWQ / GPTQ / FP8 quantization, continuous batching and prefix caching to raise concurrency and cut per-token cost on the same hardware"
+        },
+        "dataSecurity": {
+          "title": "Data Stays Inside Your Boundary",
+          "description": "Model weights, inference logs and business data all remain in your environment, meeting finance and healthcare audit requirements"
+        },
+        "customization": {
+          "title": "Domain Fine-Tuning",
+          "description": "LoRA or full fine-tuning plus preference alignment on your data to lift accuracy on specific tasks"
         }
       },
       "scenarios": {
         "dataSensitiveIndustries": {
           "title": "Data-Sensitive Industries",
-          "description": "Localized deployment solutions for finance, healthcare and other privacy-sensitive industries"
+          "description": "Finance, healthcare and public sector scenarios with hard constraints on data leaving the premises"
         },
-        "localResponse": {
-          "title": "Low-Latency Local Response",
-          "description": "Local deployment meeting real-time interaction needs with 90% faster response"
+        "airGapped": {
+          "title": "Fully Air-Gapped Networks",
+          "description": "Deployment in isolated environments with no external connectivity, including domestic accelerator support"
         }
       },
       "technicalFeatures": {
         "toolchain": {
-          "title": "One-Stop Deployment Toolchain",
-          "description": "Automated deployment scripts and monitoring dashboard simplifying operations"
+          "title": "One-Click Deployment Toolchain",
+          "description": "Automated deployment scripts, health checks and monitoring dashboards that reduce operational burden"
         },
-        "hybridDeployment": {
-          "title": "Hybrid Deployment Mode",
-          "description": "Support local + cloud hybrid deployment balancing cost and performance"
+        "elasticServing": {
+          "title": "Hybrid Serving and Autoscaling",
+          "description": "Blend on-prem GPUs with elastic cloud instances and scale automatically against peak and off-peak load"
         }
       },
       "cases": [
@@ -150,35 +150,35 @@
       ]
     },
     "model-application": {
-      "title": "LLM Application Development",
-      "description": "Build enterprise-level applications based on large language models for intelligent customer service and content generation",
-      "details": "Custom development of enterprise-level applications based on large models, integrating business system data for intelligent upgrading.",
+      "title": "AI Applications & Multimodal Processing",
+      "description": "Turn model capability into products people actually use: document parsing, voice interaction, content generation, and data insight.",
+      "details": "We connect unstructured data sources with your existing systems and ship applications your staff or customers can use directly — across web, mini programs, browser extensions, and desktop.",
       "coreAdvantages": {
         "multimodal": {
-          "title": "Multimodal Interaction Capability",
-          "description": "Comprehensive interaction experience integrating text, voice and images"
-        },
-        "lowCode": {
-          "title": "Low-Code Rapid Development",
-          "description": "Visual configuration platform reducing AI application development threshold"
+          "title": "Multimodal Input Processing",
+          "description": "Document layout parsing, table reconstruction, OCR post-processing, image understanding, speech transcription and synthesis — covering the main entry points for enterprise unstructured data"
         },
         "businessIntegration": {
-          "title": "Deep Business System Integration",
-          "description": "Seamless connection with CRM, ERP and other enterprise systems"
+          "title": "Wired Into Existing Systems",
+          "description": "Integrations with CRM, ERP, OA and ticketing systems, so agents can read data and write results back"
+        },
+        "lowCode": {
+          "title": "Visual Orchestration",
+          "description": "Visual workflows built on Dify, LangGraph and n8n, so business teams can change flows without touching code"
         }
       },
       "scenarios": {
-        "intelligentInteraction": {
-          "title": "Intelligent Interaction System",
-          "description": "Enterprise intelligent customer service, voice assistants and other NLP interaction products"
+        "documentProcessing": {
+          "title": "Document and Knowledge Processing",
+          "description": "Batch parsing, information extraction and structured ingestion of contracts, invoices, medical records and research reports"
         },
-        "contentCreation": {
-          "title": "Content Creation Platform",
-          "description": "Automated copywriting generation, intelligent typesetting and multi-platform publishing"
+        "intelligentInteraction": {
+          "title": "Intelligent Interaction",
+          "description": "Enterprise support agents, voice assistants and other natural-language products"
         },
         "dataIntelligence": {
-          "title": "Data Intelligence Analysis",
-          "description": "Unstructured data parsing and intelligent report generation"
+          "title": "Data Insight",
+          "description": "Unstructured data parsing and automated report generation"
         }
       },
       "technicalFeatures": {
@@ -199,41 +199,49 @@
       ]
     },
     "agent-development": {
-      "title": "AI Agent Development",
-      "description": "Develop AI agents with autonomous decision-making capabilities to automate complex business processes",
-      "details": "Custom development of AI agents with task planning, tool usage and autonomous learning capabilities to empower enterprise automation.",
+      "title": "Agent System Delivery",
+      "description": "Agents that actually run your business process: orchestration, tool use, human oversight, and measurable results.",
+      "details": "We design agent systems against business metrics, not demo impressions: task decomposition and routing, MCP and function-calling tool access, long-term state management, Human-in-the-loop checkpoints, and post-launch evaluation and regression. The deliverable is a system that keeps running in production.",
       "coreAdvantages": {
-        "autonomousPlanning": {
-          "title": "Autonomous Task Planning",
-          "description": "Decompose complex tasks based on goals and dynamically adjust execution strategies"
+        "taskOrchestration": {
+          "title": "Controllable Orchestration",
+          "description": "Plan-and-Execute and ReAct patterns in production: sub-agent delegation, parallel calls, timeouts, retries and circuit breakers so long-running tasks don't drift off the rails"
         },
         "toolIntegration": {
-          "title": "Multi-Tool Integration",
-          "description": "Connect internal enterprise systems and external APIs to expand agent capabilities"
+          "title": "MCP and Tool Ecosystem",
+          "description": "Connect internal systems and third-party APIs via MCP servers and function calling — reusable tools with permission boundaries and unified governance"
         },
         "memoryManagement": {
-          "title": "Long-Term Memory Management",
-          "description": "Context understanding and long-term memory storage supporting coherent dialogue"
+          "title": "State and Long-Term Memory",
+          "description": "Session state, task checkpoints and long-term memory storage supporting interruption recovery, task replay and full trace history"
+        },
+        "evaluation": {
+          "title": "Evaluation-Driven Iteration",
+          "description": "Offline eval sets plus production telemetry, so every prompt or model change shows measurable gain or regression instead of relying on intuition"
         }
       },
       "scenarios": {
-        "automation": {
-          "title": "Process Automation",
-          "description": "Automated processing of repetitive tasks like expense reimbursement and contract review"
+        "businessAutomation": {
+          "title": "Business Process Automation",
+          "description": "Repetitive knowledge work such as invoice review, contract first-pass screening, ticket routing and public opinion monitoring"
         },
         "complexProcess": {
-          "title": "Complex Business Processes",
-          "description": "Multi-step complex task processing for R&D project management and market analysis"
+          "title": "Multi-Step Complex Tasks",
+          "description": "Flows that require cross-system retrieval, comparison and execution across several stages"
+        },
+        "researchAssistant": {
+          "title": "Research and Analysis Agents",
+          "description": "Analytical agents for gathering sources, cross-checking claims and tracing every conclusion back to evidence"
         }
       },
       "technicalFeatures": {
-        "decisionFramework": {
-          "title": "Reinforcement Learning Decision Framework",
-          "description": "Continuously optimize decision models based on environmental feedback"
+        "observability": {
+          "title": "End-to-End Observability",
+          "description": "Every tool call and reasoning step is traced, replayable, and auditable"
         },
-        "humanMachine": {
-          "title": "Human-Machine Collaboration Mechanism",
-          "description": "Human intervention at key decision nodes to ensure task accuracy"
+        "humanInTheLoop": {
+          "title": "Human in the Loop",
+          "description": "Human confirmation at key nodes and second-factor authorization for high-risk actions, with a controllable fallback"
         }
       },
       "cases": [
@@ -372,19 +380,25 @@
     }
   },
   "hero": {
-    "badge": "AI-Powered Solutions",
-    "titleLine1": "Transform Your",
-    "titleLine2": "Business with AI",
-    "description": "Enterprise-grade AI solutions for model deployment, application development, and intelligent agent customization. Scale your business with cutting-edge technology.",
+    "badge": "Enterprise AI Agent Delivery",
+    "titleLine1": "Beyond Deploying Models",
+    "titleLine2": "Agents That Actually Work",
+    "description": "From private inference infrastructure and agentic orchestration to MCP tool integration and multimodal document processing — we ship agents plugged into your systems, running in production, and measured continuously.",
     "cta": {
-      "explore": "Explore Services",
-      "docs": "View Documentation"
+      "explore": "Explore Capabilities",
+      "docs": "Read the Docs"
     },
     "stats": {
-      "clients": "Enterprise Clients",
-      "uptime": "Uptime SLA",
+      "systems": "Agents Delivered",
+      "uptime": "Service Uptime",
       "support": "Expert Support",
-      "efficiency": "Efficiency Gain"
+      "cost": "Inference Cost Cut",
+      "values": {
+        "systems": "20+",
+        "uptime": "99.9%",
+        "support": "24/7",
+        "cost": "40%"
+      }
     }
   },
   "theme": {
@@ -398,10 +412,10 @@
     "docs": "View Documentation"
   },
   "consultation": {
-    "sectionTag": "Limited Time Free",
-    "sectionTitle": "Free AI Application Consultation",
-    "sectionDescription": "Unsure how to AI-enable your business? Our experts offer a free 30-minute consultation to help you identify scenarios, assess feasibility, and plan implementation",
-    "badge": "Now Open - Limited Time",
+    "sectionTag": "Free Consultation",
+    "sectionTitle": "Free Agent Delivery Consultation",
+    "sectionDescription": "Not sure where an agent fits in your workflow? Get a free 30-minute session to map the scenario, assess feasibility, and plan the rollout.",
+    "badge": "Bookings Open",
     "valueProps": {
       "free": "Free Consultation",
       "response": "Response within 2 hours",
@@ -519,124 +533,285 @@
     }
   },
   "cases": {
-    "sectionTag": "Success Stories",
-    "sectionTitle": "Case Studies",
-    "sectionDescription": "Explore our successfully implemented projects using large model technology",
-    "viewDetails": "View Details →",
-    "studies": [
-      {
-        "category": "Enterprise Services",
-        "title": "Intelligent Customer Service System",
-        "description": "LLM-based intelligent customer service solution increasing satisfaction by 30%",
-        "challenge": "A large e-commerce enterprise faced high customer service costs, slow response times, and unstable service quality",
-        "solution": "Deployed private LLM customer service system, enabling 7×24 intelligent responses with multi-turn dialogue and sentiment analysis",
-        "results": [
-          "Customer satisfaction increased by 30%",
-          "Human agent workload reduced by 60%",
-          "Average response time reduced from 5 minutes to 10 seconds",
-          "Issue resolution rate improved to 92%"
+    "sectionTag": "Delivery Scenarios",
+    "sectionTitle": "Where Agents Fit",
+    "sectionDescription": "The agent scenarios we get asked about most — how each one is built, and the metrics we recommend tracking after launch.",
+    "viewDetails": "View details →",
+    "detail": {
+      "back": "Back to all scenarios",
+      "painPoints": "The Problem",
+      "architecture": "How We Build It",
+      "technologies": "Core Technologies",
+      "outcomes": "Metrics We Recommend Tracking",
+      "outcomesHint": "Actual numbers depend on your data volume and how the process runs today — we establish a baseline during scoping, then measure against it.",
+      "ctaTitle": "Wondering whether it works for you?",
+      "ctaDescription": "Walk us through the process. We will tell you whether automation is worth it and where the bottlenecks are.",
+      "ctaContact": "Contact Us",
+      "ctaServices": "Explore Capabilities"
+    },
+    "studies": {
+      "enterprise-service": {
+        "category": "Customer Support",
+        "title": "Support Q&A Agent",
+        "description": "Answer repetitive questions from retrieval over your own data, and leave the genuinely hard ones to humans.",
+        "painPoints": "Repetitive tickets eat up agent hours and response times swing with staffing. Product docs, past tickets and FAQs live in different systems, so ramp-up is slow and answers vary from agent to agent.",
+        "architecture": [
+          "Parse past tickets, product docs and FAQs into one index, preserving section structure",
+          "Hybrid retrieval (vector plus keyword) followed by reranking to keep recalled context accurate",
+          "Require source citations in every generated answer so agents and users can verify",
+          "Route to a human with a conversation summary when confidence is low or the topic is sensitive"
         ],
-        "technologies": ["GPT-4", "RAG", "Sentiment Analysis", "Knowledge Graph"]
+        "outcomes": [
+          "First response time",
+          "Human hand-off rate",
+          "Share of answers carrying a citation",
+          "Average handling time after hand-off"
+        ],
+        "technologies": [
+          "Private inference",
+          "Hybrid retrieval",
+          "Reranking",
+          "Source attribution",
+          "Human hand-off"
+        ]
       },
-      {
+      "healthcare": {
         "category": "Healthcare",
-        "title": "Medical Data Analysis Platform",
-        "description": "AI-powered medical data analysis assisting doctor diagnosis decisions",
-        "challenge": "A tertiary hospital with over 10,000 daily outpatient visits, doctors under high diagnostic pressure, time-consuming medical records",
-        "solution": "Built medical AI assistant integrated with EMR system, providing diagnostic suggestions and treatment plan references",
-        "results": [
-          "Medical record writing efficiency improved 3x",
-          "Diagnostic accuracy increased by 15%",
-          "Daily patient capacity increased by 25%",
-          "Patient waiting time reduced by 40%"
+        "title": "Clinical Record & Literature Agent",
+        "description": "Turn unstructured records, reports and literature into searchable, traceable structured data.",
+        "painPoints": "Records, lab reports and guidelines arrive as PDFs, scans and spreadsheets; manual extraction is slow and inconsistent across staff, and sharing across departments requires de-identification and access control.",
+        "architecture": [
+          "Layout parsing and table reconstruction for scanned and complexly formatted reports",
+          "Define extraction fields and terminology mappings per specialty and document type",
+          "Run entirely on-premise so processing never leaves the hospital network, with de-identification applied",
+          "Write structured results back to line-of-business systems, keeping source coordinates for review"
         ],
-        "technologies": ["Medical NLP", "Knowledge Graph", "Multimodal Analysis", "Privacy Computing"]
+        "outcomes": [
+          "Processing time per document",
+          "Sampled agreement rate on extracted fields",
+          "Share of records needing rework",
+          "Retrieval hit rate over structured output"
+        ],
+        "technologies": [
+          "Multimodal parsing",
+          "Layout reconstruction",
+          "Private deployment",
+          "Terminology mapping",
+          "Human review"
+        ]
       },
-      {
-        "category": "FinTech",
-        "title": "Financial Risk Control System",
-        "description": "Real-time transaction monitoring with 98% accuracy in anomaly detection",
-        "challenge": "A bank suffered severe credit card fraud losses, traditional rule-based engines had high false positive rates",
-        "solution": "AI-powered intelligent risk control system analyzing transaction behavior in real-time, dynamically adjusting risk strategies",
-        "results": [
-          "Fraud detection accuracy reached 98%",
-          "False positive rate reduced by 70%",
-          "Risk response time shortened to milliseconds",
-          "Annual fraud losses reduced by 80M"
+      "fintech": {
+        "category": "Financial Services",
+        "title": "Compliance & Disclosure Review Agent",
+        "description": "Turn rule checking and disclosure review into a repeatable process instead of relying on individual experience.",
+        "painPoints": "Reviews depend on whoever reads the file, so two reviewers reach different conclusions. Rules change often, forcing re-checks of past material, and the review itself leaves no trail to audit after the fact.",
+        "architecture": [
+          "Structure each rule and map it back to the corresponding clause in the source text",
+          "Retrieval-augmented clause-by-clause comparison returning a verdict, evidence and a confidence score",
+          "Route low-confidence findings into a ranked human review queue",
+          "Trace every step end to end so any verdict can be replayed by document or by rule"
         ],
-        "technologies": ["Time Series Analysis", "Graph Neural Networks", "Anomaly Detection", "Federated Learning"]
+        "outcomes": [
+          "Review time per document",
+          "Share of clauses needing human review",
+          "Cross-reviewer agreement rate on the same file",
+          "Re-run coverage of historical material after a rule change"
+        ],
+        "technologies": [
+          "Rule engine",
+          "Hybrid retrieval",
+          "Low-confidence routing",
+          "End-to-end tracing",
+          "Private deployment"
+        ]
       },
-      {
-        "category": "Online Education",
-        "title": "Educational Content Generation Tool",
-        "description": "Automatically generate personalized learning content for different learning styles",
-        "challenge": "Education and training institutions struggled with slow content production, unable to meet personalized teaching needs",
-        "solution": "AI teaching assistant generating courseware, exercises, and video scripts with one click, supporting multiple difficulty levels",
-        "results": [
-          "Content production efficiency improved 10x",
-          "Course development cycle shortened from 2 weeks to 2 days",
-          "Student completion rate increased by 35%",
-          "Teacher preparation time saved by 50%"
+      "education": {
+        "category": "Education",
+        "title": "Course Material Generation Agent",
+        "description": "Produce editable lecture notes and exercises from your syllabus in bulk, leaving teachers to review rather than write.",
+        "painPoints": "Material production consumes teacher hours and the same course varies between classes. Change one item in the syllabus and every handout, exercise and talking point has to be re-synced by hand.",
+        "architecture": [
+          "Load the syllabus, textbook and existing question bank into a knowledge base as the source of truth",
+          "Split generation into separate tasks: notes, worked examples, exercises, key talking points",
+          "Require every generated item to cite its source so teachers can trace it in one click",
+          "Re-run only the affected sections after a syllabus change instead of syncing manually"
         ],
-        "technologies": ["Content Generation", "Personalized Recommendation", "Knowledge Tracing", "Auto Assessment"]
+        "outcomes": [
+          "Time to produce one section of material",
+          "Adoption rate of generated content",
+          "Sync time after a syllabus change",
+          "Consistency of the same concept across classes"
+        ],
+        "technologies": [
+          "Knowledge retrieval",
+          "Multi-task orchestration",
+          "Source citation",
+          "Templated output",
+          "Batch re-runs"
+        ]
       },
-      {
-        "category": "Architecture",
-        "title": "AI-Assisted Architectural Design Platform",
-        "description": "Intelligent design generation and optimization for building energy consumption and spatial layout",
-        "challenge": "An architectural design institute faced long project cycles, frequent design changes, and energy optimization relying on experience",
-        "solution": "AI architectural design assistant generating multiple scheme comparisons based on requirements, real-time energy consumption calculation",
-        "results": [
-          "Design cycle shortened by 50%",
-          "Building energy consumption reduced by 20% on average",
-          "Client satisfaction increased by 45%",
-          "Design changes reduced by 60%"
+      "architecture": {
+        "category": "Engineering & Construction",
+        "title": "Drawing & Technical Document Agent",
+        "description": "Let site and design teams question drawings, specs and documents — with every answer pointing at its source.",
+        "painPoints": "Drawings, change orders, specs and design notes are stored separately, so finding anything relies on memory. Mixed revisions lead to quoting superseded content, and newcomers struggle to follow a drawing's change history.",
+        "architecture": [
+          "Index drawing metadata, change orders and specification documents together",
+          "Retrieve by drawing number, revision and location — locate first, then answer",
+          "Attach drawing page numbers and change records to every answer to avoid cross-revision mistakes",
+          "Honor access permissions and revision control so superseded documents stay out of retrieval"
         ],
-        "technologies": ["Generative Design", "BIM Integration", "Energy Simulation", "Spatial Optimization"]
+        "outcomes": [
+          "Time spent looking up a single piece of information",
+          "Share of answers carrying a source reference",
+          "Number of cross-revision misquotes",
+          "Time for new staff to handle site issues independently"
+        ],
+        "technologies": [
+          "Layout parsing",
+          "Revision-aware retrieval",
+          "Source attribution",
+          "Access control",
+          "Multimodal Q&A"
+        ]
       },
-      {
-        "category": "Smart Manufacturing",
-        "title": "Industrial Quality Inspection Agent",
-        "description": "AI vision inspection system for real-time defect detection and early warning",
-        "challenge": "An auto parts factory had low manual inspection efficiency, high miss rates, and difficult quality traceability",
-        "solution": "Deployed AI vision quality inspection system, real-time multi-station detection, automatic defect classification",
-        "results": [
-          "Inspection efficiency improved 8x",
-          "Miss rate reduced from 3% to 0.1%",
-          "Production line downtime reduced by 40%",
-          "Quality traceability time reduced from hours to seconds"
+      "manufacturing": {
+        "category": "Manufacturing",
+        "title": "Inspection & Issue Closure Agent",
+        "description": "Carry defects all the way from image recognition to a closed work order — not just detection, but follow-through.",
+        "painPoints": "Inspection results sit in paper forms or offline files, disconnected from the ticketing system. Defect descriptions follow no standard, making statistics unreliable, and reported issues have no tracking once submitted.",
+        "architecture": [
+          "Run defect detection over site images and video, emitting structured defect records",
+          "Route each record to the right process based on defect type and severity",
+          "Create work orders automatically in the existing system, attaching image evidence",
+          "Escalate and remind on work orders that fail to close"
         ],
-        "technologies": ["Computer Vision", "Edge Computing", "Digital Twin", "Predictive Maintenance"]
+        "outcomes": [
+          "Time from detection to dispatch",
+          "Share of defects recorded in a consistent, countable format",
+          "Work order closure rate",
+          "Effort needed for sampled re-inspection"
+        ],
+        "technologies": [
+          "Computer vision",
+          "Workflow orchestration",
+          "Ticketing integration",
+          "Conditional routing",
+          "Closure tracking"
+        ]
       },
-      {
-        "category": "Law Firm",
-        "title": "Legal Document Intelligent Review System",
-        "description": "Automated contract review and legal research to improve lawyer productivity",
-        "challenge": "A large law firm faced heavy contract review workload, time-consuming legal research, and scattered knowledge management",
-        "solution": "Legal AI assistant for intelligent contract clause review, automatic matching of relevant cases and regulations",
-        "results": [
-          "Contract review efficiency improved 5x",
-          "Legal research time reduced by 80%",
-          "Contract risk identification accuracy reached 95%",
-          "Junior lawyer training cycle shortened by 50%"
+      "law-firm": {
+        "category": "Legal",
+        "title": "Contract Review Agent",
+        "description": "Handle clause extraction and comparison at scale, so lawyers spend their time on judgement.",
+        "painPoints": "First-pass review means reading every contract, and the cost scales linearly with volume. Risk clauses are caught from personal checklists and slip through, and during peak periods only a sample can be reviewed.",
+        "architecture": [
+          "Parse layout and segment clauses, preserving numbering hierarchy",
+          "Extract and check each item on the risk list, returning the matched clause text",
+          "Diff against historical contracts or templates to surface what actually changed",
+          "Screen everything, then rank by risk so reviewers start with the high-risk items"
         ],
-        "technologies": ["Legal NLP", "Knowledge Graph", "Intelligent Retrieval", "Document Analysis"]
+        "outcomes": [
+          "First-pass time per contract",
+          "Share of contracts screened in full versus previously sampled",
+          "Sampled accuracy of clause extraction",
+          "Number of missed clauses caught during human review"
+        ],
+        "technologies": [
+          "Layout parsing",
+          "Clause extraction",
+          "Diff & comparison",
+          "Risk checklists",
+          "Human review"
+        ]
       },
-      {
-        "category": "Accounting",
-        "title": "Intelligent Audit Analysis Platform",
-        "description": "AI-driven financial data analysis, automatic identification of abnormal transactions and risks",
-        "challenge": "Accounting firms had many audit projects, large data processing volumes, limited coverage of manual sampling audits",
-        "solution": "Intelligent audit system, full data analysis, automatic anomaly flagging, audit recommendation generation",
-        "results": [
-          "Audit efficiency improved 4x",
-          "Abnormal transaction detection rate increased to 96%",
-          "Audit coverage from sampling to full-scale",
-          "Audit report generation time reduced by 70%"
+      "accounting": {
+        "category": "Finance & Audit",
+        "title": "Invoice & Reconciliation Agent",
+        "description": "Let the machine handle invoice parsing, three-way matching and exception flagging; humans judge the exceptions.",
+        "painPoints": "Invoices, bank statements and expense forms arrive in wildly different formats, so captured data still needs manual re-entry. Reconciliation is watched by hand and exceptions surface late, with no reproducible record to support an audit.",
+        "architecture": [
+          "Parse invoice layouts into structured fields",
+          "Run three-way matching (contract, invoice, payment) and emit reconciliation results",
+          "Flag exceptions by rule, each with a full evidence trail",
+          "Keep the reconciliation reproducible so it supports audit sampling"
         ],
-        "technologies": ["Financial NLP", "Anomaly Detection", "Data Mining", "Intelligent Report Generation"]
+        "outcomes": [
+          "Time to structure a single invoice",
+          "Automatic matching hit rate",
+          "Missed and false exception rates",
+          "Preparation time for audit sampling"
+        ],
+        "technologies": [
+          "Invoice layout parsing",
+          "Field extraction",
+          "Rule-based reconciliation",
+          "Evidence trail",
+          "Batch processing"
+        ]
       }
-    ]
+    }
+  },
+  "capabilities": {
+    "sectionTag": "Capabilities",
+    "sectionTitle": "Six Things Every Agent System Needs",
+    "sectionDescription": "An agent is not a model call. These six are the parts we build into every project — miss one and the system rarely survives production.",
+    "items": {
+      "orchestration": {
+        "title": "Task Orchestration",
+        "description": "Plan-and-Execute and ReAct patterns in production: sub-agent delegation, parallel calls, timeouts, retries and circuit breakers so long-running tasks don't drift off the rails.",
+        "stack": [
+          "LangGraph",
+          "Sub-agent delegation",
+          "Retries & circuit breakers"
+        ]
+      },
+      "toolUse": {
+        "title": "MCP Tool Integration",
+        "description": "Connect internal systems and third-party APIs through MCP servers and function calling — reusable tools with permission boundaries and unified governance.",
+        "stack": [
+          "MCP servers",
+          "Function calling",
+          "Permission boundaries"
+        ]
+      },
+      "documents": {
+        "title": "Multimodal Document Processing",
+        "description": "Layout parsing, table reconstruction and field extraction for contracts, invoices, records and research reports — including scans and awkward layouts.",
+        "stack": [
+          "Layout parsing",
+          "Table reconstruction",
+          "OCR post-processing"
+        ]
+      },
+      "retrieval": {
+        "title": "Retrieval & Knowledge Bases",
+        "description": "Hybrid retrieval with reranking, and answers that must cite their source so every claim traces back to something verifiable.",
+        "stack": [
+          "Hybrid retrieval",
+          "Reranking",
+          "Source attribution"
+        ]
+      },
+      "inference": {
+        "title": "Private Inference & Cost",
+        "description": "vLLM and Ollama deployment plus quantization, continuous batching and prefix caching to bring per-token cost down.",
+        "stack": [
+          "vLLM / Ollama",
+          "AWQ / GPTQ / FP8",
+          "Continuous batching"
+        ]
+      },
+      "evaluation": {
+        "title": "Evaluation & Observability",
+        "description": "Offline eval sets plus production telemetry, so every prompt or model change shows a measurable gain or regression — with traces you can replay.",
+        "stack": [
+          "Offline eval sets",
+          "End-to-end tracing",
+          "Regression comparison"
+        ]
+      }
+    }
   },
   "Store": {
     "title": "App Store",

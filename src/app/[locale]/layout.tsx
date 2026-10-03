@@ -1,17 +1,28 @@
 import React from 'react';
 import type { Metadata, Viewport } from "next";
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-
-
+import { Plus_Jakarta_Sans } from 'next/font/google';
+import { ThemeProvider } from '@/app/contexts/ThemeContext';
+import MotionProvider from '@/app/components/MotionProvider';
 import "@/app/globals.css";
 
 // viewport / theme-color 改由 metadata API 输出，避免与 <head> 里手写的标签重复
+/* 拉丁字形 self-host（next/font 在构建期下载并落到 /_next/static 下，
+   不经过外部 CDN、不产生额外 DNS 连接，也有自动 fallback 度量减少 CLS）。
+   中文字形不走这里：Noto Sans SC 全量子集有数 MB，会明显拖慢首屏，
+   交由 globals.css 里的系统栈（苹方 / 微软雅黑 / Noto Sans CJK）渲染，
+   这样在 macOS / Windows / Linux 上都是各自最优的原生中文字体。 */
+const jakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans-latin',
+});
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   themeColor: '#000000',
 };
-import { ThemeProvider } from '@/app/contexts/ThemeContext';
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import LayoutClient from '@/app/components/LayoutClient';
@@ -78,7 +89,7 @@ export default async function RootLayout({
   return (
     // suppressHydrationWarning：下面的阻塞脚本会在水合前写入 class/data-theme，
     // 服务端 HTML 与客户端 DOM 的 html 属性必然不同，这是预期行为（next-themes 同做法）
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} className={jakartaSans.variable} suppressHydrationWarning>
       <head>
         <meta name="author" content={locale === 'zh' ? '水杉智境工作室' : 'Metasequoia AI Studio'} />
         <link rel="manifest" href="/manifest.json" />
@@ -105,20 +116,24 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className="antialiased"
+        className={`${jakartaSans.className} antialiased`}
       >
         <ThemeProvider>
           {/* 显式传入 locale：这是 translations 切换后客户端 useLocale() 与
               createNavigation 生成的 Link 前缀的唯一权威来源，
               不要依赖 Provider 内部推断。 */}
           <NextIntlClientProvider locale={locale} messages={messages}>
-            <div className="flex flex-col min-h-screen">
-              <Navbar />
-              <main className="flex-grow">
-                {children}
-              </main>
-              <Footer />
-            </div>
+            {/* reducedMotion="user" 让全站动画尊重系统的「减弱动态效果」偏好：
+                位移/缩放类变换会被自动降级为直接切换，透明过渡保留。 */}
+            <MotionProvider>
+              <div className="flex flex-col min-h-screen">
+                <Navbar />
+                <main className="flex-grow">
+                  {children}
+                </main>
+                <Footer />
+              </div>
+            </MotionProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
         <script dangerouslySetInnerHTML={{

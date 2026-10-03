@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/lib/navigation';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import {
   ArrowLeftIcon,
@@ -10,76 +10,31 @@ import {
   LightBulbIcon,
   RocketLaunchIcon,
   CpuChipIcon,
-  SparklesIcon,
+  ChartBarIcon,
   ArrowRightIcon,
   EnvelopeIcon,
 } from '@heroicons/react/24/outline';
+import { getCase } from '@/data/cases';
 
 interface CaseDetailClientProps {
-  caseIndex: number;
+  slug: string;
 }
 
-// 案例图标映射
-const caseIcons: { [key: number]: React.ElementType } = {
-  0: LightBulbIcon,      // enterprise-service
-  1: RocketLaunchIcon,   // healthcare
-  2: CheckCircleIcon,    // fintech
-  3: SparklesIcon,       // education
-  4: LightBulbIcon,      // architecture
-  5: CpuChipIcon,        // manufacturing
-  6: CheckCircleIcon,    // law-firm
-  7: RocketLaunchIcon,   // accounting
-};
-
-// 案例颜色映射
-const caseColors: { [key: number]: string } = {
-  0: 'from-blue-500 to-cyan-500',
-  1: 'from-violet-500 to-purple-500',
-  2: 'from-emerald-500 to-teal-500',
-  3: 'from-orange-500 to-red-500',
-  4: 'from-amber-500 to-orange-500',
-  5: 'from-slate-500 to-gray-500',
-  6: 'from-indigo-500 to-blue-600',
-  7: 'from-green-500 to-emerald-600',
-};
-
-// 案例图片映射
-const caseImages: { [key: number]: string } = {
-  0: '/kefu.svg',
-  1: '/yiliao.svg',
-  2: '/jinrong.svg',
-  3: '/jiaoyu.svg',
-  4: '/arch.svg',
-  5: '/manufacturing.svg',
-  6: '/law.svg',
-  7: '/accounting.svg',
-};
-
-export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
+export default function CaseDetailClient({ slug }: CaseDetailClientProps) {
   const t = useTranslations('cases');
-  const Icon = caseIcons[caseIndex] || LightBulbIcon;
-  const color = caseColors[caseIndex] || 'from-blue-500 to-cyan-500';
-  const imageUrl = caseImages[caseIndex] || '/kefu.svg';
+  const study = getCase(slug);
+  const Icon = study.icon;
+  const color = study.accent;
+  const imageUrl = study.imageUrl;
 
-  const title = t(`studies.${caseIndex}.title`);
-  const category = t(`studies.${caseIndex}.category`);
-  const description = t(`studies.${caseIndex}.description`);
-  const challenge = t(`studies.${caseIndex}.challenge`);
-  const solution = t(`studies.${caseIndex}.solution`);
-  
-  // 获取结果列表
-  const results: string[] = [];
-  for (let i = 0; i < 4; i++) {
-    const result = t.raw(`studies.${caseIndex}.results.${i}`);
-    if (result) results.push(result);
-  }
-  
-  // 获取技术栈
-  const technologies: string[] = [];
-  for (let i = 0; i < 4; i++) {
-    const tech = t.raw(`studies.${caseIndex}.technologies.${i}`);
-    if (tech) technologies.push(tech);
-  }
+  const title = t(`studies.${slug}.title`);
+  const category = t(`studies.${slug}.category`);
+  const description = t(`studies.${slug}.description`);
+  const painPoints = t(`studies.${slug}.painPoints`);
+
+  const architecture = t.raw(`studies.${slug}.architecture`) as string[];
+  const outcomes = t.raw(`studies.${slug}.outcomes`) as string[];
+  const technologies = t.raw(`studies.${slug}.technologies`) as string[];
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
@@ -99,12 +54,12 @@ export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
           >
             <Link 
               href="/#cases"
-              className="inline-flex items-center text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 mb-8 transition-colors group"
+              className="inline-flex items-center text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary mb-8 transition-colors group"
             >
-              <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center mr-3 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/30 transition-colors">
+              <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center mr-3 group-hover:bg-primary/10 dark:group-hover:bg-primary/10 transition-colors">
                 <ArrowLeftIcon className="w-4 h-4" />
               </div>
-              返回案例列表
+              {t('detail.back')}
             </Link>
           </motion.div>
 
@@ -120,7 +75,7 @@ export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-indigo-900/30 rounded-full text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary dark:text-primary text-sm font-medium mb-6"
               >
                 <Icon className="w-4 h-4" />
                 {category}
@@ -202,9 +157,9 @@ export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
               <div className={`w-14 h-14 bg-gradient-to-br ${color} rounded-xl flex items-center justify-center mb-6`}>
                 <RocketLaunchIcon className="w-7 h-7 text-white" />
               </div>
-              <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">业务挑战</h2>
+              <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">{t('detail.painPoints')}</h2>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {challenge}
+                {painPoints}
               </p>
             </motion.div>
 
@@ -219,10 +174,17 @@ export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
               <div className={`w-14 h-14 bg-gradient-to-br ${color} rounded-xl flex items-center justify-center mb-6`}>
                 <LightBulbIcon className="w-7 h-7 text-white" />
               </div>
-              <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">解决方案</h2>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {solution}
-              </p>
+              <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">{t('detail.architecture')}</h2>
+              <ol className="space-y-3">
+                {architecture.map((step, index) => (
+                  <li key={index} className="flex items-start text-slate-600 dark:text-slate-400">
+                    <span className={`w-6 h-6 shrink-0 mr-3 mt-0.5 rounded-lg bg-gradient-to-br ${color} text-white text-xs font-semibold flex items-center justify-center`}>
+                      {index + 1}
+                    </span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
             </motion.div>
 
             {/* 技术栈 */}
@@ -236,7 +198,7 @@ export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
               <div className={`w-14 h-14 bg-gradient-to-br ${color} rounded-xl flex items-center justify-center mb-6`}>
                 <CpuChipIcon className="w-7 h-7 text-white" />
               </div>
-              <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">核心技术</h2>
+              <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">{t('detail.technologies')}</h2>
               <ul className="space-y-3">
                 {technologies.map((tech, index) => (
                   <li key={index} className="flex items-center text-slate-600 dark:text-slate-400">
@@ -260,10 +222,10 @@ export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              项目成果
+              {t('detail.outcomes')}
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400">
-              数字化转型带来的显著效益
+              {t('detail.outcomesHint')}
             </p>
           </motion.div>
 
@@ -273,7 +235,7 @@ export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
           >
-            {results.map((result, index) => (
+            {outcomes.map((outcome, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: -20 }}
@@ -283,9 +245,9 @@ export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
                 className="flex items-center gap-4 p-6 bg-slate-50 dark:bg-slate-700/50 rounded-xl"
               >
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0`}>
-                  <CheckCircleIcon className="w-6 h-6 text-white" />
+                  <ChartBarIcon className="w-6 h-6 text-white" />
                 </div>
-                <p className="text-slate-800 dark:text-slate-200 font-medium">{result}</p>
+                <p className="text-slate-800 dark:text-slate-200 font-medium">{outcome}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -306,10 +268,10 @@ export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
             
             <div className="relative py-16 px-8 md:py-24 md:px-16 text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                也想获得类似的成果？
+                {t('detail.ctaTitle')}
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-                我们的专家团队随时为您提供支持，从需求分析到方案落地，全程陪伴
+                {t('detail.ctaDescription')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -317,14 +279,14 @@ export default function CaseDetailClient({ caseIndex }: CaseDetailClientProps) {
                   className="inline-flex items-center justify-center px-8 py-4 bg-white text-slate-900 font-bold rounded-xl shadow-lg hover:bg-slate-100 transition-all"
                 >
                   <EnvelopeIcon className="w-5 h-5 mr-2" />
-                  联系我们
+                  {t('detail.ctaContact')}
                   <ArrowRightIcon className="w-5 h-5 ml-2" />
                 </Link>
                 <Link 
                   href="/services"
                   className="inline-flex items-center justify-center px-8 py-4 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/30 hover:bg-white/30 transition-all"
                 >
-                  探索服务
+                  {t('detail.ctaServices')}
                 </Link>
               </div>
             </div>

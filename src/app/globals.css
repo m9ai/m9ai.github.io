@@ -5,58 +5,59 @@
    使 ThemeContext 在 <html> 上添加的 dark/light 类真正生效。 */
 @custom-variant dark (&:where(.dark, .dark *));
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.4;
-  }
-}
-
+/* ==========================================================================
+   设计令牌
+   --------------------------------------------------------------------------
+   配色已从 2023 世代的「AI 紫粉渐变」（indigo → violet → rose）换成
+   Navy + Trust Blue 的企业色：
+     · 正文与结构层一律走 slate/中性色，标题近黑；
+     · primary 是唯一的品牌蓝，用于链接、图标、状态；
+     · accent 是更深的强调色，刻意保持稀缺，避免到处都是彩色。
+   Tailwind v4 只认这里（CSS-first），tailwind.config.js 不再承载主题。
+   ========================================================================== */
 :root {
-  --background: #ffffff;
+  --background: #f8fafc;
   --foreground: #0f172a;
   --card: #ffffff;
   --card-foreground: #0f172a;
   --popover: #ffffff;
   --popover-foreground: #0f172a;
-  --primary: #6366f1;
+  --primary: #0369a1;
   --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
   --secondary-foreground: #0f172a;
   --muted: #f8fafc;
-  --muted-foreground: #64748b;
-  --accent: #f43f5e;
+  --muted-foreground: #475569;
+  --accent: #0f172a;
   --accent-foreground: #ffffff;
-  --destructive: #ef4444;
+  --destructive: #dc2626;
   --destructive-foreground: #ffffff;
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #6366f1;
+  --ring: #0369a1;
   --radius: 0.75rem;
 }
 
 .dark {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  --card: #1e293b;
-  --card-foreground: #f8fafc;
-  --popover: #1e293b;
-  --popover-foreground: #f8fafc;
-  --primary: #818cf8;
+  --background: #020617;
+  --foreground: #f1f5f9;
+  --card: #0f172a;
+  --card-foreground: #f1f5f9;
+  --popover: #0f172a;
+  --popover-foreground: #f1f5f9;
+  --primary: #38bdf8;
   --primary-foreground: #0f172a;
   --secondary: #1e293b;
-  --secondary-foreground: #f8fafc;
+  --secondary-foreground: #f1f5f9;
   --muted: #1e293b;
   --muted-foreground: #94a3b8;
-  --accent: #f43f5e;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #334155;
-  --input: #334155;
-  --ring: #818cf8;
+  --accent: #e2e8f0;
+  --accent-foreground: #0f172a;
+  --destructive: #f87171;
+  --destructive-foreground: #0f172a;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #38bdf8;
 }
 
 @theme inline {
@@ -75,8 +76,39 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "Fira Code", Menlo, Monaco, Consolas, monospace;
+
+  /* 字体：--font-sans-latin 由 next/font 在 [locale]/layout.tsx 注入，
+     中文走系统栈（苹方 / 微软雅黑 / Noto Sans CJK），避免为几 MB 的中文子集
+     拖慢首屏。此前这里声明的 Inter / Fira Code 从未被加载，实际一直回退到
+     系统默认字体。 */
+  --font-sans: var(--font-sans-latin), ui-sans-serif, system-ui, -apple-system,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+
+  /* 阴影与动画原先定义在 tailwind.config.js 里，但该项目跑的是 Tailwind v4，
+     JS 配置已不再生效，导致 shadow-card / shadow-elevated / animate-pulse-slow
+     等类名在产物 CSS 里根本不存在（等于没样式）。这里补回 CSS-first 版本。 */
+  --shadow-soft: 0 2px 15px -3px rgba(15, 23, 42, 0.07),
+    0 10px 20px -2px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 4px 6px -1px rgba(15, 23, 42, 0.06),
+    0 2px 4px -1px rgba(15, 23, 42, 0.03);
+  --shadow-elevated: 0 20px 25px -5px rgba(15, 23, 42, 0.1),
+    0 10px 10px -5px rgba(15, 23, 42, 0.04);
+  --shadow-glow: 0 0 40px -10px rgba(3, 105, 161, 0.25);
+
+  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 /* Smooth scrolling */
@@ -125,9 +157,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Gradient text utility */
+/* Gradient text utility
+   原来是 indigo → violet → rose 的紫粉渐变，属于 2023 年 AI 官网的模板识别槽点。
+   改为深海军蓝 → 品牌蓝的两段渐变：仍有层次，但不再是廉价 AI 模板味道。 */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #f43f5e 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #0369a1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, #f1f5f9 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -190,27 +231,8 @@ body {
 
 /* Selection styles */
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
+  background: rgba(3, 105, 161, 0.2);
   color: inherit;
-}
-
-/* Animated gradient background */
-.animated-gradient {
-  background: linear-gradient(-45deg, #6366f1, #8b5cf6, #f43f5e, #6366f1);
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
-}
-
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 /* Noise texture overlay */

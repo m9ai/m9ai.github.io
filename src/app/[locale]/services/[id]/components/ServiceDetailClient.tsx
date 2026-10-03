@@ -14,7 +14,7 @@ import {
   EnvelopeIcon
 } from '@heroicons/react/24/outline';
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 interface ServiceDetailClientProps {
   service: Service;
@@ -66,7 +66,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
       <section className="relative overflow-hidden bg-white dark:bg-slate-800 pt-24 lg:pt-32 pb-20">
         {/* 背景装饰 */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-indigo-100/50 to-purple-100/50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-slate-100 to-sky-100 dark:from-primary/20 dark:to-slate-900/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
         </div>
 
         <div className="relative container mx-auto px-4">
@@ -78,9 +78,9 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
           >
             <Link 
               href="/services"
-              className="inline-flex items-center text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 mb-8 transition-colors group"
+              className="inline-flex items-center text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary mb-8 transition-colors group"
             >
-              <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center mr-3 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/30 transition-colors">
+              <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center mr-3 group-hover:bg-primary/10 dark:group-hover:bg-primary/10 transition-colors">
                 <ChevronRightIcon className="w-4 h-4 rotate-180" />
               </div>
               {t('backToList')}
@@ -95,7 +95,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
           >
             {/* 左侧内容 */}
             <div>
-              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-indigo-900/30 rounded-full text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-6">
+              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary dark:text-primary text-sm font-medium mb-6">
                 <SparklesIcon className="w-4 h-4" />
                 {t(`categories.${service.category}`)}
               </motion.div>
@@ -117,7 +117,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
               <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
                 <Link
                   href="mailto:c@m9ai.work"
-                  className="inline-flex items-center px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 transition-all hover:shadow-xl hover:shadow-indigo-500/30 hover:-translate-y-0.5"
+                  className="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary text-white font-semibold rounded-xl shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
                 >
                   <EnvelopeIcon className="w-5 h-5 mr-2" />
                   {t('cta.consultSolution')}
@@ -138,7 +138,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
               variants={itemVariants}
               className="relative"
             >
-              <div className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/10">
+              <div className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-2xl shadow-primary/10">
                 <Image
                   src={service.imageUrl}
                   alt={serviceT.title}
@@ -152,8 +152,8 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
               </div>
               
               {/* 装饰元素 */}
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl -z-10" />
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-pink-400 to-orange-400 rounded-full blur-2xl opacity-50 -z-10" />
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-sky-600 to-slate-900 rounded-2xl -z-10" />
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-sky-500 to-slate-700 rounded-full blur-2xl opacity-50 -z-10" />
             </motion.div>
           </motion.div>
         </div>
@@ -172,17 +172,17 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
             {/* Core Advantages */}
             <motion.div 
               variants={cardVariants}
-              className="group bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-100 dark:border-slate-700 hover:border-indigo-200 dark:hover:border-indigo-800 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/5"
+              className="group bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-100 dark:border-slate-700 hover:border-primary/20 dark:hover:border-primary transition-all duration-300 hover:shadow-xl hover:shadow-primary/5"
             >
-              <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-indigo-500/25">
+              <div className="w-14 h-14 bg-gradient-to-br from-primary to-slate-900 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-primary/25">
                 <CheckCircleIcon className="w-7 h-7 text-white" />
               </div>
               <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">{t('sections.coreAdvantages')}</h2>
               <ul className="space-y-5">
                 {service.coreAdvantages?.map((feature, index) => (
                   <li key={index} className="flex items-start group/item">
-                    <div className="w-6 h-6 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mr-4 mt-0.5 flex-shrink-0 group-hover/item:bg-indigo-200 dark:group-hover/item:bg-indigo-800/50 transition-colors">
-                      <CheckCircleIcon className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-0.5 flex-shrink-0 group-hover/item:bg-primary/10 dark:group-hover/item:bg-primary/50 transition-colors">
+                      <CheckCircleIcon className="w-4 h-4 text-primary dark:text-primary" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-slate-900 dark:text-white mb-1">{t(`${feature.titleKey}`)}</h3>
@@ -196,16 +196,16 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
             {/* Application Scenarios */}
             <motion.div 
               variants={cardVariants}
-              className="group bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-100 dark:border-slate-700 hover:border-purple-200 dark:hover:border-purple-800 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/5"
+              className="group bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-100 dark:border-slate-700 hover:border-primary/20 dark:hover:border-primary transition-all duration-300 hover:shadow-xl hover:shadow-primary/5"
             >
-              <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-500/25">
+              <div className="w-14 h-14 bg-gradient-to-br from-slate-700 to-primary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-primary/25">
                 <LightBulbIcon className="w-7 h-7 text-white" />
               </div>
               <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">{t('sections.scenarios')}</h2>
               <ul className="space-y-5">
                 {service.scenarios?.map((scenario, index) => (
                   <li key={index} className="flex items-start group/item">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold text-sm mr-4 flex-shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-white font-bold text-sm mr-4 flex-shrink-0">
                       {index + 1}
                     </div>
                     <div>
@@ -250,7 +250,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
               variants={containerVariants}
             >
               <motion.div variants={itemVariants} className="text-center mb-12">
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-indigo-900/30 rounded-full text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-4">
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary dark:text-primary text-sm font-medium mb-4">
                   {t('sections.caseStudies')}
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
@@ -276,7 +276,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                     </p>
                     <Link 
                       href="/contact"
-                      className="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors group"
+                      className="inline-flex items-center text-primary dark:text-primary font-semibold hover:text-primary dark:hover:text-slate-300 transition-colors group"
                     >
                       了解如何为您实现
                       <ArrowUpRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -309,27 +309,27 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
             variants={containerVariants}
             className="relative overflow-hidden rounded-3xl"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500" />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900 to-sky-900" />
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-30" />
             
             <div className="relative py-16 px-8 md:py-24 md:px-16 text-center">
               <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-white mb-6">
                 {t('cta.readyForAI')}
               </motion.h2>
-              <motion.p variants={itemVariants} className="text-xl text-indigo-100 mb-10 max-w-2xl mx-auto">
+              <motion.p variants={itemVariants} className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
                 {t('cta.readyForAIDescription')}
               </motion.p>
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="mailto:c@m9ai.work"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-indigo-600 font-bold rounded-xl shadow-lg hover:bg-indigo-50 transition-all hover:shadow-xl hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-bold rounded-xl shadow-lg hover:bg-primary/10 transition-all hover:shadow-xl hover:-translate-y-0.5"
                 >
                   {t('cta.consultExpert')}
                   <ArrowRightIcon className="w-5 h-5 ml-2" />
                 </Link>
                 <Link 
                   href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-indigo-500/30 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-indigo-500/40 transition-all"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-primary/30 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-primary/40 transition-all"
                 >
                   查看更多方案
                 </Link>
@@ -375,18 +375,18 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                 <motion.div key={s.id} variants={cardVariants}>
                   <Link 
                     href={`/services/${s.id}`}
-                    className="group flex items-center p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-indigo-200 dark:hover:border-indigo-800 transition-all duration-300 hover:shadow-lg"
+                    className="group flex items-center p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-primary/20 dark:hover:border-primary transition-all duration-300 hover:shadow-lg"
                   >
-                    <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-2xl mr-5 group-hover:scale-110 transition-transform">
+                    <div className="w-14 h-14 bg-gradient-to-br from-sky-600 to-slate-900 rounded-xl flex items-center justify-center text-2xl mr-5 group-hover:scale-110 transition-transform">
                       {s.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary transition-colors">
                         {s.title}
                       </h3>
                       <p className="text-slate-600 dark:text-slate-400 text-sm">{s.desc}</p>
                     </div>
-                    <ArrowUpRightIcon className="w-5 h-5 text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" />
+                    <ArrowUpRightIcon className="w-5 h-5 text-slate-400 group-hover:text-primary dark:group-hover:text-primary transition-colors" />
                   </Link>
                 </motion.div>
               ))

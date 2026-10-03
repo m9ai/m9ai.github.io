@@ -49,7 +49,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900">
       {/* Hero Section - 突出免费AI咨询 */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-slate-900 via-slate-900 to-sky-900 overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-30" />
@@ -71,11 +71,11 @@ export default function ContactPage() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-semibold mb-6"
             >
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              限时免费开放
+              免费咨询开放
             </motion.div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-              免费AI应用咨询顾问
+              免费 Agent 落地咨询
             </h1>
             <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-8">
               不确定业务如何AI化？我们的专家为您提供30分钟免费咨询，
@@ -110,7 +110,7 @@ export default function ContactPage() {
             >
               <a
                 href="#free-consultation"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 font-bold rounded-xl shadow-lg hover:bg-slate-100 transition-all hover:shadow-xl hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold rounded-xl shadow-lg hover:bg-slate-100 transition-all hover:shadow-xl hover:-translate-y-0.5"
               >
                 立即预约免费咨询
                 <ArrowRightIcon className="w-5 h-5" />
@@ -157,7 +157,7 @@ export default function ContactPage() {
                   <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
                     AI Solutions
                   </span>
-                  <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">
+                  <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-primary dark:text-primary rounded-full text-sm font-medium">
                     Enterprise
                   </span>
                   <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">

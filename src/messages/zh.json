@@ -1,7 +1,7 @@
 {
   "meta": {
     "defaultTitle": "水杉智境工作室",
-    "defaultDescription": "水杉智境工作室为客户提供大模型私有化部署、应用开发及智能体定制服务",
+    "defaultDescription": "水杉智境工作室为企业交付可落地的 AI Agent 系统：私有化推理部署、Agent 工作流编排、MCP 工具集成、多模态文档处理与端云一体化应用。",
     "privacyPolicyTitle": "隐私政策",
     "privacyPolicyDescription": "本隐私政策详细说明我们如何收集、使用和保护您的个人信息。",
     "termsOfServiceTitle": "服务条款",
@@ -11,7 +11,7 @@
     "title": "联系我们",
     "about": {
       "title": "关于我们",
-      "description": "水杉智境工作室（Metasequoia AI Studio）是一家专注于创新技术解决方案的团队，致力于为客户提供高质量的产品和服务。我们专注于 AGI 应用解决方案，帮助企业实现智能化、智能化转型。"
+      "description": "水杉智境工作室（Metasequoia AI Studio）是一支专注 Agent 工作流与智能体工程的交付团队。我们不只交付模型或 Demo，而是把 Agent 接入你的业务系统、推向生产环境，并对运行效果负责。"
     },
     "founder": {
       "title": "创始人",
@@ -29,8 +29,8 @@
     }
   },
   "title": "水杉智境工作室",
-  "subtitle": "低成本智能体服务平台",
-  "description": "为客户提供大模型私有化部署、应用开发及智能体定制服务",
+  "subtitle": "Agent 工作流与智能体工程",
+  "description": "从私有化推理底座到 Agent 工作流上线运行，交付可控、可度量、可运维的企业级智能体系统。",
   "learnMore": "了解更多 →",
   "form": {
     "nameLabel": "称呼",
@@ -82,17 +82,17 @@
   "services": {
     "meta": {
       "title": "AI服务 | 水杉智境工作室",
-      "description": "提供大模型私有化部署、应用开发和智能体开发等企业级AI解决方案"
+      "description": "提供私有化推理部署、AI 应用与多模态处理、Agent 系统交付三层能力，为企业构建可上线的智能体系统。"
     },
-    "pageTitle": "我们的服务",
-    "sectionTitle": "我们的核心服务",
-    "sectionDescription": "提供全方位的 AI 应用开发解决方案，满足不同行业客户需求",
+    "pageTitle": "交付能力",
+    "sectionTitle": "三层交付能力",
+    "sectionDescription": "从推理底座到 Agent 系统，三层能力可整体交付，也可单独切入其中一层",
     "sectionTag": "服务",
     "viewAllServices": "查看全部服务",
     "cta": {
       "consultExpert": "咨询专家",
-      "readyForAIDescription": "准备好开启您的AI转型之旅了吗？我们的专家团队随时为您提供支持",
-      "readyForAI": "准备好拥抱AI了吗",
+      "readyForAIDescription": "从场景评估到上线运行，我们的交付团队全程陪跑。先聊 30 分钟，再决定要不要做。",
+      "readyForAI": "准备好让 Agent 上线了吗",
       "consultSolution": "咨询解决方案",
       "learnMore": "了解更多"
     },
@@ -108,45 +108,45 @@
     },
     "backToList": "返回服务列表",
     "model-deployment": {
-      "title": "模型部署",
-      "description": "在客户自有服务器环境中部署大语言模型，确保数据安全与隐私保护",
-      "details": "提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化。",
+      "title": "私有化推理部署",
+      "description": "在你的服务器或专有云上搭建推理底座，数据不出内网，成本可控可预测。",
+      "details": "基于 vLLM、Ollama 等推理框架完成模型选型、部署、量化压缩、监控告警与容量规划，向上层 Agent 暴露 OpenAI 兼容的推理服务。",
       "coreAdvantages": {
         "supportAllModels": {
-          "title": "支持主流大模型全覆盖",
-          "description": "包含GPT系列、LLaMA、文心一言、讯飞星火等10+主流大模型的本地化适配"
-        },
-        "dataSecurity": {
-          "title": "数据安全与隐私保护",
-          "description": "模型部署在客户自有服务器，数据不出本地网络，满足合规要求"
-        },
-        "customization": {
-          "title": "深度定制与微调",
-          "description": "基于客户业务数据进行模型微调，提升特定场景下的响应质量"
+          "title": "开源模型全覆盖",
+          "description": "DeepSeek、Qwen、GLM、Kimi、Llama、Mistral 等主流开源模型的私有化适配，按业务效果与显存预算选型"
         },
         "performanceOptimization": {
-          "title": "性能优化与资源管理",
-          "description": "针对不同硬件环境优化模型推理速度，降低显存占用"
+          "title": "吞吐与成本优化",
+          "description": "通过 AWQ / GPTQ / FP8 量化、连续批处理与前缀缓存，在同等硬件下提升并发并降低单 token 成本"
+        },
+        "dataSecurity": {
+          "title": "数据留在你的边界内",
+          "description": "模型权重、推理日志与业务数据全部留存在自有环境，满足金融、医疗的合规与审计要求"
+        },
+        "customization": {
+          "title": "领域微调",
+          "description": "基于业务语料做 LoRA / 全参微调与偏好对齐，提升特定场景准确率"
         }
       },
       "scenarios": {
         "dataSensitiveIndustries": {
           "title": "数据敏感型行业",
-          "description": "金融、医疗等对数据隐私要求高的行业本地化部署方案"
+          "description": "金融、医疗、政务等对数据出境有硬性约束的场景"
         },
-        "localResponse": {
-          "title": "低延迟本地响应",
-          "description": "满足实时交互需求的本地化部署，响应速度提升90%"
+        "airGapped": {
+          "title": "完全离线内网",
+          "description": "无外网连接的隔离环境部署，支持国产算力卡适配"
         }
       },
       "technicalFeatures": {
         "toolchain": {
-          "title": "一站式部署工具链",
-          "description": "自动化部署脚本与监控面板，简化运维复杂度"
+          "title": "一键部署工具链",
+          "description": "自动化部署脚本、健康检查与监控面板，降低运维负担"
         },
-        "hybridDeployment": {
-          "title": "混合部署模式",
-          "description": "支持本地+云端混合部署，平衡成本与性能"
+        "elasticServing": {
+          "title": "混合推理与弹性伸缩",
+          "description": "本地 GPU 与云端弹性实例混合调度，按峰谷自动扩缩容"
         }
       },
       "cases": [
@@ -157,34 +157,34 @@
       ]
     },
     "model-application": {
-      "title": "大模型应用开发",
-      "description": "基于大语言模型构建企业级应用，实现智能客服、内容生成等场景",
-      "details": "定制开发基于大模型的企业级应用，打通业务系统数据，实现智能化升级。",
+      "title": "AI 应用与多模态处理",
+      "description": "把模型能力封装成业务真正用得起来的产品：文档解析、语音交互、内容生成、数据洞察。",
+      "details": "打通非结构化数据入口与既有业务系统，交付可直接面向员工或客户使用的 AI 应用，支持 Web、小程序、浏览器扩展与桌面端。",
       "coreAdvantages": {
         "multimodal": {
-          "title": "多模态交互能力",
-          "description": "融合文本、语音、图像的全方位交互体验"
-        },
-        "lowCode": {
-          "title": "低代码快速开发",
-          "description": "可视化配置平台，降低AI应用开发门槛"
+          "title": "多模态输入处理",
+          "description": "文档版面解析、表格还原、OCR 后处理、图片理解、语音转写与合成，覆盖企业非结构化数据的主要入口"
         },
         "businessIntegration": {
-          "title": "深度业务系统集成",
-          "description": "与CRM、ERP等企业系统无缝对接，数据互通"
+          "title": "接入既有系统",
+          "description": "与 CRM、ERP、OA、工单系统打通，Agent 既能读数据也能写回结果"
+        },
+        "lowCode": {
+          "title": "可视化编排",
+          "description": "基于 Dify、LangGraph、n8n 的可视化工作流，业务方无需改代码即可调整流程"
         }
       },
       "scenarios": {
+        "documentProcessing": {
+          "title": "文档与知识处理",
+          "description": "合同、票据、病历、研报的批量解析、信息抽取与结构化入库"
+        },
         "intelligentInteraction": {
-          "title": "智能交互系统",
+          "title": "智能交互",
           "description": "企业智能客服、语音助手等自然语言交互产品"
         },
-        "contentCreation": {
-          "title": "内容创作平台",
-          "description": "自动化文案生成、智能排版与多平台发布"
-        },
         "dataIntelligence": {
-          "title": "数据智能分析",
+          "title": "数据洞察",
           "description": "非结构化数据解析与智能报告生成"
         }
       },
@@ -206,41 +206,49 @@
       ]
     },
     "agent-development": {
-      "title": "智能体开发",
-      "description": "开发具备自主决策能力的AI智能体，自动化复杂业务流程",
-      "details": "定制开发具备任务规划、工具使用和自主学习能力的AI智能体，赋能企业自动化。",
+      "title": "Agent 系统交付",
+      "description": "交付能真正跑通业务流程的 Agent：任务编排、工具调用、人机协同、效果可度量。",
+      "details": "以业务指标而非 Demo 效果为目标设计 Agent 系统：任务拆解与路由、MCP / Function Calling 工具接入、长程记忆与状态管理、关键节点人工介入，以及上线后的评测回归。交付物是一套在生产环境持续运行的系统。",
       "coreAdvantages": {
-        "autonomousPlanning": {
-          "title": "自主任务规划",
-          "description": "基于目标拆解复杂任务，动态调整执行策略"
+        "taskOrchestration": {
+          "title": "可控的任务编排",
+          "description": "Plan-and-Execute、ReAct 等模式落地，支持子 Agent 分工、并行调用、超时重试与熔断，避免长任务跑飞"
         },
         "toolIntegration": {
-          "title": "多工具集成能力",
-          "description": "连接企业内部系统与外部API，扩展智能体能力边界"
+          "title": "MCP 与工具生态",
+          "description": "通过 MCP Server 与 Function Calling 接入内部系统和第三方 API，工具可复用、有权限边界、可统一治理"
         },
         "memoryManagement": {
-          "title": "长效记忆管理",
-          "description": "上下文理解与长期记忆存储，支持连贯对话与任务跟踪"
+          "title": "状态与长程记忆",
+          "description": "会话状态、任务检查点与长期记忆存储，支持中断续跑、任务回放与全链路追溯"
+        },
+        "evaluation": {
+          "title": "评测驱动的迭代",
+          "description": "离线评测集 + 线上埋点，每次 Prompt 或模型变更都能量化效果涨跌，而不是凭直觉判断"
         }
       },
       "scenarios": {
-        "automation": {
-          "title": "流程自动化",
-          "description": "财务报销、合同审核等重复性工作自动化处理"
+        "businessAutomation": {
+          "title": "业务流程自动化",
+          "description": "单据审核、合同初审、工单分派、舆情巡检等重复性脑力工作"
         },
         "complexProcess": {
-          "title": "复杂业务流程",
-          "description": "研发项目管理、市场分析等多步骤复杂任务处理"
+          "title": "多步骤复杂任务",
+          "description": "需要跨系统检索、比对与执行的多环节流程"
+        },
+        "researchAssistant": {
+          "title": "研究与分析助手",
+          "description": "资料搜集、交叉验证、结论溯源的分析型 Agent"
         }
       },
       "technicalFeatures": {
-        "decisionFramework": {
-          "title": "强化学习决策框架",
-          "description": "基于环境反馈持续优化决策模型"
+        "observability": {
+          "title": "全链路可观测",
+          "description": "每一次工具调用与推理步骤都有 Trace，支持回放、定位与审计"
         },
-        "humanMachine": {
-          "title": "人机协作机制",
-          "description": "关键决策节点人工干预，确保任务准确性"
+        "humanInTheLoop": {
+          "title": "人在回路",
+          "description": "关键节点人工确认，高风险动作二次授权，可控兜底"
         }
       },
       "cases": [
@@ -388,143 +396,310 @@
     }
   },
   "cases": {
-    "sectionTag": "成功案例",
-    "sectionTitle": "案例研究",
-    "sectionDescription": "探索我们使用大模型技术成功实施的项目",
-    "viewDetails": "查看详情 →",
-    "studies": [
-      {
-        "category": "企业服务",
-        "title": "智能客服系统",
-        "description": "基于大语言模型的智能客服解决方案，提升客户满意度30%",
-        "challenge": "某大型电商企业面临客服人力成本高、响应慢、服务质量不稳定等问题",
-        "solution": "部署私有化大模型客服系统，实现7×24小时智能应答，支持多轮对话和情感分析",
-        "results": [
-          "客户满意度提升30%",
-          "人工客服工作量减少60%",
-          "平均响应时间从5分钟降至10秒",
-          "问题解决率提升至92%"
+    "sectionTag": "落地场景",
+    "sectionTitle": "Agent 落地场景",
+    "sectionDescription": "这些是我们最常被问到的 Agent 场景，以及每个场景的实现路径与上线后建议观测的指标。",
+    "viewDetails": "查看详细 →",
+    "detail": {
+      "back": "返回场景列表",
+      "painPoints": "场景痛点",
+      "architecture": "实现路径",
+      "technologies": "核心技术",
+      "outcomes": "上线后建议观测的指标",
+      "outcomesHint": "具体数值取决于你的数据规模与流程现状，我们会在方案阶段先建立基线，再据此衡量变化。",
+      "ctaTitle": "你的场景适不适合做？",
+      "ctaDescription": "把业务流程讲一遍，我们会先告诉你这件事值不值得自动化、卡点在哪里。",
+      "ctaContact": "联系我们",
+      "ctaServices": "查看交付能力"
+    },
+    "studies": {
+      "enterprise-service": {
+        "category": "客户服务",
+        "title": "客服问答 Agent",
+        "description": "用私有化检索接住重复咨询，让人工只处理真正复杂的问题。",
+        "painPoints": "重复咨询长期占用座席时间，响应时长随排班波动；产品资料、历史工单与 FAQ 分散在不同系统，新人上手周期长，同一问题在不同座席口中答案不一致。",
+        "architecture": [
+          "历史工单、产品文档与 FAQ 统一解析入库，保留章节结构",
+          "混合检索（向量 + 关键词）再重排序，保证召回上下文准确",
+          "生成答案强制附带原文引用，便于座席与用户自行核验",
+          "置信度不足或命中敏感场景时自动转人工，并携带会话摘要"
         ],
-        "technologies": ["GPT-4", "RAG", "情感分析", "知识图谱"]
+        "outcomes": [
+          "首次响应时长",
+          "人工转接率",
+          "答案附引用的覆盖率",
+          "转人工后的平均处理时长"
+        ],
+        "technologies": [
+          "私有化推理部署",
+          "混合检索",
+          "重排序",
+          "引用溯源",
+          "人工转接"
+        ]
       },
-      {
+      "healthcare": {
         "category": "医疗健康",
-        "title": "医疗数据分析平台",
-        "description": "利用AI技术分析医疗数据，辅助医生诊断决策",
-        "challenge": "三甲医院日均门诊量超万人，医生诊断压力大，病历书写耗时",
-        "solution": "构建医疗AI助手，集成电子病历系统，提供诊断建议和治疗方案参考",
-        "results": [
-          "病历书写效率提升3倍",
-          "诊断准确率提升15%",
-          "医生日均接诊量增加25%",
-          "患者等待时间缩短40%"
+        "title": "病历与文献处理 Agent",
+        "description": "把非结构化的病历、报告与文献转成可检索、可追溯的结构化明细。",
+        "painPoints": "病历、检查报告与指南以 PDF、扫描件、表格等多种形态存在，人工摘录耗时且口径难统一；跨科室共享时需要脱敏与权限控制。",
+        "architecture": [
+          "版面解析与表格还原，处理扫描件和版式复杂的报告",
+          "按病种与文档类型定义抽取字段与术语映射",
+          "全程私有化部署，处理过程不出院区网络，配合脱敏策略",
+          "抽取结果回写业务库并保留原文坐标，便于人工复核"
         ],
-        "technologies": ["医学NLP", "知识图谱", "多模态分析", "隐私计算"]
-      },
-      {
-        "category": "金融科技",
-        "title": "金融风控系统",
-        "description": "实时监控交易风险，识别异常行为准确率达到98%",
-        "challenge": "某银行信用卡欺诈损失严重，传统规则引擎误报率高",
-        "solution": "基于大模型的智能风控系统，实时分析交易行为，动态调整风控策略",
-        "results": [
-          "欺诈识别准确率达98%",
-          "误报率降低70%",
-          "风险响应时间缩短至毫秒级",
-          "年度欺诈损失减少8000万"
+        "outcomes": [
+          "单份文档的结构化耗时",
+          "字段抽取的抽检一致率",
+          "需要人工返工的比例",
+          "结构化数据的检索命中率"
         ],
-        "technologies": ["时序分析", "图神经网络", "异常检测", "联邦学习"]
+        "technologies": [
+          "多模态文档解析",
+          "版面还原",
+          "私有化部署",
+          "术语映射",
+          "人机复核"
+        ]
       },
-      {
-        "category": "在线教育",
-        "title": "教育内容生成工具",
-        "description": "自动生成个性化学习内容，适配不同学习风格",
-        "challenge": "教育培训机构内容生产慢，无法满足个性化教学需求",
-        "solution": "AI教学助手，一键生成课件、习题、讲解视频脚本，支持多难度层级",
-        "results": [
-          "内容生产效率提升10倍",
-          "课程开发周期从2周缩短至2天",
-          "学生完课率提升35%",
-          "教师备课时间节省50%"
+      "fintech": {
+        "category": "金融",
+        "title": "合规与公告审阅 Agent",
+        "description": "把规则核对和信息披露审阅做成可复现的流程，而不是依赖个人经验。",
+        "painPoints": "审阅高度依赖个人经验，同一份材料不同人结论不同；规则更新频繁，历史材料需要重新核对；审阅过程缺少留痕，事后难以回溯依据。",
+        "architecture": [
+          "把规则条目结构化，并与原文条款建立映射关系",
+          "检索增强的逐条比对，输出结论、命中依据与置信度",
+          "低置信度项自动进入人工复核队列并排序",
+          "全流程 Trace 留痕，支持按材料、按规则回溯"
         ],
-        "technologies": ["内容生成", "个性化推荐", "知识追踪", "自动评估"]
-      },
-      {
-        "category": "建筑设计",
-        "title": "AI辅助建筑设计平台",
-        "description": "智能化生成设计方案，优化建筑能耗与空间布局",
-        "challenge": "某建筑设计院项目周期长，方案修改频繁，能耗优化依赖经验",
-        "solution": "AI建筑设计助手，根据需求自动生成多方案比选，实时计算能耗指标",
-        "results": [
-          "方案设计周期缩短50%",
-          "建筑能耗平均降低20%",
-          "客户方案满意度提升45%",
-          "设计变更次数减少60%"
+        "outcomes": [
+          "单份材料的审阅时长",
+          "需人工复核的条款占比",
+          "同一材料跨审阅人的结论一致率",
+          "规则更新后历史材料的重跑覆盖率"
         ],
-        "technologies": ["生成式设计", "BIM集成", "能耗模拟", "空间优化"]
+        "technologies": [
+          "规则引擎",
+          "混合检索",
+          "低置信度路由",
+          "全链路 Trace",
+          "私有化部署"
+        ]
       },
-      {
+      "education": {
+        "category": "教育培训",
+        "title": "教学素材生成 Agent",
+        "description": "按课程大纲批量产出可编辑的讲义与练习，教师只做审阅与调整。",
+        "painPoints": "素材产出依赖教师个人时间，同一门课不同班级内容不一致；大纲一改，配套讲义、练习与讲解要点都要手动同步。",
+        "architecture": [
+          "大纲、教材与既有题库导入知识库，作为生成依据",
+          "按讲义、例题、练习、讲解要点拆成独立生成任务",
+          "生成结果强制标注依据出处，教师可一键追溯",
+          "大纲变更后重跑受影响章节，避免手工同步"
+        ],
+        "outcomes": [
+          "单个章节的素材产出时长",
+          "生成内容的采纳率",
+          "大纲变更后的同步耗时",
+          "同一知识点在不同班级的一致性"
+        ],
+        "technologies": [
+          "知识库检索",
+          "多任务编排",
+          "引用标注",
+          "模板化输出",
+          "批量重跑"
+        ]
+      },
+      "architecture": {
+        "category": "工程建筑",
+        "title": "图纸与技术文档问答 Agent",
+        "description": "让现场与设计人员直接向图纸、规范和技术文档提问，答案指向具体出处。",
+        "painPoints": "图纸、变更单、规范与设计说明分散存放，查找依赖记忆；多版本混用时容易引用失效内容；新人难以看懂现场图纸的历史变更脉络。",
+        "architecture": [
+          "图纸元数据、变更单与规范文档统一建索引",
+          "以图号、版本、部位为检索维度，先定位再回答",
+          "答案附带图纸页码与变更记录，避免跨版本误引",
+          "接入权限与版本控制，过期文档不进入检索范围"
+        ],
+        "outcomes": [
+          "单次资料查找耗时",
+          "答案附出处的比例",
+          "跨版本误引事件数",
+          "新人独立处理现场问题的上手时长"
+        ],
+        "technologies": [
+          "版面解析",
+          "版本感知检索",
+          "引用溯源",
+          "权限控制",
+          "多模态问答"
+        ]
+      },
+      "manufacturing": {
         "category": "智能制造",
-        "title": "工业质检智能体",
-        "description": "AI视觉检测系统，实现生产缺陷实时识别与预警",
-        "challenge": "汽车零部件厂人工质检效率低，漏检率高，质量追溯困难",
-        "solution": "部署AI视觉质检系统，多工位实时检测，自动分类缺陷类型",
-        "results": [
-          "质检效率提升8倍",
-          "漏检率从3%降至0.1%",
-          "产线停机时间减少40%",
-          "质量追溯时间从小时级降至秒级"
+        "title": "巡检与异常闭环 Agent",
+        "description": "从图像识别一路走到工单闭环，把发现问题变成推动处理。",
+        "painPoints": "巡检结果记在纸质表格或离线文件里，与工单系统脱节；缺陷描述口径不统一，后续统计困难；异常上报后缺少跟踪，容易悬空。",
+        "architecture": [
+          "现场图像与视频做缺陷识别，输出结构化缺陷项",
+          "按缺陷类型与严重度路由到对应处理流程",
+          "自动生成工单并写回工单系统，附带图像证据",
+          "未闭环工单自动升级与提醒"
         ],
-        "technologies": ["计算机视觉", "边缘计算", "数字孪生", "预测性维护"]
+        "outcomes": [
+          "从发现到派单的时长",
+          "可统计缺陷占比（描述口径一致率）",
+          "工单闭环率",
+          "复核抽检所需人力"
+        ],
+        "technologies": [
+          "视觉识别",
+          "工作流编排",
+          "工单系统集成",
+          "多路路由",
+          "闭环跟踪"
+        ]
       },
-      {
-        "category": "律师事务所",
-        "title": "法律文档智能审查系统",
-        "description": "自动化合同审查与法律研究，提升律师工作效率",
-        "challenge": "某大型律所合同审查工作量大，法律检索耗时，知识管理分散",
-        "solution": "法律AI助手，智能审查合同条款，自动匹配相关判例和法规",
-        "results": [
-          "合同审查效率提升5倍",
-          "法律检索时间减少80%",
-          "合同风险识别准确率达95%",
-          "初级律师培训周期缩短50%"
+      "law-firm": {
+        "category": "法律服务",
+        "title": "合同审阅 Agent",
+        "description": "先做全条款比对和抽取，让律师把时间花在真正的判断上。",
+        "painPoints": "初审要逐份通读，耗时随文书数量线性增长；风险条款依赖个人清单，容易漏项；高峰期只能抽检，覆盖范围不全。",
+        "architecture": [
+          "版面解析与条款切分，保留条款编号层级",
+          "按风险清单逐项抽取与比对，输出命中条款原文",
+          "与历史合同或模板做差异比对，突出变更点",
+          "全量初筛后按风险等级排序，人工从高风险看起"
         ],
-        "technologies": ["法律NLP", "知识图谱", "智能检索", "文档分析"]
+        "outcomes": [
+          "单份合同的初筛时长",
+          "全量初筛覆盖率（相对此前的抽检比例）",
+          "条款抽取的抽检准确率",
+          "人工复核发现的漏条款数"
+        ],
+        "technologies": [
+          "版面解析",
+          "条款抽取",
+          "差异比对",
+          "风险清单",
+          "人机复核"
+        ]
       },
-      {
-        "category": "会计师事务所",
-        "title": "智能审计分析平台",
-        "description": "AI驱动的财务数据分析，自动识别异常交易与风险",
-        "challenge": "会计师事务所审计项目多，数据处理量大，人工抽样审计覆盖面有限",
-        "solution": "智能审计系统，全量数据分析，自动标记异常，生成审计建议",
-        "results": [
-          "审计效率提升4倍",
-          "异常交易识别率提升至96%",
-          "审计覆盖率从抽样到全量",
-          "审计报告生成时间缩短70%"
+      "accounting": {
+        "category": "财务审计",
+        "title": "票据与账务核对 Agent",
+        "description": "票据识别、三单匹配与异常标记交给机器，人工专注判断例外。",
+        "painPoints": "发票、银行流水与报销单据格式各异，识别后的二次录入工作量大；勾稽核对靠人工盯表，异常难以及时发现；审计时缺少可复算的过程记录。",
+        "architecture": [
+          "票据版面解析与字段结构化",
+          "三单匹配（合同、发票、流水）自动生成核对结果",
+          "异常项按规则标记并附带完整证据链",
+          "核对过程留痕可复算，支撑审计抽样"
         ],
-        "technologies": ["财务NLP", "异常检测", "数据挖掘", "智能报告生成"]
+        "outcomes": [
+          "单张票据的结构化耗时",
+          "自动勾稽命中率",
+          "异常项的漏报与误报比例",
+          "审计抽样的准备时长"
+        ],
+        "technologies": [
+          "票据版面解析",
+          "字段结构化",
+          "规则勾稽",
+          "证据链留痕",
+          "批量处理"
+        ]
       }
-    ]
+    }
+  },
+  "capabilities": {
+    "sectionTag": "能力矩阵",
+    "sectionTitle": "交付一套 Agent 系统，需要的六件事",
+    "sectionDescription": "Agent 不是接一次模型调用就结束的工程。下面六项是我们在每个项目里都会落地的部分，缺一项，系统就很难长期跑在生产环境。",
+    "items": {
+      "orchestration": {
+        "title": "任务编排",
+        "description": "Plan-and-Execute、ReAct 等模式落地，支持子 Agent 分工、并行调用、超时重试与熔断，避免长任务跑飞。",
+        "stack": [
+          "LangGraph",
+          "子 Agent 分工",
+          "重试与熔断"
+        ]
+      },
+      "toolUse": {
+        "title": "MCP 工具集成",
+        "description": "通过 MCP Server 与 Function Calling 接入内部系统和第三方 API，工具可复用、有权限边界、可统一治理。",
+        "stack": [
+          "MCP Server",
+          "Function Calling",
+          "权限边界"
+        ]
+      },
+      "documents": {
+        "title": "多模态文档处理",
+        "description": "合同、票据、病历、研报的版面解析、表格还原与信息抽取，能处理扫描件和版式复杂的文件。",
+        "stack": [
+          "版面解析",
+          "表格还原",
+          "OCR 后处理"
+        ]
+      },
+      "retrieval": {
+        "title": "检索与知识库",
+        "description": "混合检索配合 rerank 重排序，答案强制附原文引用，让每条结论都能回溯到出处。",
+        "stack": [
+          "混合检索",
+          "Rerank 重排序",
+          "引用溯源"
+        ]
+      },
+      "inference": {
+        "title": "私有化推理与降本",
+        "description": "vLLM / Ollama 部署与量化压缩，配合连续批处理与前缀缓存，把单 token 成本压下来。",
+        "stack": [
+          "vLLM / Ollama",
+          "AWQ / GPTQ / FP8",
+          "连续批处理"
+        ]
+      },
+      "evaluation": {
+        "title": "评测与可观测",
+        "description": "离线评测集加线上埋点，每次 Prompt 或模型变更都能量化效果涨跌，全链路 Trace 支持回放定位。",
+        "stack": [
+          "离线评测集",
+          "全链路 Trace",
+          "回归对比"
+        ]
+      }
+    }
   },
   "contact": {
     "title": "联系我们",
     "submit": "发送消息"
   },
   "hero": {
-    "badge": "AI驱动的解决方案",
-    "titleLine1": "用AI技术",
-    "titleLine2": "赋能您的业务",
-    "description": "为企业提供大模型私有化部署、应用开发及智能体定制服务，助力智能化转型",
+    "badge": "企业级 Agent 系统交付",
+    "titleLine1": "不止部署模型",
+    "titleLine2": "交付能干活的 Agent",
+    "description": "从私有化推理底座、Agent 工作流编排，到 MCP 工具集成与多模态文档处理——我们交付的是接入你业务系统、上线运行并持续度量的 AI Agent 系统。",
     "cta": {
-      "explore": "探索服务",
-      "docs": "查看文档"
+      "explore": "查看交付能力",
+      "docs": "阅读技术文档"
     },
     "stats": {
-      "clients": "企业客户",
+      "systems": "交付 Agent 系统",
       "uptime": "服务可用性",
       "support": "专家支持",
-      "efficiency": "效率提升"
+      "cost": "推理成本下降",
+      "values": {
+        "systems": "20+",
+        "uptime": "99.9%",
+        "support": "24/7",
+        "cost": "40%"
+      }
     }
   },
   "theme": {
@@ -538,10 +713,10 @@
     "docs": "查看文档"
   },
   "consultation": {
-    "sectionTag": "限时免费",
-    "sectionTitle": "免费AI应用咨询顾问",
-    "sectionDescription": "还在为如何AI化业务而困惑？我们的专家为您提供30分钟免费咨询，帮您梳理场景、评估可行性、规划实施路径",
-    "badge": "限时免费开放中",
+    "sectionTag": "免费咨询",
+    "sectionTitle": "免费 Agent 落地咨询",
+    "sectionDescription": "不确定 Agent 该用在哪个环节？我们的顾问提供 30 分钟免费咨询，帮您梳理场景、评估可行性、规划实施路径。",
+    "badge": "免费咨询开放中",
     "valueProps": {
       "free": "0元免费咨询",
       "response": "2小时内响应",
@@ -589,7 +764,7 @@
       "q1": "免费顾问服务包含哪些内容？",
       "a1": "我们的免费顾问服务包括：1）业务场景AI化可行性分析；2）技术方案建议书；3）投资回报率预估；4）实施路径规划。整个过程大约需要30-45分钟的深度沟通。",
       "q2": "咨询后是否必须购买服务？",
-      "a2": "absolutely not。免费咨询无任何附加条件，您可以完全基于自身需求决定是否合作。我们的目标是帮助您理清AI应用思路，即使最终不选择我们，也希望对您有所帮助。",
+      "a2": "完全没有。免费咨询无任何附加条件，您可以完全基于自身需求决定是否合作。我们的目标是帮您理清 AI 应用思路，即使最终不选择我们，也希望对您有所帮助。",
       "q3": "顾问的专业背景如何？",
       "a3": "我们的顾问团队均来自知名科技企业，拥有5年以上AI项目落地经验，服务过金融、医疗、制造、零售等多个行业，累计帮助100+企业完成AI转型。",
       "q4": "多久可以收到回复？",

@@ -232,7 +232,7 @@ export default function Navbar() {
             {/* CTA Button */}
             <Link
               href="/contact"
-              className="hidden lg:flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-600 text-white text-sm font-medium rounded-xl transition-all hover:shadow-glow btn-shine"
+              className="hidden lg:flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-medium rounded-xl transition-all hover:shadow-glow btn-shine"
             >
               {t('navbar.cta') || 'Get Started'}
             </Link>

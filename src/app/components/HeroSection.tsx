@@ -140,11 +140,12 @@ export default function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800"
     >
       {/* Animated Background */}
-      <div className="absolute inset-0">
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '4s' }} />
+      <div className="absolute inset-0" aria-hidden="true">
+        {/* 极淡的品牌色光晕：三团用同一色系不同透明度，避免出现杂色。
+            装饰件整体 aria-hidden，不进无障碍树。 */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '4s' }} />
         
         {/* Particle network */}
         {mounted && <ParticleBackground />}
@@ -232,7 +233,7 @@ export default function HeroSection() {
           >
             <Link
               href="/services"
-              className="group flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-600 text-white text-base font-semibold rounded-2xl transition-all hover:shadow-glow hover:scale-105 btn-shine"
+              className="group flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-white text-base font-semibold rounded-2xl transition-all hover:shadow-glow hover:scale-105 btn-shine"
             >
               {t('cta.explore') || 'Explore Services'}
               <ArrowRightIcon className="w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -254,10 +255,10 @@ export default function HeroSection() {
             className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
             {[
-              { value: '50+', label: t('stats.clients') || 'Enterprise Clients' },
-              { value: '99.9%', label: t('stats.uptime') || 'Uptime SLA' },
-              { value: '24/7', label: t('stats.support') || 'Expert Support' },
-              { value: '10x', label: t('stats.efficiency') || 'Efficiency Gain' },
+              { value: t('stats.values.systems'), label: t('stats.systems') },
+              { value: t('stats.values.uptime'), label: t('stats.uptime') },
+              { value: t('stats.values.support'), label: t('stats.support') },
+              { value: t('stats.values.cost'), label: t('stats.cost') },
             ].map((stat, index) => (
               <motion.div
                 key={index}

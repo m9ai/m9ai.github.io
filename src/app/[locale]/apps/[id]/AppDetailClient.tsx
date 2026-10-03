@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@/lib/navigation';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import {
   ArrowLeftIcon,
   StarIcon,
@@ -26,17 +26,17 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
           <div className="flex items-center justify-between h-14">
             <Link
               href="/store"
-              className="flex items-center gap-2 text-slate-500 hover:text-indigo-600 transition-colors group"
+              className="flex items-center gap-2 text-slate-500 hover:text-primary transition-colors group"
             >
-              <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/30 transition-colors">
+              <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center group-hover:bg-primary/10 dark:group-hover:bg-primary/10 transition-colors">
                 <ArrowLeftIcon className="w-4 h-4" />
               </div>
               <span className="text-sm font-medium">返回应用商店</span>
             </Link>
             <nav className="hidden sm:flex items-center gap-2 text-sm text-slate-500">
-              <Link href="/" className="hover:text-indigo-600 transition-colors">首页</Link>
+              <Link href="/" className="hover:text-primary transition-colors">首页</Link>
               <ChevronRightIcon className="w-3 h-3" />
-              <Link href="/store" className="hover:text-indigo-600 transition-colors">应用商店</Link>
+              <Link href="/store" className="hover:text-primary transition-colors">应用商店</Link>
               <ChevronRightIcon className="w-3 h-3" />
               <span className="text-slate-900 dark:text-white font-medium">{app.name}</span>
             </nav>
@@ -55,14 +55,14 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
           <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 lg:p-12 border border-slate-200 dark:border-slate-700 shadow-sm">
             <div className="flex flex-col lg:flex-row gap-8 items-start">
               {/* App Icon */}
-              <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+              <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-2xl bg-gradient-to-br from-sky-600 to-slate-900 flex items-center justify-center flex-shrink-0">
                 <SparklesIcon className="w-12 h-12 lg:w-16 lg:h-16 text-white" />
               </div>
 
               {/* App Info */}
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <span className="px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-medium">
+                  <span className="px-3 py-1 bg-primary/10 text-primary dark:text-primary rounded-full text-sm font-medium">
                     {app.category}
                   </span>
                   <span className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full text-sm">
@@ -83,7 +83,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
                 </p>
 
                 <div className="flex flex-wrap gap-4">
-                  <button className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl transition-colors">
+                  <button className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary text-white font-medium rounded-xl transition-colors">
                     <PlayIcon className="w-5 h-5" />
                     立即体验
                   </button>

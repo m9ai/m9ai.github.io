@@ -1,18 +1,8 @@
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import CaseDetailClient from './CaseDetailClient';
-
-// 定义所有案例 slug
-const caseSlugs = [
-  'enterprise-service',
-  'healthcare',
-  'fintech',
-  'education',
-  'architecture',
-  'manufacturing',
-  'law-firm',
-  'accounting',
-];
+import { caseSlugs, cases } from '@/data/cases';
 
 // 生成静态参数
 export async function generateStaticParams() {
@@ -36,16 +26,15 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'cases' });
   
-  const caseIndex = caseSlugs.indexOf(slug);
-  if (caseIndex === -1) {
+  if (!cases[slug]) {
     return {
-      title: 'Case Study | Metasequoia AI Studio',
+      title: 'Metasequoia AI Studio',
     };
   }
   
   return {
-    title: `${t(`studies.${caseIndex}.title`)} | Metasequoia AI Studio`,
-    description: t(`studies.${caseIndex}.description`),
+    title: `${t(`studies.${slug}.title`)} | Metasequoia AI Studio`,
+    description: t(`studies.${slug}.description`),
   };
 }
 
@@ -57,11 +46,9 @@ export default async function CaseDetailPage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
   
-  const caseIndex = caseSlugs.indexOf(slug);
-  
-  if (caseIndex === -1) {
-    return <div>Case not found</div>;
+  if (!cases[slug]) {
+    notFound();
   }
   
-  return <CaseDetailClient caseIndex={caseIndex} />;
+  return <CaseDetailClient slug={slug} />;
 }

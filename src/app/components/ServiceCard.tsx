@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import type { Service } from '../../data/services';
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline';
 
 interface ServiceCardProps {
@@ -10,10 +10,11 @@ interface ServiceCardProps {
   index?: number;
 }
 
+// navy / sky 同色系，靠明度区分，避免彩虹配色
 const gradients = [
-  'from-blue-500 to-cyan-400',
-  'from-purple-500 to-pink-400',
-  'from-orange-500 to-amber-400',
+  'from-sky-500 to-sky-700',
+  'from-slate-800 to-primary',
+  'from-slate-700 to-slate-900',
 ];
 
 export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
@@ -24,7 +25,7 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
   return (
     <Link href={`/services/${service.id}`}>
       <motion.div 
-        className="group relative bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10 hover:border-indigo-200 dark:hover:border-indigo-800 h-full flex flex-col"
+        className="group relative bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 dark:hover:border-primary h-full flex flex-col"
         whileHover={{ y: -8 }}
         transition={{ duration: 0.3 }}
       >
@@ -55,7 +56,7 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
 
         {/* 内容区域 */}
         <div className="p-6 flex-1 flex flex-col">
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary dark:group-hover:text-primary transition-colors duration-300">
             {serviceT.title}
           </h2>
           
@@ -73,7 +74,7 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
         </div>
 
         {/* 悬停边框光效 */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-500/0 via-indigo-500/10 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/0 via-primary/10 to-slate-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
       </motion.div>
     </Link>
   );

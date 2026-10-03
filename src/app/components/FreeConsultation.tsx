@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import { motion, useInView, AnimatePresence } from 'motion/react';
 import toast, { Toaster } from 'react-hot-toast';
 import { submitLead } from '@/lib/leads';
@@ -45,22 +46,10 @@ const businessTypes = [
 ];
 
 const faqs = [
-  {
-    question: '免费顾问服务包含哪些内容？',
-    answer: '我们的免费顾问服务包括：1）业务场景AI化可行性分析；2）技术方案建议书；3）投资回报率预估；4）实施路径规划。整个过程大约需要30-45分钟的深度沟通。'
-  },
-  {
-    question: '咨询后是否必须购买服务？',
-    answer: ' absolutely not。免费咨询无任何附加条件，您可以完全基于自身需求决定是否合作。我们的目标是帮助您理清AI应用思路，即使最终不选择我们，也希望对您有所帮助。'
-  },
-  {
-    question: '顾问的专业背景如何？',
-    answer: '我们的顾问团队均来自知名科技企业，拥有5年以上AI项目落地经验，服务过金融、医疗、制造、零售等多个行业，累计帮助100+企业完成AI转型。'
-  },
-  {
-    question: '多久可以收到回复？',
-    answer: '提交表单后，我们会在2个工作小时内与您取得联系，安排顾问对接。紧急需求可备注说明，我们将优先处理。'
-  },
+  { questionKey: 'faq.q1', answerKey: 'faq.a1' },
+  { questionKey: 'faq.q2', answerKey: 'faq.a2' },
+  { questionKey: 'faq.q3', answerKey: 'faq.a3' },
+  { questionKey: 'faq.q4', answerKey: 'faq.a4' },
 ];
 
 const processSteps = [
@@ -74,7 +63,7 @@ const processSteps = [
     icon: LightBulbIcon,
     title: '深度沟通',
     description: '30分钟专业顾问1对1咨询',
-    color: 'bg-purple-500',
+    color: 'bg-slate-800',
   },
   {
     icon: ShieldCheckIcon,
@@ -91,6 +80,7 @@ const processSteps = [
 ];
 
 export default function FreeConsultation() {
+  const t = useTranslations('consultation');
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   
@@ -171,16 +161,14 @@ export default function FreeConsultation() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-semibold mb-6"
           >
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            限时免费开放中
+            {t('badge') || '免费咨询开放中'}
           </motion.div>
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-            免费AI应用咨询顾问
+            {t('sectionTitle') || '免费AI应用咨询顾问'}
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300">
-            还在为如何AI化业务而困惑？我们的专家团队为您提供30分钟免费咨询，
-            <br className="hidden sm:block" />
-            帮您梳理场景、评估可行性、规划实施路径
+            {t('sectionDescription') || '不确定 Agent 该用在哪个环节？我们的顾问提供 30 分钟免费咨询，帮您梳理场景、评估可行性、规划实施路径。'}
           </p>
         </motion.div>
 
@@ -193,7 +181,7 @@ export default function FreeConsultation() {
         >
           {[
             { icon: ClockIcon, label: '2小时内响应', color: 'text-blue-600' },
-            { icon: LightBulbIcon, label: '专业顾问1对1', color: 'text-purple-600' },
+            { icon: LightBulbIcon, label: '专业顾问1对1', color: 'text-primary' },
             { icon: ShieldCheckIcon, label: '0元免费咨询', color: 'text-green-600' },
             { icon: CheckCircleIcon, label: '无任何附加条件', color: 'text-orange-600' },
           ].map((item, index) => (
@@ -347,7 +335,7 @@ export default function FreeConsultation() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold rounded-xl transition-all hover:shadow-glow disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-slate-900 hover:brightness-110 text-white font-semibold rounded-xl transition-all hover:shadow-glow disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
@@ -405,7 +393,7 @@ export default function FreeConsultation() {
             {/* FAQ */}
             <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-soft border border-slate-200 dark:border-slate-700">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
-                常见问题
+                {t('faq.title') || '常见问题'}
               </h3>
               <div className="space-y-3">
                 {faqs.map((faq, index) => (
@@ -415,7 +403,7 @@ export default function FreeConsultation() {
                       className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                     >
                       <span className="font-medium text-slate-900 dark:text-white pr-4">
-                        {faq.question}
+                        {t(faq.questionKey)}
                       </span>
                       {openFaq === index ? (
                         <ChevronUpIcon className="w-5 h-5 text-slate-400 flex-shrink-0" />
@@ -433,7 +421,7 @@ export default function FreeConsultation() {
                           className="overflow-hidden"
                         >
                           <p className="px-4 pb-4 text-sm text-slate-600 dark:text-slate-400">
-                            {faq.answer}
+                            {t(faq.answerKey)}
                           </p>
                         </motion.div>
                       )}

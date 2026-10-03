@@ -14,21 +14,22 @@ import {
 } from '@heroicons/react/24/outline';
 
 // Service icons mapping with gradient backgrounds
+// 三条服务用同一套 navy → sky 色系、不同明度区分，保留层次但不引入杂色
 const serviceConfig = {
   'model-deployment': {
     icon: CpuChipIcon,
-    gradient: 'from-blue-500 to-indigo-600',
-    lightBg: 'bg-blue-50 dark:bg-blue-950/30',
+    gradient: 'from-sky-600 to-slate-900',
+    lightBg: 'bg-sky-50 dark:bg-sky-950/30',
   },
   'model-application': {
     icon: CommandLineIcon,
-    gradient: 'from-violet-500 to-purple-600',
-    lightBg: 'bg-violet-50 dark:bg-violet-950/30',
+    gradient: 'from-sky-500 to-sky-700',
+    lightBg: 'bg-sky-50 dark:bg-sky-950/30',
   },
   'agent-development': {
     icon: SquaresPlusIcon,
-    gradient: 'from-pink-500 to-rose-600',
-    lightBg: 'bg-pink-50 dark:bg-pink-950/30',
+    gradient: 'from-slate-900 to-sky-700',
+    lightBg: 'bg-slate-100 dark:bg-slate-800/50',
   },
 };
 

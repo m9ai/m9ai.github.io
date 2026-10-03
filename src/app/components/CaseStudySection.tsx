@@ -9,86 +9,12 @@ import {
   ChevronLeftIcon, 
   ChevronRightIcon,
   ArrowTopRightOnSquareIcon,
-  BuildingOffice2Icon,
-  ScaleIcon,
-  CalculatorIcon,
-  ShoppingBagIcon,
-  AcademicCapIcon,
-  BanknotesIcon,
-  HomeIcon,
-  Cog6ToothIcon
 } from '@heroicons/react/24/outline';
+import { caseSlugs, getCase } from '@/data/cases';
 
-// Case studies data with icons
-const caseStudies = [
-  {
-    id: 'enterprise-service',
-    slug: 'enterprise-service',
-    imageUrl: '/kefu.svg',
-    icon: BuildingOffice2Icon,
-    color: 'from-blue-500 to-cyan-500',
-    bgColor: 'bg-blue-50 dark:bg-blue-950/30',
-  },
-  {
-    id: 'healthcare',
-    slug: 'healthcare',
-    imageUrl: '/yiliao.svg',
-    icon: AcademicCapIcon,
-    color: 'from-violet-500 to-purple-500',
-    bgColor: 'bg-violet-50 dark:bg-violet-950/30',
-  },
-  {
-    id: 'fintech',
-    slug: 'fintech',
-    imageUrl: '/jinrong.svg',
-    icon: BanknotesIcon,
-    color: 'from-emerald-500 to-teal-500',
-    bgColor: 'bg-emerald-50 dark:bg-emerald-950/30',
-  },
-  {
-    id: 'education',
-    slug: 'education',
-    imageUrl: '/jiaoyu.svg',
-    icon: ShoppingBagIcon,
-    color: 'from-orange-500 to-red-500',
-    bgColor: 'bg-orange-50 dark:bg-orange-950/30',
-  },
-  {
-    id: 'architecture',
-    slug: 'architecture',
-    imageUrl: '/arch.svg',
-    icon: HomeIcon,
-    color: 'from-amber-500 to-orange-500',
-    bgColor: 'bg-amber-50 dark:bg-amber-950/30',
-  },
-  {
-    id: 'manufacturing',
-    slug: 'manufacturing',
-    imageUrl: '/manufacturing.svg',
-    icon: Cog6ToothIcon,
-    color: 'from-slate-500 to-gray-500',
-    bgColor: 'bg-slate-50 dark:bg-slate-950/30',
-  },
-  {
-    id: 'law-firm',
-    slug: 'law-firm',
-    imageUrl: '/law.svg',
-    icon: ScaleIcon,
-    color: 'from-indigo-500 to-blue-600',
-    bgColor: 'bg-indigo-50 dark:bg-indigo-950/30',
-  },
-  {
-    id: 'accounting',
-    slug: 'accounting',
-    imageUrl: '/accounting.svg',
-    icon: CalculatorIcon,
-    color: 'from-green-500 to-emerald-600',
-    bgColor: 'bg-green-50 dark:bg-green-950/30',
-  },
-];
-
-function CaseCard({ study, index, isActive }: { study: typeof caseStudies[0]; index: number; isActive: boolean }) {
+function CaseCard({ slug, isActive }: { slug: string; isActive: boolean }) {
   const t = useTranslations('cases');
+  const study = getCase(slug);
   const Icon = study.icon;
   
   return (
@@ -108,7 +34,7 @@ function CaseCard({ study, index, isActive }: { study: typeof caseStudies[0]; in
           <div className="relative h-56 overflow-hidden">
             <Image
               src={study.imageUrl}
-              alt={t(`studies.${index}.title`)}
+              alt={t(`studies.${slug}.title`)}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-110"
             />
@@ -118,7 +44,7 @@ function CaseCard({ study, index, isActive }: { study: typeof caseStudies[0]; in
             <div className="absolute top-4 left-4">
               <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white backdrop-blur-sm`}>
                 <Icon className="w-3.5 h-3.5" />
-                {t(`studies.${index}.category`)}
+                {t(`studies.${slug}.category`)}
               </span>
             </div>
           </div>
@@ -126,10 +52,10 @@ function CaseCard({ study, index, isActive }: { study: typeof caseStudies[0]; in
           {/* Content */}
           <div className="p-6">
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
-              {t(`studies.${index}.title`)}
+              {t(`studies.${slug}.title`)}
             </h3>
             <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
-              {t(`studies.${index}.description`)}
+              {t(`studies.${slug}.description`)}
             </p>
             
             <div className="inline-flex items-center gap-2 text-primary font-medium text-sm group/btn">
@@ -139,7 +65,7 @@ function CaseCard({ study, index, isActive }: { study: typeof caseStudies[0]; in
           </div>
 
           {/* Hover glow effect */}
-          <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br ${study.color} opacity-5`} />
+          <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br ${study.accent} opacity-5`} />
         </div>
       </Link>
     </motion.div>
@@ -154,11 +80,11 @@ export default function CaseStudySection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1) % caseStudies.length);
+    setActiveIndex((prev) => (prev + 1) % caseSlugs.length);
   };
 
   const prevSlide = () => {
-    setActiveIndex((prev) => (prev - 1 + caseStudies.length) % caseStudies.length);
+    setActiveIndex((prev) => (prev - 1 + caseSlugs.length) % caseSlugs.length);
   };
 
   return (
@@ -219,16 +145,15 @@ export default function CaseStudySection() {
         >
           <div className="flex gap-6 overflow-hidden">
             <AnimatePresence mode="popLayout" initial={false}>
-              {caseStudies.map((study, index) => {
+              {caseSlugs.map((slug, index) => {
                 // Calculate if this card should be visible
                 const isVisible = index >= activeIndex && index < activeIndex + 3;
                 if (!isVisible) return null;
                 
                 return (
                   <CaseCard 
-                    key={study.id} 
-                    study={study} 
-                    index={index}
+                    key={slug} 
+                    slug={slug} 
                     isActive={index === activeIndex}
                   />
                 );
@@ -238,7 +163,7 @@ export default function CaseStudySection() {
 
           {/* Dots indicator */}
           <div className="flex justify-center gap-2 mt-8">
-            {caseStudies.map((_, index) => (
+            {caseSlugs.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}

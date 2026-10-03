@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/lib/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   MagnifyingGlassIcon,
   CommandLineIcon,
@@ -80,7 +80,7 @@ function SearchResultItem({
     const parts = text.split(regex);
     return parts.map((part, i) =>
       regex.test(part) ? (
-        <mark key={i} className="bg-indigo-500/30 text-inherit rounded px-0.5">
+        <mark key={i} className="bg-primary/30 text-inherit rounded px-0.5">
           {part}
         </mark>
       ) : (
@@ -95,19 +95,19 @@ function SearchResultItem({
       onClick={onSelect}
       className={`flex items-start gap-4 p-4 rounded-xl transition-all duration-200 group ${
         isSelected
-          ? 'bg-indigo-500/20 border border-indigo-500/30'
+          ? 'bg-primary/20 border border-primary/30'
           : 'hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent'
       }`}
     >
       <div
         className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
           item.type === 'service'
-            ? 'bg-gradient-to-br from-indigo-500 to-purple-600'
+            ? 'bg-gradient-to-br from-sky-600 to-slate-900'
             : item.type === 'doc'
             ? 'bg-gradient-to-br from-green-500 to-teal-600'
             : item.type === 'case'
             ? 'bg-gradient-to-br from-amber-500 to-orange-600'
-            : 'bg-gradient-to-br from-slate-500 to-slate-600'
+            : 'bg-gradient-to-br from-slate-700 to-slate-900'
         }`}
       >
         <Icon className="w-5 h-5 text-white" />
@@ -318,7 +318,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
               <div className="max-h-[60vh] overflow-y-auto">
                 {isLoading ? (
                   <div className="p-8 text-center text-slate-500">
-                    <div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
                     <p>{t('loading')}</p>
                   </div>
                 ) : query && results.length > 0 ? (
@@ -363,8 +363,8 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           onClick={onClose}
                           className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group"
                         >
-                          <link.icon className="w-5 h-5 text-indigo-500" />
-                          <span className="text-slate-700 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                          <link.icon className="w-5 h-5 text-primary" />
+                          <span className="text-slate-700 dark:text-slate-300 group-hover:text-primary dark:group-hover:text-primary">
                             {link.label}
                           </span>
                         </Link>
@@ -372,14 +372,14 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     </div>
 
                     {/* AI 提示 */}
-                    <div className="mt-4 p-4 rounded-xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20">
+                    <div className="mt-4 p-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/10 border border-primary/30">
                       <div className="flex items-center gap-2 mb-2">
-                        <CommandLineIcon className="w-5 h-5 text-indigo-500" />
-                        <span className="font-medium text-indigo-900 dark:text-indigo-300">
+                        <CommandLineIcon className="w-5 h-5 text-primary" />
+                        <span className="font-medium text-primary dark:text-primary">
                           {t('proTip')}
                         </span>
                       </div>
-                      <p className="text-sm text-indigo-700 dark:text-indigo-400">
+                      <p className="text-sm text-primary dark:text-primary">
                         {t('proTipContent')}
                       </p>
                     </div>

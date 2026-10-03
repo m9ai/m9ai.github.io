@@ -1,27 +1,27 @@
 [
   {
     "id": "service-model-deployment",
-    "title": "模型部署",
-    "description": "在客户自有服务器环境中部署大语言模型，确保数据安全与隐私保护",
-    "content": "提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化。 Provide localized deployment solutions for mainstream large models, ensuring data security and privacy, supporting custom fine-tuning and performance optimization.",
+    "title": "私有化推理部署",
+    "description": "在你的服务器或专有云上搭建推理底座，数据不出内网，成本可控可预测。",
+    "content": "基于 vLLM、Ollama 等推理框架完成模型选型、部署、量化压缩、监控告警与容量规划，向上层 Agent 暴露 OpenAI 兼容的推理服务。 Model selection and deployment, quantization, compression, monitoring and capacity planning on vLLM and Ollama — exposing an OpenAI-compatible inference service to the agents above it.",
     "url": "/services/model-deployment",
     "type": "service",
     "category": "aiService"
   },
   {
     "id": "service-model-application",
-    "title": "大模型应用开发",
-    "description": "基于大语言模型构建企业级应用，实现智能客服、内容生成等场景",
-    "content": "定制开发基于大模型的企业级应用，打通业务系统数据，实现智能化升级。 Custom development of enterprise-level applications based on large models, integrating business system data for intelligent upgrading.",
+    "title": "AI 应用与多模态处理",
+    "description": "把模型能力封装成业务真正用得起来的产品：文档解析、语音交互、内容生成、数据洞察。",
+    "content": "打通非结构化数据入口与既有业务系统，交付可直接面向员工或客户使用的 AI 应用，支持 Web、小程序、浏览器扩展与桌面端。 We connect unstructured data sources with your existing systems and ship applications your staff or customers can use directly — across web, mini programs, browser extensions, and desktop.",
     "url": "/services/model-application",
     "type": "service",
     "category": "aiService"
   },
   {
     "id": "service-agent-development",
-    "title": "智能体开发",
-    "description": "开发具备自主决策能力的AI智能体，自动化复杂业务流程",
-    "content": "定制开发具备任务规划、工具使用和自主学习能力的AI智能体，赋能企业自动化。 Custom development of AI agents with task planning, tool usage and autonomous learning capabilities to empower enterprise automation.",
+    "title": "Agent 系统交付",
+    "description": "交付能真正跑通业务流程的 Agent：任务编排、工具调用、人机协同、效果可度量。",
+    "content": "以业务指标而非 Demo 效果为目标设计 Agent 系统：任务拆解与路由、MCP / Function Calling 工具接入、长程记忆与状态管理、关键节点人工介入，以及上线后的评测回归。交付物是一套在生产环境持续运行的系统。 We design agent systems against business metrics, not demo impressions: task decomposition and routing, MCP and function-calling tool access, long-term state management, Human-in-the-loop checkpoints, and post-launch evaluation and regression. The deliverable is a system that keeps running in production.",
     "url": "/services/agent-development",
     "type": "service",
     "category": "aiService"
@@ -172,75 +172,75 @@
   },
   {
     "id": "case-enterprise-service",
-    "title": "智能客服系统",
-    "description": "基于大语言模型的智能客服解决方案，提升客户满意度30%",
-    "content": "某大型电商企业面临客服人力成本高、响应慢、服务质量不稳定等问题 部署私有化大模型客服系统，实现7×24小时智能应答，支持多轮对话和情感分析",
+    "title": "客服问答 Agent",
+    "description": "用私有化检索接住重复咨询，让人工只处理真正复杂的问题。",
+    "content": "重复咨询长期占用座席时间，响应时长随排班波动；产品资料、历史工单与 FAQ 分散在不同系统，新人上手周期长，同一问题在不同座席口中答案不一致。 历史工单、产品文档与 FAQ 统一解析入库，保留章节结构 混合检索（向量 + 关键词）再重排序，保证召回上下文准确 生成答案强制附带原文引用，便于座席与用户自行核验 置信度不足或命中敏感场景时自动转人工，并携带会话摘要 首次响应时长 人工转接率 答案附引用的覆盖率 转人工后的平均处理时长 私有化推理部署 混合检索 重排序 引用溯源 人工转接",
     "url": "/cases/enterprise-service",
     "type": "case",
-    "category": "企业服务"
+    "category": "客户服务"
   },
   {
     "id": "case-healthcare",
-    "title": "医疗数据分析平台",
-    "description": "利用AI技术分析医疗数据，辅助医生诊断决策",
-    "content": "三甲医院日均门诊量超万人，医生诊断压力大，病历书写耗时 构建医疗AI助手，集成电子病历系统，提供诊断建议和治疗方案参考",
+    "title": "病历与文献处理 Agent",
+    "description": "把非结构化的病历、报告与文献转成可检索、可追溯的结构化明细。",
+    "content": "病历、检查报告与指南以 PDF、扫描件、表格等多种形态存在，人工摘录耗时且口径难统一；跨科室共享时需要脱敏与权限控制。 版面解析与表格还原，处理扫描件和版式复杂的报告 按病种与文档类型定义抽取字段与术语映射 全程私有化部署，处理过程不出院区网络，配合脱敏策略 抽取结果回写业务库并保留原文坐标，便于人工复核 单份文档的结构化耗时 字段抽取的抽检一致率 需要人工返工的比例 结构化数据的检索命中率 多模态文档解析 版面还原 私有化部署 术语映射 人机复核",
     "url": "/cases/healthcare",
     "type": "case",
     "category": "医疗健康"
   },
   {
     "id": "case-fintech",
-    "title": "金融风控系统",
-    "description": "实时监控交易风险，识别异常行为准确率达到98%",
-    "content": "某银行信用卡欺诈损失严重，传统规则引擎误报率高 基于大模型的智能风控系统，实时分析交易行为，动态调整风控策略",
+    "title": "合规与公告审阅 Agent",
+    "description": "把规则核对和信息披露审阅做成可复现的流程，而不是依赖个人经验。",
+    "content": "审阅高度依赖个人经验，同一份材料不同人结论不同；规则更新频繁，历史材料需要重新核对；审阅过程缺少留痕，事后难以回溯依据。 把规则条目结构化，并与原文条款建立映射关系 检索增强的逐条比对，输出结论、命中依据与置信度 低置信度项自动进入人工复核队列并排序 全流程 Trace 留痕，支持按材料、按规则回溯 单份材料的审阅时长 需人工复核的条款占比 同一材料跨审阅人的结论一致率 规则更新后历史材料的重跑覆盖率 规则引擎 混合检索 低置信度路由 全链路 Trace 私有化部署",
     "url": "/cases/fintech",
     "type": "case",
-    "category": "金融科技"
+    "category": "金融"
   },
   {
     "id": "case-education",
-    "title": "教育内容生成工具",
-    "description": "自动生成个性化学习内容，适配不同学习风格",
-    "content": "教育培训机构内容生产慢，无法满足个性化教学需求 AI教学助手，一键生成课件、习题、讲解视频脚本，支持多难度层级",
+    "title": "教学素材生成 Agent",
+    "description": "按课程大纲批量产出可编辑的讲义与练习，教师只做审阅与调整。",
+    "content": "素材产出依赖教师个人时间，同一门课不同班级内容不一致；大纲一改，配套讲义、练习与讲解要点都要手动同步。 大纲、教材与既有题库导入知识库，作为生成依据 按讲义、例题、练习、讲解要点拆成独立生成任务 生成结果强制标注依据出处，教师可一键追溯 大纲变更后重跑受影响章节，避免手工同步 单个章节的素材产出时长 生成内容的采纳率 大纲变更后的同步耗时 同一知识点在不同班级的一致性 知识库检索 多任务编排 引用标注 模板化输出 批量重跑",
     "url": "/cases/education",
     "type": "case",
-    "category": "在线教育"
+    "category": "教育培训"
   },
   {
     "id": "case-architecture",
-    "title": "AI辅助建筑设计平台",
-    "description": "智能化生成设计方案，优化建筑能耗与空间布局",
-    "content": "某建筑设计院项目周期长，方案修改频繁，能耗优化依赖经验 AI建筑设计助手，根据需求自动生成多方案比选，实时计算能耗指标",
+    "title": "图纸与技术文档问答 Agent",
+    "description": "让现场与设计人员直接向图纸、规范和技术文档提问，答案指向具体出处。",
+    "content": "图纸、变更单、规范与设计说明分散存放，查找依赖记忆；多版本混用时容易引用失效内容；新人难以看懂现场图纸的历史变更脉络。 图纸元数据、变更单与规范文档统一建索引 以图号、版本、部位为检索维度，先定位再回答 答案附带图纸页码与变更记录，避免跨版本误引 接入权限与版本控制，过期文档不进入检索范围 单次资料查找耗时 答案附出处的比例 跨版本误引事件数 新人独立处理现场问题的上手时长 版面解析 版本感知检索 引用溯源 权限控制 多模态问答",
     "url": "/cases/architecture",
     "type": "case",
-    "category": "建筑设计"
+    "category": "工程建筑"
   },
   {
     "id": "case-manufacturing",
-    "title": "工业质检智能体",
-    "description": "AI视觉检测系统，实现生产缺陷实时识别与预警",
-    "content": "汽车零部件厂人工质检效率低，漏检率高，质量追溯困难 部署AI视觉质检系统，多工位实时检测，自动分类缺陷类型",
+    "title": "巡检与异常闭环 Agent",
+    "description": "从图像识别一路走到工单闭环，把发现问题变成推动处理。",
+    "content": "巡检结果记在纸质表格或离线文件里，与工单系统脱节；缺陷描述口径不统一，后续统计困难；异常上报后缺少跟踪，容易悬空。 现场图像与视频做缺陷识别，输出结构化缺陷项 按缺陷类型与严重度路由到对应处理流程 自动生成工单并写回工单系统，附带图像证据 未闭环工单自动升级与提醒 从发现到派单的时长 可统计缺陷占比（描述口径一致率） 工单闭环率 复核抽检所需人力 视觉识别 工作流编排 工单系统集成 多路路由 闭环跟踪",
     "url": "/cases/manufacturing",
     "type": "case",
     "category": "智能制造"
   },
   {
     "id": "case-law-firm",
-    "title": "法律文档智能审查系统",
-    "description": "自动化合同审查与法律研究，提升律师工作效率",
-    "content": "某大型律所合同审查工作量大，法律检索耗时，知识管理分散 法律AI助手，智能审查合同条款，自动匹配相关判例和法规",
+    "title": "合同审阅 Agent",
+    "description": "先做全条款比对和抽取，让律师把时间花在真正的判断上。",
+    "content": "初审要逐份通读，耗时随文书数量线性增长；风险条款依赖个人清单，容易漏项；高峰期只能抽检，覆盖范围不全。 版面解析与条款切分，保留条款编号层级 按风险清单逐项抽取与比对，输出命中条款原文 与历史合同或模板做差异比对，突出变更点 全量初筛后按风险等级排序，人工从高风险看起 单份合同的初筛时长 全量初筛覆盖率（相对此前的抽检比例） 条款抽取的抽检准确率 人工复核发现的漏条款数 版面解析 条款抽取 差异比对 风险清单 人机复核",
     "url": "/cases/law-firm",
     "type": "case",
-    "category": "律师事务所"
+    "category": "法律服务"
   },
   {
     "id": "case-accounting",
-    "title": "智能审计分析平台",
-    "description": "AI驱动的财务数据分析，自动识别异常交易与风险",
-    "content": "会计师事务所审计项目多，数据处理量大，人工抽样审计覆盖面有限 智能审计系统，全量数据分析，自动标记异常，生成审计建议",
+    "title": "票据与账务核对 Agent",
+    "description": "票据识别、三单匹配与异常标记交给机器，人工专注判断例外。",
+    "content": "发票、银行流水与报销单据格式各异，识别后的二次录入工作量大；勾稽核对靠人工盯表，异常难以及时发现；审计时缺少可复算的过程记录。 票据版面解析与字段结构化 三单匹配（合同、发票、流水）自动生成核对结果 异常项按规则标记并附带完整证据链 核对过程留痕可复算，支撑审计抽样 单张票据的结构化耗时 自动勾稽命中率 异常项的漏报与误报比例 审计抽样的准备时长 票据版面解析 字段结构化 规则勾稽 证据链留痕 批量处理",
     "url": "/cases/accounting",
     "type": "case",
-    "category": "会计师事务所"
+    "category": "财务审计"
   },
   {
     "id": "page-home",

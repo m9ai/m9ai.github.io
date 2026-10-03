@@ -3,7 +3,8 @@ import '@/app/globals.css';
 
 export const metadata = {
   title: 'Metasequoia AI Studio',
-  description: 'AI Solutions for Enterprise',
+  description:
+    'Agent workflows and agentic engineering — we deliver enterprise agent systems that run in production and stay measurable.',
 };
 
 // 这里刻意不渲染 <html>/<body>，让 app/[locale]/layout.tsx 成为唯一的 html 容器。

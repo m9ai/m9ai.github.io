@@ -195,7 +195,7 @@ export default function DocsHomePage() {
         {/* 背景装饰 */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 dark:bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-slate-800/10 dark:bg-slate-800/5 rounded-full blur-3xl" />
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
