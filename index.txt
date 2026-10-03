@@ -1,0 +1,17 @@
+1:"$Sreact.fragment"
+2:I[47286,[],""]
+3:I[20700,[],""]
+4:I[13805,["5099","static/chunks/5099-36165cd765346808.js","9719","static/chunks/9719-c6a75ee99d9a4625.js","4345","static/chunks/app/not-found-f45f00958e405e44.js"],"default"]
+5:I[15099,["5099","static/chunks/5099-36165cd765346808.js","8974","static/chunks/app/page-9b2eba8d32db2e29.js"],""]
+6:I[66990,[],"OutletBoundary"]
+8:I[6846,[],"AsyncMetadataOutlet"]
+a:I[66990,[],"ViewportBoundary"]
+c:I[66990,[],"MetadataBoundary"]
+d:"$Sreact.suspense"
+f:I[61198,[],""]
+:HL["/_next/static/css/b4441b9c40552eb7.css","style"]
+0:{"P":null,"b":"trOVkJNjmI_sqmTpfy0Cj","p":"","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/b4441b9c40552eb7.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L4",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[[["$","meta",null,{"httpEquiv":"refresh","content":"0; url=/zh"}],["$","link",null,{"rel":"canonical","href":"/zh"}],["$","p",null,{"children":["正在跳转到 ",["$","$L5",null,{"href":"/zh","children":"首页"}],"…"]}]],null,["$","$L6",null,{"children":["$L7",["$","$L8",null,{"promise":"$@9"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$La",null,{"children":"$Lb"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Lc",null,{"children":["$","div",null,{"hidden":true,"children":["$","$d",null,{"fallback":null,"children":"$Le"}]}]}]]}],false]],"m":"$undefined","G":["$f",[]],"s":false,"S":true}
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+7:null
+9:{"metadata":[["$","title","0",{"children":"Metasequoia AI Studio"}],["$","meta","1",{"name":"description","content":"Agent workflows and agentic engineering — we deliver enterprise agent systems that run in production and stay measurable."}]],"error":null,"digest":"$undefined"}
+e:"$9:metadata"
