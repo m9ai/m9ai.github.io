@@ -51,14 +51,6 @@ const typeIcons = {
   case: FolderIcon,
 };
 
-// 类型标签映射
-const typeLabels = {
-  service: '服务',
-  doc: '文档',
-  page: '页面',
-  case: '案例',
-};
-
 // 搜索结果项组件
 function SearchResultItem({
   item,
@@ -71,6 +63,7 @@ function SearchResultItem({
   onSelect: () => void;
   query: string;
 }) {
+  const t = useTranslations('search');
   const Icon = typeIcons[item.type];
 
   // 高亮匹配文本
@@ -118,7 +111,7 @@ function SearchResultItem({
             {highlightText(item.translatedTitle, query)}
           </h3>
           <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-            {typeLabels[item.type]}
+            {t(`types.${item.type}`)}
           </span>
         </div>
         <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">

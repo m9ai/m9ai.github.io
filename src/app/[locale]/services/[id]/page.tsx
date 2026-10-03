@@ -37,8 +37,9 @@ export default async function ServiceDetailPage({
 }) {
   const { id, locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'services' });
   const service = services.find(s => s.id === id);
-  if (!service) return <div>服务不存在</div>;
+  if (!service) return <div>{t('errors.notFound')}</div>;
 
   return <ServiceDetailClient service={service} />;
 }

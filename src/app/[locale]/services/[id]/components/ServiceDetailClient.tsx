@@ -254,7 +254,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                   {t('sections.caseStudies')}
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
-                  客户成功案例
+                  {t('detail.customerCases')}
                 </h2>
               </motion.div>
 
@@ -266,7 +266,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                   <div className="p-8 lg:p-12 flex flex-col justify-center">
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-400 text-sm font-medium mb-6 w-fit">
                       <CheckCircleIcon className="w-4 h-4" />
-                      已上线项目
+                      {t('detail.deployedProject')}
                     </div>
                     <h3 className="text-2xl md:text-3xl font-bold mb-4 text-slate-900 dark:text-white">
                       {t(`${service.id}.cases.0.title`)}
@@ -278,7 +278,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                       href="/contact"
                       className="inline-flex items-center text-primary dark:text-primary font-semibold hover:text-primary dark:hover:text-slate-300 transition-colors group"
                     >
-                      了解如何为您实现
+                      {t('detail.learnHow')}
                       <ArrowUpRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </Link>
                   </div>
@@ -331,7 +331,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                   href="/contact"
                   className="inline-flex items-center justify-center px-8 py-4 bg-primary/30 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-primary/40 transition-all"
                 >
-                  查看更多方案
+                  {t('detail.viewMoreSolutions')}
                 </Link>
               </motion.div>
             </div>
@@ -350,10 +350,10 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
             className="text-center mb-12"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
-              探索其他服务
+              {t('detail.exploreOtherServices')}
             </h2>
             <p className="text-slate-600 dark:text-slate-400">
-              为您提供全方位的AI解决方案
+              {t('detail.allSolutionsDescription')}
             </p>
           </motion.div>
 
@@ -365,9 +365,9 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
             className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
           >
             {[
-              { id: 'model-deployment', title: '模型部署', desc: '私有化大模型部署方案', icon: '🔒' },
-              { id: 'model-application', title: '大模型应用开发', desc: '企业级AI应用定制', icon: '⚡' },
-              { id: 'agent-development', title: '智能体开发', desc: '自动化业务流程', icon: '🤖' }
+              { id: 'model-deployment', icon: '🔒' },
+              { id: 'model-application', icon: '⚡' },
+              { id: 'agent-development', icon: '🤖' }
             ]
               .filter(s => s.id !== service.id)
               .slice(0, 2)
@@ -382,9 +382,9 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary transition-colors">
-                        {s.title}
+                        {t(`${s.id}.title`)}
                       </h3>
-                      <p className="text-slate-600 dark:text-slate-400 text-sm">{s.desc}</p>
+                      <p className="text-slate-600 dark:text-slate-400 text-sm">{t(`${s.id}.shortDesc`)}</p>
                     </div>
                     <ArrowUpRightIcon className="w-5 h-5 text-slate-400 group-hover:text-primary dark:group-hover:text-primary transition-colors" />
                   </Link>

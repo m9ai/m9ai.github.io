@@ -1,11 +1,19 @@
 import { Metadata } from 'next';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Contact from './Contact';
 
-export const metadata: Metadata = {
-  title: '联系我们 | 水杉智境工作室',
-  description: '联系水杉智境团队，了解更多关于我们的信息',
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Contact' });
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+  };
+}
 
 // 添加静态参数生成函数，指定支持的语言
 export async function generateStaticParams() {

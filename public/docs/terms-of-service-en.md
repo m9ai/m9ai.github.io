@@ -1,3 +1,10 @@
+---
+title: Terms of Service
+description: The terms you agree to when using this site and our services
+category: Help
+updatedAt: 2025-02-09
+---
+
 # Terms of Service
 
 ## 1. Acceptance of Terms

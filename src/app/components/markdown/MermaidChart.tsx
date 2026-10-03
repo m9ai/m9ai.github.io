@@ -2,12 +2,14 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@/app/contexts/ThemeContext';
+import { useTranslations } from 'next-intl';
 
 interface MermaidChartProps {
   code: string;
 }
 
 export default function MermaidChart({ code }: MermaidChartProps) {
+  const t = useTranslations('ui');
   const containerRef = useRef<HTMLDivElement>(null);
   const [svg, setSvg] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -48,7 +50,7 @@ export default function MermaidChart({ code }: MermaidChartProps) {
         setError('');
       } catch (err) {
         console.error('Mermaid render error:', err);
-        setError('流程图渲染失败');
+        setError(t('diagramError'));
       }
     };
 
@@ -58,7 +60,7 @@ export default function MermaidChart({ code }: MermaidChartProps) {
   if (error) {
     return (
       <div className="my-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400">
-        <p className="font-medium">流程图渲染失败</p>
+        <p className="font-medium">{t('diagramError')}</p>
         <pre className="mt-2 text-sm overflow-x-auto">{code}</pre>
       </div>
     );

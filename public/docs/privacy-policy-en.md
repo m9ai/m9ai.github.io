@@ -1,3 +1,10 @@
+---
+title: Privacy Policy
+description: How we collect, use, store and protect your information, and the rights you have over it
+category: Help
+updatedAt: 2025-02-09
+---
+
 # Privacy Policy
 
 ## 1. Introduction

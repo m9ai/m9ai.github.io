@@ -5,6 +5,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { ClipboardIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { useTheme } from '@/app/contexts/ThemeContext';
+import { useTranslations } from 'next-intl';
 
 interface CodeBlockProps {
   language: string;
@@ -47,6 +48,7 @@ const customOneLight = {
 };
 
 export default function CodeBlock({ language, code }: CodeBlockProps) {
+  const t = useTranslations('ui');
   const [copied, setCopied] = useState(false);
   const { theme } = useTheme();
   const isDark = theme === 'dark';
@@ -87,17 +89,17 @@ export default function CodeBlock({ language, code }: CodeBlockProps) {
                 ? 'text-slate-400 hover:text-slate-100 hover:bg-slate-700'
                 : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200'
           }`}
-          aria-label={copied ? '已复制' : '复制代码'}
+          aria-label={copied ? t('copied') : t('copyCode')}
         >
           {copied ? (
             <>
               <CheckIcon className="w-3.5 h-3.5" />
-              <span>已复制</span>
+              <span>{t('copied')}</span>
             </>
           ) : (
             <>
               <ClipboardIcon className="w-3.5 h-3.5" />
-              <span>复制</span>
+              <span>{t('copyCode')}</span>
             </>
           )}
         </button>

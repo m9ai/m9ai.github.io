@@ -26,6 +26,26 @@
       "phoneLabel": "Phone",
       "locationLabel": "Location",
       "wechatLabel": "WeChat"
+    },
+    "hero": {
+      "badge": "Free consultation open",
+      "title": "Free Agent Consulting",
+      "description": "Not sure where AI agents fit? Talk to our consultants for 30 minutes — we'll map your scenarios, assess feasibility and plan the rollout.",
+      "cta": "Book a free consultation"
+    },
+    "valueProps": {
+      "free": "Free of charge",
+      "response": "Response within 2 hours",
+      "expert": "1-on-1 with a consultant",
+      "noObligation": "No strings attached"
+    },
+    "info": {
+      "locationValue": "Shanghai, China",
+      "wechatValue": "Scan to add"
+    },
+    "meta": {
+      "title": "Contact Us | Metasequoia AI Studio",
+      "description": "Get in touch with the Metasequoia AI Studio team to learn more about what we do."
     }
   },
   "title": "Metasequoia AI Studio",
@@ -90,7 +110,8 @@
       "readyForAIDescription": "From scenario assessment to production rollout, our delivery team works alongside you. Talk to us for 30 minutes before deciding anything.",
       "readyForAI": "Ready to Ship Your Agent",
       "consultSolution": "Consult Solution",
-      "learnMore": "Learn More"
+      "learnMore": "Learn More",
+      "emailUs": "Email Us"
     },
     "learnMore": "Learn More",
     "sections": {
@@ -147,7 +168,8 @@
           "title": "State-Owned Bank Intelligent Customer Service",
           "description": "Local model deployment handling 100,000+ daily customer inquiries with 92% accuracy"
         }
-      ]
+      ],
+      "shortDesc": "Private LLM deployment"
     },
     "model-application": {
       "title": "AI Applications & Multimodal Processing",
@@ -196,7 +218,8 @@
           "title": "Online Education Intelligent Q&A Platform",
           "description": "AI tutoring system for K12 education institutions covering 85% of common subject questions"
         }
-      ]
+      ],
+      "shortDesc": "Enterprise AI applications"
     },
     "agent-development": {
       "title": "Agent System Delivery",
@@ -249,7 +272,8 @@
           "title": "E-Commerce Intelligent Operations Assistant",
           "description": "Automated product listing, inventory management and marketing planning increasing efficiency by 60%"
         }
-      ]
+      ],
+      "shortDesc": "Business process automation"
     },
     "education": {
       "title": "Education Industry Solutions",
@@ -262,6 +286,63 @@
     "healthcare": {
       "title": "Medical Auxiliary Diagnosis",
       "description": "Medical image analysis and auxiliary diagnosis suggestions to improve diagnostic accuracy"
+    },
+    "home": {
+      "process": {
+        "title": "How We Deliver",
+        "description": "A repeatable delivery process that keeps projects fast and predictable.",
+        "steps": {
+          "discovery": {
+            "title": "Discovery",
+            "description": "Get under the skin of your workflows and pain points."
+          },
+          "design": {
+            "title": "Solution Design",
+            "description": "A bespoke AI solution scoped against your constraints."
+          },
+          "build": {
+            "title": "Build",
+            "description": "Delivered by a senior team shipped incrementally."
+          },
+          "operate": {
+            "title": "Operate",
+            "description": "Continuous tuning and support after go-live."
+          }
+        }
+      },
+      "advantages": {
+        "title": "Why Us",
+        "description": "A senior team and a proven playbook for taking AI into production.",
+        "items": {
+          "techEdge": {
+            "title": "Current Tech",
+            "description": "We track frontier models and keep your stack current."
+          },
+          "reliability": {
+            "title": "Secure & Compliant",
+            "description": "Enterprise-grade data protection with auditable controls."
+          },
+          "speed": {
+            "title": "Fast Delivery",
+            "description": "A standardised process that shortens the project cycle."
+          },
+          "team": {
+            "title": "Senior Team",
+            "description": "Experienced AI engineers with real industry exposure."
+          }
+        }
+      }
+    },
+    "errors": {
+      "notFound": "Service not found"
+    },
+    "detail": {
+      "customerCases": "Customer Success Stories",
+      "deployedProject": "Running in production",
+      "learnHow": "See how we can build this for you",
+      "viewMoreSolutions": "View more solutions",
+      "exploreOtherServices": "Explore other services",
+      "allSolutionsDescription": "End-to-end AI capability for every stage of your roadmap"
     }
   },
   "navbar": {
@@ -300,7 +381,13 @@
     "proTipContent": "Supports fuzzy matching and semantic search, just type keywords to find relevant content quickly",
     "navigate": "Navigate",
     "select": "Select",
-    "poweredBy": "AI-Powered Search"
+    "poweredBy": "AI-Powered Search",
+    "types": {
+      "service": "Service",
+      "doc": "Doc",
+      "page": "Page",
+      "case": "Case"
+    }
   },
   "footer": {
     "logoAlt": "Metasequoia Studio Logo",
@@ -324,6 +411,10 @@
     "contact": {
       "email": "Contact Email",
       "phone": "Contact Phone"
+    },
+    "social": {
+      "wechatOfficial": "WeChat Official Account",
+      "wechatChannels": "WeChat Channels"
     }
   },
   "common": {
@@ -437,7 +528,16 @@
       "painPointPlaceholder": "Briefly describe your business scenario and the problems you want to solve...",
       "submitButton": "Book Free Consultation Now",
       "submitting": "Submitting...",
-      "privacyNotice": "By submitting, you agree to our privacy policy. We will not share your information with third parties"
+      "privacyNotice": "By submitting, you agree to our privacy policy. We will not share your information with third parties",
+      "businessTypeOptions": {
+        "placeholder": "Select a business type",
+        "customerService": "Customer Service Agent",
+        "contentGeneration": "Content Generation",
+        "dataAnalysis": "Data Analysis",
+        "processAutomation": "Process Automation",
+        "knowledgeBase": "Knowledge Base",
+        "other": "Something else"
+      }
     },
     "process": {
       "title": "Service Process",
@@ -471,11 +571,22 @@
     },
     "trust": {
       "title": "Trusted by 100+ Enterprise Clients",
-      "subtitle": "Spanning finance, healthcare, manufacturing, retail and more"
+      "subtitle": "Spanning finance, healthcare, manufacturing, retail and more",
+      "clients": [
+        "A leading commercial bank",
+        "A Grade-A tertiary hospital",
+        "A large manufacturing enterprise",
+        "A national retail chain"
+      ]
     },
     "success": {
       "title": "Booking Successful!",
-      "message": "Our consultant will contact you within 2 business hours. Please keep your phone available"
+      "message": "Our consultant will contact you within 2 business hours. Please keep your phone available",
+      "toast": "Request received — we'll be in touch shortly.",
+      "bookAnother": "Book another consultation"
+    },
+    "errors": {
+      "submitFailed": "Submission failed. Please try again later."
     }
   },
   "collaboration": {
@@ -837,6 +948,66 @@
     "meta": {
       "title": "App Store | Metasequoia Studio",
       "description": "Explore our AI applications to enhance your productivity and creativity"
+    },
+    "card": {
+      "view": "View",
+      "featureCount": "{count} features",
+      "details": "View details"
+    },
+    "detail": {
+      "backToList": "Back to Store",
+      "home": "Home",
+      "store": "Store",
+      "tryNow": "Try it now",
+      "visitApp": "Visit app",
+      "features": "Key Features",
+      "screenshots": "Screenshots",
+      "screenshotIndex": "Screenshot {index}",
+      "notFoundTitle": "App not found",
+      "notFoundDescription": "The requested app does not exist.",
+      "titleSuffix": "App Details"
+    },
+    "apps": {
+      "ai-assistant": {
+        "name": "AI Assistant",
+        "description": "An LLM-powered assistant that handles multi-turn conversations and multi-step tasks.",
+        "features": [
+          "Language understanding",
+          "Multi-turn chat",
+          "Task automation",
+          "Knowledge base"
+        ]
+      },
+      "image-generator": {
+        "name": "Image Studio",
+        "description": "AI image generation with text-to-image and style transfer.",
+        "features": [
+          "Text to image",
+          "Style transfer",
+          "High resolution",
+          "Batch processing"
+        ]
+      },
+      "code-helper": {
+        "name": "Code Helper",
+        "description": "Smarter code generation and refactoring across languages and frameworks.",
+        "features": [
+          "Code generation",
+          "Bug fixing",
+          "Performance tuning",
+          "Doc generation"
+        ]
+      },
+      "data-analyzer": {
+        "name": "Data Analyzer",
+        "description": "AI-driven analytics with visualisation and forecasting.",
+        "features": [
+          "Data visualisation",
+          "Forecasting",
+          "Anomaly detection",
+          "Report generation"
+        ]
+      }
     }
   },
   "Docs": {
@@ -858,8 +1029,68 @@
     "categories": {
       "all": "All",
       "gettingStarted": "Getting Started",
-      "technical": "Technical Docs",
-      "help": "Help"
+      "technical": "Technical",
+      "help": "Help",
+      "advanced": "Advanced",
+      "developmentGuide": "Development Guide"
+    },
+    "hero": {
+      "title": "Documentation",
+      "description": "Product docs, how-to guides and technical references."
+    },
+    "items": {
+      "introduction": {
+        "title": "Get Started",
+        "description": "Our core services and everything you need to get moving quickly."
+      },
+      "model-deployment": {
+        "title": "Model Deployment Guide",
+        "description": "How to deploy large language models on-prem or in your own VPC."
+      },
+      "knowledge-base": {
+        "title": "Building a Local Knowledge Base",
+        "description": "Enterprise knowledge bases with private data retrieval and Q&A."
+      },
+      "workflow": {
+        "title": "Building AI Workflows",
+        "description": "Assemble automated AI workflows with visual tooling to speed up operations."
+      },
+      "prompt-engineering": {
+        "title": "Prompt Engineering Best Practices",
+        "description": "Design prompts that make model output more accurate and dependable."
+      },
+      "api-integration": {
+        "title": "API Integration Guide",
+        "description": "Wire model capabilities into your existing applications."
+      },
+      "api-reference": {
+        "title": "API Reference",
+        "description": "Endpoint documentation and working code samples."
+      },
+      "faq": {
+        "title": "FAQ",
+        "description": "Answers to the questions we get asked most."
+      }
+    },
+    "detail": {
+      "backToList": "Back to Docs",
+      "home": "Home",
+      "docsHome": "Documentation",
+      "navigation": "Docs navigation",
+      "updatedAt": "Updated {date}",
+      "toc": "On this page",
+      "notFoundTitle": "Doc not found",
+      "notFoundDescription": "The requested doc does not exist.",
+      "titleSuffix": "Documentation",
+      "englishPending": "Not translated yet",
+      "englishPendingNote": "The content below is the Chinese original. An English version is in progress.",
+      "readChinese": "Read the Chinese version"
     }
+  },
+  "ui": {
+    "copyCode": "Copy code",
+    "copied": "Copied",
+    "diagramError": "Failed to render diagram",
+    "videoUnsupported": "Your browser does not support video playback"
   }
 }

@@ -40,60 +40,36 @@ const itemVariants = {
   }
 };
 
-// 服务流程步骤
-const processSteps = [
-  {
-    icon: UserGroupIcon,
-    title: '需求沟通',
-    description: '深入了解业务场景与痛点',
-    step: '01'
-  },
-  {
-    icon: CpuChipIcon,
-    title: '方案设计',
-    description: '制定定制化AI解决方案',
-    step: '02'
-  },
-  {
-    icon: CogIcon,
-    title: '开发实施',
-    description: '专业团队高效交付',
-    step: '03'
-  },
-  {
-    icon: RocketLaunchIcon,
-    title: '上线运维',
-    description: '持续优化与技术支持',
-    step: '04'
-  }
+// 服务流程步骤：文案取 services.home.process.steps.*，这里只保留图标与序号
+const processStepKeys = [
+  { icon: UserGroupIcon, key: 'discovery', step: '01' },
+  { icon: CpuChipIcon, key: 'design', step: '02' },
+  { icon: CogIcon, key: 'build', step: '03' },
+  { icon: RocketLaunchIcon, key: 'operate', step: '04' },
 ];
 
-// 核心优势
-const advantages = [
-  {
-    icon: SparklesIcon,
-    title: '技术领先',
-    description: '紧跟前沿大模型技术，持续迭代优化'
-  },
-  {
-    icon: ShieldCheckIcon,
-    title: '安全可靠',
-    description: '企业级数据安全保障，合规可控'
-  },
-  {
-    icon: ClockIcon,
-    title: '快速交付',
-    description: '标准化流程，缩短项目周期'
-  },
-  {
-    icon: CheckBadgeIcon,
-    title: '专业团队',
-    description: '资深AI工程师，丰富行业经验'
-  }
+// 核心优势：同样只保留 key 与图标
+const advantageKeys = [
+  { icon: SparklesIcon, key: 'techEdge' },
+  { icon: ShieldCheckIcon, key: 'reliability' },
+  { icon: ClockIcon, key: 'speed' },
+  { icon: CheckBadgeIcon, key: 'team' },
 ];
 
 export default function Home() {
   const t = useTranslations('services');
+
+  const processSteps = processStepKeys.map((step) => ({
+    ...step,
+    title: t(`home.process.steps.${step.key}.title`),
+    description: t(`home.process.steps.${step.key}.description`),
+  }));
+
+  const advantages = advantageKeys.map((item) => ({
+    ...item,
+    title: t(`home.advantages.items.${item.key}.title`),
+    description: t(`home.advantages.items.${item.key}.description`),
+  }));
 
   return (
     <div className="min-h-screen">
@@ -180,10 +156,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
-              为什么选择我们
+              {t('home.advantages.title')}
             </motion.h2>
             <motion.p variants={itemVariants} className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              专业的技术团队，成熟的解决方案，为您的AI转型保驾护航
+              {t('home.advantages.description')}
             </motion.p>
           </motion.div>
 
@@ -222,10 +198,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
-              服务流程
+              {t('home.process.title')}
             </motion.h2>
             <motion.p variants={itemVariants} className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              标准化的服务流程，确保项目高效高质量交付
+              {t('home.process.description')}
             </motion.p>
           </motion.div>
 
@@ -281,10 +257,10 @@ export default function Home() {
             
             <div className="relative py-16 px-8 md:py-24 md:px-16 text-center">
               <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-                准备好开启AI转型之旅了吗？
+                {t('cta.readyForAI')}
               </motion.h2>
               <motion.p variants={itemVariants} className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
-                我们的专家团队随时为您提供支持，从需求分析到方案落地，全程陪伴
+                {t('cta.readyForAIDescription')}
               </motion.p>
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
@@ -298,7 +274,7 @@ export default function Home() {
                   href="mailto:c@m9ai.work"
                   className="inline-flex items-center justify-center px-8 py-4 bg-primary/30 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-primary/40 transition-all"
                 >
-                  发送邮件咨询
+                  {t('cta.emailUs')}
                 </Link>
               </motion.div>
             </div>

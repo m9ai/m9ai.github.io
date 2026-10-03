@@ -43,31 +43,32 @@ const VideoIcon = () => (
   </svg>
 );
 
-// 微信二维码数据
-const wechatLinks = [
-  {
-    name: '微信公众号',
-    qrCode: '/logos/w-logo-qr.jpg',
-    icon: <WeChatIcon />,
-  },
-  {
-    name: '微信视频号',
-    qrCode: '/logos/v-logo-qr.png',
-    icon: <VideoIcon />,
-  },
-];
-
 // Social links
 const socialLinks = [
-  { 
-    name: 'Email', 
-    href: 'mailto:c@m9ai.work', 
+  {
+    name: 'Email',
+    href: 'mailto:c@m9ai.work',
     icon: <EnvelopeIcon className="w-5 h-5" />
   },
 ];
 
 export default function Footer() {
   const t = useTranslations();
+
+  // 微信入口的文案要跟随语言，因此放在组件内计算而不能作为模块级常量
+  const wechatLinks = [
+    {
+      name: t('footer.social.wechatOfficial'),
+      qrCode: '/logos/w-logo-qr.jpg',
+      icon: <WeChatIcon />,
+    },
+    {
+      name: t('footer.social.wechatChannels'),
+      qrCode: '/logos/v-logo-qr.png',
+      icon: <VideoIcon />,
+    },
+  ];
+
   const currentYear = new Date().getFullYear();
   const [hoveredWechat, setHoveredWechat] = useState<string | null>(null);
 

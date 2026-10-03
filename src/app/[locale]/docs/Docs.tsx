@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from '@/lib/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
@@ -13,88 +13,34 @@ import {
   DocumentTextIcon,
 } from '@heroicons/react/24/outline';
 
-// 文档数据类型
+// 文档卡片用的最终数据形态
 interface Doc {
   id: string;
   title: string;
   description: string;
+  categoryKey: string;
   category: string;
   tags?: string[];
   updatedAt: string;
 }
 
-// 示例文档数据
-const docsData: Doc[] = [
-  {
-    id: 'introduction',
-    title: '欢迎使用水杉智境',
-    description: '了解水杉智境工作室的核心服务和快速开始指南',
-    category: '入门',
-    tags: ['intro', 'guide'],
-    updatedAt: '2025-02-09',
-  },
-  {
-    id: 'model-deployment',
-    title: '模型部署指南',
-    description: '了解如何在本地或私有云环境中部署大语言模型',
-    category: '技术文档',
-    tags: ['deployment', 'llm'],
-    updatedAt: '2025-02-09',
-  },
-  {
-    id: 'knowledge-base',
-    title: '本地知识库搭建',
-    description: '学习如何构建企业级本地知识库，实现私有数据的智能检索与问答',
-    category: '进阶教程',
-    tags: ['knowledge', 'rag', 'vector-db'],
-    updatedAt: '2025-02-09',
-  },
-  {
-    id: 'workflow',
-    title: 'AI 工作流搭建实战',
-    description: '使用可视化工具搭建自动化 AI 工作流，提升业务效率',
-    category: '进阶教程',
-    tags: ['workflow', 'automation', 'dify'],
-    updatedAt: '2025-02-09',
-  },
-  {
-    id: 'prompt-engineering',
-    title: '提示词工程最佳实践',
-    description: '掌握提示词设计技巧，提升大模型输出质量与可靠性',
-    category: '进阶教程',
-    tags: ['prompt', 'llm', 'optimization'],
-    updatedAt: '2025-02-09',
-  },
-  {
-    id: 'api-integration',
-    title: 'API 集成开发指南',
-    description: '学习如何将大模型能力集成到您的应用程序中',
-    category: '开发指南',
-    tags: ['api', 'sdk', 'integration'],
-    updatedAt: '2025-02-09',
-  },
-  {
-    id: 'api-reference',
-    title: 'API 参考文档',
-    description: '查看我们提供的 API 接口文档和示例代码',
-    category: '开发指南',
-    tags: ['api', 'reference'],
-    updatedAt: '2025-02-09',
-  },
-  {
-    id: 'faq',
-    title: '常见问题',
-    description: '查看用户最常问的问题和解答',
-    category: '帮助',
-    tags: ['faq', 'help'],
-    updatedAt: '2025-02-09',
-  },
+/* 文档元数据。
+   标题 / 描述 / 分类名此前直接写死中文，英文站会漏中文，且与 Docs 命名空间里
+   已经存在的 categories 文案重复。这里只保留与语言无关的部分，
+   展示文案统一从 Docs.items.<id>.* 取。 */
+const docsMeta: Array<Omit<Doc, 'title' | 'description' | 'category'>> = [
+  { id: 'introduction', categoryKey: 'gettingStarted', tags: ['intro', 'guide'], updatedAt: '2025-02-09' },
+  { id: 'model-deployment', categoryKey: 'technical', tags: ['deployment', 'llm'], updatedAt: '2025-02-09' },
+  { id: 'knowledge-base', categoryKey: 'advanced', tags: ['knowledge', 'rag', 'vector-db'], updatedAt: '2025-02-09' },
+  { id: 'workflow', categoryKey: 'advanced', tags: ['workflow', 'automation', 'dify'], updatedAt: '2025-02-09' },
+  { id: 'prompt-engineering', categoryKey: 'advanced', tags: ['prompt', 'llm', 'optimization'], updatedAt: '2025-02-09' },
+  { id: 'api-integration', categoryKey: 'developmentGuide', tags: ['api', 'sdk', 'integration'], updatedAt: '2025-02-09' },
+  { id: 'api-reference', categoryKey: 'developmentGuide', tags: ['api', 'reference'], updatedAt: '2025-02-09' },
+  { id: 'faq', categoryKey: 'help', tags: ['faq', 'help'], updatedAt: '2025-02-09' },
 ];
 
-// 获取所有分类
-const getCategories = (): string[] => {
-  return ['全部', ...Array.from(new Set(docsData.map(doc => doc.category)))];
-};
+// 分类筛选用 key（'all' 为占位，文案取 Docs.categories.all）
+const ALL_CATEGORY = 'all';
 
 // 文档卡片组件
 function DocCard({ doc }: { doc: Doc }) {
@@ -159,19 +105,36 @@ function CategoryTag({
 
 // 主文档页面组件
 export default function DocsHomePage() {
+  const t = useTranslations('Docs');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('全部');
-  const [filteredDocs, setFilteredDocs] = useState<Doc[]>(docsData);
+  const [selectedCategory, setSelectedCategory] = useState<string>(ALL_CATEGORY);
 
-  const categories = getCategories();
+  // 文案按当前 locale 解析。docsData 放进依赖，切换语言时能重新计算而不是沿用旧译文
+  const docsData = useMemo<Doc[]>(
+    () =>
+      docsMeta.map((meta) => ({
+        ...meta,
+        title: t(`items.${meta.id}.title`),
+        description: t(`items.${meta.id}.description`),
+        category: t(`categories.${meta.categoryKey}`),
+      })),
+    [t]
+  );
+
+  const categoryKeys = useMemo(
+    () => [ALL_CATEGORY, ...Array.from(new Set(docsMeta.map((doc) => doc.categoryKey)))],
+    []
+  );
+
+  const [filteredDocs, setFilteredDocs] = useState<Doc[]>(docsData);
 
   // 过滤文档
   useEffect(() => {
     let docs = docsData;
 
     // 按分类过滤
-    if (selectedCategory !== '全部') {
-      docs = docs.filter((doc) => doc.category === selectedCategory);
+    if (selectedCategory !== ALL_CATEGORY) {
+      docs = docs.filter((doc) => doc.categoryKey === selectedCategory);
     }
 
     // 按搜索词过滤
@@ -186,7 +149,7 @@ export default function DocsHomePage() {
     }
 
     setFilteredDocs(docs);
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, searchQuery, docsData]);
 
   return (
     <div className="min-h-screen">
@@ -208,10 +171,10 @@ export default function DocsHomePage() {
               Documentation
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-              文档中心
+              {t('hero.title')}
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
-              探索我们的产品文档、使用指南和技术参考
+              {t('hero.description')}
             </p>
 
             {/* 搜索框 */}
@@ -219,7 +182,7 @@ export default function DocsHomePage() {
               <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 w-5 h-5" />
               <input
                 type="text"
-                placeholder="搜索文档..."
+                placeholder={t('search.placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:border-primary/50 shadow-soft dark:shadow-none"
@@ -233,12 +196,12 @@ export default function DocsHomePage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* 分类过滤器 */}
         <div className="flex flex-wrap gap-2 mb-8 justify-center">
-          {categories.map((category) => (
+          {categoryKeys.map((key) => (
             <CategoryTag
-              key={category}
-              category={category}
-              isActive={selectedCategory === category}
-              onClick={() => setSelectedCategory(category)}
+              key={key}
+              category={t(`categories.${key}`)}
+              isActive={selectedCategory === key}
+              onClick={() => setSelectedCategory(key)}
             />
           ))}
         </div>
@@ -267,10 +230,10 @@ export default function DocsHomePage() {
                 <BookOpenIcon className="w-10 h-10 text-slate-400" />
               </div>
               <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
-                未找到文档
+                {t('search.noResults')}
               </h3>
               <p className="text-slate-500">
-                尝试调整搜索词或选择其他分类
+                {t('search.tryDifferent')}
               </p>
             </motion.div>
           )}

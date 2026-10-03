@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { apps } from '@/data/apps';
 import AppDetailClient from './AppDetailClient';
 
@@ -23,26 +23,29 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: AppPageProps): Promise<Metadata> {
   try {
     const { id, locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Store' });
     const app = apps.find(a => a.id === id);
 
     if (!app) {
       return {
-        title: '应用未找到',
-        description: '请求的应用不存在',
+        title: t('detail.notFoundTitle'),
+        description: t('detail.notFoundDescription'),
       };
     }
 
     return {
-      title: `${app.name} | 应用详情`,
-      description: app.description,
+      title: `${t(`apps.${app.id}.name`)} | ${t('detail.titleSuffix')}`,
+      description: t(`apps.${app.id}.description`),
       alternates: {
         canonical: `/${locale}/apps/${id}`,
       },
     };
   } catch {
+    // 拿不到 locale 时无法解析任何文案，交给 NotFound 页面处理，
+    // 这里只给一段不带任何语言倾向的兜底文案
     return {
-      title: '应用未找到',
-      description: '请求的应用不存在',
+      title: 'App',
+      description: 'App not available',
     };
   }
 }

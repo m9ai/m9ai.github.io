@@ -1,12 +1,14 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 interface VideoPlayerProps {
   src: string;
 }
 
 export default function VideoPlayer({ src }: VideoPlayerProps) {
+  const t = useTranslations('ui');
   // 支持多种视频源：直接 URL、YouTube、Bilibili
   const getEmbedUrl = (url: string): string => {
     // YouTube
@@ -49,7 +51,7 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
         className="w-full aspect-video"
         preload="metadata"
       >
-        您的浏览器不支持视频播放
+        {t('videoUnsupported')}
       </video>
     </div>
   );

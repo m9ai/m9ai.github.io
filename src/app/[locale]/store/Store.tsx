@@ -19,20 +19,6 @@ const CATEGORIES = ['all', 'tools', 'creativity', 'development', 'business'] as 
 type AppType = typeof APP_TYPES[number];
 type Category = typeof CATEGORIES[number];
 
-// Map translation keys to data values
-const TYPE_MAP: Record<string, string> = {
-  miniProgram: '小程序',
-  h5: 'H5',
-  app: 'App',
-};
-
-const CATEGORY_MAP: Record<string, string> = {
-  tools: '工具',
-  creativity: '创意',
-  development: '开发',
-  business: '商务',
-};
-
 export default function StorePage() {
   const t = useTranslations('Store');
   
@@ -41,24 +27,28 @@ export default function StorePage() {
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
-  // Filter apps based on criteria
+  // 过滤：名称与描述已搬到字典，因此要先把当前语言的文案取出来再做匹配，
+  // 否则英文站搜索中文原名永远搜不到（这是个原本就存在的行为 bug）
   const filteredApps = useMemo(() => {
+    const query = searchQuery.toLowerCase();
     return apps.filter(app => {
-      const matchesSearch = 
-        app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        app.description.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesType = 
-        selectedType === 'all' || 
-        app.type === TYPE_MAP[selectedType];
-      
-      const matchesCategory = 
-        selectedCategory === 'all' || 
-        app.category === CATEGORY_MAP[selectedCategory];
+      const name = t(`apps.${app.id}.name`).toLowerCase();
+      const description = t(`apps.${app.id}.description`).toLowerCase();
+      const matchesSearch =
+        name.includes(query) ||
+        description.includes(query);
+
+      const matchesType =
+        selectedType === 'all' ||
+        app.type === selectedType;
+
+      const matchesCategory =
+        selectedCategory === 'all' ||
+        app.category === selectedCategory;
 
       return matchesSearch && matchesType && matchesCategory;
     });
-  }, [searchQuery, selectedType, selectedCategory]);
+  }, [searchQuery, selectedType, selectedCategory, t]);
 
   // Active filters count
   const activeFiltersCount = 

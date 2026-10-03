@@ -71,15 +71,14 @@ export default function ContactPage() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-semibold mb-6"
             >
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              免费咨询开放
+              {t('hero.badge')}
             </motion.div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-              免费 Agent 落地咨询
+              {t('hero.title')}
             </h1>
             <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-8">
-              不确定业务如何AI化？我们的专家为您提供30分钟免费咨询，
-              帮您梳理场景、评估可行性、规划实施路径
+              {t('hero.description')}
             </p>
 
             {/* Value props */}
@@ -90,10 +89,10 @@ export default function ContactPage() {
               className="flex flex-wrap justify-center gap-4 mb-10"
             >
               {[
-                { icon: CheckCircleIcon, text: '0元免费咨询' },
-                { icon: ClockIcon, text: '2小时内响应' },
-                { icon: LightBulbIcon, text: '专业顾问1对1' },
-                { icon: ShieldCheckIcon, text: '无任何附加条件' },
+                { icon: CheckCircleIcon, text: t('valueProps.free') },
+                { icon: ClockIcon, text: t('valueProps.response') },
+                { icon: LightBulbIcon, text: t('valueProps.expert') },
+                { icon: ShieldCheckIcon, text: t('valueProps.noObligation') },
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white">
                   <item.icon className="w-5 h-5" />
@@ -112,7 +111,7 @@ export default function ContactPage() {
                 href="#free-consultation"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold rounded-xl shadow-lg hover:bg-slate-100 transition-all hover:shadow-xl hover:-translate-y-0.5"
               >
-                立即预约免费咨询
+                {t('hero.cta')}
                 <ArrowRightIcon className="w-5 h-5" />
               </a>
             </motion.div>
@@ -233,22 +232,22 @@ export default function ContactPage() {
               },
               {
                 icon: <PhoneIcon className="w-6 h-6" />,
-                label: t('contact.phoneLabel') || '电话',
+                label: t('contact.phoneLabel'),
                 value: '+86 176-0213-5810',
                 href: 'tel:+8617602135810',
                 color: 'bg-green-500',
               },
               {
                 icon: <MapPinIcon className="w-6 h-6" />,
-                label: t('contact.locationLabel') || '地址',
-                value: '中国 · 上海',
+                label: t('contact.locationLabel'),
+                value: t('info.locationValue'),
                 href: '#',
                 color: 'bg-orange-500',
               },
               {
                 icon: <QrCodeIcon className="w-6 h-6" />,
-                label: t('contact.wechatLabel') || '微信',
-                value: '扫码添加',
+                label: t('contact.wechatLabel'),
+                value: t('info.wechatValue'),
                 href: '#wechat',
                 color: 'bg-emerald-500',
               },

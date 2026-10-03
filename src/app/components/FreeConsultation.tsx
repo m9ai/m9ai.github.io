@@ -35,14 +35,16 @@ interface ConsultFormData {
   painPoint: string;
 }
 
-const businessTypes = [
-  { value: '', label: '请选择业务类型' },
-  { value: 'customer-service', label: '智能客服' },
-  { value: 'content-generation', label: '内容生成' },
-  { value: 'data-analysis', label: '数据分析' },
-  { value: 'process-automation', label: '流程自动化' },
-  { value: 'knowledge-base', label: '知识库搭建' },
-  { value: 'other', label: '其他场景' },
+/* 业务类型：value 是要提交给后端的稳定枚举值，label 文案交给 i18n。
+   此前这里直接写死中文，英文站会漏出一整排中文选项。 */
+const businessTypeOptions = [
+  { value: '', key: 'placeholder' },
+  { value: 'customer-service', key: 'customerService' },
+  { value: 'content-generation', key: 'contentGeneration' },
+  { value: 'data-analysis', key: 'dataAnalysis' },
+  { value: 'process-automation', key: 'processAutomation' },
+  { value: 'knowledge-base', key: 'knowledgeBase' },
+  { value: 'other', key: 'other' },
 ];
 
 const faqs = [
@@ -52,38 +54,30 @@ const faqs = [
   { questionKey: 'faq.q4', answerKey: 'faq.a4' },
 ];
 
-const processSteps = [
-  {
-    icon: ClockIcon,
-    title: '提交需求',
-    description: '填写基本信息，2小时内响应',
-    color: 'bg-blue-500',
-  },
-  {
-    icon: LightBulbIcon,
-    title: '深度沟通',
-    description: '30分钟专业顾问1对1咨询',
-    color: 'bg-slate-800',
-  },
-  {
-    icon: ShieldCheckIcon,
-    title: '方案输出',
-    description: '3个工作日内提供定制方案',
-    color: 'bg-green-500',
-  },
-  {
-    icon: PaperAirplaneIcon,
-    title: '自主决策',
-    description: '零压力，您决定是否合作',
-    color: 'bg-orange-500',
-  },
+/* 服务流程步骤同样只保留 key 与图标，文案取 consultation.process.* */
+const processStepKeys = [
+  { icon: ClockIcon, key: 'step1', color: 'bg-sky-600' },
+  { icon: LightBulbIcon, key: 'step2', color: 'bg-slate-800' },
+  { icon: ShieldCheckIcon, key: 'step3', color: 'bg-slate-700' },
+  { icon: PaperAirplaneIcon, key: 'step4', color: 'bg-primary' },
 ];
 
 export default function FreeConsultation() {
   const t = useTranslations('consultation');
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  
+
+  const businessTypes = businessTypeOptions.map((option) => ({
+    value: option.value,
+    label: t(`form.businessTypeOptions.${option.key}`),
+  }));
+
+  const processSteps = processStepKeys.map((step) => ({
+    ...step,
+    title: t(`process.${step.key}.title`),
+    description: t(`process.${step.key}.desc`),
+  }));
+
   const [formData, setFormData] = useState<ConsultFormData>({
     name: '',
     company: '',
@@ -124,9 +118,9 @@ export default function FreeConsultation() {
       }
 
       setIsSuccess(true);
-      toast.success('预约成功！我们会尽快与您联系');
+      toast.success(t('success.toast'));
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : '提交失败，请稍后重试');
+      toast.error(error instanceof Error ? error.message : t('errors.submitFailed'));
     } finally {
       setIsSubmitting(false);
     }
@@ -161,14 +155,14 @@ export default function FreeConsultation() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-semibold mb-6"
           >
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            {t('badge') || '免费咨询开放中'}
+            {t('badge')}
           </motion.div>
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-            {t('sectionTitle') || '免费AI应用咨询顾问'}
+            {t('sectionTitle')}
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300">
-            {t('sectionDescription') || '不确定 Agent 该用在哪个环节？我们的顾问提供 30 分钟免费咨询，帮您梳理场景、评估可行性、规划实施路径。'}
+            {t('sectionDescription')}
           </p>
         </motion.div>
 
@@ -180,10 +174,10 @@ export default function FreeConsultation() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16"
         >
           {[
-            { icon: ClockIcon, label: '2小时内响应', color: 'text-blue-600' },
-            { icon: LightBulbIcon, label: '专业顾问1对1', color: 'text-primary' },
-            { icon: ShieldCheckIcon, label: '0元免费咨询', color: 'text-green-600' },
-            { icon: CheckCircleIcon, label: '无任何附加条件', color: 'text-orange-600' },
+            { icon: ClockIcon, label: t('valueProps.response'), color: 'text-primary' },
+            { icon: LightBulbIcon, label: t('valueProps.expert'), color: 'text-sky-600' },
+            { icon: ShieldCheckIcon, label: t('valueProps.free'), color: 'text-slate-700' },
+            { icon: CheckCircleIcon, label: t('valueProps.noObligation'), color: 'text-slate-500' },
           ].map((item, index) => (
             <div key={index} className="flex flex-col items-center text-center p-4">
               <item.icon className={`w-8 h-8 ${item.color} mb-2`} />
@@ -211,10 +205,10 @@ export default function FreeConsultation() {
                     <CheckCircleIcon className="w-10 h-10 text-green-600 dark:text-green-400" />
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
-                    预约成功！
+                    {t('success.title')}
                   </h3>
                   <p className="text-slate-600 dark:text-slate-300 max-w-md mx-auto mb-6">
-                    我们的顾问将在2个工作小时内与您联系，请保持电话畅通
+                    {t('success.message')}
                   </p>
                   <button
                     onClick={() => {
@@ -223,17 +217,17 @@ export default function FreeConsultation() {
                     }}
                     className="text-primary font-medium hover:underline"
                   >
-                    继续预约其他咨询
+                    {t('success.bookAnother')}
                   </button>
                 </motion.div>
               ) : (
                 <>
                   <div className="mb-8">
                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                      立即预约免费咨询
+                      {t('form.title')}
                     </h3>
                     <p className="text-slate-500 dark:text-slate-400">
-                      填写以下信息，让我们的顾问更精准地为您服务
+                      {t('form.subtitle')}
                     </p>
                   </div>
 
@@ -241,7 +235,7 @@ export default function FreeConsultation() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          您的姓名 <span className="text-red-500">*</span>
+                          {t('form.nameLabel')} <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
                           <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -252,14 +246,14 @@ export default function FreeConsultation() {
                             onChange={handleChange}
                             required
                             className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                            placeholder="请输入姓名"
+                            placeholder={t('form.namePlaceholder')}
                           />
                         </div>
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          公司名称 <span className="text-red-500">*</span>
+                          {t('form.companyLabel')} <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
                           <BuildingOfficeIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -270,7 +264,7 @@ export default function FreeConsultation() {
                             onChange={handleChange}
                             required
                             className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                            placeholder="请输入公司名"
+                            placeholder={t('form.companyPlaceholder')}
                           />
                         </div>
                       </div>
@@ -279,7 +273,7 @@ export default function FreeConsultation() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          联系电话 <span className="text-red-500">*</span>
+                          {t('form.phoneLabel')} <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
                           <PhoneIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -290,14 +284,14 @@ export default function FreeConsultation() {
                             onChange={handleChange}
                             required
                             className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                            placeholder="请输入手机号"
+                            placeholder={t('form.phonePlaceholder')}
                           />
                         </div>
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          业务类型 <span className="text-red-500">*</span>
+                          {t('form.businessTypeLabel')} <span className="text-red-500">*</span>
                         </label>
                         <select
                           name="businessType"
@@ -317,7 +311,7 @@ export default function FreeConsultation() {
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                        目前遇到的痛点或需求
+                        {t('form.painPointLabel')}
                       </label>
                       <div className="relative">
                         <ChatBubbleLeftIcon className="absolute left-4 top-4 w-5 h-5 text-slate-400" />
@@ -327,7 +321,7 @@ export default function FreeConsultation() {
                           onChange={handleChange}
                           rows={4}
                           className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
-                          placeholder="简单描述您的业务场景和希望解决的问题..."
+                          placeholder={t('form.painPointPlaceholder')}
                         />
                       </div>
                     </div>
@@ -340,18 +334,18 @@ export default function FreeConsultation() {
                       {isSubmitting ? (
                         <>
                           <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          提交中...
+                          {t('form.submitting')}
                         </>
                       ) : (
                         <>
-                          立即预约免费咨询
+                          {t('form.submitButton')}
                           <ArrowRightIcon className="w-5 h-5" />
                         </>
                       )}
                     </button>
 
                     <p className="text-center text-xs text-slate-500 dark:text-slate-400">
-                      提交即表示您同意我们的隐私政策，我们不会向第三方泄露您的信息
+                      {t('form.privacyNotice')}
                     </p>
                   </form>
                 </>
@@ -369,7 +363,7 @@ export default function FreeConsultation() {
             {/* Process */}
             <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-soft border border-slate-200 dark:border-slate-700">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
-                服务流程
+                {t('process.title')}
               </h3>
               <div className="space-y-6">
                 {processSteps.map((step, index) => (
@@ -393,7 +387,7 @@ export default function FreeConsultation() {
             {/* FAQ */}
             <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-soft border border-slate-200 dark:border-slate-700">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
-                {t('faq.title') || '常见问题'}
+                {t('faq.title')}
               </h3>
               <div className="space-y-3">
                 {faqs.map((faq, index) => (
@@ -442,11 +436,11 @@ export default function FreeConsultation() {
         >
           <div className="text-center mb-8">
             <p className="text-sm text-slate-500 dark:text-slate-400">
-              已服务 100+ 企业客户，涵盖金融、医疗、制造、零售等多个行业
+              {t('trust.title')}，{t('trust.subtitle')}
             </p>
           </div>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-50">
-            {['某知名银行', '某三甲医院', '某大型制造企业', '某连锁零售品牌'].map((client, index) => (
+            {(t.raw('trust.clients') as string[]).map((client, index) => (
               <div key={index} className="text-slate-400 dark:text-slate-600 font-semibold">
                 {client}
               </div>

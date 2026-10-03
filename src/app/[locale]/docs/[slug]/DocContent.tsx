@@ -12,14 +12,32 @@ import {
 } from '@heroicons/react/24/outline';
 import type { Doc } from '@/lib/docs';
 import { useEffect, useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { LanguageIcon } from '@heroicons/react/24/outline';
 import { MarkdownRenderer } from '@/app/components/markdown';
 
 interface DocContentProps {
   doc: Doc;
-  allDocs: Array<{ slug: string; title: string; category: string }>;
+  allDocs: Array<{ slug: string; title: string; category: string; categoryKey: string }>;
+  /** 当前 slug 是否存在英文正文，由服务端探测后传入 */
+  hasEnglishVersion: boolean;
 }
 
-export default function DocContent({ doc, allDocs }: DocContentProps) {
+export default function DocContent({ doc, allDocs, hasEnglishVersion }: DocContentProps) {
+  const t = useTranslations('Docs');
+  const locale = useLocale();
+
+  /* 导航里的标题与分类名：优先用字典里的译文，
+     没收录进字典的新文档回退到 markdown frontmatter 的原始值。 */
+  const has = (key: string) => {
+    try { return t.has(key); } catch { return false; }
+  };
+  const titleOf = (slug: string, fallback: string) =>
+    has(`items.${slug}.title`) ? t(`items.${slug}.title`) : fallback;
+  const categoryOf = (entry: { category: string; categoryKey: string }) =>
+    entry.categoryKey ? t(`categories.${entry.categoryKey}`) : entry.category;
+  const entryCategoryKey = has(`categories.${doc.categoryKey}`) ? doc.categoryKey : '';
+  const docCategory = entryCategoryKey ? t(`categories.${entryCategoryKey}`) : doc.category;
   const [headings, setHeadings] = useState<Array<{ id: string; text: string; level: number }>>([]);
   const [activeHeading, setActiveHeading] = useState('');
 
@@ -64,8 +82,9 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
 
   // 按分类分组文档
   const docsByCategory = allDocs.reduce((acc, d) => {
-    if (!acc[d.category]) acc[d.category] = [];
-    acc[d.category].push(d);
+    const key = d.categoryKey || d.category;
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(d);
     return acc;
   }, {} as Record<string, typeof allDocs>);
 
@@ -82,14 +101,14 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
               <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center group-hover:bg-primary/10 dark:group-hover:bg-primary/10 transition-colors">
                 <ArrowLeftIcon className="w-4 h-4" />
               </div>
-              <span className="text-sm font-medium">返回文档列表</span>
+              <span className="text-sm font-medium">{t('detail.backToList')}</span>
             </Link>
             <nav className="hidden sm:flex items-center gap-2 text-sm text-slate-500">
-              <Link href="/" className="hover:text-primary transition-colors">首页</Link>
+              <Link href="/" className="hover:text-primary transition-colors">{t('detail.home')}</Link>
               <ChevronRightIcon className="w-3 h-3" />
-              <Link href="/docs" className="hover:text-primary transition-colors">文档中心</Link>
+              <Link href="/docs" className="hover:text-primary transition-colors">{t('detail.docsHome')}</Link>
               <ChevronRightIcon className="w-3 h-3" />
-              <span className="text-slate-900 dark:text-white font-medium">{doc.category}</span>
+              <span className="text-slate-900 dark:text-white font-medium">{titleOf(doc.slug, doc.title)}</span>
             </nav>
           </div>
         </div>
@@ -103,13 +122,13 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
               <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   <DocumentTextIcon className="w-4 h-4 text-primary" />
-                  文档导航
+                  {t('detail.navigation')}
                 </h3>
                 <nav className="space-y-4">
-                  {Object.entries(docsByCategory).map(([category, docs]) => (
-                    <div key={category}>
+                  {Object.entries(docsByCategory).map(([categoryKey, docs]) => (
+                    <div key={categoryKey}>
                       <h4 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                        {category}
+                        {has(`categories.${categoryKey}`) ? t(`categories.${categoryKey}`) : docs[0]?.category ?? categoryKey}
                       </h4>
                       <ul className="space-y-1">
                         {docs.map((d) => (
@@ -122,7 +141,7 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
                                   : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700'
                               }`}
                             >
-                              {d.title}
+                              {titleOf(d.slug, d.title)}
                             </Link>
                           </li>
                         ))}
@@ -146,16 +165,36 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
               <div className="flex items-center gap-3 mb-6">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary dark:text-primary rounded-full text-sm font-medium">
                   <FolderIcon className="w-3.5 h-3.5" />
-                  {doc.category}
+                  {docCategory}
                 </span>
                 <span className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
                   <ClockIcon className="w-4 h-4" />
-                  更新于 {doc.updatedAt}
+                  {t('detail.updatedAt', { date: doc.updatedAt })}
                 </span>
               </div>
 
+              {locale === 'en' && !hasEnglishVersion && (
+                <div className="flex items-start gap-3 p-4 mb-6 rounded-xl border border-amber-200 bg-amber-50 dark:border-amber-500/30 dark:bg-amber-500/10">
+                  <LanguageIcon className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+                  <div className="text-sm">
+                    <p className="font-medium text-amber-900 dark:text-amber-200">
+                      {t('detail.englishPending')}
+                    </p>
+                    <p className="mt-1 text-amber-800/80 dark:text-amber-200/70">
+                      {t('detail.englishPendingNote')}{' '}
+                      <a
+                        href={`/zh/docs/${doc.slug}`}
+                        className="font-medium underline underline-offset-2 hover:text-amber-900 dark:hover:text-amber-100"
+                      >
+                        {t('detail.readChinese')}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              )}
+
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-                {doc.title}
+                {titleOf(doc.slug, doc.title)}
               </h1>
 
               {doc.description && (
@@ -203,7 +242,7 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
                 className="flex items-center gap-2 text-slate-500 hover:text-primary transition-colors"
               >
                 <ArrowLeftIcon className="w-4 h-4" />
-                <span>返回文档列表</span>
+                <span>{t('detail.backToList')}</span>
               </Link>
             </motion.div>
           </main>
@@ -214,7 +253,7 @@ export default function DocContent({ doc, allDocs }: DocContentProps) {
               {headings.length > 0 && (
                 <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 shadow-sm">
                   <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">
-                    目录
+                    {t('detail.toc')}
                   </h3>
                   <nav className="space-y-1">
                     {headings.map((heading) => (
