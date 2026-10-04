@@ -235,6 +235,35 @@ body {
   color: inherit;
 }
 
+/* 跳转到主内容（WCAG 2.4.1 绕过区块）
+   视觉上隐藏在页面外，但仍在 DOM 与 Tab 顺序里 —— 不能用 display:none 或
+   visibility:hidden，那样键盘用户根本 Tab 不到它。 */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: transform 0.15s ease-out;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--primary-foreground);
+  outline-offset: 2px;
+}
+
+/* 主内容容器：作为跳转目标需要能接收焦点，否则 Tab 之后继续按会回到页面顶部 */
+#main-content:focus {
+  outline: none;
+}
+
 /* Noise texture overlay */
 .noise-overlay::before {
   content: '';

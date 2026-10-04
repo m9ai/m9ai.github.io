@@ -42,7 +42,7 @@ function FormField({ label, name, type = 'text', value, onChange, placeholder, i
         {required && <span className="text-accent ml-1">*</span>}
       </label>
       <div className="relative">
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
           {icon}
         </div>
         {isTextarea ? (
@@ -52,7 +52,7 @@ function FormField({ label, name, type = 'text', value, onChange, placeholder, i
             value={value}
             onChange={onChange}
             rows={4}
-            className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+            className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
             placeholder={placeholder}
           />
         ) : (
@@ -63,7 +63,7 @@ function FormField({ label, name, type = 'text', value, onChange, placeholder, i
             value={value}
             onChange={onChange}
             required={required}
-            className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+            className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
             placeholder={placeholder}
           />
         )}

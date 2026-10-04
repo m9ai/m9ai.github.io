@@ -61,7 +61,7 @@ function DocCard({ doc }: { doc: Doc }) {
             <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
               {doc.description}
             </p>
-            <div className="flex items-center gap-4 mt-3 text-xs text-slate-400">
+            <div className="flex items-center gap-4 mt-3 text-xs text-slate-500">
               <span className="flex items-center gap-1">
                 <FolderIcon className="w-3 h-3" />
                 {doc.category}
@@ -185,7 +185,7 @@ export default function DocsHomePage() {
                 placeholder={t('search.placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:border-primary/50 shadow-soft dark:shadow-none"
+                className="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-2xl text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:border-primary/50 shadow-soft dark:shadow-none"
               />
             </div>
           </motion.div>

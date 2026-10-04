@@ -368,7 +368,8 @@
       "docs": "文档"
     },
     "language": "语言",
-    "themeToggle": "切换主题"
+    "themeToggle": "切换主题",
+    "skipToContent": "跳到主内容"
   },
   "search": {
     "buttonLabel": "搜索",
@@ -394,7 +395,9 @@
       "doc": "文档",
       "page": "页面",
       "case": "案例"
-    }
+    },
+    "title": "站内搜索",
+    "clear": "清空搜索"
   },
   "footer": {
     "logoAlt": "水杉智境工作室标志",

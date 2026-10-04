@@ -245,7 +245,7 @@ export default function FreeConsultation() {
                             value={formData.name}
                             onChange={handleChange}
                             required
-                            className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                            className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                             placeholder={t('form.namePlaceholder')}
                           />
                         </div>
@@ -263,7 +263,7 @@ export default function FreeConsultation() {
                             value={formData.company}
                             onChange={handleChange}
                             required
-                            className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                            className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                             placeholder={t('form.companyPlaceholder')}
                           />
                         </div>
@@ -283,7 +283,7 @@ export default function FreeConsultation() {
                             value={formData.phone}
                             onChange={handleChange}
                             required
-                            className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                            className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                             placeholder={t('form.phonePlaceholder')}
                           />
                         </div>
@@ -320,7 +320,7 @@ export default function FreeConsultation() {
                           value={formData.painPoint}
                           onChange={handleChange}
                           rows={4}
-                          className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                          className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
                           placeholder={t('form.painPointPlaceholder')}
                         />
                       </div>
@@ -441,7 +441,7 @@ export default function FreeConsultation() {
           </div>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-50">
             {(t.raw('trust.clients') as string[]).map((client, index) => (
-              <div key={index} className="text-slate-400 dark:text-slate-600 font-semibold">
+              <div key={index} className="text-slate-500 dark:text-slate-600 font-semibold">
                 {client}
               </div>
             ))}

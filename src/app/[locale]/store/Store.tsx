@@ -107,12 +107,12 @@ export default function StorePage() {
                 placeholder={t('searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                className="w-full pl-12 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-600"
                 >
                   <XMarkIcon className="w-5 h-5" />
                 </button>
@@ -160,7 +160,7 @@ export default function StorePage() {
                   className={`p-2 rounded-lg transition-all ${
                     viewMode === 'grid' 
                       ? 'bg-white dark:bg-slate-700 text-primary shadow-sm' 
-                      : 'text-slate-400 hover:text-slate-600'
+                      : 'text-slate-500 hover:text-slate-600'
                   }`}
                 >
                   <Squares2X2Icon className="w-5 h-5" />
@@ -170,7 +170,7 @@ export default function StorePage() {
                   className={`p-2 rounded-lg transition-all ${
                     viewMode === 'list' 
                       ? 'bg-white dark:bg-slate-700 text-primary shadow-sm' 
-                      : 'text-slate-400 hover:text-slate-600'
+                      : 'text-slate-500 hover:text-slate-600'
                   }`}
                 >
                   <ListBulletIcon className="w-5 h-5" />

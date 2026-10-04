@@ -87,8 +87,13 @@ export default function Navbar() {
   };
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <>
+      {/* 键盘用户的第一个可聚焦元素：直接跳过导航进入正文 */}
+      <a href="#main-content" className="skip-link">
+        {t('navbar.skipToContent')}
+      </a>
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-soft' 
           : 'bg-transparent'
@@ -289,7 +294,7 @@ export default function Navbar() {
               
               {/* Mobile Theme Toggle */}
               <div className="pt-4 border-t border-border mt-4">
-                <p className="px-4 text-xs font-medium text-slate-400 uppercase tracking-wider mb-2">
+                <p className="px-4 text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">
                   {t('theme.title') || 'Theme'}
                 </p>
                 <div className="flex gap-2 px-4">
@@ -312,7 +317,7 @@ export default function Navbar() {
 
               {/* Mobile Language Switcher */}
               <div className="pt-4">
-                <p className="px-4 text-xs font-medium text-slate-400 uppercase tracking-wider mb-2">
+                <p className="px-4 text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">
                   {t('navbar.language')}
                 </p>
                 <div className="flex gap-2 px-4">
@@ -337,5 +342,6 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
+    </>
   );
 }

@@ -76,7 +76,7 @@ export default function CodeBlock({ language, code }: CodeBlockProps) {
           : 'bg-white border-slate-200'
       }`}>
         <span className={`text-xs uppercase font-semibold tracking-wider ${
-          isDark ? 'text-slate-400' : 'text-slate-500'
+          isDark ? 'text-slate-500' : 'text-slate-500'
         }`}>
           {language || 'text'}
         </span>
@@ -86,7 +86,7 @@ export default function CodeBlock({ language, code }: CodeBlockProps) {
             copied
               ? 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20'
               : isDark
-                ? 'text-slate-400 hover:text-slate-100 hover:bg-slate-700'
+                ? 'text-slate-500 hover:text-slate-100 hover:bg-slate-700'
                 : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200'
           }`}
           aria-label={copied ? t('copied') : t('copyCode')}

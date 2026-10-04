@@ -153,7 +153,7 @@ export default function AppCard({ app, viewMode = 'grid', index = 0 }: AppCardPr
           {/* Rating */}
           <div className="flex items-center justify-between mb-4">
             <StarRating rating={app.rating} />
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-500">
               {t('card.featureCount', { count: features.length })}
             </span>
           </div>
@@ -169,7 +169,7 @@ export default function AppCard({ app, viewMode = 'grid', index = 0 }: AppCardPr
               </span>
             ))}
             {features.length > 2 && (
-              <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-400 text-xs rounded-lg">
+              <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-500 text-xs rounded-lg">
                 +{features.length - 2}
               </span>
             )}

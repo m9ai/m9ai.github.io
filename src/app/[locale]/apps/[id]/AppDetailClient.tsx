@@ -143,7 +143,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
                 className="aspect-video bg-slate-200 dark:bg-slate-700 rounded-xl overflow-hidden"
               >
                 {/* Placeholder for screenshot */}
-                <div className="w-full h-full flex items-center justify-center text-slate-400">
+                <div className="w-full h-full flex items-center justify-center text-slate-500">
                   <div className="text-center">
                     <SparklesIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
                     <span className="text-sm">{t('detail.screenshotIndex', { index: index + 1 })}</span>

@@ -100,7 +100,7 @@ export default function Footer() {
                   {t('footer.logoText')}
                 </span>
               </Link>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-sm">
+              <p className="text-slate-500 text-sm leading-relaxed mb-6 max-w-sm">
                 {t('footer.description') || 'Enterprise-grade AI solutions for model deployment, application development, and intelligent agent customization.'}
               </p>
               
@@ -116,7 +116,7 @@ export default function Footer() {
                     onTouchStart={() => setHoveredWechat(wechat.name)}
                   >
                     <button
-                      className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-800 hover:bg-primary text-slate-400 hover:text-white transition-all"
+                      className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-800 hover:bg-primary text-slate-500 hover:text-white transition-all"
                       aria-label={wechat.name}
                     >
                       {wechat.icon}
@@ -149,7 +149,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-800 hover:bg-primary text-slate-400 hover:text-white transition-all"
+                    className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-800 hover:bg-primary text-slate-500 hover:text-white transition-all"
                     aria-label={social.name}
                   >
                     {social.icon}
@@ -166,7 +166,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link 
                       href={link.href}
-                      className="text-slate-400 hover:text-primary transition-colors text-sm"
+                      className="text-slate-500 hover:text-primary transition-colors text-sm"
                     >
                       {link.label}
                     </Link>
@@ -183,7 +183,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link 
                       href={link.href}
-                      className="text-slate-400 hover:text-primary transition-colors text-sm"
+                      className="text-slate-500 hover:text-primary transition-colors text-sm"
                     >
                       {t(link.label)}
                     </Link>
@@ -200,7 +200,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link 
                       href={link.href}
-                      className="text-slate-400 hover:text-primary transition-colors text-sm"
+                      className="text-slate-500 hover:text-primary transition-colors text-sm"
                     >
                       {t(link.label)}
                     </Link>
@@ -222,7 +222,7 @@ export default function Footer() {
             
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-2 text-slate-400 hover:text-primary transition-colors text-sm group"
+              className="flex items-center gap-2 text-slate-500 hover:text-primary transition-colors text-sm group"
             >
               {t('footer.backToTop') || 'Back to top'}
               <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-800 group-hover:bg-primary group-hover:text-white transition-all">

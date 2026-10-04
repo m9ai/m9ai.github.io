@@ -361,7 +361,8 @@
       "docs": "Docs"
     },
     "language": "Language",
-    "themeToggle": "Toggle Theme"
+    "themeToggle": "Toggle Theme",
+    "skipToContent": "Skip to main content"
   },
   "search": {
     "buttonLabel": "Search",
@@ -387,7 +388,9 @@
       "doc": "Doc",
       "page": "Page",
       "case": "Case"
-    }
+    },
+    "title": "Site search",
+    "clear": "Clear search"
   },
   "footer": {
     "logoAlt": "Metasequoia Studio Logo",
