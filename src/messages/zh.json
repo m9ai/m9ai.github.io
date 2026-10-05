@@ -356,7 +356,7 @@
     "logo": "水杉智境",
     "services": "服务",
     "docs": "文档",
-    "store": "商店",
+    "store": "Skill 市集",
     "cta": "开始合作",
     "menu": {
       "home": "首页",
@@ -364,7 +364,7 @@
       "cases": "案例",
       "partners": "合作伙伴",
       "contact": "联系我们",
-      "store": "商店",
+      "store": "Skill 市集",
       "docs": "文档"
     },
     "language": "语言",
@@ -382,7 +382,7 @@
     "quickLinks": {
       "services": "服务",
       "docs": "文档",
-      "store": "应用商店",
+      "store": "Skill 市集",
       "contact": "联系我们"
     },
     "proTip": "AI 智能搜索",
@@ -924,89 +924,132 @@
     }
   },
   "Store": {
-    "title": "应用商店",
-    "description": "探索我们开发的AI应用，提升您的工作效率和创造力",
-    "searchPlaceholder": "搜索应用...",
-    "types": {
-      "all": "全部类型",
-      "miniProgram": "小程序",
-      "h5": "H5",
-      "app": "App"
-    },
+    "badge": "Skill 市集",
+    "title": "Skill 市集",
+    "description": "面向财务、法务、运营、研发等角色的本地 Skill：零第三方依赖、纯本地运行，业务数据不出本机。",
+    "searchPlaceholder": "搜索 Skill，或按分类、角色筛选...",
     "categories": {
       "all": "全部分类",
-      "tools": "工具",
-      "creativity": "创意",
-      "development": "开发",
-      "business": "商务"
+      "finance": "财税计算",
+      "legal": "法务合规",
+      "data": "数据统计",
+      "content": "内容合规",
+      "files": "文件批处理",
+      "document": "文档处理",
+      "devops": "研发运维",
+      "travel": "出行交通",
+      "life": "生活服务"
     },
-    "noAppsFound": "未找到匹配的应用",
+    "roles": {
+      "all": "全部角色",
+      "finance": "财务",
+      "legal": "法务",
+      "hr": "HR",
+      "admin": "行政",
+      "ops": "运营",
+      "sales": "销售",
+      "marketing": "市场",
+      "executive": "管理层",
+      "dev": "研发",
+      "devops": "运维",
+      "design": "设计",
+      "general": "通用"
+    },
+    "status": {
+      "all": "全部状态",
+      "available": "可用",
+      "developing": "开发中",
+      "planned": "规划中"
+    },
+    "runtime": {
+      "zero": "零第三方依赖",
+      "shell": "Shell 脚本",
+      "external": "需外部依赖"
+    },
+    "offline": {
+      "full": "完全离线可用",
+      "cache": "联网同步 + 本地缓存"
+    },
+    "privacy": {
+      "localOnly": "数据不出本地"
+    },
+    "view": {
+      "grid": "网格视图",
+      "list": "列表视图"
+    },
+    "activeFilters": "当前筛选：",
+    "noSkillsFound": "未找到匹配的 Skill",
     "clearFilters": "清除筛选条件",
-    "showingResults": "显示 {count} 个应用，共 {total} 个",
+    "showingResults": "显示 {count} 个 Skill，共 {total} 个",
     "tryAdjustingFilters": "尝试调整搜索词或筛选条件",
+    "footnote": "本页为 Skill 目录而非交易货架：所有条目均可免费获取。标注「开发中」与「规划中」的条目尚未发布，仅用于说明路线图。",
     "meta": {
-      "title": "应用商店 | 水杉智境工作室",
-      "description": "探索我们开发的AI应用，提升您的工作效率和创造力"
+      "title": "Skill 市集 | 水杉智境工作室",
+      "description": "面向财务、法务、运营、研发等角色的本地 Skill 目录：零第三方依赖、纯本地运行，业务数据不出本机。"
     },
     "card": {
-      "view": "查看",
-      "featureCount": "{count} 功能",
-      "details": "查看详情"
+      "details": "查看详情",
+      "installPending": "尚未发布 · 发布后同样通过技能包或命令行安装"
     },
     "detail": {
-      "backToList": "返回应用商店",
+      "backToList": "返回 Skill 市集",
       "home": "首页",
-      "store": "应用商店",
-      "tryNow": "立即体验",
-      "visitApp": "访问应用",
-      "features": "核心功能",
-      "screenshots": "应用截图",
-      "screenshotIndex": "截图 {index}",
-      "notFoundTitle": "应用未找到",
-      "notFoundDescription": "请求的应用不存在",
-      "titleSuffix": "应用详情"
-    },
-    "apps": {
-      "ai-assistant": {
-        "name": "智能AI助手",
-        "description": "基于大语言模型的智能对话助手，支持多轮对话和复杂任务处理",
-        "features": [
-          "自然语言理解",
-          "多轮对话",
-          "任务自动化",
-          "知识库集成"
-        ]
+      "store": "Skill 市集",
+      "capabilities": "能力清单",
+      "specs": "规格",
+      "spec": {
+        "scenarios": "适用场景",
+        "roles": "适用角色",
+        "runtime": "运行时",
+        "offline": "离线能力",
+        "privacy": "数据边界",
+        "repo": "技能包"
       },
-      "image-generator": {
-        "name": "图像生成大师",
-        "description": "AI驱动的图像生成工具，支持文本转图像和图像风格迁移",
-        "features": [
-          "文本生成图像",
-          "风格迁移",
-          "高清分辨率",
-          "批量处理"
-        ]
+      "statusNote": {
+        "available": "该 Skill 已发布可用。",
+        "developing": "该 Skill 正在开发中，尚未发布。以下描述的是规划中的能力范围，最终实现可能调整。",
+        "planned": "该 Skill 处于规划阶段，尚未实现。以下描述的是规划中的能力范围，不代表当前可用。"
       },
-      "code-helper": {
-        "name": "代码助手",
-        "description": "智能代码生成和优化工具，支持多种编程语言和框架",
-        "features": [
-          "代码生成",
-          "错误修复",
-          "性能优化",
-          "文档生成"
-        ]
+      "install": {
+        "cta": "安装方式",
+        "title": "安装方式",
+        "description": "技能包遵循 Agent Skills 开放标准（一个目录 + 一份 SKILL.md），不需要申请或授权。按你使用的客户端选一条路径装上，之后在对话里直接描述任务即可触发。",
+        "recommended": "推荐",
+        "package": {
+          "label": "导入技能包",
+          "desc": "下载技能包 zip，在客户端中选择「本地导入 / 上传技能包」载入。压缩包顶层能看到 SKILL.md 即说明包结构正确。",
+          "download": "下载技能包"
+        },
+        "cli": {
+          "label": "命令行安装",
+          "desc": "适合支持 Agent Skills 标准的命令行客户端，一条命令把技能同步到本机技能目录。",
+          "hint": "用 -a 指定客户端（如 claude-code、codex）；不带 -a 时会让你选择。"
+        },
+        "manual": {
+          "label": "手动解压",
+          "desc": "也可以直接把 zip 解压到客户端的技能目录，无需执行安装程序。zip 自包含、可离线分发，适合放进内网文件服务器统一部署。",
+          "pathsTitle": "常见技能目录位置",
+          "paths": {
+            "workbuddy": "WorkBuddy",
+            "workbuddyPath": "设置 → 技能目录（以客户端显示为准）",
+            "claudeUser": "Claude Code（用户级）",
+            "claudeUserPath": "~/.claude/skills/",
+            "claudeProject": "Claude Code（项目级）",
+            "claudeProjectPath": ".claude/skills/",
+            "otherNote": "其他支持 Agent Skills 标准的客户端同理：把技能目录整个放进它的 skills 目录下即可。"
+          }
+        },
+        "notReleased": "该 Skill 尚未发布，目前没有可下载的技能包。发布后将提供与上方相同的安装方式。",
+        "version": "当前版本"
       },
-      "data-analyzer": {
-        "name": "数据分析专家",
-        "description": "AI驱动的数据分析工具，支持数据可视化和预测分析",
-        "features": [
-          "数据可视化",
-          "预测分析",
-          "异常检测",
-          "报告生成"
-        ]
-      }
+      "upsell": {
+        "title": "需要接入内部系统或私有化部署？",
+        "description": "现成 Skill 覆盖通用场景；涉及内部数据源、私有模型与合规要求时，我们可以按你的环境定制。",
+        "cta": "了解定制服务"
+      },
+      "notFoundTitle": "Skill 未找到",
+      "notFoundDescription": "请求的 Skill 不存在",
+      "titleSuffix": "Skill 详情"
     }
   },
   "Docs": {

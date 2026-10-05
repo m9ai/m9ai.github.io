@@ -349,7 +349,7 @@
     "logo": "Metasequoia AI",
     "services": "Services",
     "docs": "Docs",
-    "store": "Store",
+    "store": "Skills",
     "cta": "Get Started",
     "menu": {
       "home": "Home",
@@ -357,7 +357,7 @@
       "cases": "Cases",
       "partners": "Partners",
       "contact": "Contact",
-      "store": "Store",
+      "store": "Skills",
       "docs": "Docs"
     },
     "language": "Language",
@@ -375,7 +375,7 @@
     "quickLinks": {
       "services": "Services",
       "docs": "Documentation",
-      "store": "App Store",
+      "store": "Skills",
       "contact": "Contact"
     },
     "proTip": "AI Smart Search",
@@ -928,89 +928,132 @@
     }
   },
   "Store": {
-    "title": "App Store",
-    "description": "Explore our AI applications to enhance your productivity and creativity",
-    "searchPlaceholder": "Search apps...",
-    "types": {
-      "all": "All Types",
-      "miniProgram": "Mini Program",
-      "h5": "H5",
-      "app": "App"
-    },
+    "badge": "Skill Hub",
+    "title": "Skill Hub",
+    "description": "Local skills for finance, legal, operations and engineering teams: no third-party dependencies, running entirely on your machine so business data never leaves it.",
+    "searchPlaceholder": "Search skills, or filter by category and role...",
     "categories": {
       "all": "All Categories",
-      "tools": "Tools",
-      "creativity": "Creativity",
-      "development": "Development",
-      "business": "Business"
+      "finance": "Finance & Tax",
+      "legal": "Legal & Compliance",
+      "data": "Data Statistics",
+      "content": "Content Compliance",
+      "files": "File Batch Processing",
+      "document": "Document Processing",
+      "devops": "Dev & Ops",
+      "travel": "Travel & Transit",
+      "life": "Local Life"
     },
-    "noAppsFound": "No matching apps found",
+    "roles": {
+      "all": "All Roles",
+      "finance": "Finance",
+      "legal": "Legal",
+      "hr": "HR",
+      "admin": "Admin",
+      "ops": "Operations",
+      "sales": "Sales",
+      "marketing": "Marketing",
+      "executive": "Executive",
+      "dev": "Engineering",
+      "devops": "Ops",
+      "design": "Design",
+      "general": "General"
+    },
+    "status": {
+      "all": "All Status",
+      "available": "Available",
+      "developing": "In development",
+      "planned": "Planned"
+    },
+    "runtime": {
+      "zero": "No third-party deps",
+      "shell": "Shell script",
+      "external": "External deps required"
+    },
+    "offline": {
+      "full": "Fully offline",
+      "cache": "Online sync + local cache"
+    },
+    "privacy": {
+      "localOnly": "Data stays local"
+    },
+    "view": {
+      "grid": "Grid view",
+      "list": "List view"
+    },
+    "activeFilters": "Active filters:",
+    "noSkillsFound": "No matching skills found",
     "clearFilters": "Clear filters",
-    "showingResults": "Showing {count} of {total} apps",
+    "showingResults": "Showing {count} of {total} skills",
     "tryAdjustingFilters": "Try adjusting your search or filters",
+    "footnote": "This is a skill catalogue rather than a shop: every entry is free to obtain. Items marked In development or Planned are not released yet and only describe the roadmap.",
     "meta": {
-      "title": "App Store | Metasequoia Studio",
-      "description": "Explore our AI applications to enhance your productivity and creativity"
+      "title": "Skill Hub | Metasequoia Studio",
+      "description": "A catalogue of local skills for finance, legal, operations and engineering teams - no third-party dependencies, running entirely on your machine."
     },
     "card": {
-      "view": "View",
-      "featureCount": "{count} features",
-      "details": "View details"
+      "details": "View details",
+      "installPending": "Not released · installs via package or CLI once it ships"
     },
     "detail": {
-      "backToList": "Back to Store",
+      "backToList": "Back to Skill Hub",
       "home": "Home",
-      "store": "Store",
-      "tryNow": "Try it now",
-      "visitApp": "Visit app",
-      "features": "Key Features",
-      "screenshots": "Screenshots",
-      "screenshotIndex": "Screenshot {index}",
-      "notFoundTitle": "App not found",
-      "notFoundDescription": "The requested app does not exist.",
-      "titleSuffix": "App Details"
-    },
-    "apps": {
-      "ai-assistant": {
-        "name": "AI Assistant",
-        "description": "An LLM-powered assistant that handles multi-turn conversations and multi-step tasks.",
-        "features": [
-          "Language understanding",
-          "Multi-turn chat",
-          "Task automation",
-          "Knowledge base"
-        ]
+      "store": "Skill Hub",
+      "capabilities": "Capabilities",
+      "specs": "Specifications",
+      "spec": {
+        "scenarios": "Use cases",
+        "roles": "Roles",
+        "runtime": "Runtime",
+        "offline": "Offline",
+        "privacy": "Data boundary",
+        "repo": "Package"
       },
-      "image-generator": {
-        "name": "Image Studio",
-        "description": "AI image generation with text-to-image and style transfer.",
-        "features": [
-          "Text to image",
-          "Style transfer",
-          "High resolution",
-          "Batch processing"
-        ]
+      "statusNote": {
+        "available": "This skill is available.",
+        "developing": "This skill is still in development and not released yet. The capabilities below are planned and may change.",
+        "planned": "This skill is at the planning stage and not implemented yet. The capabilities below are planned, not currently available."
       },
-      "code-helper": {
-        "name": "Code Helper",
-        "description": "Smarter code generation and refactoring across languages and frameworks.",
-        "features": [
-          "Code generation",
-          "Bug fixing",
-          "Performance tuning",
-          "Doc generation"
-        ]
+      "install": {
+        "cta": "Install",
+        "title": "How to install",
+        "description": "Skill packages follow the open Agent Skills standard (one directory plus a SKILL.md). No request or licence is needed. Pick whichever path matches your client, then just describe the task in chat to trigger it.",
+        "recommended": "Recommended",
+        "package": {
+          "label": "Import the package",
+          "desc": "Download the skill zip and load it from your client's \"import / upload local skill package\" entry. If SKILL.md sits at the top level of the archive, the package is well formed.",
+          "download": "Download package"
+        },
+        "cli": {
+          "label": "Command line",
+          "desc": "For command-line clients that support the Agent Skills standard: one command syncs the skill into your local skills directory.",
+          "hint": "Pass -a to name the client (claude-code, codex); omit it and you will be asked which one to use."
+        },
+        "manual": {
+          "label": "Unzip manually",
+          "desc": "You can also unzip the archive straight into your client's skills directory - no installer to run. The zip is self-contained and can be distributed offline, which makes it easy to host on an internal file server for company-wide rollout.",
+          "pathsTitle": "Common skill directories",
+          "paths": {
+            "workbuddy": "WorkBuddy",
+            "workbuddyPath": "Settings → Skills directory (as shown in the client)",
+            "claudeUser": "Claude Code (user level)",
+            "claudeUserPath": "~/.claude/skills/",
+            "claudeProject": "Claude Code (project level)",
+            "claudeProjectPath": ".claude/skills/",
+            "otherNote": "Other clients supporting the Agent Skills standard work the same way: drop the skill directory into their skills folder."
+          }
+        },
+        "notReleased": "This skill is not released yet, so there is no package to download. Once it ships, the same install paths above will apply.",
+        "version": "Current version"
       },
-      "data-analyzer": {
-        "name": "Data Analyzer",
-        "description": "AI-driven analytics with visualisation and forecasting.",
-        "features": [
-          "Data visualisation",
-          "Forecasting",
-          "Anomaly detection",
-          "Report generation"
-        ]
-      }
+      "upsell": {
+        "title": "Need this inside your own systems?",
+        "description": "Ready-made skills cover generic scenarios. Internal data sources, private models and compliance requirements call for a tailored build.",
+        "cta": "See custom services"
+      },
+      "notFoundTitle": "Skill not found",
+      "notFoundDescription": "The requested skill does not exist.",
+      "titleSuffix": "Skill Details"
     }
   },
   "Docs": {

@@ -260,10 +260,10 @@
   },
   {
     "id": "page-store",
-    "title": "应用商店",
-    "description": "发现实用的 AI 应用和工具",
+    "title": "Skill 市集",
+    "description": "面向不同角色与业务场景的本地 Skill 目录",
     "url": "/store",
-    "content": "发现实用的 AI 应用和工具",
+    "content": "面向不同角色与业务场景的本地 Skill 目录",
     "type": "page"
   },
   {

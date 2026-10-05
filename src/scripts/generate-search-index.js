@@ -136,7 +136,7 @@ async function generateSearchIndex() {
   const staticPages = [
     { id: 'page-home', title: '首页', description: '水杉智境工作室 - 企业级 AI 解决方案', url: '/' },
     { id: 'page-services', title: '服务', description: '探索我们的 AI 服务解决方案', url: '/services' },
-    { id: 'page-store', title: '应用商店', description: '发现实用的 AI 应用和工具', url: '/store' },
+    { id: 'page-store', title: 'Skill 市集', description: '面向不同角色与业务场景的本地 Skill 目录', url: '/store' },
     { id: 'page-docs', title: '文档', description: '产品文档和使用指南', url: '/docs' },
     { id: 'page-contact', title: '联系我们', description: '与我们取得联系', url: '/contact' },
   ];

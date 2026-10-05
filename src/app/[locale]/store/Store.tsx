@@ -1,74 +1,80 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { useTranslations } from 'next-intl';
-import AppCard from '@/app/components/AppCard';
-import { apps } from '@/data/apps';
+import { useLocale, useTranslations } from 'next-intl';
+import SkillCard from '@/app/components/SkillCard';
+import {
+  skillCategories,
+  skillRoles,
+  skillStatuses,
+  skills,
+} from '@/data/skills';
+import type { SkillCategory, SkillRole, SkillStatus } from '@/data/skills';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  MagnifyingGlassIcon, 
+import {
+  MagnifyingGlassIcon,
   FunnelIcon,
   XMarkIcon,
   Squares2X2Icon,
-  ListBulletIcon
+  ListBulletIcon,
 } from '@heroicons/react/24/outline';
 
-// Filter options types
-const APP_TYPES = ['all', 'miniProgram', 'h5', 'app'] as const;
-const CATEGORIES = ['all', 'tools', 'creativity', 'development', 'business'] as const;
-type AppType = typeof APP_TYPES[number];
-type Category = typeof CATEGORIES[number];
+type CategoryFilter = 'all' | SkillCategory;
+type RoleFilter = 'all' | SkillRole;
+type StatusFilter = 'all' | SkillStatus;
 
 export default function StorePage() {
   const t = useTranslations('Store');
-  
+  const locale = useLocale();
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedType, setSelectedType] = useState<AppType>('all');
-  const [selectedCategory, setSelectedCategory] = useState<Category>('all');
+  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
+  const [selectedRole, setSelectedRole] = useState<RoleFilter>('all');
+  const [selectedStatus, setSelectedStatus] = useState<StatusFilter>('all');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
-  // 过滤：名称与描述已搬到字典，因此要先把当前语言的文案取出来再做匹配，
-  // 否则英文站搜索中文原名永远搜不到（这是个原本就存在的行为 bug）
-  const filteredApps = useMemo(() => {
-    const query = searchQuery.toLowerCase();
-    return apps.filter(app => {
-      const name = t(`apps.${app.id}.name`).toLowerCase();
-      const description = t(`apps.${app.id}.description`).toLowerCase();
-      const matchesSearch =
-        name.includes(query) ||
-        description.includes(query);
+  // 中英两套文案都参与匹配，否则在英文站搜中文原名会永远搜不到
+  const filteredSkills = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return skills.filter((skill) => {
+      const haystack = [skill.zh, skill.en]
+        .flatMap((c) => [c.name, c.tagline, c.description, ...c.capabilities, ...c.scenarios])
+        .join(' ')
+        .toLowerCase();
 
-      const matchesType =
-        selectedType === 'all' ||
-        app.type === selectedType;
-
-      const matchesCategory =
-        selectedCategory === 'all' ||
-        app.category === selectedCategory;
-
-      return matchesSearch && matchesType && matchesCategory;
+      return (
+        haystack.includes(query) &&
+        (selectedCategory === 'all' || skill.category === selectedCategory) &&
+        (selectedRole === 'all' || skill.roles.includes(selectedRole)) &&
+        (selectedStatus === 'all' || skill.status === selectedStatus)
+      );
     });
-  }, [searchQuery, selectedType, selectedCategory, t]);
+  }, [searchQuery, selectedCategory, selectedRole, selectedStatus]);
 
-  // Active filters count
-  const activeFiltersCount = 
-    (selectedType !== 'all' ? 1 : 0) + 
-    (selectedCategory !== 'all' ? 1 : 0);
+  const activeFiltersCount =
+    (selectedCategory !== 'all' ? 1 : 0) +
+    (selectedRole !== 'all' ? 1 : 0) +
+    (selectedStatus !== 'all' ? 1 : 0);
 
   const clearFilters = () => {
     setSearchQuery('');
-    setSelectedType('all');
     setSelectedCategory('all');
+    setSelectedRole('all');
+    setSelectedStatus('all');
   };
+
+  // select 的通用样式
+  const selectClass =
+    'appearance-none pl-4 pr-10 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer min-w-[120px]';
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
-      {/* Hero section */}
+      {/* Hero */}
       <div className="relative bg-gradient-to-b from-primary/10 via-primary/5 to-slate-50 dark:from-primary/20 dark:via-primary/10 dark:to-slate-900 pt-32 pb-16">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl" />
         </div>
-        
+
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -77,21 +83,18 @@ export default function StorePage() {
             className="text-center max-w-3xl mx-auto"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              AI Applications
+              {t('badge')}
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
               {t('title')}
             </h1>
-            <p className="text-lg text-slate-600 dark:text-slate-300">
-              {t('description')}
-            </p>
+            <p className="text-lg text-slate-600 dark:text-slate-300">{t('description')}</p>
           </motion.div>
         </div>
       </div>
 
-      {/* Main content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Search and filters bar */}
+        {/* 搜索与筛选 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -99,7 +102,6 @@ export default function StorePage() {
           className="sticky top-20 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-2xl p-4 shadow-soft border border-slate-200 dark:border-slate-700 mb-8"
         >
           <div className="flex flex-col lg:flex-row lg:items-center gap-4">
-            {/* Search */}
             <div className="relative flex-1">
               <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
               <input
@@ -119,32 +121,16 @@ export default function StorePage() {
               )}
             </div>
 
-            {/* Filters */}
             <div className="flex items-center gap-3 flex-wrap">
-              {/* Type filter */}
-              <div className="relative">
-                <select
-                  value={selectedType}
-                  onChange={(e) => setSelectedType(e.target.value as AppType)}
-                  className="appearance-none pl-4 pr-10 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer min-w-[120px]"
-                >
-                  {APP_TYPES.map((type) => (
-                    <option key={type} value={type}>
-                      {t(`types.${type}`)}
-                    </option>
-                  ))}
-                </select>
-                <FunnelIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
-              </div>
-
-              {/* Category filter */}
+              {/* 分类 */}
               <div className="relative">
                 <select
                   value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value as Category)}
-                  className="appearance-none pl-4 pr-10 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer min-w-[120px]"
+                  onChange={(e) => setSelectedCategory(e.target.value as CategoryFilter)}
+                  className={selectClass}
                 >
-                  {CATEGORIES.map((cat) => (
+                  <option value="all">{t('categories.all')}</option>
+                  {skillCategories.map((cat) => (
                     <option key={cat} value={cat}>
                       {t(`categories.${cat}`)}
                     </option>
@@ -153,13 +139,48 @@ export default function StorePage() {
                 <FunnelIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
               </div>
 
-              {/* View mode toggle */}
+              {/* 适用角色 */}
+              <div className="relative">
+                <select
+                  value={selectedRole}
+                  onChange={(e) => setSelectedRole(e.target.value as RoleFilter)}
+                  className={selectClass}
+                >
+                  <option value="all">{t('roles.all')}</option>
+                  {skillRoles.map((role) => (
+                    <option key={role} value={role}>
+                      {t(`roles.${role}`)}
+                    </option>
+                  ))}
+                </select>
+                <FunnelIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+              </div>
+
+              {/* 交付状态 */}
+              <div className="relative">
+                <select
+                  value={selectedStatus}
+                  onChange={(e) => setSelectedStatus(e.target.value as StatusFilter)}
+                  className={selectClass}
+                >
+                  <option value="all">{t('status.all')}</option>
+                  {skillStatuses.map((status) => (
+                    <option key={status} value={status}>
+                      {t(`status.${status}`)}
+                    </option>
+                  ))}
+                </select>
+                <FunnelIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+              </div>
+
+              {/* 视图切换 */}
               <div className="flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl p-1">
                 <button
                   onClick={() => setViewMode('grid')}
+                  aria-label={t('view.grid')}
                   className={`p-2 rounded-lg transition-all ${
-                    viewMode === 'grid' 
-                      ? 'bg-white dark:bg-slate-700 text-primary shadow-sm' 
+                    viewMode === 'grid'
+                      ? 'bg-white dark:bg-slate-700 text-primary shadow-sm'
                       : 'text-slate-500 hover:text-slate-600'
                   }`}
                 >
@@ -167,9 +188,10 @@ export default function StorePage() {
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
+                  aria-label={t('view.list')}
                   className={`p-2 rounded-lg transition-all ${
-                    viewMode === 'list' 
-                      ? 'bg-white dark:bg-slate-700 text-primary shadow-sm' 
+                    viewMode === 'list'
+                      ? 'bg-white dark:bg-slate-700 text-primary shadow-sm'
                       : 'text-slate-500 hover:text-slate-600'
                   }`}
                 >
@@ -177,7 +199,6 @@ export default function StorePage() {
                 </button>
               </div>
 
-              {/* Clear filters */}
               {activeFiltersCount > 0 && (
                 <button
                   onClick={clearFilters}
@@ -190,24 +211,26 @@ export default function StorePage() {
             </div>
           </div>
 
-          {/* Results count */}
+          {/* 结果统计 */}
           <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between text-sm text-slate-500">
-            <span>
-              {t('showingResults', { count: filteredApps.length, total: apps.length }) || 
-                `Showing ${filteredApps.length} of ${apps.length} apps`}
-            </span>
-            {(selectedType !== 'all' || selectedCategory !== 'all') && (
-              <div className="flex items-center gap-2">
-                <span>Active filters:</span>
-                <div className="flex gap-2">
-                  {selectedType !== 'all' && (
+            <span>{t('showingResults', { count: filteredSkills.length, total: skills.length })}</span>
+            {activeFiltersCount > 0 && (
+              <div className="flex items-center gap-2 flex-wrap">
+                <span>{t('activeFilters')}</span>
+                <div className="flex gap-2 flex-wrap">
+                  {selectedCategory !== 'all' && (
                     <span className="px-2 py-1 bg-primary/10 text-primary rounded-md text-xs">
-                      {t(`types.${selectedType}`)}
+                      {t(`categories.${selectedCategory}`)}
                     </span>
                   )}
-                  {selectedCategory !== 'all' && (
+                  {selectedRole !== 'all' && (
+                    <span className="px-2 py-1 bg-primary/10 text-primary rounded-md text-xs">
+                      {t(`roles.${selectedRole}`)}
+                    </span>
+                  )}
+                  {selectedStatus !== 'all' && (
                     <span className="px-2 py-1 bg-secondary/10 text-secondary rounded-md text-xs">
-                      {t(`categories.${selectedCategory}`)}
+                      {t(`status.${selectedStatus}`)}
                     </span>
                   )}
                 </div>
@@ -216,11 +239,11 @@ export default function StorePage() {
           </div>
         </motion.div>
 
-        {/* Apps grid/list */}
+        {/* 列表 */}
         <AnimatePresence mode="wait">
-          {filteredApps.length > 0 ? (
+          {filteredSkills.length > 0 ? (
             <motion.div
-              key={`${viewMode}-${selectedType}-${selectedCategory}-${searchQuery}`}
+              key={`${viewMode}-${selectedCategory}-${selectedRole}-${selectedStatus}-${searchQuery}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -231,13 +254,8 @@ export default function StorePage() {
                   : 'flex flex-col gap-4'
               }
             >
-              {filteredApps.map((app, index) => (
-                <AppCard 
-                  key={app.id} 
-                  app={app} 
-                  viewMode={viewMode}
-                  index={index}
-                />
+              {filteredSkills.map((skill, index) => (
+                <SkillCard key={skill.id} skill={skill} viewMode={viewMode} index={index} />
               ))}
             </motion.div>
           ) : (
@@ -250,10 +268,10 @@ export default function StorePage() {
                 <MagnifyingGlassIcon className="w-10 h-10 text-slate-400" />
               </div>
               <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
-                {t('noAppsFound')}
+                {t('noSkillsFound')}
               </h3>
               <p className="text-slate-500 dark:text-slate-400 mb-6">
-                {t('tryAdjustingFilters') || 'Try adjusting your search or filters'}
+                {t('tryAdjustingFilters')}
               </p>
               <button
                 onClick={clearFilters}
@@ -264,6 +282,11 @@ export default function StorePage() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* 说明：避免「市集」被误读为交易货架 */}
+        <p className="mt-12 text-center text-sm text-slate-500 dark:text-slate-400">
+          {t('footnote')}
+        </p>
       </div>
     </div>
   );

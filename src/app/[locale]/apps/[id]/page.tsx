@@ -1,67 +1,65 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { apps } from '@/data/apps';
-import AppDetailClient from './AppDetailClient';
+import { getSkillById, skills } from '@/data/skills';
+import SkillDetailClient from './SkillDetailClient';
 
-interface AppPageProps {
+interface SkillPageProps {
   params: Promise<{
     locale: string;
     id: string;
   }>;
 }
 
-// 生成静态参数
 export async function generateStaticParams() {
-  return apps.flatMap(app => [
-    { locale: 'zh', id: app.id },
-    { locale: 'en', id: app.id },
+  return skills.flatMap((skill) => [
+    { locale: 'zh', id: skill.id },
+    { locale: 'en', id: skill.id },
   ]);
 }
 
-// 生成元数据
-export async function generateMetadata({ params }: AppPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: SkillPageProps): Promise<Metadata> {
   try {
     const { id, locale } = await params;
     const t = await getTranslations({ locale, namespace: 'Store' });
-    const app = apps.find(a => a.id === id);
+    const skill = getSkillById(id);
 
-    if (!app) {
+    if (!skill) {
       return {
         title: t('detail.notFoundTitle'),
         description: t('detail.notFoundDescription'),
       };
     }
 
+    const copy = locale === 'en' ? skill.en : skill.zh;
+
     return {
-      title: `${t(`apps.${app.id}.name`)} | ${t('detail.titleSuffix')}`,
-      description: t(`apps.${app.id}.description`),
+      title: `${copy.name} | ${t('detail.titleSuffix')}`,
+      description: copy.tagline,
       alternates: {
         canonical: `/${locale}/apps/${id}`,
       },
     };
   } catch {
-    // 拿不到 locale 时无法解析任何文案，交给 NotFound 页面处理，
-    // 这里只给一段不带任何语言倾向的兜底文案
+    // 拿不到 locale 时无法解析任何文案，交给 NotFound 页面处理
     return {
-      title: 'App',
-      description: 'App not available',
+      title: 'Skill',
+      description: 'Skill not available',
     };
   }
 }
 
-// 应用详情页面
-export default async function AppPage({ params }: AppPageProps) {
+export default async function SkillPage({ params }: SkillPageProps) {
   try {
     const { id, locale } = await params;
     setRequestLocale(locale);
 
-    const app = apps.find(a => a.id === id);
-    if (!app) {
+    const skill = getSkillById(id);
+    if (!skill) {
       notFound();
     }
 
-    return <AppDetailClient app={app} />;
+    return <SkillDetailClient skill={skill} />;
   } catch {
     notFound();
   }

@@ -39,7 +39,7 @@ export const docsData: Doc[] = [
 
 ## 快速开始
 
-访问我们的 [服务页面](/services) 了解更多详情，或通过 [应用商店](/store) 探索现成的 AI 应用。
+访问我们的 [服务页面](/services) 了解更多详情，或通过 [Skill 市集](/store) 探索现成的 Skill。
 
 ## 联系我们
 
