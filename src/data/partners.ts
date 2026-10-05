@@ -37,5 +37,11 @@ export const partners: Partner[] = [
     name: 'Next.js',
     logoUrl: '/logos/next.svg',
     description: 'companies.nextjs.description'
+  },
+  {
+    id: 5,
+    name: 'PyTorch',
+    logoUrl: '/logos/pytorch.svg',
+    description: 'companies.pytorch.description'
   }
 ];

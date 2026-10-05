@@ -24,14 +24,14 @@ function PartnerCard({ partner, index }: { partner: typeof partners[0]; index: n
       whileHover={{ y: -8 }}
       className="group"
     >
-      <div className="relative h-full bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-primary/30 dark:hover:border-primary/30 transition-all duration-300 shadow-card hover:shadow-elevated overflow-hidden">
+      <div className="relative h-full bg-white dark:bg-slate-800 rounded-2xl p-5 lg:p-6 border border-slate-200 dark:border-slate-700 hover:border-primary/30 dark:hover:border-primary/30 transition-all duration-300 shadow-card hover:shadow-elevated overflow-hidden">
         {/* Subtle gradient background on hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
         {/* Content */}
         <div className="relative">
           {/* Logo container */}
-          <div className="relative w-16 h-16 mx-auto mb-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 p-3 group-hover:scale-110 transition-transform duration-300">
+          <div className="relative w-14 h-14 lg:w-16 lg:h-16 mx-auto mb-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 p-3 group-hover:scale-110 transition-transform duration-300">
             <Image
               src={partner.logoUrl}
               alt={partner.name}
@@ -43,12 +43,12 @@ function PartnerCard({ partner, index }: { partner: typeof partners[0]; index: n
           </div>
 
           {/* Name */}
-          <h3 className="text-center text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+          <h3 className="text-center text-base lg:text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
             {partner.name}
           </h3>
 
           {/* Description */}
-          <p className="text-center text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-center text-xs lg:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
             {t(partner.description)}
           </p>
 
@@ -106,7 +106,7 @@ export default function PartnersSection() {
         </motion.div>
 
         {/* Partners grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {partners.map((partner, index) => (
             <PartnerCard key={partner.id} partner={partner} index={index} />
           ))}

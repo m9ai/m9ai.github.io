@@ -487,6 +487,9 @@
       },
       "nextjs": {
         "description": "SEO友好型全栈应用开发框架"
+      },
+      "pytorch": {
+        "description": "用于模型训练与推理的深度学习框架"
       }
     }
   },

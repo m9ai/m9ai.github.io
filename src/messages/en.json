@@ -644,6 +644,9 @@
       },
       "nextjs": {
         "description": "SEO-friendly full-stack application development framework"
+      },
+      "pytorch": {
+        "description": "Deep learning framework for model training and inference"
       }
     }
   },
