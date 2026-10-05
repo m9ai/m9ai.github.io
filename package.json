@@ -8,6 +8,7 @@
     "build": "next build",
     "prebuild": "node src/scripts/generate-search-index.js && node src/scripts/generate-llms.js",
     "generate-llms": "node src/scripts/generate-llms.js",
+    "submit:index": "node src/scripts/submit-index.js",
     "postbuild": "next-sitemap",
     "vercel-build": "next build",
     "start": "next start",
