@@ -186,18 +186,23 @@ export default async function RootLayout({
             </MotionProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-          if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-              navigator.serviceWorker.register('/m9ai-sw.js').then(function(registration) {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-              }).catch(function(err) {
-                console.log('ServiceWorker registration failed: ', err);
+        {/* Service Worker 只在 production 注册。dev 下注册到的是上次构建遗留在
+            public/ 的旧 sw（next-pwa dest:'public'），它对 JS chunk 采用
+            StaleWhileRevalidate——缓存优先返回旧 bundle，改了代码页面却跑旧逻辑。 */}
+        {process.env.NODE_ENV === 'production' && (
+          <script dangerouslySetInnerHTML={{
+            __html: `
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/m9ai-sw.js').then(function(registration) {
+                  console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }).catch(function(err) {
+                  console.log('ServiceWorker registration failed: ', err);
+                });
               });
-            });
-          }
-        `}} />
+            }
+          `}} />
+        )}
         {process.env.NODE_ENV === 'production' && <LayoutClient />}
       </body>
     </html>

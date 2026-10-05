@@ -373,7 +373,7 @@
   },
   "search": {
     "buttonLabel": "搜索",
-    "placeholder": "搜索服务、文档、页面...",
+    "placeholder": "搜索服务、文档、Skill、页面...",
     "loading": "加载搜索索引...",
     "results": "搜索结果",
     "noResults": "未找到相关结果",
@@ -394,7 +394,8 @@
       "service": "服务",
       "doc": "文档",
       "page": "页面",
-      "case": "案例"
+      "case": "案例",
+      "skill": "Skill"
     },
     "title": "站内搜索",
     "clear": "清空搜索"

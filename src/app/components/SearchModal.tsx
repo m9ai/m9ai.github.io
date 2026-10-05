@@ -17,6 +17,7 @@ import {
   EnvelopeIcon,
   ShoppingBagIcon,
   FolderIcon,
+  CubeIcon,
 } from '@heroicons/react/24/outline';
 import Fuse from 'fuse.js';
 
@@ -27,8 +28,12 @@ interface SearchItem {
   description: string;
   content: string;
   url: string;
-  type: 'service' | 'doc' | 'page' | 'case';
+  type: 'service' | 'doc' | 'page' | 'case' | 'skill';
   category?: string;
+  /** 英文站展示用。索引里目前只有 Skill 提供，其余条目回退到中文，行为不变。 */
+  titleEn?: string;
+  descriptionEn?: string;
+  categoryEn?: string;
   tags?: string[];
 }
 
@@ -49,6 +54,7 @@ const typeIcons = {
   doc: DocumentTextIcon,
   page: HomeIcon,
   case: FolderIcon,
+  skill: CubeIcon,
 };
 
 // 搜索结果项组件
@@ -66,6 +72,7 @@ function SearchResultItem({
   query: string;
 }) {
   const t = useTranslations('search');
+  const locale = useLocale();
   const Icon = typeIcons[item.type];
 
   // 高亮匹配文本
@@ -109,6 +116,8 @@ function SearchResultItem({
             ? 'bg-gradient-to-br from-green-500 to-teal-600'
             : item.type === 'case'
             ? 'bg-gradient-to-br from-amber-500 to-orange-600'
+            : item.type === 'skill'
+            ? 'bg-gradient-to-br from-violet-500 to-purple-700'
             : 'bg-gradient-to-br from-slate-700 to-slate-900'
         }`}
       >
@@ -128,7 +137,7 @@ function SearchResultItem({
         </p>
         {item.category && (
           <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
-            {item.category}
+            {locale === 'en' && item.categoryEn ? item.categoryEn : item.category}
           </p>
         )}
       </div>
@@ -163,7 +172,9 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     const loadIndex = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch('/search-index.json');
+        // no-store 绕过 HTTP 缓存，索引更新后立即生效；Service Worker 层
+        // 由 m9ai-sw.js 对 json 的 NetworkFirst 策略兜底，同样是网络优先。
+        const response = await fetch('/search-index.json', { cache: 'no-store' });
         const data = await response.json();
 
         // 初始化 Fuse.js
@@ -177,6 +188,10 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
           threshold: 0.4,
           includeScore: true,
           minMatchCharLength: 1,
+          /* 默认会按「距文本开头的距离」惩罚靠后的匹配，导致只出现在长正文里的词
+             （例如 Skill 的分类名、能力描述）搜不出来。搜索场景本就该匹配任意位置，
+             实测无意义词仍返回 0 条，不会退化成「搜啥都命中」。 */
+          ignoreLocation: true,
         });
         setFuse(fuseInstance);
       } catch (error) {
@@ -192,13 +207,14 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   // 翻译搜索项（索引已包含翻译后的文本）
   const translateItem = useCallback(
     (item: SearchItem): TranslatedSearchItem => {
+      const isEn = locale === 'en';
       return {
         ...item,
-        translatedTitle: item.title,
-        translatedDescription: item.description,
+        translatedTitle: (isEn && item.titleEn) || item.title,
+        translatedDescription: (isEn && item.descriptionEn) || item.description,
       };
     },
-    []
+    [locale]
   );
 
   // 执行搜索

@@ -281,5 +281,521 @@
     "url": "/contact",
     "content": "与我们取得联系",
     "type": "page"
+  },
+  {
+    "id": "skill-jinshan-train",
+    "title": "金山铁路时刻表",
+    "titleEn": "Jinshan Railway Schedule",
+    "description": "查询上海金山铁路班次、经停站、票价与下一班车",
+    "descriptionEn": "Schedules, stops, fares and next departures for Shanghai Jinshan Railway",
+    "content": "金山铁路时刻表 Jinshan Railway Schedule 查询上海金山铁路班次、经停站、票价与下一班车 Schedules, stops, fares and next departures for Shanghai Jinshan Railway 提供上海金山铁路（上海南 ↔ 金山卫，单线 9 站）的班次查询能力。所有结果由脚本实时计算：首次执行联网同步线上时刻表并写入本地缓存，之后优先读缓存，离线时回退到内置兜底数据并明确标注「可能过期」。 Query trains on the Shanghai Jinshan Railway (Shanghai South ↔ Jinshanwei, 9 stations). Every answer is computed by script: the first run syncs the online timetable into a local cache, later runs read the cache, and offline it falls back to bundled data clearly marked as possibly outdated. 两站之间的班次检索（支持直达 / 大站停 / 站站停筛选） 某趟车次的经停站与到发时刻 某站的下一班车（区分平日与节假日方案） 票价、站点地址与换乘信息 Search trains between any two stations (express / semi-express / local) Stops and arrival-departure times for a given train Next departure from a station (weekday vs holiday patterns) Fares, station addresses and transfer information 班次查询 票价 Timetables Fares general 出行交通 Travel & Transit",
+    "url": "/apps/jinshan-train",
+    "type": "skill",
+    "category": "出行交通",
+    "categoryEn": "Travel & Transit",
+    "tags": [
+      "两站之间的班次检索（支持直达 / 大站停 / 站站停筛选）",
+      "某趟车次的经停站与到发时刻",
+      "某站的下一班车（区分平日与节假日方案）",
+      "票价、站点地址与换乘信息",
+      "general"
+    ]
+  },
+  {
+    "id": "skill-shanghai-school-district",
+    "title": "上海学区查询",
+    "titleEn": "Shanghai School District Lookup",
+    "description": "按小区或地址查询上海对口学校与学区划分",
+    "descriptionEn": "Find the catchment schools for a Shanghai address or residence",
+    "content": "上海学区查询 Shanghai School District Lookup 按小区或地址查询上海对口学校与学区划分 Find the catchment schools for a Shanghai address or residence 面向上海升学场景的学区对口查询。输入小区名或地址，返回对口小学 / 初中与所属街区信息；数据随教育部门公示同步更新，离线时使用内置快照并标注数据日期。 School district lookup for Shanghai. Give a residence name or address and get the assigned primary / junior secondary schools plus the street block. Data is synced from official publications and, when offline, served from a bundled snapshot with its date clearly shown. 按小区或地址查询对口学校 查看所属街道与招生范围说明 数据日期与来源标注 Look up catchment schools by residence or address Show the street block and enrolment scope Data date and source labelling 学区 School districts general 生活服务 Local Life",
+    "url": "/apps/shanghai-school-district",
+    "type": "skill",
+    "category": "生活服务",
+    "categoryEn": "Local Life",
+    "tags": [
+      "按小区或地址查询对口学校",
+      "查看所属街道与招生范围说明",
+      "数据日期与来源标注",
+      "general"
+    ]
+  },
+  {
+    "id": "skill-amount-to-chinese",
+    "title": "金额转大写",
+    "titleEn": "Amount to Chinese Capital",
+    "description": "人民币金额转中文大写，批量处理发票与合同金额",
+    "descriptionEn": "Convert amounts into Chinese capital form for invoices and contracts",
+    "content": "金额转大写 Amount to Chinese Capital 人民币金额转中文大写，批量处理发票与合同金额 Convert amounts into Chinese capital form for invoices and contracts 把阿拉伯数字金额转成符合票据规范的人民币中文大写（含「零」「整」「佰拾万仟」等规则与角分处理）。支持单条转换，也支持批量读取清单文件逐行输出，避免手工誊写出错。 Converts numeric amounts into the Chinese capital form required on invoices, handling zero, \"整\", jiao/fen and large-value edge cases. Works on single values or in batch from a list file, removing manual transcription errors. 符合票据规范的大写转换（零 / 整 / 角分规则） 负数、零、超大金额边界处理 批量读取清单逐行转换 Invoice-compliant capital conversion (zero / 整 / jiao-fen rules) Negative, zero and very large amount edge cases Batch conversion line by line from a list 发票 记账 Invoices Bookkeeping finance admin 财税计算 Finance & Tax",
+    "url": "/apps/amount-to-chinese",
+    "type": "skill",
+    "category": "财税计算",
+    "categoryEn": "Finance & Tax",
+    "tags": [
+      "符合票据规范的大写转换（零 / 整 / 角分规则）",
+      "负数、零、超大金额边界处理",
+      "批量读取清单逐行转换",
+      "finance",
+      "admin"
+    ]
+  },
+  {
+    "id": "skill-invoice-field-checker",
+    "title": "发票要素校验",
+    "titleEn": "Invoice Field Validator",
+    "description": "批量校验发票代码与号码格式、金额税额勾稽与开票日期",
+    "descriptionEn": "Batch-validate invoice code/number format, amount/tax consistency and issue dates",
+    "content": "发票要素校验 Invoice Field Validator 批量校验发票代码与号码格式、金额税额勾稽与开票日期 Batch-validate invoice code/number format, amount/tax consistency and issue dates 对一批发票记录做要素级校验：代码与号码的位数格式是否正确、购方统一社会信用代码校验位是否通过、金额与税额是否符合税率勾稽、价税合计是否吻合、开票日期是否合理。发票代码与号码本身是流水编号，没有公开的校验位算法，脚本只校验位数与格式，不臆造校验位。输出逐条结果与汇总统计，便于在入账前发现问题票据。 Validates a batch of invoice records at field level: code and number length and format, the buyer unified social credit code check digit, amount/tax consistency against the stated rate, total consistency, and plausible issue dates. Invoice codes and numbers are sequential identifiers with no published check-digit algorithm, so only their length and format are checked. Emits per-row results plus a summary so problem invoices surface before posting. 发票代码与号码的位数与格式校验（代码 10/12 位、号码 8 位） 购方统一社会信用代码校验位（GB 32100） 金额 / 税额 / 税率勾稽与价税合计核对 开票日期合理性、重复票号与批量汇总 Invoice code and number length / format checks (code 10 or 12 digits, number 8) Buyer tax ID (USCC) check digit per GB 32100 Amount / tax / rate and total consistency Issue date plausibility, duplicate numbers, batch summary 发票 对账 Invoices Reconciliation finance 财税计算 Finance & Tax",
+    "url": "/apps/invoice-field-checker",
+    "type": "skill",
+    "category": "财税计算",
+    "categoryEn": "Finance & Tax",
+    "tags": [
+      "发票代码与号码的位数与格式校验（代码 10/12 位、号码 8 位）",
+      "购方统一社会信用代码校验位（GB 32100）",
+      "金额 / 税额 / 税率勾稽与价税合计核对",
+      "开票日期合理性、重复票号与批量汇总",
+      "finance"
+    ]
+  },
+  {
+    "id": "skill-bank-reconciliation",
+    "title": "银行流水对账",
+    "titleEn": "Bank Reconciliation",
+    "description": "两方账单按金额与日期模糊匹配，输出未达账项",
+    "descriptionEn": "Fuzzy-match two statements by amount and date, list the unmatched items",
+    "content": "银行流水对账 Bank Reconciliation 两方账单按金额与日期模糊匹配，输出未达账项 Fuzzy-match two statements by amount and date, list the unmatched items 读入企业账面流水与银行流水两份清单，按金额 + 日期窗口做模糊匹配，支持一笔对多笔的拆分匹配，输出已匹配、仅一方存在（未达账项）与金额不符的条目，并标出可疑近似项与差异合计。结果直接打印，可输出 JSON 供二次处理。全程本地计算，账单数据不出本机。 Takes the book ledger and the bank statement and fuzzy-matches them on amount plus a date window, supporting one-to-many split matching. Reports matched rows, items present on only one side (uncleared items) and amount mismatches, flags near-miss candidates and gives a difference total. Results are printed, with JSON available for further processing. Runs entirely locally so statement data never leaves the machine. 金额 + 日期窗口的模糊匹配 未达账项与金额不符条目清单 一笔对多笔拆分匹配，标注可疑近似项 CSV 输入，可输出 JSON 供二次处理 Fuzzy matching on amount plus a date window Uncleared items and amount mismatch lists One-to-many split matching, with near-miss candidates flagged CSV input, JSON output for further processing 对账 记账 Reconciliation Bookkeeping finance 财税计算 Finance & Tax",
+    "url": "/apps/bank-reconciliation",
+    "type": "skill",
+    "category": "财税计算",
+    "categoryEn": "Finance & Tax",
+    "tags": [
+      "金额 + 日期窗口的模糊匹配",
+      "未达账项与金额不符条目清单",
+      "一笔对多笔拆分匹配，标注可疑近似项",
+      "CSV 输入，可输出 JSON 供二次处理",
+      "finance"
+    ]
+  },
+  {
+    "id": "skill-expense-audit",
+    "title": "报销单据检查",
+    "titleEn": "Expense Claim Audit",
+    "description": "检查报销清单的必填项、金额合计与重复票据，超标项按你提供的标准核对",
+    "descriptionEn": "Check required fields, totals and duplicate receipts; over-limit items checked against limits you supply",
+    "content": "报销单据检查 Expense Claim Audit 检查报销清单的必填项、金额合计与重复票据，超标项按你提供的标准核对 Check required fields, totals and duplicate receipts; over-limit items checked against limits you supply 在付款前对报销清单做一轮机械检查：必填字段是否齐全、分项合计与声明总金额是否吻合、票号是否重复、同人同日同额是否存在疑似拆分。超标检查需要你提供本单位的限额标准（--limit= 或 --limits-file=），未提供时该检查跳过——脚本不内置任何限额。输出可执行的退回意见清单。 A mechanical pre-payment pass over expense claims: required fields present, line items summing to the declared total, duplicate receipt numbers, and suspected splitting (same person, same day, same amount). Over-limit checking needs limits supplied by your organisation via --limit= or --limits-file=; if none are given the check is skipped, since the script ships with no built-in limits. Produces an actionable list of items to send back. 必填字段完整性检查 分项合计与声明总金额勾稽 重复票号与同人同日同额疑似拆分提示 超标项检查（需先提供限额标准） Required field completeness check Line item vs declared total consistency Duplicate receipts and suspected split claims Over-limit checks (requires supplied limits) 报销 Expense claims finance admin 财税计算 Finance & Tax",
+    "url": "/apps/expense-audit",
+    "type": "skill",
+    "category": "财税计算",
+    "categoryEn": "Finance & Tax",
+    "tags": [
+      "必填字段完整性检查",
+      "分项合计与声明总金额勾稽",
+      "重复票号与同人同日同额疑似拆分提示",
+      "超标项检查（需先提供限额标准）",
+      "finance",
+      "admin"
+    ]
+  },
+  {
+    "id": "skill-deadline-calculator",
+    "title": "期限计算",
+    "titleEn": "Deadline Calculator",
+    "description": "按民法典口径推算期限届满日，休假日自动顺延",
+    "descriptionEn": "Compute deadlines under the Civil Code, with automatic holiday rollover",
+    "content": "期限计算 Deadline Calculator 按民法典口径推算期限届满日，休假日自动顺延 Compute deadlines under the Civil Code, with automatic holiday rollover 用于诉讼时效、答辩期、合同到期、试用期届满等场景的期限推算。默认按民法典口径（开始的当日不计入，自次日起算）；届满日落在法定休假日或周休息日时自动顺延，并逐日列出顺延原因便于复核。工作日口径需先填入当年度放假安排（法定休假日与调休上班日）后才能使用。 Deadline computation for limitation periods, response windows, contract expiry and probation end. Uses the Civil Code convention by default (the starting day is excluded; counting begins the next day). When the expiry date lands on a statutory holiday or weekly rest day it rolls forward automatically and lists each skipped day for review. Working-day counting requires the current year holiday schedule to be filled in first. 民法典口径：开始当日不计入，自次日起算 届满日落在休假日自动顺延，逐日列出跳过原因 按日 / 按月 / 按年推算，输出起算日与届满日 工作日口径需先填年度放假安排（含调休上班日） Civil Code convention: starting day excluded, counting from the next day Automatic rollover off rest days, with a per-day reason list By day / month / year, reporting start and expiry dates Working-day mode needs the annual holiday schedule filled in first 期限计算 合同审查 Deadlines Contract review legal hr 法务合规 Legal & Compliance",
+    "url": "/apps/deadline-calculator",
+    "type": "skill",
+    "category": "法务合规",
+    "categoryEn": "Legal & Compliance",
+    "tags": [
+      "民法典口径：开始当日不计入，自次日起算",
+      "届满日落在休假日自动顺延，逐日列出跳过原因",
+      "按日 / 按月 / 按年推算，输出起算日与届满日",
+      "工作日口径需先填年度放假安排（含调休上班日）",
+      "legal",
+      "hr"
+    ]
+  },
+  {
+    "id": "skill-pii-redactor",
+    "title": "敏感信息脱敏",
+    "titleEn": "PII Redactor",
+    "description": "识别并脱敏手机号、身份证号、银行卡号、邮箱、车牌与 IP",
+    "descriptionEn": "Detect and mask phone numbers, ID numbers, bank cards, emails, plates and IP addresses",
+    "content": "敏感信息脱敏 PII Redactor 识别并脱敏手机号、身份证号、银行卡号、邮箱、车牌与 IP Detect and mask phone numbers, ID numbers, bank cards, emails, plates and IP addresses 在文档外发、日志共享、演示数据准备等场景，先对文本做本地脱敏再交出去。统一采用保留格式的部分掩码（手机号 138****5678、身份证与银行卡仅留后四位），便于下游仍可按格式校验。不做姓名与住址的通用识别，可输出命中位置清单以便复核。 Redact sensitive values locally before sharing documents, logs or demo data. Applies format-preserving partial masking throughout (138****5678 for phone numbers, last four only for ID and bank card numbers) so downstream format validation still works. General name and address recognition is not attempted. Can emit a hit list with positions for review. Everything runs locally. 手机号 / 身份证 / 银行卡 / 邮箱 / 车牌 / IPv4 识别 保留格式的部分掩码（身份证可选 --id-level=keep6） 统一社会信用代码识别（默认关闭，--types=uscc 开启） 输出命中位置清单便于复核，纯本地处理 Phone / ID / bank card / email / plate / IPv4 detection Format-preserving partial masking (--id-level=keep6 for IDs) Unified social credit code detection (off by default, --types=uscc) Hit list with positions for review, fully local 脱敏 合规检查 Redaction Compliance legal dev admin 法务合规 Legal & Compliance",
+    "url": "/apps/pii-redactor",
+    "type": "skill",
+    "category": "法务合规",
+    "categoryEn": "Legal & Compliance",
+    "tags": [
+      "手机号 / 身份证 / 银行卡 / 邮箱 / 车牌 / IPv4 识别",
+      "保留格式的部分掩码（身份证可选 --id-level=keep6）",
+      "统一社会信用代码识别（默认关闭，--types=uscc 开启）",
+      "输出命中位置清单便于复核，纯本地处理",
+      "legal",
+      "dev",
+      "admin"
+    ]
+  },
+  {
+    "id": "skill-contract-checklist",
+    "title": "合同要素检查",
+    "titleEn": "Contract Checklist",
+    "description": "检查合同是否包含必备条款，缺失项逐条列出",
+    "descriptionEn": "Check whether a contract contains all required clauses, list what is missing",
+    "content": "合同要素检查 Contract Checklist 检查合同是否包含必备条款，缺失项逐条列出 Check whether a contract contains all required clauses, list what is missing 对合同文本做结构级检查：主体、标的、数量与质量、价款、履行期限与地点、违约责任、争议解决等必备条款是否存在。内置民法典 470 条、劳动合同法 17 条、民法典 704 条三类条款模板。脚本只做确定性的存在性与占位符检查，不提取金额与日期，也不判断条款实质是否公平——那部分由 Agent 阅读理解后判断。 A structural pass over contract text: are parties, subject matter, quantity and quality, price, performance period and place, breach liability and dispute resolution all present. Ships with three clause templates (Civil Code art. 470, Labour Contract Law art. 17, Civil Code art. 704). The script does deterministic presence and placeholder checks only — it does not extract amounts or dates, and whether a clause is substantively fair is left to the Agent reading the text. 必备条款存在性检查（三类内置条款模板） 待填占位符识别（____、【 】、TBD 等） 当事人成对称谓检查：只出现一方时提示 缺失项清单输出，语义判断交由 Agent Required clause presence check (three built-in templates) Unfilled placeholder detection (____, TBD) Paired party-term check: flags one-sided contracts Missing-item list, semantic judgement delegated to the Agent 合同审查 条款检查 Contract review Clause check legal 法务合规 Legal & Compliance",
+    "url": "/apps/contract-checklist",
+    "type": "skill",
+    "category": "法务合规",
+    "categoryEn": "Legal & Compliance",
+    "tags": [
+      "必备条款存在性检查（三类内置条款模板）",
+      "待填占位符识别（____、【 】、TBD 等）",
+      "当事人成对称谓检查：只出现一方时提示",
+      "缺失项清单输出，语义判断交由 Agent",
+      "legal"
+    ]
+  },
+  {
+    "id": "skill-file-evidence-seal",
+    "title": "文件证据固化",
+    "titleEn": "File Evidence Seal",
+    "description": "为目录生成可事后核验的 SHA-256 清单",
+    "descriptionEn": "Generate a verifiable SHA-256 manifest for a directory",
+    "content": "文件证据固化 File Evidence Seal 为目录生成可事后核验的 SHA-256 清单 Generate a verifiable SHA-256 manifest for a directory 对一个目录及其所有文件计算 SHA-256，生成含时间戳与文件大小的清单文件，并给出整体摘要 rootHash。之后可用清单重新核验目录，区分新增、删除、内容修改与仅修改时间变化——仅时间变化不判为篡改，避免误报。适用于电子证据固定、交付物留痕与备份完整性核验。 Computes SHA-256 for a directory and every file in it, writing a manifest with timestamps and sizes plus an overall rootHash. The manifest can later be used to re-verify the directory, distinguishing added, removed, content-modified and mtime-only changes — a changed timestamp alone is not reported as tampering. Intended for evidence preservation, delivery records and backup verification. 递归计算 SHA-256 并生成清单文件 事后重新核验：新增 / 删除 / 内容修改 / 仅时间变化 整体摘要 rootHash，可作同步校验卡口 默认排除 .DS_Store / Thumbs.db，支持 --exclude Recursive SHA-256 computation with a manifest file Re-verification: added / removed / modified / mtime-only Overall rootHash, usable as a sync gate Skips .DS_Store / Thumbs.db by default, --exclude supported 证据固化 Evidence preservation legal devops 法务合规 Legal & Compliance",
+    "url": "/apps/file-evidence-seal",
+    "type": "skill",
+    "category": "法务合规",
+    "categoryEn": "Legal & Compliance",
+    "tags": [
+      "递归计算 SHA-256 并生成清单文件",
+      "事后重新核验：新增 / 删除 / 内容修改 / 仅时间变化",
+      "整体摘要 rootHash，可作同步校验卡口",
+      "默认排除 .DS_Store / Thumbs.db，支持 --exclude",
+      "legal",
+      "devops"
+    ]
+  },
+  {
+    "id": "skill-csv-cleaner",
+    "title": "CSV 清洗",
+    "titleEn": "CSV Cleaner",
+    "description": "编码检测、分隔符嗅探、去空行、类型归一化与日期标准化",
+    "descriptionEn": "Encoding detection, delimiter sniffing, type normalisation, date standardisation",
+    "content": "CSV 清洗 CSV Cleaner 编码检测、分隔符嗅探、去空行、类型归一化与日期标准化 Encoding detection, delimiter sniffing, type normalisation, date standardisation 把来源混乱的 CSV 变成可分析的干净表：自动检测编码与分隔符、去掉空行与首尾空白、统一数字与日期格式、按 RFC4180 处理引号转义，并给出列级体检报告（类型、空值、唯一值、非法日期）。8 位编号（如订单号）默认不会被误判为日期。 Turns a messy CSV into something analysable: detects encoding and delimiter, strips blank rows and padding, normalises numbers and dates, handles RFC4180 quoted escapes, and reports per-column health (type, blanks, unique counts, invalid dates). Eight-digit identifiers such as order numbers are not mistaken for dates. 编码检测（UTF-8 / GBK / BOM）与分隔符嗅探 去空行、去首尾空白、数字与日期归一化 列级体检：类型、空值、唯一值、非法日期 清洗报告说明每项改动，不做静默修改 Encoding detection (UTF-8 / GBK / BOM) and delimiter sniffing Blank rows and padding removed; number and date normalisation Per-column health: type, blanks, unique counts, invalid dates Cleaning report per change, nothing mutated silently 数据清洗 编码处理 Data cleaning Encoding ops finance sales 数据统计 Data Statistics",
+    "url": "/apps/csv-cleaner",
+    "type": "skill",
+    "category": "数据统计",
+    "categoryEn": "Data Statistics",
+    "tags": [
+      "编码检测（UTF-8 / GBK / BOM）与分隔符嗅探",
+      "去空行、去首尾空白、数字与日期归一化",
+      "列级体检：类型、空值、唯一值、非法日期",
+      "清洗报告说明每项改动，不做静默修改",
+      "ops",
+      "finance",
+      "sales"
+    ]
+  },
+  {
+    "id": "skill-csv-aggregator",
+    "title": "CSV 统计汇总",
+    "titleEn": "CSV Aggregator",
+    "description": "分组聚合与常用统计，输出可直接引用的结果",
+    "descriptionEn": "Group-by aggregation and descriptive statistics ready to cite",
+    "content": "CSV 统计汇总 CSV Aggregator 分组聚合与常用统计，输出可直接引用的结果 Group-by aggregation and descriptive statistics ready to cite 对表格做分组聚合与描述性统计：求和、均值、中位数、分位数、最大最小值、去重与空值计数、TopN。支持按一列或多列分组，结果输出为对齐文本表格或 JSON；describe 子命令可一次给出每列的非空、空值、去重、极值、均值、中位数与 P90。 Group-by aggregation and descriptive statistics over a table: sum, mean, median, quantiles, min/max, distinct and blank counts, and TopN. Groups by one or more columns and prints an aligned text table or JSON; the describe subcommand reports per-column non-blank, blank, distinct, extremes, mean, median and P90 in one pass. 按单列或多列分组聚合 求和 / 均值 / 中位数 / 分位数 / 极值 去重计数、空值计数与 TopN 排行 输出对齐文本表格或 JSON，describe 给单列概览 Group by one or more columns Sum / mean / median / quantiles / extremes Distinct counts, blank counts and TopN ranking Aligned text table or JSON; describe for per-column profiles 汇总统计 报表生成 Aggregation Reporting ops sales executive 数据统计 Data Statistics",
+    "url": "/apps/csv-aggregator",
+    "type": "skill",
+    "category": "数据统计",
+    "categoryEn": "Data Statistics",
+    "tags": [
+      "按单列或多列分组聚合",
+      "求和 / 均值 / 中位数 / 分位数 / 极值",
+      "去重计数、空值计数与 TopN 排行",
+      "输出对齐文本表格或 JSON，describe 给单列概览",
+      "ops",
+      "sales",
+      "executive"
+    ]
+  },
+  {
+    "id": "skill-data-quality-checker",
+    "title": "数据质量体检",
+    "titleEn": "Data Quality Checker",
+    "description": "空值率、唯一性、异常值与枚举合法性体检报告",
+    "descriptionEn": "Null rates, uniqueness, outliers and enum validity in one report",
+    "content": "数据质量体检 Data Quality Checker 空值率、唯一性、异常值与枚举合法性体检报告 Null rates, uniqueness, outliers and enum validity in one report 对一份表格做整体体检：每列的空值率、唯一值分布、类型一致性、数值异常值、枚举字段的非法取值，以及完全重复行与形似日期但非法的取值。问题按 Q（疑似问题）与 W（需人工判断）两级分组输出。适合在导入系统或对外报送前跑一遍。 A full health check of a table: per-column null rates, value distribution, type consistency, numeric outliers, invalid enum values, fully duplicated rows and date-shaped but invalid values. Issues are grouped into two levels, Q (likely problems) and W (needs human judgement). Run it before loading data into a system or sending it out. 空值率与唯一性统计 类型一致性与枚举合法性检查 数值异常值、完全重复行与非法日期识别 按 Q（疑似问题）/ W（需人工判断）两级分组输出 Null rate and uniqueness statistics Type consistency and enum validity Numeric outliers, duplicate rows and invalid dates Issues grouped into Q (likely) and W (needs judgement) 质量体检 Quality check ops 数据统计 Data Statistics",
+    "url": "/apps/data-quality-checker",
+    "type": "skill",
+    "category": "数据统计",
+    "categoryEn": "Data Statistics",
+    "tags": [
+      "空值率与唯一性统计",
+      "类型一致性与枚举合法性检查",
+      "数值异常值、完全重复行与非法日期识别",
+      "按 Q（疑似问题）/ W（需人工判断）两级分组输出",
+      "ops"
+    ]
+  },
+  {
+    "id": "skill-csv-diff",
+    "title": "表格差异比对",
+    "titleEn": "Table Diff",
+    "description": "按关键列比对两份表格，输出新增、删除与变更",
+    "descriptionEn": "Compare two tables by key column: added, removed and changed rows",
+    "content": "表格差异比对 Table Diff 按关键列比对两份表格，输出新增、删除与变更 Compare two tables by key column: added, removed and changed rows 比对两份结构相近的表格（如本月与上月、导出前后）：按关键列对齐，列出新增行、删除行与发生变更的字段及新旧值。可用 --compare 指定只比对哪些列；数值按归一化比较，1200.00 与 1200 不算变更。没有浮点容差参数，数值需完全一致才认为未变。 Compares two structurally similar tables (this month vs last, before vs after an export): aligns rows on a key column and lists added rows, removed rows, and changed fields with old and new values. Use --compare to restrict comparison to chosen columns. Numbers are compared after normalisation, so 1200.00 and 1200 are not treated as a change; there is no float tolerance, so values must match exactly. 按关键列对齐两表 输出新增 / 删除 / 变更及新旧值 可指定只比对哪些列（--compare） 数值归一化比较与差异汇总统计 Row alignment on a key column Added / removed / changed with old and new values Restrict comparison to chosen columns (--compare) Numeric normalisation plus difference summary counts 差异比对 去重 Diffing Deduplication ops finance 数据统计 Data Statistics",
+    "url": "/apps/csv-diff",
+    "type": "skill",
+    "category": "数据统计",
+    "categoryEn": "Data Statistics",
+    "tags": [
+      "按关键列对齐两表",
+      "输出新增 / 删除 / 变更及新旧值",
+      "可指定只比对哪些列（--compare）",
+      "数值归一化比较与差异汇总统计",
+      "ops",
+      "finance"
+    ]
+  },
+  {
+    "id": "skill-banned-word-checker",
+    "title": "违禁词检测",
+    "titleEn": "Banned Word Checker",
+    "description": "检测平台违禁词及其常见变体，语义变体交由 Agent 判断",
+    "descriptionEn": "Detect banned terms and common evasions; semantic variants go to the Agent",
+    "content": "违禁词检测 Banned Word Checker 检测平台违禁词及其常见变体，语义变体交由 Agent 判断 Detect banned terms and common evasions; semantic variants go to the Agent 对文案做发布前的违禁词扫描。脚本负责字形层面的确定性部分：词库命中，以及全角半角、插入空格与符号、零宽字符、跨行拆分等规避写法；词表中已列出的拼音与同音别名同样能命中。真正隐晦的表达（比喻、黑话）由 Agent 阅读理解后判断。支持挂载企业自有词表。 Pre-publish scan for banned wording. The script handles the orthographic, deterministic part: dictionary hits plus evasions such as full-width forms, inserted spaces or symbols, zero-width characters and line-break splitting; pinyin and homophone aliases listed in the word list are matched too. Genuinely subtle phrasing (metaphor, slang) is left to the Agent reading the copy. Custom company word lists can be mounted. 字形层面变体识别（全角 / 空格 / 符号 / 零宽 / 跨行） 支持挂载企业自有词表（含拼音与同音别名） 输出命中行号、原文片段与上下文便于人工复核 隐晦语义变体交由 Agent 判断 Orthographic evasion detection (full-width / spacing / symbols / zero-width / line breaks) Custom company word lists, including pinyin and homophone aliases Hit line numbers, matched text and context for human review Subtle semantic variants delegated to the Agent 违禁词 合规检查 Banned words Compliance ops marketing 内容合规 Content Compliance",
+    "url": "/apps/banned-word-checker",
+    "type": "skill",
+    "category": "内容合规",
+    "categoryEn": "Content Compliance",
+    "tags": [
+      "字形层面变体识别（全角 / 空格 / 符号 / 零宽 / 跨行）",
+      "支持挂载企业自有词表（含拼音与同音别名）",
+      "输出命中行号、原文片段与上下文便于人工复核",
+      "隐晦语义变体交由 Agent 判断",
+      "ops",
+      "marketing"
+    ]
+  },
+  {
+    "id": "skill-pii-leak-scanner",
+    "title": "敏感信息泄露检测",
+    "titleEn": "PII Leak Scanner",
+    "description": "扫描文本中的手机号、身份证、银行卡、邮箱与密钥",
+    "descriptionEn": "Scan text for phone numbers, ID numbers, bank cards, emails and keys",
+    "content": "敏感信息泄露检测 PII Leak Scanner 扫描文本中的手机号、身份证、银行卡、邮箱与密钥 Scan text for phone numbers, ID numbers, bank cards, emails and keys 在对外发布、提交代码或共享文档前，扫描其中是否夹带了手机号、身份证号、银行卡号、邮箱地址，或 AccessKey、私钥、JWT、各类 token 与含口令的连接串。输出命中类型、位置、严重度与掩码后的样例，原始值不回显。 Before publishing, committing or sharing, scan for embedded phone numbers, ID numbers, bank card numbers and email addresses, as well as access keys, private keys, JWTs, tokens of various kinds and credentialed connection strings. Reports the hit type, position, severity and a masked sample; raw values are never echoed back. 手机号 / 身份证 / 银行卡 / 邮箱识别 AccessKey、私钥、JWT、token 与含口令连接串检测 输出掩码样例与三级严重度，不回显原始值 支持目录级批量扫描 Phone / ID / bank card / email detection Access keys, private keys, JWTs, tokens and credentialed connection strings Masked samples with three severity levels, raw values never echoed Directory-wide batch scanning 敏感信息 Sensitive data ops legal dev 内容合规 Content Compliance",
+    "url": "/apps/pii-leak-scanner",
+    "type": "skill",
+    "category": "内容合规",
+    "categoryEn": "Content Compliance",
+    "tags": [
+      "手机号 / 身份证 / 银行卡 / 邮箱识别",
+      "AccessKey、私钥、JWT、token 与含口令连接串检测",
+      "输出掩码样例与三级严重度，不回显原始值",
+      "支持目录级批量扫描",
+      "ops",
+      "legal",
+      "dev"
+    ]
+  },
+  {
+    "id": "skill-ad-law-risk-checker",
+    "title": "极限词检测",
+    "titleEn": "Ad Law Risk Checker",
+    "description": "检测广告法风险词，如「最」「第一」「国家级」",
+    "descriptionEn": "Flag advertising-law risk wording such as superlatives and efficacy claims",
+    "content": "极限词检测 Ad Law Risk Checker 检测广告法风险词，如「最」「第一」「国家级」 Flag advertising-law risk wording such as superlatives and efficacy claims 扫描营销文案中的广告法风险表述，重点是绝对化用语（国家级、最高级、最佳等）与疗效承诺类词（根治、无副作用、永久等），按高 / 中 / 低三级给出风险等级与命中位置，并附上下文便于人工复核。常见非广告语境（最佳食用期、第一层、最大载重）会自动豁免。需要说明：虚假宣传、数据无依据这类问题脚本查不出，改写方向由 Agent 给出。 Scans marketing copy for advertising-law risk wording, focusing on absolute and superlative terms (national-level, highest-grade, best) and efficacy claims (cures, no side effects, permanent), graded high / medium / low with hit positions and context for human review. Common non-advertising usages (best-before dates, \"first layer\", \"max load\") are exempted automatically. Unsubstantiated or false claims cannot be detected by the script; safer rewording is produced by the Agent. 绝对化用语与疗效承诺词识别（高 / 中 / 低三级） 常见非广告语境自动豁免，减少误报 风险等级、命中位置与上下文输出 改写建议交由 Agent 生成 Absolute / superlative and efficacy-claim detection, graded high / medium / low Automatic exemptions for non-advertising usage Risk level, hit positions and surrounding context Rewriting suggestions generated by the Agent 极限词 合规检查 Superlatives Compliance marketing ops 内容合规 Content Compliance",
+    "url": "/apps/ad-law-risk-checker",
+    "type": "skill",
+    "category": "内容合规",
+    "categoryEn": "Content Compliance",
+    "tags": [
+      "绝对化用语与疗效承诺词识别（高 / 中 / 低三级）",
+      "常见非广告语境自动豁免，减少误报",
+      "风险等级、命中位置与上下文输出",
+      "改写建议交由 Agent 生成",
+      "marketing",
+      "ops"
+    ]
+  },
+  {
+    "id": "skill-batch-rename",
+    "title": "批量重命名",
+    "titleEn": "Batch Rename",
+    "description": "按规则重命名大量文件，先预览再执行且可撤销",
+    "descriptionEn": "Rename many files by rule: preview first, execute, and undo",
+    "content": "批量重命名 Batch Rename 按规则重命名大量文件，先预览再执行且可撤销 Rename many files by rule: preview first, execute, and undo 按序号、日期、正则替换、大小写转换、前后缀与扩展名等规则批量重命名。执行前输出完整的「原名 → 新名」预览，确认后才落盘，并生成撤销清单可一条命令回滚。冲突检测会拦下重名与覆盖既有文件的情况。 Bulk renaming by sequence, date, regex substitution, case conversion, prefix, suffix and extension rules. Prints a full old-to-new preview before touching anything, applies only after confirmation, and writes an undo manifest for one-command rollback. Collision detection blocks duplicate names and overwriting existing files. 序号 / 日期 / 正则 / 大小写 / 前后缀等规则 执行前完整预览，确认后才落盘 生成撤销清单，一条命令回滚 冲突检测：拦下重名与覆盖既有文件 Sequence / date / regex / case / prefix-suffix rules Full preview before write, confirmation required Undo manifest for one-command rollback Collision detection: duplicate names and overwrite blocking 批量重命名 Batch rename admin design dev 文件批处理 File Batch Processing",
+    "url": "/apps/batch-rename",
+    "type": "skill",
+    "category": "文件批处理",
+    "categoryEn": "File Batch Processing",
+    "tags": [
+      "序号 / 日期 / 正则 / 大小写 / 前后缀等规则",
+      "执行前完整预览，确认后才落盘",
+      "生成撤销清单，一条命令回滚",
+      "冲突检测：拦下重名与覆盖既有文件",
+      "admin",
+      "design",
+      "dev"
+    ]
+  },
+  {
+    "id": "skill-duplicate-file-finder",
+    "title": "重复文件检测",
+    "titleEn": "Duplicate File Finder",
+    "description": "按内容哈希找出重复文件，先出组再决定是否清理",
+    "descriptionEn": "Group identical files by content hash; you decide what to delete",
+    "content": "重复文件检测 Duplicate File Finder 按内容哈希找出重复文件，先出组再决定是否清理 Group identical files by content hash; you decide what to delete 按内容哈希（而非文件名）扫描目录，把完全相同的文件归组，显示每组占用的空间。脚本只输出分组结果，绝不自行删除；可用 --out 生成待删清单，并用 --keep 指定每组保留哪一个（最早 / 最近修改 / 路径最短）。支持按最小体积过滤与排除目录。适合磁盘清理与资料库去重。 Scans a directory by content hash rather than filename, grouping byte-identical files and showing the space each group occupies. It only reports groups and never deletes anything itself; --out writes a deletion manifest and --keep chooses which copy to preserve (oldest, newest or shortest path). Filtering is by minimum size and excluded directories. Safe for disk cleanup and archive deduplication. 按内容哈希分组，不受文件名影响 显示每组数量与可回收空间 只输出分组，绝不自行删除文件 可生成待删清单，并指定每组保留哪一个 Content-hash grouping independent of filenames Per-group counts and reclaimable space Report only; never deletes anything itself Deletion manifest output, with a per-group keep policy 去重 Deduplication admin devops 文件批处理 File Batch Processing",
+    "url": "/apps/duplicate-file-finder",
+    "type": "skill",
+    "category": "文件批处理",
+    "categoryEn": "File Batch Processing",
+    "tags": [
+      "按内容哈希分组，不受文件名影响",
+      "显示每组数量与可回收空间",
+      "只输出分组，绝不自行删除文件",
+      "可生成待删清单，并指定每组保留哪一个",
+      "admin",
+      "devops"
+    ]
+  },
+  {
+    "id": "skill-dir-fingerprint",
+    "title": "目录指纹比对",
+    "titleEn": "Directory Fingerprint",
+    "description": "直接比对两份目录的内容差异",
+    "descriptionEn": "Compare two directories side by side by content",
+    "content": "目录指纹比对 Directory Fingerprint 直接比对两份目录的内容差异 Compare two directories side by side by content 直接比对两个目录（本地与备份、旧版与新版）：按相对路径 + 体积 + 内容 SHA-256 匹配，输出内容不同、仅一边存在的文件与两侧整体摘要。顶层目录名不同也能比对，修改时间变化不参与判定。适用于发布前后核对、备份校验与交付物比对。 Compares two live directories (local vs backup, old vs new release): matches files by relative path plus size and SHA-256, then reports content differences, files present on only one side, and an overall digest for each side. Top-level directory names may differ. Modification times are not part of the comparison. Useful for pre/post release checks, backup verification and delivery comparison. 按相对路径匹配，顶层目录名不同也能比 输出相同 / 仅 A 有 / 仅 B 有 / 内容不同四类 两侧整体摘要哈希，可作同步校验卡口 可按目录名排除，默认跳过系统文件 Relative-path matching even when top-level names differ Same / only-in-A / only-in-B / content-differs classification Overall digest per side, usable as a sync gate Exclude by directory name; system files skipped by default 目录比对 完整性校验 Directory diff Integrity devops legal 文件批处理 File Batch Processing",
+    "url": "/apps/dir-fingerprint",
+    "type": "skill",
+    "category": "文件批处理",
+    "categoryEn": "File Batch Processing",
+    "tags": [
+      "按相对路径匹配，顶层目录名不同也能比",
+      "输出相同 / 仅 A 有 / 仅 B 有 / 内容不同四类",
+      "两侧整体摘要哈希，可作同步校验卡口",
+      "可按目录名排除，默认跳过系统文件",
+      "devops",
+      "legal"
+    ]
+  },
+  {
+    "id": "skill-markdown-linter",
+    "title": "Markdown 规范检查",
+    "titleEn": "Markdown Linter",
+    "description": "检查并修复 Markdown 的标题层级、列表、链接与表格",
+    "descriptionEn": "Check and fix Markdown headings, lists, links and tables",
+    "content": "Markdown 规范检查 Markdown Linter 检查并修复 Markdown 的标题层级、列表、链接与表格 Check and fix Markdown headings, lists, links and tables 对 Markdown 文档做规范检查：标题层级是否跳级、列表缩进是否一致、链接与图片引用是否有效、代码块围栏是否闭合、表格是否对齐。可只报告问题，也可自动修复安全项。 Lints Markdown documents: heading level jumps, list indentation, link and image references, code fence closure and table alignment. Can report only, or auto-fix the safe rules. 标题层级跳级与重复检查 列表缩进、代码块围栏、表格对齐 链接与图片引用有效性检查 报告模式与自动修复模式 Heading level jumps and duplicates List indentation, code fences, table alignment Link and image reference validity Report-only or auto-fix mode Markdown 排版 Markdown Formatting dev admin 文档处理 Document Processing",
+    "url": "/apps/markdown-linter",
+    "type": "skill",
+    "category": "文档处理",
+    "categoryEn": "Document Processing",
+    "tags": [
+      "标题层级跳级与重复检查",
+      "列表缩进、代码块围栏、表格对齐",
+      "链接与图片引用有效性检查",
+      "报告模式与自动修复模式",
+      "dev",
+      "admin"
+    ]
+  },
+  {
+    "id": "skill-markdown-table-builder",
+    "title": "Markdown 表格生成",
+    "titleEn": "Markdown Table Builder",
+    "description": "从 CSV/TSV 生成对齐的 Markdown 表格",
+    "descriptionEn": "Turn CSV/TSV into an aligned Markdown table",
+    "content": "Markdown 表格生成 Markdown Table Builder 从 CSV/TSV 生成对齐的 Markdown 表格 Turn CSV/TSV into an aligned Markdown table 把 CSV 或 TSV 数据转成列宽对齐的 Markdown 表格，可直接贴进文档或 README。对齐方式可整体指定（auto / left / right / center），auto 模式下数字列自动右对齐；中日韩全角字符按 2 个宽度计算，保证渲染后仍然对齐。处理含竖线与换行的单元格转义。 Converts CSV or TSV into a column-aligned Markdown table ready to paste into docs or a README. Alignment is set globally (auto / left / right / center); under auto, numeric columns are right-aligned. CJK full-width characters count as two columns so the table stays aligned after rendering. Escapes pipes and newlines inside cells. CSV / TSV 转对齐的 Markdown 表格 对齐方式整体指定，auto 模式下数字列右对齐 单元格转义（竖线、换行）与全角宽度对齐 可直接粘贴的输出 CSV / TSV to aligned Markdown table Global alignment; auto right-aligns numeric columns Cell escaping (pipes, newlines) and full-width aware widths Paste-ready output 表格 Markdown Tables Markdown ops dev 文档处理 Document Processing",
+    "url": "/apps/markdown-table-builder",
+    "type": "skill",
+    "category": "文档处理",
+    "categoryEn": "Document Processing",
+    "tags": [
+      "CSV / TSV 转对齐的 Markdown 表格",
+      "对齐方式整体指定，auto 模式下数字列右对齐",
+      "单元格转义（竖线、换行）与全角宽度对齐",
+      "可直接粘贴的输出",
+      "ops",
+      "dev"
+    ]
+  },
+  {
+    "id": "skill-subtitle-converter",
+    "title": "字幕格式转换",
+    "titleEn": "Subtitle Converter",
+    "description": "SRT / ASS / VTT 字幕互转，保留时间轴与文本",
+    "descriptionEn": "Convert SRT / ASS / VTT subtitles, preserving timing and text",
+    "content": "字幕格式转换 Subtitle Converter SRT / ASS / VTT 字幕互转，保留时间轴与文本 Convert SRT / ASS / VTT subtitles, preserving timing and text 在常见字幕格式之间互转（SRT、ASS、VTT），按扩展名与内容特征自动识别输入格式，保留时间码精度与多行文本。从 ASS 转到其他格式时默认剥离样式标签，加 --keep-tags 可保留。不支持时间轴偏移与缩放，也不校验时间码的单调性与重叠；读取按 UTF-8 处理（自动去 BOM），GBK 编码的字幕需先转码。 Converts between common subtitle formats (SRT, ASS, VTT), detecting the input format from its extension and content, and preserving timecode precision and multi-line text. ASS style tags are stripped when converting away from ASS unless --keep-tags is given. Timeline shifting and scaling are not supported, and timecodes are not validated for monotonicity or overlap. Input is read as UTF-8 with BOM handling; GBK files must be transcoded first. SRT / ASS / VTT 互转 输入格式自动识别（扩展名 + 内容特征） 保留时间码精度与多行文本 ASS 样式标签可选保留（--keep-tags，默认剥离） SRT / ASS / VTT conversion Automatic input format detection (extension plus content) Timecode precision and multi-line text preserved ASS style tags kept on request (--keep-tags; stripped by default) 字幕 格式转换 Subtitles Conversion ops marketing 文档处理 Document Processing",
+    "url": "/apps/subtitle-converter",
+    "type": "skill",
+    "category": "文档处理",
+    "categoryEn": "Document Processing",
+    "tags": [
+      "SRT / ASS / VTT 互转",
+      "输入格式自动识别（扩展名 + 内容特征）",
+      "保留时间码精度与多行文本",
+      "ASS 样式标签可选保留（--keep-tags，默认剥离）",
+      "ops",
+      "marketing"
+    ]
+  },
+  {
+    "id": "skill-json-toolkit",
+    "title": "JSON 工具集",
+    "titleEn": "JSON Toolkit",
+    "description": "格式化、批量语法校验与 TypeScript 类型生成",
+    "descriptionEn": "Format, batch-validate and generate TypeScript types",
+    "content": "JSON 工具集 JSON Toolkit 格式化、批量语法校验与 TypeScript 类型生成 Format, batch-validate and generate TypeScript types 面向研发的 JSON 处理：格式化与压缩、批量校验多个文件的语法并定位错误行、从示例 JSON 推断并生成 TypeScript interface。全部基于 Node 内置能力，无需安装依赖。 JSON tooling for developers: pretty-print and minify, batch syntax validation with error positions, and TypeScript interface inference from sample JSON. Built purely on Node built-ins, no dependencies to install. 格式化与压缩 批量语法校验并定位错误位置 从样例推断生成 TypeScript interface 目录级批量处理 Pretty-print and minify Batch validation with error positions TypeScript interface inference from samples Directory-wide batch processing 类型生成 格式转换 Type generation Conversion dev 研发运维 Dev & Ops",
+    "url": "/apps/json-toolkit",
+    "type": "skill",
+    "category": "研发运维",
+    "categoryEn": "Dev & Ops",
+    "tags": [
+      "格式化与压缩",
+      "批量语法校验并定位错误位置",
+      "从样例推断生成 TypeScript interface",
+      "目录级批量处理",
+      "dev"
+    ]
+  },
+  {
+    "id": "skill-secret-scanner",
+    "title": "密钥泄露扫描",
+    "titleEn": "Secret Scanner",
+    "description": "扫描代码目录中的密钥、AccessKey 与私钥特征",
+    "descriptionEn": "Scan a codebase for keys, access keys and private key material",
+    "content": "密钥泄露扫描 Secret Scanner 扫描代码目录中的密钥、AccessKey 与私钥特征 Scan a codebase for keys, access keys and private key material 在提交或发布前扫描代码目录，查找疑似 AccessKey / SecretKey、私钥文件头、硬编码 Token、数据库连接串等特征。除工作区外，还能扫描 Git 历史（--git-history）与暂存区（--staged），用于清理已进入历史或即将提交的凭证。输出文件路径、行号与掩码样例，不回显原始值；支持排除目录与指定类别。 Scans a code directory before commit or release for suspected access keys / secret keys, private key headers, hardcoded tokens and database connection strings. Besides the working tree it can scan Git history (--git-history) and the staging area (--staged), useful for cleaning up credentials already committed or about to be. Reports file, line and a masked sample, never the raw value. Exclusion paths and rule-type filtering are supported. AccessKey / SecretKey / Token 特征识别 私钥文件头与含口令连接串检测 输出位置与掩码样例，不回显原始值 可扫描 Git 历史与暂存区，支持排除目录 Access key / secret key / token pattern detection Private key headers and credentialed connection strings Positions with masked samples, no raw values Git history and staging area scanning; exclusion paths 密钥扫描 合规检查 Secret scanning Compliance dev devops 研发运维 Dev & Ops",
+    "url": "/apps/secret-scanner",
+    "type": "skill",
+    "category": "研发运维",
+    "categoryEn": "Dev & Ops",
+    "tags": [
+      "AccessKey / SecretKey / Token 特征识别",
+      "私钥文件头与含口令连接串检测",
+      "输出位置与掩码样例，不回显原始值",
+      "可扫描 Git 历史与暂存区，支持排除目录",
+      "dev",
+      "devops"
+    ]
+  },
+  {
+    "id": "skill-cron-explainer",
+    "title": "Cron 解析与推算",
+    "titleEn": "Cron Explainer",
+    "description": "解析 cron 表达式，输出未来执行时间与人类可读说明",
+    "descriptionEn": "Parse cron expressions: next run times and a plain-language description",
+    "content": "Cron 解析与推算 Cron Explainer 解析 cron 表达式，输出未来执行时间与人类可读说明 Parse cron expressions: next run times and a plain-language description 解析标准 5 段与 6 段 cron 表达式，输出未来若干次的执行时间，并给出人类可读的说明（如「每天 03:00」）。支持 ? 占位与月份 / 星期的英文别名，日期与星期同时受限时会提示按 OR 处理。时间按系统本地时区计算，可用 --from 指定起始时间，不支持指定时区。 Parses standard 5-field and 6-field cron expressions, prints the next N run times and a plain-language summary (e.g. \"every day at 03:00\"). Supports the ? placeholder and month / weekday aliases; when both day-of-month and day-of-week are restricted it flags OR semantics. Times are computed in the system local timezone, from --from if given; there is no timezone option. 5 段与 6 段 cron 表达式解析 输出未来 N 次执行时间 人类可读的调度说明 支持 ? 与月份 / 星期别名，日 / 周同时受限时提示 5-field and 6-field cron parsing Next N execution times Plain-language schedule description Supports ? and month / weekday aliases; OR semantics flagged 定时任务 Scheduled jobs devops dev 研发运维 Dev & Ops",
+    "url": "/apps/cron-explainer",
+    "type": "skill",
+    "category": "研发运维",
+    "categoryEn": "Dev & Ops",
+    "tags": [
+      "5 段与 6 段 cron 表达式解析",
+      "输出未来 N 次执行时间",
+      "人类可读的调度说明",
+      "支持 ? 与月份 / 星期别名，日 / 周同时受限时提示",
+      "devops",
+      "dev"
+    ]
   }
 ]

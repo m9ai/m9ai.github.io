@@ -366,7 +366,7 @@
   },
   "search": {
     "buttonLabel": "Search",
-    "placeholder": "Search services, docs, pages...",
+    "placeholder": "Search services, docs, skills, pages...",
     "loading": "Loading search index...",
     "results": "Search Results",
     "noResults": "No results found",
@@ -387,7 +387,8 @@
       "service": "Service",
       "doc": "Doc",
       "page": "Page",
-      "case": "Case"
+      "case": "Case",
+      "skill": "Skill"
     },
     "title": "Site search",
     "clear": "Clear search"

@@ -7,6 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
+const ts = require('typescript');
 
 // 搜索项类型定义
 
@@ -39,6 +40,31 @@ const services = [
     category: 'aiService',
   }
 ];
+
+/**
+ * 读取 src/data/skills.ts。
+ *
+ * 该模块是纯数据（无 import），用 TypeScript 转译成 CommonJS 后在沙箱里取值，
+ * 避免把二十余条双语文案在构建脚本里再抄一份、两边改漏。
+ * 若将来给它加了 import，这里的沙箱会取不到值，需改成先落临时文件再 require。
+ */
+function loadSkills() {
+  const source = fs.readFileSync(
+    path.join(process.cwd(), 'src', 'data', 'skills.ts'),
+    'utf-8'
+  );
+  const { outputText } = ts.transpileModule(source, {
+    compilerOptions: {
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2020,
+    },
+  });
+  /* 转译结果是 CommonJS，只往 exports 上挂值、不引用 module，
+     所以这里不必构造 module 对象（构造它会触发 next/no-assign-module-variable）。 */
+  const sandbox = { exports: {} };
+  new Function('exports', outputText)(sandbox.exports);
+  return sandbox.exports.skills || [];
+}
 
 // 生成搜索索引
 async function generateSearchIndex() {
@@ -146,6 +172,49 @@ async function generateSearchIndex() {
       ...page,
       content: page.description,
       type: 'page',
+    });
+  });
+
+  // 5. 添加 Skill 到索引
+  //    中英文一并进 content，任一种语言输入关键词都能命中；
+  //    标题与简介另给英文版，英文站的结果才不会显示中文标题。
+  const categoryZh = messagesZh.Store?.categories || {};
+  const categoryEn = messagesEn.Store?.categories || {};
+
+  loadSkills().forEach((skill) => {
+    const zh = skill.zh || {};
+    const en = skill.en || {};
+
+    const content = [
+      zh.name,
+      en.name,
+      zh.tagline,
+      en.tagline,
+      zh.description,
+      en.description,
+      ...(zh.capabilities || []),
+      ...(en.capabilities || []),
+      ...(zh.scenarios || []),
+      ...(en.scenarios || []),
+      ...(skill.roles || []),
+      categoryZh[skill.category],
+      categoryEn[skill.category],
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    searchItems.push({
+      id: `skill-${skill.id}`,
+      title: zh.name,
+      titleEn: en.name,
+      description: zh.tagline,
+      descriptionEn: en.tagline,
+      content,
+      url: `/apps/${skill.id}`,
+      type: 'skill',
+      category: categoryZh[skill.category] || skill.category,
+      categoryEn: categoryEn[skill.category] || skill.category,
+      tags: [...(zh.capabilities || []), ...(skill.roles || [])],
     });
   });
 
