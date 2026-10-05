@@ -1,5 +1,8 @@
 import { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { buildPageMetadata, pageTitle } from '@/lib/seo';
+import { breadcrumbSchema, serviceSchema, webPageSchema } from '@/lib/structured-data';
+import JsonLd from '@/components/JsonLd';
 import ServiceDetailClient from './components/ServiceDetailClient';
 import { services } from '@/data/services';
 
@@ -16,10 +19,13 @@ export async function generateMetadata({
   });
   const service = services.find(s => s.id === id);
 
-  return {
-    title: service ? t(`${service.id}.title`) : t('meta.defaultTitle'),
-    description: service ? t(`${service.id}.description`) : t('meta.defaultDescription'),
-  };
+  return buildPageMetadata({
+    locale,
+    path: `/services/${id}`,
+    // 兜底走列表页文案：services.meta 下并没有 defaultTitle/defaultDescription 这两个键
+    title: service ? t(`${service.id}.title`) : pageTitle(locale, t('meta.title')),
+    description: service ? t(`${service.id}.description`) : t('meta.description'),
+  });
 }
 
 // 添加静态参数生成函数，指定支持的语言
@@ -41,6 +47,26 @@ export default async function ServiceDetailPage({
   const service = services.find(s => s.id === id);
   if (!service) return <div>{t('errors.notFound')}</div>;
 
-  return <ServiceDetailClient service={service} />;
-}
+  const title = t(`${service.id}.title`);
+  const description = t(`${service.id}.description`);
+  const listTitle = pageTitle(locale, t('meta.title'));
 
+  return (
+    <>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            webPageSchema(locale, `/services/${id}`, title, description),
+            serviceSchema(locale, `/services/${id}`, title, description),
+            breadcrumbSchema(locale, [
+              { name: listTitle, path: '/services' },
+              { name: title },
+            ]),
+          ],
+        }}
+      />
+      <ServiceDetailClient service={service} />
+    </>
+  );
+}

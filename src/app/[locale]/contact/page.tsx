@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { buildPageMetadata, pageTitle } from '@/lib/seo';
 import Contact from './Contact';
 
 export async function generateMetadata({
@@ -9,10 +10,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Contact' });
-  return {
-    title: t('meta.title'),
+  return buildPageMetadata({
+    locale,
+    path: '/contact',
+    title: pageTitle(locale, t('meta.title')),
     description: t('meta.description'),
-  };
+  });
 }
 
 // 添加静态参数生成函数，指定支持的语言

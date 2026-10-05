@@ -989,7 +989,7 @@
     "tryAdjustingFilters": "Try adjusting your search or filters",
     "footnote": "This is a skill catalogue rather than a shop: every entry is free to obtain. Items marked In development or Planned are not released yet and only describe the roadmap.",
     "meta": {
-      "title": "Skill Hub | Metasequoia Studio",
+      "title": "Skill Hub",
       "description": "A catalogue of local skills for finance, legal, operations and engineering teams - no third-party dependencies, running entirely on your machine."
     },
     "card": {
@@ -1060,7 +1060,7 @@
   "Docs": {
     "loading": "Loading document...",
     "meta": {
-      "title": "Documentation | Metasequoia Studio",
+      "title": "Documentation",
       "description": "Metasequoia Studio Documentation Center - Product guides, tutorials and technical reference"
     },
     "errors": {

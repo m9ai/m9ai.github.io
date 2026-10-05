@@ -34,48 +34,49 @@ export const viewport: Viewport = {
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import LayoutClient from '@/app/components/LayoutClient';
+import JsonLd from '@/components/JsonLd';
+import {
+  KEYWORDS,
+  SITE_URL,
+  asLocale,
+  buildPageMetadata,
+  siteDescription,
+  siteName,
+} from '@/lib/seo';
+import { founderSchema, organizationSchema, websiteSchema } from '@/lib/structured-data';
 
 export async function generateMetadata(context: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await context.params;
-  const messages = await import(`@/messages/${locale}.json`);
-  /* 社交平台抓不到 <html lang>，OG 图必须按语言给两份，
-     否则中文分享卡片上出现英文文案（或反过来）。 */
-  const ogImage = locale === 'en' ? '/og-en.png' : '/og-zh.png';
+  const resolved = asLocale(locale);
+
   return {
-    metadataBase: new URL('https://m9ai.work'),
-    title: messages.title,
-    description: messages.description,
+    metadataBase: new URL(SITE_URL),
+    description: siteDescription(resolved),
+    applicationName: siteName(resolved),
+    authors: [{ name: siteName(resolved), url: SITE_URL }],
+    creator: siteName(resolved),
+    publisher: siteName(resolved),
     icons: {
-      icon: '/favicon.jpg',
+      icon: [
+        { url: '/favicon.jpg' },
+        { url: '/favicon.jpg', sizes: '192x192', type: 'image/jpeg' },
+      ],
+      apple: '/favicon.jpg',
     },
-    openGraph: {
-      title: messages.title,
-      description: messages.description,
-      type: 'website',
-      url: `/${locale}`,
-      locale: locale === 'en' ? 'en_US' : 'zh_CN',
-      siteName: locale === 'en' ? enMessages.title : zhMessages.title,
-      images: [{
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: locale === 'en' ? enMessages.title : zhMessages.title,
-      }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: messages.title,
-      description: messages.description,
-      images: [ogImage],
-    },
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        'en-US': '/en',
-        'zh-CN': '/zh',
-      },
+    ...buildPageMetadata({
+      locale: resolved,
+      path: '/',
+      title: siteName(resolved),
+      description: siteDescription(resolved),
+      keywords: [...KEYWORDS[resolved]],
+    }),
+    /* 放在 spread 之后：buildPageMetadata 也会输出 title，
+       这里要用模板覆盖它，子页面才能只写自己的短标题。 */
+    title: {
+      default: siteName(resolved),
+      template: `%s | ${siteName(resolved)}`,
     },
   };
 }
@@ -112,35 +113,18 @@ export default async function RootLayout({
         <meta name="author" content={locale === 'zh' ? '水杉智境工作室' : 'Metasequoia AI Studio'} />
         <link rel="manifest" href="/manifest.json" />
         {/* 结构化数据：告诉搜索引擎这是什么主体、什么站点。
-            用 @graph 把 Organization 与 WebSite 关联起来，
-            站名与描述跟 <html lang> 走，避免英文爬虫抓到中文实体。 */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@graph': [
-                {
-                  '@type': 'Organization',
-                  '@id': 'https://m9ai.work/#org',
-                  name: locale === 'zh' ? '水杉智境工作室' : 'Metasequoia AI Studio',
-                  url: 'https://m9ai.work',
-                  logo: 'https://m9ai.work/favicon.jpg',
-                  description:
-                    locale === 'zh'
-                      ? zhMessages.description
-                      : enMessages.description,
-                },
-                {
-                  '@type': 'WebSite',
-                  '@id': 'https://m9ai.work/#website',
-                  url: `https://m9ai.work/${locale}`,
-                  name: locale === 'zh' ? zhMessages.title : enMessages.title,
-                  inLanguage: locale === 'zh' ? 'zh-CN' : 'en-US',
-                  publisher: { '@id': 'https://m9ai.work/#org' },
-                },
-              ],
-            }),
+            用 @graph 把 Person / Organization / WebSite 关联起来，
+            站名与描述跟 <html lang> 走，避免英文爬虫抓到中文实体。
+            三个节点在各语言页共用同一组 @id，AI 检索时能拼出
+            「创始人 -> 工作室 -> 站点 -> 页面」的完整实体链。 */}
+        <JsonLd
+          data={{
+            '@context': 'https://schema.org',
+            '@graph': [
+              founderSchema(locale),
+              organizationSchema(locale),
+              websiteSchema(locale),
+            ],
           }}
         />
         {/* 阻塞式脚本：在首屏渲染前同步应用已保存的主题，避免暗色模式闪白(FOUC)。

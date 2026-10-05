@@ -1,0 +1,2589 @@
+# 水杉智境工作室 — 文档全文
+
+Source: https://m9ai.work
+Generated from: public/docs/*.md
+
+---
+
+## API 集成开发指南
+
+学习如何将大模型能力集成到您的应用程序中 | 分类：开发指南 | 标签：API、集成、SDK、RESTful、开发 | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/api-integration/
+
+# API 集成开发指南
+
+## 概述
+
+本文档介绍如何通过 API 将大语言模型能力集成到您的应用程序中，支持多种编程语言和框架。
+
+## 快速开始
+
+### 获取 API 密钥
+
+1. 登录控制台: https://console.m9ai.work
+2. 进入「API 管理」页面
+3. 点击「创建密钥」，复制生成的 API Key
+
+### 基础请求示例
+
+**cURL**
+```bash
+curl -X POST "https://api.m9ai.work/v1/chat/completions" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4",
+    "messages": [
+      {"role": "user", "content": "你好！"}
+    ]
+  }'
+```
+
+**Python**
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="YOUR_API_KEY",
+    base_url="https://api.m9ai.work/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {"role": "user", "content": "你好！"}
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+**JavaScript**
+```javascript
+import OpenAI from 'openai';
+
+const client = new OpenAI({
+  apiKey: 'YOUR_API_KEY',
+  baseURL: 'https://api.m9ai.work/v1',
+});
+
+async function chat() {
+  const response = await client.chat.completions.create({
+    model: 'gpt-4',
+    messages: [{ role: 'user', content: '你好！' }],
+  });
+  
+  console.log(response.choices[0].message.content);
+}
+
+chat();
+```
+
+## API 参考
+
+### 对话补全
+
+**Endpoint**: `POST /v1/chat/completions`
+
+**请求参数**
+
+| 参数 | 类型 | 必需 | 描述 |
+|------|------|------|------|
+| model | string | 是 | 模型名称: gpt-4, gpt-3.5-turbo |
+| messages | array | 是 | 消息列表 |
+| temperature | float | 否 | 随机性 (0-2), 默认 0.7 |
+| max_tokens | integer | 否 | 最大生成 token 数 |
+| stream | boolean | 否 | 是否流式输出 |
+
+**响应格式**
+```json
+{
+  "id": "chatcmpl-xxx",
+  "object": "chat.completion",
+  "created": 1677652288,
+  "model": "gpt-4",
+  "choices": [{
+    "index": 0,
+    "message": {
+      "role": "assistant",
+      "content": "你好！有什么可以帮助你的吗？"
+    },
+    "finish_reason": "stop"
+  }],
+  "usage": {
+    "prompt_tokens": 9,
+    "completion_tokens": 12,
+    "total_tokens": 21
+  }
+}
+```
+
+### 文本嵌入
+
+**Endpoint**: `POST /v1/embeddings`
+
+```python
+response = client.embeddings.create(
+    model="text-embedding-ada-002",
+    input="要嵌入的文本"
+)
+
+embedding = response.data[0].embedding
+```
+
+### 流式输出
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "讲个故事"}],
+    stream=True
+)
+
+for chunk in response:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="")
+```
+
+## 高级用法
+
+### 函数调用
+
+```python
+def get_weather(location, unit="celsius"):
+    # 实际天气查询逻辑
+    return {"temperature": 25, "condition": "sunny"}
+
+tools = [{
+    "type": "function",
+    "function": {
+        "name": "get_weather",
+        "description": "获取指定位置的天气信息",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "城市名称，如北京、上海"
+                },
+                "unit": {
+                    "type": "string",
+                    "enum": ["celsius", "fahrenheit"],
+                    "description": "温度单位"
+                }
+            },
+            "required": ["location"]
+        }
+    }
+}]
+
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "北京今天天气怎么样？"}],
+    tools=tools,
+    tool_choice="auto"
+)
+
+# 处理函数调用
+if response.choices[0].finish_reason == "tool_calls":
+    tool_call = response.choices[0].message.tool_calls[0]
+    function_name = tool_call.function.name
+    arguments = json.loads(tool_call.function.arguments)
+    
+    if function_name == "get_weather":
+        result = get_weather(**arguments)
+        print(result)
+```
+
+### 错误处理
+
+```python
+from openai import APIError, RateLimitError, AuthenticationError
+
+try:
+    response = client.chat.completions.create(...)
+except AuthenticationError:
+    print("API 密钥无效，请检查配置")
+except RateLimitError:
+    print("请求过于频繁，请稍后重试")
+except APIError as e:
+    print(f"API 错误: {e.message}")
+```
+
+## 最佳实践
+
+### 1. 连接池配置
+
+```python
+import httpx
+
+# 自定义 HTTP 客户端
+http_client = httpx.Client(
+    limits=httpx.Limits(
+        max_connections=100,
+        max_keepalive_connections=20
+    ),
+    timeout=httpx.Timeout(60.0)
+)
+
+client = OpenAI(
+    api_key="YOUR_API_KEY",
+    base_url="https://api.m9ai.work/v1",
+    http_client=http_client
+)
+```
+
+### 2. 重试策略
+
+```python
+from tenacity import retry, stop_after_attempt, wait_exponential
+
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=1, min=4, max=10)
+)
+def chat_with_retry(messages):
+    return client.chat.completions.create(
+        model="gpt-4",
+        messages=messages
+    )
+```
+
+### 3. 请求超时设置
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=messages,
+    timeout=30.0  # 30秒超时
+)
+```
+
+## SDK 下载
+
+- **Python**: `pip install openai`
+- **JavaScript**: `npm install openai`
+- **Go**: `go get github.com/sashabaranov/go-openai`
+- **Java**: Maven/Gradle 依赖见文档
+
+## 更多资源
+
+- 完整 API 文档: https://docs.m9ai.work/api
+- 示例代码: https://github.com/m9ai/examples
+- 技术支持: c@m9ai.work
+
+---
+
+## API 文档
+
+水杉智境 API 接口文档，包含认证方式、基础 URL、接口列表和错误处理说明 | 分类：技术文档 | 标签：API、RESTful、接口文档、开发指南 | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/api-reference/
+
+# API 文档
+
+## 概述
+
+我们提供 RESTful API 接口，方便您将 AI 能力集成到自己的应用中。
+
+## 认证
+
+所有 API 请求需要在 Header 中包含 API Key：
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## 基础 URL
+
+```bash
+https://api.m9ai.work/v1
+```
+
+## 接口列表
+
+### 文本生成
+
+**POST** /chat/completions
+
+请求参数：
+```json
+{
+  "model": "gpt-4",
+  "messages": [
+    {"role": "user", "content": "你好"}
+  ]
+}
+```
+
+### 嵌入向量
+
+**POST** /embeddings
+
+请求参数：
+```json
+{
+  "model": "text-embedding-ada-002",
+  "input": "需要生成嵌入的文本"
+}
+```
+
+## 错误处理
+
+API 使用标准 HTTP 状态码：
+
+- 200: 成功
+- 400: 请求参数错误
+- 401: 认证失败
+- 429: 请求频率限制
+- 500: 服务器内部错误
+
+## 联系我们
+
+如需 API 访问权限，请 [联系我们](/contact)。
+
+---
+
+## 常见问题
+
+水杉智境工作室常见问题解答，包含服务咨询、技术支持和合作方式 | 分类：帮助中心 | 标签：FAQ、常见问题、帮助、支持 | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/faq/
+
+# 常见问题
+
+## 一般问题
+
+### Q: 你们提供哪些服务？
+
+A: 我们提供三大核心服务：
+1. **模型部署** - 在私有环境部署大语言模型
+2. **应用开发** - 基于大模型构建企业级应用
+3. **智能体开发** - 开发具备自主决策能力的 AI 智能体
+
+### Q: 如何开始合作？
+
+A: 您可以通过以下方式开始：
+1. 访问 [服务页面](/services) 了解详情
+2. 填写 [联系表单](/contact) 描述您的需求
+3. 直接发送邮件至 c@m9ai.work
+
+### Q: 支持哪些大模型？
+
+A: 我们支持主流的大语言模型，包括：
+- OpenAI GPT 系列
+- Meta LLaMA 系列
+- DeepSee 系列
+- Qwen AI 系列
+- Kimi AI 系列
+- 百度文心一言
+- 讯飞星火
+- 以及其他开源模型
+
+## 技术问题
+
+### Q: 私有化部署是否安全？
+
+A: 是的，私有化部署将模型和数据保存在您自己的服务器上，数据不会离开您的网络环境，满足各类合规要求。
+
+### Q: 需要什么样的硬件配置？
+
+A: 硬件需求取决于具体的模型和使用场景。一般来说：
+- 小型模型：单张消费级显卡（如 RTX 4090）
+- 中型模型：单张/多张专业显卡（如 A100）
+- 大型模型：多卡集群
+
+我们会在需求评估阶段提供具体的硬件建议。
+
+### Q: 是否提供技术支持？
+
+A: 是的，我们提供 7×24 小时技术支持，确保您的业务正常运行。
+
+## 其他问题
+
+如有其他问题，请随时 [联系我们](/contact)。
+
+---
+
+## 欢迎使用水杉智境工作室
+
+水杉智境工作室提供企业级 AI 解决方案，包括大模型私有化部署、应用开发和智能体定制服务 | 分类：入门指南 | 标签：入门、介绍、快速开始 | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/introduction/
+
+# 欢迎使用水杉智境工作室
+
+## 简介
+
+水杉智境工作室（Metasequoia AI Studio）是一家专注于企业级 AI 解决方案的技术团队。我们提供大模型私有化部署、应用开发和智能体定制服务。
+
+## 核心服务
+
+### 1. 模型部署
+在客户自有服务器环境中部署大语言模型，确保数据安全与隐私保护。
+
+### 2. 大模型应用开发
+基于大语言模型构建企业级应用，实现智能客服、内容生成等场景。
+
+### 3. 智能体开发
+开发具备自主决策能力的 AI 智能体，自动化复杂业务流程。
+
+## 快速开始
+
+访问我们的 [服务页面](/services) 了解更多详情，或通过 [应用商店](/store) 探索现成的 AI 应用。
+
+## 联系我们
+
+如有任何问题，请通过以下方式联系我们：
+
+- 邮箱：c@m9ai.work
+- 微信：扫码添加（见官网底部）
+
+---
+
+## 本地知识库搭建指南
+
+学习如何构建企业级本地知识库，实现私有数据的智能检索与问答 | 分类：进阶教程 | 标签：知识库、RAG、向量数据库、数据安全 | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/knowledge-base/
+
+# 本地知识库搭建指南
+
+## 概述
+
+本地知识库（Local Knowledge Base）是企业 AI 应用的核心基础设施。通过将企业私有文档、数据转化为可检索的知识，结合大语言模型的理解能力，实现智能问答、文档分析、知识挖掘等功能。
+
+## 核心架构
+
+```mermaid
+flowchart LR
+    subgraph Input["数据输入"]
+        A[📄 文档输入<br/>PDF/Word/等]
+        F[💬 用户提问<br/>自然语言]
+    end
+    
+    subgraph Processing["处理层"]
+        B[⚙️ 文档处理引擎<br/>解析/分块/嵌入]
+        D[🔍 RAG 检索引擎<br/>向量相似度搜索]
+    end
+    
+    subgraph Storage["存储层"]
+        C[🗄️ 向量数据库<br/>Milvus/PGVector]
+    end
+    
+    subgraph Output["输出层"]
+        E[🤖 大语言模型<br/>生成回答]
+    end
+    
+    A --> B
+    B --> C
+    C --> D
+    F --> D
+    D --> E
+```
+
+## 环境准备
+
+### 系统要求
+
+- **CPU**: 4核及以上
+- **内存**: 16GB 及以上
+- **存储**: 100GB SSD 及以上
+- **GPU**: 可选，推荐用于 Embedding 加速
+
+### 依赖安装
+
+```bash
+# Python 环境
+python -m pip install langchain langchain-community
+
+# 向量数据库
+pip install pymilvus  # 或 pgvector
+
+# 文档解析
+pip install pypdf unstructured
+
+# Embedding 模型
+pip install sentence-transformers
+```
+
+## 快速开始
+
+### 1. 初始化向量数据库
+
+使用 Milvus 作为向量存储：
+
+```bash
+# Docker 启动 Milvus
+docker-compose -f milvus-standalone-docker-compose.yml up -d
+```
+
+或使用 PostgreSQL + pgvector：
+
+```sql
+-- 创建向量扩展
+CREATE EXTENSION IF NOT EXISTS vector;
+
+-- 创建知识库表
+CREATE TABLE knowledge_base (
+    id SERIAL PRIMARY KEY,
+    content TEXT,
+    embedding VECTOR(768),
+    metadata JSONB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### 2. 文档处理流程
+
+```python
+from langchain.document_loaders import PyPDFLoader, DirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.vectorstores import Milvus
+
+# 加载文档
+loader = DirectoryLoader(
+    "./documents",
+    glob="**/*.pdf",
+    loader_cls=PyPDFLoader
+)
+documents = loader.load()
+
+# 文档分块
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=500,
+    chunk_overlap=50,
+    separators=["\n\n", "\n", "。", "；", " "]
+)
+chunks = text_splitter.split_documents(documents)
+
+# 创建 Embedding
+embeddings = HuggingFaceEmbeddings(
+    model_name="BAAI/bge-large-zh-v1.5"
+)
+
+# 存入向量库
+vector_store = Milvus.from_documents(
+    documents=chunks,
+    embedding=embeddings,
+    connection_args={"host": "localhost", "port": "19530"},
+    collection_name="company_knowledge"
+)
+```
+
+### 3. 检索与问答
+
+```python
+from langchain.chains import RetrievalQA
+from langchain.llms import OpenAI
+
+# 创建检索器
+retriever = vector_store.as_retriever(
+    search_type="similarity",
+    search_kwargs={"k": 5}
+)
+
+# 构建 RAG 链
+qa_chain = RetrievalQA.from_chain_type(
+    llm=OpenAI(),
+    chain_type="stuff",
+    retriever=retriever,
+    return_source_documents=True
+)
+
+# 提问
+result = qa_chain({"query": "公司的年假政策是什么？"})
+print(result["result"])
+```
+
+## 高级配置
+
+### 混合检索策略
+
+结合向量检索与关键词检索，提升准确性：
+
+```python
+from langchain.retrievers import BM25Retriever, EnsembleRetriever
+
+# BM25 关键词检索
+bm25_retriever = BM25Retriever.from_documents(chunks)
+bm25_retriever.k = 5
+
+# 向量检索
+vector_retriever = vector_store.as_retriever(search_kwargs={"k": 5})
+
+# 融合检索
+ensemble_retriever = EnsembleRetriever(
+    retrievers=[bm25_retriever, vector_retriever],
+    weights=[0.3, 0.7]
+)
+```
+
+### 重排序优化
+
+使用重排序模型提升检索质量：
+
+```python
+from langchain.retrievers import ContextualCompressionRetriever
+from langchain.retrievers.document_compressors import CrossEncoderReranker
+
+# 重排序模型
+reranker = CrossEncoderReranker(model="BAAI/bge-reranker-large")
+
+# 压缩检索器
+compression_retriever = ContextualCompressionRetriever(
+    base_compressor=reranker,
+    base_retriever=vector_retriever
+)
+```
+
+### 多租户隔离
+
+企业场景下的数据隔离方案：
+
+```python
+# 为每个租户创建独立 Collection
+from pymilvus import Collection, FieldSchema, CollectionSchema, DataType
+
+def create_tenant_collection(tenant_id):
+    fields = [
+        FieldSchema(name="id", dtype=DataType.INT64, is_primary=True),
+        FieldSchema(name="content", dtype=DataType.VARCHAR, max_length=65535),
+        FieldSchema(name="embedding", dtype=DataType.FLOAT_VECTOR, dim=768),
+        FieldSchema(name="metadata", dtype=DataType.JSON),
+        FieldSchema(name="tenant_id", dtype=DataType.VARCHAR, max_length=64)
+    ]
+    
+    schema = CollectionSchema(fields)
+    collection = Collection(f"knowledge_{tenant_id}", schema)
+    
+    # 创建索引
+    index_params = {
+        "metric_type": "COSINE",
+        "index_type": "IVF_FLAT",
+        "params": {"nlist": 1024}
+    }
+    collection.create_index("embedding", index_params)
+    return collection
+```
+
+## 性能优化
+
+### 1. Embedding 模型选择
+
+| 模型 | 维度 | 语言 | 适用场景 |
+|------|------|------|----------|
+| BAAI/bge-large-zh | 1024 | 中文 | 通用中文场景 |
+| BAAI/bge-m3 | 1024 | 多语言 | 多语言混合 |
+| text-embedding-3 | 1536 | 多语言 | OpenAI 生态 |
+| m3e-base | 768 | 中文 | 轻量级应用 |
+
+### 2. 分块策略优化
+
+```python
+# 按语义分块
+from langchain.text_splitter import SemanticChunker
+
+semantic_splitter = SemanticChunker(
+    embeddings,
+    breakpoint_threshold_type="percentile",
+    breakpoint_threshold_amount=95
+)
+
+# 按结构分块（Markdown）
+from langchain.text_splitter import MarkdownHeaderTextSplitter
+
+markdown_splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=[("#", "Header 1"), ("##", "Header 2")]
+)
+```
+
+### 3. 缓存策略
+
+```python
+from langchain.cache import InMemoryCache
+import langchain
+
+# 启用缓存
+langchain.llm_cache = InMemoryCache()
+
+# 或使用 Redis 缓存
+from langchain.cache import RedisCache
+import redis
+
+redis_client = redis.Redis(host='localhost', port=6379)
+langchain.llm_cache = RedisCache(redis_client)
+```
+
+## 安全与隐私
+
+### 数据脱敏
+
+```python
+import re
+
+def desensitize_text(text):
+    # 手机号脱敏
+    text = re.sub(r'1[3-9]\d{9}', lambda m: m.group()[:3] + '****' + m.group()[7:], text)
+    # 身份证号脱敏
+    text = re.sub(r'\d{17}[\dXx]', lambda m: m.group()[:6] + '********' + m.group()[14:], text)
+    # 邮箱脱敏
+    text = re.sub(r'(\w{2})\w+@(\w+)', r'\1***@\2', text)
+    return text
+
+# 处理前对文档进行脱敏
+chunks = [desensitize_text(chunk) for chunk in chunks]
+```
+
+### 访问控制
+
+```python
+from functools import wraps
+
+def require_permission(permission):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(user, *args, **kwargs):
+            if permission not in user.permissions:
+                raise PermissionError("Access denied")
+            return func(user, *args, **kwargs)
+        return wrapper
+    return decorator
+
+@require_permission("knowledge:read")
+def query_knowledge_base(user, query):
+    # 查询逻辑
+    pass
+```
+
+## 最佳实践
+
+### 文档预处理清单
+
+- [ ] 扫描件需先 OCR 识别
+- [ ] 去除页眉页脚和页码
+- [ ] 表格内容转换为结构化数据
+- [ ] 图片提取并添加描述
+- [ ] 敏感信息脱敏处理
+
+### 持续优化
+
+1. **用户反馈收集**: 记录问答质量，标记错误回答
+2. **增量更新**: 定期处理新增文档，无需全量重建
+3. **监控指标**: 检索延迟、回答准确率、用户满意度
+4. **A/B 测试**: 对比不同 Embedding 模型和参数效果
+
+## 常见问题
+
+### Q: 如何处理扫描版 PDF？
+
+使用 OCR 工具预处理：
+
+```python
+import pytesseract
+from pdf2image import convert_from_path
+
+images = convert_from_path("scan.pdf")
+text = "\n".join([pytesseract.image_to_string(img, lang='chi_sim+eng') for img in images])
+```
+
+### Q: 知识库更新如何增量处理？
+
+```python
+# 计算文档指纹
+import hashlib
+
+def get_doc_fingerprint(filepath):
+    with open(filepath, 'rb') as f:
+        return hashlib.md5(f.read()).hexdigest()
+
+# 只处理新增或修改的文档
+existing_ids = set(get_existing_ids())
+new_docs = [doc for doc in all_docs if doc.id not in existing_ids]
+```
+
+### Q: 如何处理超长文档？
+
+采用分层摘要策略：
+1. 段落级摘要
+2. 章节级摘要  
+3. 文档级摘要
+4. 构建树状索引结构
+
+## 总结
+
+本地知识库是企业 AI 应用的基础设施，通过合理的架构设计、性能优化和安全策略，可以构建高效、可靠的智能知识管理系统。
+
+如需技术支持，请通过以下方式联系我们：
+- 邮箱：c@m9ai.work
+- 官网：https://m9ai.work
+
+---
+
+## 模型部署指南
+
+提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化 | 分类：技术文档 | 标签：模型部署、私有化、大模型、GPU、Docker、Kubernetes | 更新：2025-02-10 | 原文：https://m9ai.work/zh/docs/model-deployment/
+
+# 模型部署指南
+
+## 概述
+
+我们提供主流大模型的本地化部署方案，帮助企业在自有基础设施上运行大语言模型，保障数据安全与隐私，支持自定义微调与性能优化。本指南涵盖从单机部署到分布式集群的完整方案。
+
+## 支持的模型
+
+### 开源模型
+
+| 模型 | 参数量 | 显存需求 | 推荐用途 | 特点 |
+|------|--------|----------|----------|------|
+| **DeepSeek** | 7B-67B | 16GB-140GB | 代码生成、数学推理 | 开源最强代码模型，支持 128K 长上下文 |
+| **Qwen (通义千问)** | 7B-72B | 16GB-160GB | 中文场景、代码生成 | 中文理解优秀，支持 function call |
+| **LLaMA 2/3** | 7B-70B | 16GB-160GB | 通用对话、文本生成 | 生态丰富，社区支持广泛 |
+| **Yi (零一万物)** | 6B-34B | 14GB-80GB | 中英文混合场景 | 中文表现优异，支持长文本 |
+| **ChatGLM3** | 6B | 14GB | 中文对话、轻量级部署 | 低资源占用，适合边缘部署 |
+| **Baichuan2** | 7B-13B | 16GB-28GB | 中文场景、企业应用 | 商用友好，中文知识丰富 |
+| **Mistral** | 7B-8x7B | 16GB-90GB | 多语言推理 | MoE 架构，推理效率高 |
+
+#### 特色模型详解
+
+##### DeepSeek 系列
+DeepSeek 是目前最强的开源代码大模型，特别适合开发场景：
+
+- **DeepSeek-Coder-33B**: 代码生成能力接近 GPT-4
+- **DeepSeek-V2**: 采用 MLA 架构，推理成本低，支持 128K 上下文
+- **DeepSeek-Math**: 数学推理专项优化，竞赛级表现
+
+```bash
+# DeepSeek 快速部署
+docker pull m9ai/deepseek-coder-33b:latest
+docker run -d --gpus all -p 8000:8000 m9ai/deepseek-coder-33b:latest
+```
+
+##### Kimi 系列 (Moonshot)
+Kimi 以超长上下文窗口著称，适合文档分析场景：
+
+- **Kimi-V1**: 支持 200K 超长上下文
+- **Kimi-V1.5**: 多模态能力，支持图像理解
+- **适用场景**: 长文档摘要、法律合同分析、论文研读
+
+```bash
+# Kimi 模型部署（需申请授权）
+docker run -d \
+  -e MOONSHOT_API_KEY=your_key \
+  -p 8000:8000 \
+  m9ai/kimi-v1:latest
+```
+
+### 商用模型（需授权）
+
+| 模型 | 部署方式 | 适用场景 |
+|------|----------|----------|
+| GPT 系列 | Azure OpenAI 私有化 | 通用对话、复杂推理 |
+| 文心一言企业版 | 百度智能云私有化 | 中文企业应用 |
+| 讯飞星火企业版 | 讯飞云平台 | 语音识别、教育场景 |
+| **Kimi** | 月之暗面私有化部署 | 长文档分析、法律金融 |
+
+---
+
+## 模型选型指南
+
+根据不同业务场景选择合适的模型：
+
+### 代码开发场景
+**首选**: DeepSeek-Coder-33B
+- 代码生成准确率最高
+- 支持 128K 长代码文件分析
+- 精通 Python、Java、JavaScript 等主流语言
+
+### 中文对话场景
+**首选**: Qwen2.5-72B
+- 中文理解能力业界领先
+- 支持 function call 工具调用
+- 中文知识库丰富
+
+### 长文档分析场景
+**首选**: Kimi-V1
+- 200K 超长上下文窗口
+- 适合论文、合同、报告分析
+- 信息提取准确率高
+
+### 轻量级部署场景
+**首选**: ChatGLM3-6B 或 DeepSeek-7B
+- 单张消费级显卡可运行
+- 响应速度快
+- 适合边缘设备部署
+
+## 系统要求
+
+### 最低配置（7B 模型）
+
+- **CPU**: 8 核及以上
+- **内存**: 32GB 及以上
+- **存储**: 100GB SSD 及以上
+- **GPU**: NVIDIA RTX 3090 / A10 / T4（24GB 显存）
+
+### 推荐配置（13B-70B 模型）
+
+- **CPU**: 16 核及以上
+- **内存**: 64GB-256GB
+- **存储**: 500GB NVMe SSD
+- **GPU**: 
+  - 13B 模型: A100 40GB 或 RTX 4090
+  - 70B 模型: 2x A100 80GB 或 4x A10
+
+### 软件环境
+
+- **操作系统**: Ubuntu 20.04/22.04 LTS, CentOS 7/8
+- **CUDA**: 11.8 或 12.1
+- **Docker**: 20.10+（推荐）
+- **Python**: 3.9-3.11
+
+## 部署方式
+
+### 方式一：Docker 快速部署（推荐）
+
+#### 1. 安装 Docker 和 NVIDIA Docker
+
+```bash
+# 安装 Docker
+curl -fsSL https://get.docker.com | sh
+
+# 安装 NVIDIA Container Toolkit
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+```
+
+#### 2. 拉取模型镜像
+
+```bash
+# DeepSeek Coder 33B（推荐）
+docker pull m9ai/deepseek-coder-33b:latest
+
+# 通义千问 72B
+docker pull m9ai/qwen2.5-72b:latest
+
+# LLaMA 2 7B
+docker pull m9ai/llama2-7b:latest
+```
+
+#### 3. 启动容器
+
+```bash
+docker run -d \
+  --name llm-server \
+  --gpus all \
+  -p 8000:8000 \
+  -v /data/models:/models \
+  -e MODEL_PATH=/models/llama-2-7b \
+  -e CUDA_VISIBLE_DEVICES=0 \
+  m9ai/llama2-7b:latest
+```
+
+#### 4. 验证部署
+
+```bash
+curl http://localhost:8000/v1/models
+
+# 测试对话（DeepSeek 示例）
+curl -X POST http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "deepseek-coder-33b",
+    "messages": [{"role": "user", "content": "用 Python 写一个快速排序算法"}]
+  }'
+
+# 测试长文本（Kimi 示例）
+curl -X POST http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "kimi-v1",
+    "messages": [{"role": "user", "content": "请总结这篇论文的主要内容..."}]
+  }'
+```
+
+### 方式二：Kubernetes 集群部署
+
+适用于大规模生产环境，支持自动扩缩容。
+
+#### 1. 准备 Kubernetes 集群
+
+确保集群已配置 NVIDIA GPU 设备插件：
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.14.0/nvidia-device-plugin.yml
+```
+
+#### 2. 部署模型服务
+
+```yaml
+# model-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: llm-server
+  template:
+    metadata:
+      labels:
+        app: llm-server
+    spec:
+      containers:
+      - name: llm
+        image: m9ai/llama2-7b:latest
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MODEL_PATH
+          value: "/models/llama-2-7b"
+        volumeMounts:
+        - name: model-storage
+          mountPath: /models
+      volumes:
+      - name: model-storage
+        persistentVolumeClaim:
+          claimName: model-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llm-service
+spec:
+  selector:
+    app: llm-server
+  ports:
+  - port: 8000
+    targetPort: 8000
+  type: LoadBalancer
+```
+
+部署：
+
+```bash
+kubectl apply -f model-deployment.yaml
+```
+
+### 方式三：裸机部署
+
+适用于需要深度定制的场景。
+
+#### 1. 安装依赖
+
+```bash
+# 安装 Python 依赖
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install transformers accelerate bitsandbytes
+pip install vllm  # 高性能推理引擎
+```
+
+#### 2. 下载模型
+
+```python
+from huggingface_hub import snapshot_download
+
+# 下载模型到本地
+model_path = snapshot_download(
+    repo_id="meta-llama/Llama-2-7b-chat-hf",
+    local_dir="./models/llama-2-7b",
+    token="your_huggingface_token"
+)
+```
+
+#### 3. 启动服务（使用 vLLM）
+
+```python
+from vllm import LLM, SamplingParams
+
+# 初始化模型
+llm = LLM(
+    model="./models/llama-2-7b",
+    tensor_parallel_size=1,  # GPU 数量
+    gpu_memory_utilization=0.9,
+    max_model_len=4096
+)
+
+# 推理示例
+sampling_params = SamplingParams(temperature=0.7, max_tokens=512)
+prompts = ["你好，请介绍一下自己"]
+outputs = llm.generate(prompts, sampling_params)
+
+for output in outputs:
+    print(output.outputs[0].text)
+```
+
+## 性能优化
+
+### 量化技术
+
+使用 4-bit 或 8-bit 量化可大幅降低显存占用：
+
+```python
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+
+# 4-bit 量化配置
+quantization_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_compute_dtype=torch.float16,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_use_double_quant=True,
+)
+
+model = AutoModelForCausalLM.from_pretrained(
+    "model_path",
+    quantization_config=quantization_config,
+    device_map="auto"
+)
+```
+
+**量化效果对比：**
+
+| 模型 | 原始显存 | 8-bit 显存 | 4-bit 显存 | 性能损失 |
+|------|----------|------------|------------|----------|
+| DeepSeek-Coder-33B | 66GB | 38GB | 22GB | <3% |
+| Qwen2.5-72B | 144GB | 82GB | 48GB | <4% |
+| LLaMA2-7B | 14GB | 8GB | 5GB | <3% |
+| LLaMA2-13B | 26GB | 15GB | 9GB | <5% |
+| LLaMA2-70B | 140GB | 80GB | 48GB | <5% |
+
+### 推理加速
+
+#### vLLM 加速
+
+vLLM 使用 PagedAttention 算法，可提升 2-4 倍吞吐量：
+
+```bash
+python -m vllm.entrypoints.openai.api_server \
+  --model /models/llama-2-7b \
+  --tensor-parallel-size 1 \
+  --max-num-seqs 256 \
+  --max-model-len 4096
+```
+
+#### TensorRT-LLM 加速
+
+NVIDIA TensorRT-LLM 可提供极致性能：
+
+```bash
+# 构建 TensorRT 引擎
+trtllm-build --checkpoint_dir ./model \
+             --output_dir ./trt_engines/llama-7b \
+             --gemm_plugin float16
+
+# 运行推理
+python3 run.py --engine_dir=./trt_engines/llama-7b \
+               --max_output_len=512
+```
+
+### 缓存策略
+
+启用 KV Cache 可加速多轮对话：
+
+```python
+# vLLM 自动管理 KV Cache
+llm = LLM(
+    model="model_path",
+    enable_prefix_caching=True,  # 前缀缓存
+    max_num_batched_tokens=4096
+)
+```
+
+## API 使用指南
+
+### OpenAI 兼容接口
+
+我们的部署方案提供与 OpenAI API 兼容的接口：
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="http://localhost:8000/v1",
+    api_key="dummy"  # 本地部署可不设置
+)
+
+# DeepSeek 代码生成示例
+response = client.chat.completions.create(
+    model="deepseek-coder-33b",
+    messages=[
+        {"role": "system", "content": "你是一个专业程序员"},
+        {"role": "user", "content": "用 Python 实现一个 LRU 缓存"}
+    ],
+    temperature=0.3,
+    max_tokens=2048
+)
+
+# Kimi 长文档分析示例
+response = client.chat.completions.create(
+    model="kimi-v1",
+    messages=[
+        {"role": "user", "content": "请分析这份 50 页的报告，提取核心观点..."}
+    ],
+    temperature=0.5,
+    max_tokens=4096
+)
+
+print(response.choices[0].message.content)
+```
+
+### 流式响应
+
+```python
+stream = client.chat.completions.create(
+    model="llama-2-7b",
+    messages=[{"role": "user", "content": "写一首诗"}],
+    stream=True
+)
+
+for chunk in stream:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="")
+```
+
+## 监控与日志
+
+### 启用 Prometheus 监控
+
+```bash
+docker run -d \
+  --name llm-monitor \
+  -p 8000:8000 \
+  -e ENABLE_METRICS=true \
+  -e PROMETHEUS_PORT=8080 \
+  m9ai/llama2-7b:latest
+```
+
+监控指标：
+
+- `vllm:gpu_cache_usage_perc` - GPU 缓存使用率
+- `vllm:num_requests_running` - 正在处理的请求数
+- `vllm:time_to_first_token_seconds` - 首 token 延迟
+- `vllm:time_per_output_token_seconds` - 每个 token 生成时间
+
+### 日志配置
+
+```yaml
+# logging.yaml
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    - file: /var/log/llm-server.log
+    - console
+```
+
+## 安全与合规
+
+### 网络安全
+
+- 使用 HTTPS/TLS 加密通信
+- 配置防火墙规则，限制访问 IP
+- 启用 API 密钥认证
+
+```bash
+# 生成 API 密钥
+export API_KEY=$(openssl rand -hex 32)
+
+# 启动时启用认证
+docker run -e API_KEY=$API_KEY m9ai/llama2-7b:latest
+```
+
+### 数据保护
+
+- 所有数据保留在本地，不传输到外部
+- 支持磁盘加密
+- 定期安全审计
+
+## 故障排查
+
+### 常见问题
+
+#### 1. CUDA Out of Memory
+
+**原因**：显存不足
+**解决**：
+- 启用量化（4-bit/8-bit）
+- 减小 `max_model_len`
+- 使用 ZeRO  offload 到 CPU
+
+```python
+llm = LLM(
+    model="model_path",
+    gpu_memory_utilization=0.85,  # 降低显存占用比例
+    max_model_len=2048  # 减小最大序列长度
+)
+```
+
+#### 2. 模型加载缓慢
+
+**原因**：磁盘 I/O 瓶颈
+**解决**：
+- 使用 NVMe SSD
+- 预加载模型到内存
+- 启用模型并行
+
+#### 3. 推理速度慢
+
+**原因**：批处理大小不合适
+**解决**：
+- 调整 `max_num_seqs`
+- 启用连续批处理
+- 使用更快的推理引擎（vLLM/TensorRT-LLM）
+
+### 诊断命令
+
+```bash
+# 检查 GPU 状态
+nvidia-smi
+
+# 查看容器日志
+docker logs llm-server -f
+
+# 测试 API 连通性
+curl -v http://localhost:8000/health
+
+# 监控 GPU 利用率
+watch -n 1 nvidia-smi
+```
+
+## 高级配置
+
+### 多模型负载均衡
+
+使用 Nginx 实现多模型实例负载均衡：
+
+```nginx
+upstream llm_backend {
+    server localhost:8000;
+    server localhost:8001;
+    server localhost:8002;
+}
+
+server {
+    listen 80;
+    location /v1/ {
+        proxy_pass http://llm_backend;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
+
+### 自动扩缩容
+
+使用 KEDA 基于队列长度自动扩缩容：
+
+```yaml
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: llm-scaler
+spec:
+  scaleTargetRef:
+    name: llm-deployment
+  triggers:
+  - type: metrics-api
+    metadata:
+      targetValue: "10"
+      url: "http://prometheus:9090/api/v1/query?query=vllm:num_requests_waiting"
+```
+
+## 最佳实践
+
+1. **生产环境必须使用量化模型**，显存占用降低 50-70%
+2. **启用连续批处理**，提升吞吐量 3-5 倍
+3. **配置适当的 max_model_len**，避免内存浪费
+4. **使用 SSD 存储模型**，减少加载时间
+5. **定期监控 GPU 温度和利用率**，防止过热
+6. **启用日志轮转**，防止磁盘占满
+7. **配置健康检查**，实现故障自动恢复
+
+## 获取支持
+
+遇到部署问题？我们提供：
+
+- **免费技术咨询**：[预约咨询](/contact)
+- **企业部署服务**：包含环境搭建、模型优化、运维培训
+- **7x24 小时支持**：专属技术支持团队
+
+如需了解更多详情或定制部署方案，请 [联系我们](/contact)。
+
+---
+
+## Privacy Policy
+
+How we collect, use, store and protect your information, and the rights you have over it | 分类：Help | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/privacy-policy/
+
+# Privacy Policy
+
+## 1. Introduction
+This Privacy Policy explains how we collect, use, disclose, and protect your information when you use our services.
+
+## 2. Information We Collect
+- Personal information you provide directly
+- Usage data and analytics
+- Cookies and tracking technologies
+
+## 3. How We Use Your Information
+- To provide and improve our services
+- To communicate with you
+- To protect our users and services
+
+## 4. Information Sharing
+We do not share your personal information with third parties except as required by law or with your consent.
+
+## 5. Data Security
+We implement reasonable security measures to protect your information.
+
+## 6. Your Rights
+You have the right to access, correct, or delete your personal information.
+
+## 7. Changes to This Policy
+We may update this policy from time to time.
+
+## 8. Contact Us
+For questions about this policy, contact us at c@m9ai.work.
+
+---
+
+## 隐私政策
+
+我们如何收集、使用、存储和保护您的信息，以及您对这些信息的权利 | 分类：帮助中心 | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/privacy-policy/
+
+# 隐私政策
+
+## 1. 引言
+
+欢迎使用我们的服务。我们尊重您的隐私，并致力于保护您的个人信息。本隐私政策解释了我们如何收集、使用、存储和保护您的信息，以及您对这些信息的权利。
+
+## 2. 信息收集
+
+我们可能会收集以下类型的信息：
+
+- **个人身份信息**：如姓名、电子邮件地址、电话号码等，当您注册账户或使用我们的服务时提供。
+- **使用数据**：如您使用我们服务的方式、访问的页面、停留时间等。
+- **设备信息**：如您使用的设备类型、操作系统、IP地址等。
+
+## 3. 信息使用
+
+我们收集的信息将用于：
+
+- 提供、维护和改进我们的服务
+- 开发新功能和服务
+- 理解用户如何使用我们的服务，以优化用户体验
+- 与您沟通，发送服务相关通知
+
+## 4. 信息存储与保护
+
+我们采用行业标准的安全措施保护您的个人信息，防止未授权访问、使用或披露。您的信息将存储在安全的服务器上，并仅在必要的时间内保留。
+
+## 5. 第三方共享
+
+我们不会向第三方出售或出租您的个人信息。在以下情况下，我们可能会共享您的信息：
+
+- 获得您的明确同意
+- 遵守法律法规或响应法律要求
+- 保护我们的权利、财产或安全，以及用户和公众的安全
+
+## 6. 您的权利
+
+您有权访问、更正或删除您的个人信息。您也可以随时撤回对信息收集和使用的同意。如需行使这些权利，请联系我们。
+
+## 7. 政策更新
+
+我们可能会不时更新本隐私政策。任何更改将在发布后生效，我们会通过适当方式通知您。
+
+## 8. 联系我们
+
+如有任何关于本隐私政策的问题，请通过以下方式联系我们：
+
+- 电子邮件：c@m9ai.work
+
+---
+
+## 提示词工程最佳实践
+
+掌握提示词设计技巧，提升大模型输出质量与可靠性 | 分类：进阶教程 | 标签：提示词、Prompt、提示工程、LLM优化、角色设定 | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/prompt-engineering/
+
+# 提示词工程最佳实践
+
+## 概述
+
+提示词工程（Prompt Engineering）是通过设计和优化输入提示词，引导大语言模型（LLM）生成高质量、符合预期的输出的技术。良好的提示词设计是 AI 应用成功的关键。
+
+## 提示词基本结构
+
+### 标准格式
+
+```markdown
+# 角色设定
+你是[专业角色]，具备[相关经验/能力]。
+
+# 任务描述
+请完成以下任务：[具体任务]
+
+# 输入数据
+[需要处理的内容]
+
+# 约束条件
+- 条件1
+- 条件2
+- ...
+
+# 输出格式
+请以[格式]输出，包含以下要素：
+1. 要素A
+2. 要素B
+3. ...
+```
+
+### 示例：产品文案生成
+
+```markdown
+## 角色
+你是一位资深的电商文案策划专家，拥有10年文案撰写经验，擅长挖掘产品卖点并转化为吸引人的文案。
+
+## 任务
+为以下产品撰写一则朋友圈推广文案。
+
+## 产品信息
+- 产品名称：智能颈椎按摩仪
+- 核心功能：热敷+脉冲按摩+APP控制
+- 目标人群：25-40岁办公室白领
+- 价格区间：299-399元
+- 卖点：15分钟快速缓解疲劳、静音设计、便携可折叠
+
+## 要求
+1. 开头要有吸引力，3秒内抓住注意力
+2. 突出解决的具体痛点
+3. 加入社会认同元素（如销量、好评）
+4. 结尾有明确的行动号召
+5. 字数控制在150字以内
+6. 语气亲切自然，避免过度营销感
+
+## 输出格式
+直接输出文案内容，不需要额外解释。
+```
+
+## 核心技巧
+
+### 1. 角色设定（Role Prompting）
+
+通过设定专业角色，激活模型的领域知识：
+
+```markdown
+❌ 一般："写一篇关于糖尿病的文章"
+
+✅ 优化："你是一位内分泌科主任医师，拥有20年临床经验。请用通俗语言向糖尿病患者解释血糖控制的重要性，包括：
+1. 血糖失控的危害
+2. 日常监测要点
+3. 饮食控制原则
+要求：专业准确但易懂，语气亲切关怀。"
+```
+
+### 2. 思维链（Chain-of-Thought）
+
+引导模型展示推理过程，提升复杂任务准确率：
+
+```markdown
+请解答以下数学问题，并展示详细的推理步骤：
+
+问题：一个水箱有2个进水管和1个排水管。A管单独注满需要6小时，B管单独注满需要4小时，排水管单独排空需要8小时。如果三管同时打开，需要多久注满水箱？
+
+思考过程：
+1. 首先，我需要计算每个管子的工作效率...
+2. 然后，计算三管同时工作时的净效率...
+3. 最后，根据净效率计算注满时间...
+
+请按以上思路详细解答。
+```
+
+### 3. 少样本学习（Few-Shot Learning）
+
+通过示例教模型理解任务模式：
+
+```json
+将以下用户评论转换为结构化数据。
+
+示例1：
+输入："这款耳机音质很好，但是佩戴不舒服，戴久了耳朵疼。价格299有点贵。"
+输出：
+{
+  "sentiment": "mixed",
+  "pros": ["音质好"],
+  "cons": ["佩戴不舒适", "价格高"],
+  "price_mentioned": 299,
+  "purchase_intent": "neutral"
+}
+
+示例2：
+输入："太棒了！物流超快，昨天买今天到。手机拍照效果惊艳，完全超出预期！"
+输出：
+{
+  "sentiment": "positive",
+  "pros": ["物流快", "拍照效果好"],
+  "cons": [],
+  "price_mentioned": null,
+  "purchase_intent": "high"
+}
+
+现在请处理：
+输入："用了三天就坏了，客服态度还差，退款流程繁琐。再也不买了。"
+输出：
+```
+
+### 4. 输出格式控制
+
+使用结构化格式规范输出：
+
+```json
+# JSON 格式
+请以JSON格式返回，包含以下字段：
+{
+  "title": "文章标题（字符串）",
+  "summary": "摘要（50字以内）",
+  "keywords": ["关键词数组"],
+  "content": "正文内容（Markdown格式）",
+  "confidence": 置信度（0-1浮点数）
+}
+
+# Markdown 表格
+请以表格形式对比以下方案：
+| 方案 | 优点 | 缺点 | 适用场景 | 成本 |
+|------|------|------|----------|------|
+| ... | ... | ... | ... | ... |
+
+# 代码格式
+请提供Python代码实现，要求：
+1. 包含类型注解
+2. 添加docstring
+3. 包含3个unittest测试用例
+```
+
+## 高级技巧
+
+### 1. 自我一致性（Self-Consistency）
+
+对同一问题多次采样，选择最一致的答案：
+
+```python
+from collections import Counter
+
+def self_consistency_prompt(question, n_samples=5):
+    answers = []
+    for _ in range(n_samples):
+        response = llm.generate(
+            f"{question}\n请一步步思考并给出答案。",
+            temperature=0.7
+        )
+        answers.append(extract_answer(response))
+    
+    # 投票选择最常见的答案
+    return Counter(answers).most_common(1)[0][0]
+```
+
+### 2. 递归提示（Recursive Prompting）
+
+将复杂任务分解为子任务：
+
+```markdown
+# 主任务：撰写技术文档
+步骤1：请先列出本文档应该包含的章节大纲
+步骤2：针对每个章节，简要说明应该覆盖的核心内容
+步骤3：基于以上大纲，撰写第一章的详细内容
+步骤4：检查第一章内容，确保包含所有要点
+步骤5：继续撰写下一章...
+
+当前执行：步骤1
+```
+
+### 3. 对抗性提示（Adversarial Prompting）
+
+让模型自我检查和改进：
+
+```markdown
+请完成以下翻译任务：
+
+原文：The quick brown fox jumps over the lazy dog.
+
+步骤1：直接翻译
+步骤2：检查翻译的准确性、流畅度
+步骤3：识别可能的问题
+步骤4：基于检查改进翻译
+步骤5：输出最终版本
+
+请按以上步骤执行。
+```
+
+### 4. 多模态提示
+
+结合文本和图像的提示：
+
+```markdown
+分析以下UI设计图，并给出改进建议：
+
+[图片]
+
+请从以下维度分析：
+1. 视觉层次：信息层级是否清晰？
+2. 色彩运用：配色是否协调？是否符合品牌调性？
+3. 布局合理性：元素间距、对齐方式
+4. 可用性：交互元素是否易于识别和操作？
+5. 改进建议：给出3-5条具体优化建议
+
+输出格式：
+## 整体评价
+[总体评价]
+
+## 详细分析
+### 1. 视觉层次
+[分析内容]
+
+### 2. 色彩运用
+[分析内容]
+...
+
+## 改进建议
+1. [建议1]
+2. [建议2]
+...
+```
+
+## 场景化模板
+
+### 场景1：代码生成
+
+```markdown
+你是一位{语言}开发专家。请编写代码实现以下功能：
+
+功能描述：
+{功能详细描述}
+
+要求：
+- 遵循{代码规范}
+- 包含完整的错误处理
+- 添加详细的注释
+- 时间复杂度控制在{要求}
+- 提供3个测试用例
+
+输入示例：
+{示例输入}
+
+预期输出：
+{示例输出}
+
+请只返回代码，不要包含解释。
+```
+
+### 场景2：数据分析报告
+
+```markdown
+你是一位数据分析师。请基于以下数据生成分析报告。
+
+数据：
+{数据内容}
+
+分析维度：
+1. 趋势分析：关键指标的变化趋势
+2. 异常检测：指出异常数据点及可能原因
+3. 相关性分析：各指标间的关联关系
+4. 业务洞察：3-5条可落地的业务建议
+
+输出要求：
+- 使用专业但易懂的语言
+- 关键数据需要标注
+- 适当使用图表描述（以Markdown表格呈现）
+- 报告控制在1000字以内
+```
+
+### 场景3：客户服务回复
+
+```markdown
+你是一位客服专员，负责处理客户咨询。请根据以下信息回复客户。
+
+客户信息：
+- 姓名：{客户名}
+- 会员等级：{等级}
+- 历史订单：{订单数}笔
+
+客户问题：
+{问题内容}
+
+相关知识：
+{知识库内容}
+
+回复要求：
+1. 称呼客户姓名
+2. 先表达理解和共情
+3. 清晰解答问题
+4. 如涉及问题，提供解决方案
+5. 结尾询问是否还有其他需要帮助
+6. 整体语气：{语气要求}
+
+回复字数：150-200字
+```
+
+## 调试与优化
+
+### 1. A/B 测试框架
+
+```python
+def test_prompt_variants(task, variants, eval_criteria):
+    results = []
+    for name, prompt in variants.items():
+        output = llm.generate(prompt.format(task=task))
+        score = eval_criteria(output)
+        results.append({
+            "variant": name,
+            "output": output,
+            "score": score
+        })
+    return sorted(results, key=lambda x: x["score"], reverse=True)
+
+# 使用示例
+variants = {
+    "v1": "翻译以下内容为中文：{task}",
+    "v2": "你是专业翻译，请将以下内容翻译成地道的中文：{task}",
+    "v3": "请将以下英文翻译成中文，要求：\n1. 准确传达原意\n2. 符合中文表达习惯\n3. 保持专业术语一致\n\n内容：{task}"
+}
+
+def eval_translation(output):
+    # 使用BLEU score或其他指标评估
+    pass
+
+best = test_prompt_variants("Hello world", variants, eval_translation)
+```
+
+### 2. 提示词版本管理
+
+```yaml
+# prompts.yaml
+version: "1.2.0"
+prompts:
+  customer_service:
+    name: "客户服务回复"
+    template: |
+      你是一位{role}...
+    parameters:
+      role:
+        type: string
+        default: "资深客服专员"
+    examples:
+      - input: "我想退货"
+        expected_output: "..."
+    metrics:
+      - response_time
+      - satisfaction_score
+```
+
+### 3. 常见错误与解决
+
+| 问题 | 原因 | 解决方案 |
+|------|------|----------|
+| 输出过长 | 未限制长度 | 明确指定字数限制 |
+| 格式不符 | 格式描述不清 | 提供输出示例 |
+| 回答偏离 | 任务描述模糊 | 细化任务要求 |
+| 创意不足 | 温度设置过低 | 提高 temperature |
+| 出现幻觉 | 缺乏约束 | 增加"基于提供信息"等约束 |
+
+## 工具推荐
+
+### 提示词开发工具
+
+- **LangSmith**: OpenAI 出品的提示词调试平台
+- **PromptLayer**: 提示词版本管理与性能追踪
+- **Weight & Biases**: 机器学习实验追踪，支持提示词优化
+- **Pezzo**: 开源提示词管理和优化平台
+
+### 提示词库
+
+- **Prompt Engineering Guide**: https://www.promptingguide.ai/
+- **Awesome ChatGPT Prompts**: GitHub 上的提示词合集
+- **FlowGPT**: 社区驱动的提示词分享平台
+
+## 安全与伦理
+
+### 1. 提示注入防护
+
+```python
+def sanitize_input(user_input):
+    # 移除潜在的注入指令
+    dangerous_patterns = [
+        r"ignore previous instructions",
+        r"disregard (the|your) (prompt|instructions)",
+        r"system prompt",
+        r"you are now",
+    ]
+    
+    for pattern in dangerous_patterns:
+        if re.search(pattern, user_input, re.IGNORECASE):
+            raise ValueError("Potential prompt injection detected")
+    
+    return user_input
+```
+
+### 2. 输出过滤
+
+```python
+from transformers import pipeline
+
+# 内容安全检查
+safety_checker = pipeline("text-classification", model="distilbert-base-unsafe")
+
+def check_safety(text):
+    result = safety_checker(text)[0]
+    if result["label"] == "UNSAFE" and result["score"] > 0.8:
+        return False, "Content flagged as potentially unsafe"
+    return True, text
+```
+
+## 总结
+
+提示词工程是一门结合语言学、心理学和工程学的艺术。核心原则：
+
+1. **清晰明确**: 避免模糊表述，使用具体指令
+2. **结构完整**: 包含角色、任务、约束、格式等要素
+3. **迭代优化**: 基于反馈持续改进
+4. **安全可控**: 防范提示注入，确保输出合规
+
+掌握这些技巧，可以显著提升 AI 应用的效果和用户体验。
+
+如需专业支持，请联系我们：
+- 邮箱：c@m9ai.work
+- 官网：https://m9ai.work
+
+---
+
+## Terms of Service
+
+The terms you agree to when using this site and our services | 分类：Help | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/terms-of-service/
+
+# Terms of Service
+
+## 1. Acceptance of Terms
+By using our services, you agree to be bound by these Terms of Service.
+
+## 2. Description of Services
+We provide AI application development solutions and related services as described on our website.
+We also provide the following services:
+- Chatbot
+- Voice Recognition
+- Voice Synthesis
+- Text-to-Speech Conversion
+- Video Generation
+- Other Related Services
+
+## 3. User Responsibilities
+- You must provide accurate information
+- You must comply with all applicable laws
+- You must not misuse our services
+
+## 4. Intellectual Property
+All content and technology provided through our services is our intellectual property.
+
+## 5. Limitation of Liability
+We shall not be liable for any indirect, incidental, or consequential damages.
+
+## 6. Termination
+We may terminate your access to our services for violation of these terms.
+
+## 7. Governing Law
+These terms are governed by the laws of China.
+
+## 8. Changes to Terms
+We may update these terms periodically.
+
+## 9. Contact Information
+For questions about these terms, contact us at c@m9ai.work.
+
+---
+
+## 服务条款
+
+使用本站服务前需知悉的权利义务与使用约定 | 分类：帮助中心 | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/terms-of-service/
+
+# 服务条款
+
+## 1. 接受条款
+
+通过使用我们的服务，您同意遵守本服务条款。如果您不同意这些条款，请不要使用我们的服务。
+
+## 2. 服务说明
+
+我们提供的服务包括但不限于：
+- 聊天功能
+- 语音识别
+- 语音合成
+- 文本到语音转换
+- 视频生成
+- 其他相关服务
+
+我们保留随时修改、暂停或终止服务的权利，恕不另行通知。
+
+## 3. 用户责任
+
+您同意：
+- 仅将服务用于合法目的
+- 不侵犯任何第三方的权利
+- 不干扰或损害服务的安全性和正常运行
+- 提供准确、完整的信息
+
+## 4. 知识产权
+
+我们服务中的所有内容，包括但不限于文本、图像、商标、代码等，均受知识产权法律保护。未经我们书面许可，您不得复制、修改、分发或使用这些内容。
+
+## 5. 免责声明
+
+我们的服务按"现状"提供，不提供任何明示或暗示的保证。我们不对服务的可靠性、准确性或完整性作出任何承诺。
+
+## 6. 责任限制
+
+在法律允许的范围内，我们不对任何间接、偶然、特殊或后果性损害承担责任，包括但不限于利润损失、数据丢失等。
+
+## 7. 条款修改
+
+我们可能会不时更新本服务条款。任何更改将在发布后生效，建议您定期查看本页面。
+
+## 8. 终止
+
+我们有权在任何时候终止您对服务的访问，如有违反本条款的行为。
+
+## 9. 适用法律
+
+本服务条款受中国法律管辖，任何争议将提交中国法院解决。
+
+## 10. 联系我们
+
+如有任何关于本服务条款的问题，请通过以下方式联系我们：
+
+- 电子邮件：c@m9ai.work
+
+---
+
+## AI 工作流搭建实战
+
+使用可视化工具搭建自动化 AI 工作流，提升业务效率 | 分类：进阶教程 | 标签：工作流、自动化、Dify、智能体、业务流程 | 更新：2025-02-09 | 原文：https://m9ai.work/zh/docs/workflow/
+
+# AI 工作流搭建实战
+
+## 概述
+
+AI 工作流（AI Workflow）是将大语言模型与业务流程相结合的自动化系统。通过可视化的流程编排工具，无需编写代码即可构建复杂的 AI 应用。
+
+## 常见工作流类型
+
+| 类型 | 应用场景 | 典型工具 |
+|------|----------|----------|
+| 内容生成 | 文章写作、营销文案 | Dify、Coze |
+| 数据处理 | 文档分析、信息提取 | LangFlow、Flowise |
+| 客服自动化 | 智能问答、工单处理 | Dify、FastGPT |
+| 代码辅助 | 代码生成、Code Review | Continue、Cursor |
+
+## Dify 快速入门
+
+### 环境部署
+
+**Docker 部署（推荐）**
+
+```bash
+# 克隆仓库
+git clone https://github.com/langgenius/dify.git
+cd dify/docker
+
+# 启动服务
+docker-compose up -d
+
+# 访问 http://localhost/install 完成初始化
+```
+
+**本地开发环境**
+
+```bash
+# 后端
+cd api
+poetry install
+poetry shell
+flask db upgrade
+flask run --host 0.0.0.0 --port 5001
+
+# 前端
+cd web
+npm install
+npm run dev
+```
+
+### 第一个工作流：智能客服
+
+#### 步骤 1: 创建应用
+
+1. 登录 Dify 控制台
+2. 点击「创建应用」→「工作流编排」
+3. 命名：智能客服助手
+
+#### 步骤 2: 设计流程
+
+```mermaid
+flowchart LR
+    A["开始节点<br/>接收用户问题"] --> B["意图识别 (LLM)<br/>LLM 判断问题类型"]
+    B --> C["条件分支 (IF/ELSE)<br/>技术问题？产品咨询？投诉？"]
+    C --> D["知识检索 (RAG)<br/>从知识库搜索相关内容"]
+    D --> E["答案生成 (LLM)<br/>LLM 生成回复"]
+    E --> F["结束节点<br/>输出最终回答"]
+```
+
+#### 步骤 3: 配置节点
+
+**意图识别节点配置：**
+
+```json
+{
+  "model": "gpt-4",
+  "temperature": 0.3,
+  "system_prompt": "你是一个客服意图识别专家。请分析用户问题，判断意图类型：\n1. technical - 技术问题\n2. product - 产品咨询\n3. complaint - 投诉建议\n4. other - 其他\n\n只输出意图类型，不要解释。",
+  "user_prompt": "用户问题：{{#start.user_input#}}"
+}
+```
+
+**知识检索节点配置：**
+
+```json
+{
+  "knowledge_base": "产品知识库",
+  "retrieval_mode": "semantic",
+  "top_k": 3,
+  "score_threshold": 0.7
+}
+```
+
+**答案生成节点配置：**
+
+```json
+{
+  "model": "gpt-4",
+  "temperature": 0.7,
+  "system_prompt": "你是专业客服助手。基于检索到的知识回答用户问题。如果知识不足，礼貌地告知用户需要转人工。",
+  "user_prompt": "用户问题：{{#start.user_input#}}\n\n相关知识：{{#retrieval.result#}}"
+}
+```
+
+### 进阶工作流：内容生成流水线
+
+#### 场景描述
+
+自动生成一篇完整的公众号文章：选题 → 大纲 → 正文 → 配图建议 → 标题优化
+
+#### 流程设计
+
+```yaml
+workflow:
+  name: 公众号文章生成器
+  
+  nodes:
+    - id: start
+      type: start
+      inputs:
+        - name: topic
+          type: text
+          label: 文章主题
+    
+    - id: research
+      type: http-request
+      config:
+        url: "https://api.example.com/trending"
+        method: GET
+        params:
+          keyword: "{{#start.topic#}}"
+      
+    - id: outline
+      type: llm
+      config:
+        model: claude-3-opus
+        prompt: |
+          基于主题「{{#start.topic#}}」和热点数据：
+          {{#research.result#}}
+          
+          生成文章大纲，包含：
+          1. 吸引人的标题（3个备选）
+          2. 文章结构（引言-正文-结论）
+          3. 每个部分的核心观点
+    
+    - id: content
+      type: llm
+      config:
+        model: gpt-4
+        prompt: |
+          根据大纲撰写完整文章：
+          {{#outline.result#}}
+          
+          要求：
+          - 字数：1500-2000字
+          - 风格：专业但易懂
+          - 包含具体案例和数据
+    
+    - id: image-suggestions
+      type: llm
+      config:
+        model: gpt-4-vision
+        prompt: |
+          为以下文章内容推荐配图：
+          {{#content.result#}}
+          
+          每张图需说明：
+          - 图片主题
+          - 构图建议
+          - 配色方案
+    
+    - id: title-optimize
+      type: llm
+      config:
+        model: claude-3-haiku
+        prompt: |
+          优化以下标题，生成10个爆款标题选项：
+          {{#outline.titles#}}
+          
+          优化方向：
+          - 数字法则
+          - 悬念设置
+          - 情感共鸣
+          - 实用性强调
+    
+    - id: end
+      type: end
+      outputs:
+        - name: article
+          value: "{{#content.result#}}"
+        - name: titles
+          value: "{{#title-optimize.result#}}"
+        - name: images
+          value: "{{#image-suggestions.result#}}"
+```
+
+## LangFlow 工作流搭建
+
+### 安装部署
+
+```bash
+pip install langflow
+
+# 启动
+langflow run
+
+# 访问 http://localhost:7860
+```
+
+### 搭建数据提取工作流
+
+**场景：** 从合同 PDF 中提取关键信息
+
+**组件清单：**
+
+1. **File** - 上传 PDF 文件
+2. **PDF Loader** - 解析文档内容
+3. **Split Text** - 文档分块
+4. **ChatOpenAI** - LLM 处理
+5. **Prompt** - 提取提示词
+6. **Output Parser** - JSON 格式化
+
+**Prompt 配置：**
+
+```json
+从以下合同内容中提取信息，以 JSON 格式返回：
+
+合同内容：
+{document}
+
+提取字段：
+- 合同编号 (contract_no)
+- 签约日期 (sign_date)
+- 甲方名称 (party_a)
+- 乙方名称 (party_b)
+- 合同金额 (amount)
+- 付款方式 (payment_terms)
+- 服务期限 (service_period)
+- 违约责任 (liability)
+
+只返回 JSON，不要其他内容。
+```
+
+## 智能体（Agent）工作流
+
+### ReAct 模式实现
+
+ReAct（Reasoning + Acting）让 AI 能够思考并调用工具：
+
+```python
+from langchain.agents import Tool, AgentExecutor, create_react_agent
+from langchain.prompts import PromptTemplate
+from langchain.tools import DuckDuckGoSearchRun
+
+# 定义工具
+tools = [
+    Tool(
+        name="搜索",
+        func=DuckDuckGoSearchRun().run,
+        description="用于搜索实时信息"
+    ),
+    Tool(
+        name="计算器",
+        func=lambda x: eval(x),
+        description="用于数学计算"
+    ),
+    Tool(
+        name="数据库查询",
+        func=query_database,
+        description="用于查询企业数据库"
+    )
+]
+
+# ReAct Prompt
+template = """尽可能回答以下问题。你可以使用以下工具：
+
+{tools}
+
+请使用以下格式：
+
+问题：你需要回答的问题
+思考：你应该如何思考
+行动：要采取的行动（必须是以下工具之一：{tool_names}）
+行动输入：工具的输入
+观察：行动的结果
+...（这个思考/行动/行动输入/观察可以重复N次）
+思考：我现在知道最终答案
+最终答案：问题的最终答案
+
+开始！
+
+问题：{input}
+思考：{agent_scratchpad}"""
+
+prompt = PromptTemplate.from_template(template)
+
+# 创建 Agent
+agent = create_react_agent(llm, tools, prompt)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
+# 运行
+result = agent_executor.invoke({
+    "input": "帮我查一下今天北京的天气，然后计算一下如果温度是25度，华氏度是多少？"
+})
+```
+
+### 多 Agent 协作系统
+
+```python
+from langchain.agents import AgentType, initialize_agent
+from langchain.schema import SystemMessage
+
+# 研究员 Agent
+researcher = initialize_agent(
+    tools=[search_tool, arxiv_tool],
+    llm=llm,
+    agent=AgentType.OPENAI_FUNCTIONS,
+    system_message=SystemMessage(content="你是研究员，负责收集和整理信息。"),
+    verbose=True
+)
+
+# 写手 Agent
+writer = initialize_agent(
+    tools=[doc_tool],
+    llm=llm,
+    agent=AgentType.OPENAI_FUNCTIONS,
+    system_message=SystemMessage(content="你是专业写手，负责撰写高质量文章。"),
+    verbose=True
+)
+
+# 编辑 Agent
+editor = initialize_agent(
+    tools=[grammar_tool],
+    llm=llm,
+    agent=AgentType.OPENAI_FUNCTIONS,
+    system_message=SystemMessage(content="你是资深编辑，负责审核和修改文章。"),
+    verbose=True
+)
+
+# 协作流程
+def collaborative_workflow(topic):
+    # 1. 研究
+    research = researcher.run(f"搜集关于'{topic}'的最新资料和数据")
+    
+    # 2. 写作
+    draft = writer.run(f"基于以下资料撰写文章：\n{research}")
+    
+    # 3. 编辑
+    final = editor.run(f"审核并优化以下文章：\n{draft}")
+    
+    return final
+```
+
+## 工作流编排最佳实践
+
+### 1. 错误处理
+
+```yaml
+- id: main_task
+  type: llm
+  fallback:
+    - id: fallback_model
+      type: llm
+      config:
+        model: gpt-3.5-turbo  # 降级模型
+  on_error: continue  # 继续执行后续节点
+```
+
+### 2. 并行处理
+
+```yaml
+- id: parallel_analysis
+  type: parallel
+  branches:
+    - id: sentiment
+      type: llm
+      config:
+        prompt: "分析情感：{{#input.text#}}"
+    - id: keywords
+      type: llm
+      config:
+        prompt: "提取关键词：{{#input.text#}}"
+    - id: summary
+      type: llm
+      config:
+        prompt: "生成摘要：{{#input.text#}}"
+  merge_strategy: all  # 等待所有分支完成
+```
+
+### 3. 人工审核节点
+
+```yaml
+- id: human_review
+  type: human-in-the-loop
+  config:
+    assignee: "manager"
+    timeout: 3600  # 1小时超时
+    fallback_action: "reject"
+  inputs:
+    - name: content
+      value: "{{#llm.output#}}"
+```
+
+### 4. 缓存策略
+
+```python
+# 工作流级别缓存
+@workflow.cache(ttl=3600)
+def expensive_operation(input_data):
+    # 耗时操作
+    return result
+
+# 节点级别缓存
+- id: cached_node
+  type: llm
+  cache:
+    enabled: true
+    key: "{{#input.topic#}}"
+    ttl: 7200
+```
+
+## 性能优化
+
+### 1. 模型选择策略
+
+```python
+# 简单任务使用轻量级模型
+if task_complexity < 0.5:
+    model = "gpt-3.5-turbo"
+else:
+    model = "gpt-4"
+
+# 动态温度设置
+if task_type == "creative":
+    temperature = 0.8
+else:
+    temperature = 0.2
+```
+
+### 2. 流式输出
+
+```python
+# Dify API 流式调用
+import requests
+
+def stream_workflow(query):
+    response = requests.post(
+        "http://localhost/v1/workflows/run",
+        json={
+            "inputs": {"query": query},
+            "response_mode": "streaming",
+            "user": "user-123"
+        },
+        stream=True
+    )
+    
+    for line in response.iter_lines():
+        if line:
+            yield json.loads(line)
+
+# 使用
+for chunk in stream_workflow("帮我写一首诗"):
+    print(chunk.get("answer", ""), end="")
+```
+
+### 3. 批量处理
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+
+def batch_process(items, workflow, max_workers=5):
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [
+            executor.submit(workflow.run, item)
+            for item in items
+        ]
+        results = [f.result() for f in futures]
+    return results
+```
+
+## 监控与调试
+
+### 1. 日志追踪
+
+```python
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+
+logger = logging.getLogger(__name__)
+
+@workflow.trace()
+def my_node(inputs):
+    logger.info(f"Processing inputs: {inputs}")
+    result = process(inputs)
+    logger.info(f"Generated output: {result}")
+    return result
+```
+
+### 2. 可视化调试
+
+Dify 和 LangFlow 都提供可视化调试功能：
+
+- **节点状态查看**: 每个节点的输入输出
+- **执行时间分析**: 识别性能瓶颈
+- **变量追踪**: 查看数据流变化
+- **重试运行**: 从失败节点重新执行
+
+## 总结
+
+AI 工作流是实现业务自动化的有效方式，通过可视化的编排工具，非技术人员也能构建强大的 AI 应用。关键要点：
+
+1. **模块化设计**: 将复杂流程拆分为独立节点
+2. **错误处理**: 设计降级策略和重试机制
+3. **性能优化**: 合理选择模型，使用缓存和并行
+4. **持续迭代**: 基于反馈不断优化提示词和流程
+
+如需进一步支持，请联系我们：
+- 邮箱：c@m9ai.work
+- 官网：https://m9ai.work

@@ -1,15 +1,18 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import PrivacyPolicy from './Privacy';
 import { Metadata } from 'next';
+import { buildPageMetadata } from '@/lib/seo';
 
 // 动态生成元数据
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
-  return {
+  return buildPageMetadata({
+    locale,
+    path: '/privacy-policy',
     title: t('privacyPolicyTitle'),
     description: t('privacyPolicyDescription'),
-  };
+  });
 }
 
 // 添加静态参数生成函数，指定支持的语言
