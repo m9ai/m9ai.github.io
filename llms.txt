@@ -1,0 +1,80 @@
+# 水杉智境工作室 / Metasequoia AI Studio
+
+> 一支专注 Agent 工作流与智能体工程的交付团队：从私有化推理底座到 Agent 工作流上线运行，交付可控、可度量、可运维的企业级智能体系统。
+
+Bilingual site (中文 / English). Every page below has a /zh/ and an /en/ variant.
+Contact: c@m9ai.work
+
+## 服务 / Services
+
+- [私有化推理部署 (Private Inference Deployment)](https://m9ai.work/zh/services/model-deployment/): 在你的服务器或专有云上搭建推理底座，数据不出内网，成本可控可预测。 Build an inference layer on your own servers or private cloud — data never leaves your network, and cost stays predictable.
+- [AI 应用与多模态处理 (AI Applications & Multimodal Processing)](https://m9ai.work/zh/services/model-application/): 把模型能力封装成业务真正用得起来的产品：文档解析、语音交互、内容生成、数据洞察。 Turn model capability into products people actually use: document parsing, voice interaction, content generation, and data insight.
+- [Agent 系统交付 (Agent System Delivery)](https://m9ai.work/zh/services/agent-development/): 交付能真正跑通业务流程的 Agent：任务编排、工具调用、人机协同、效果可度量。 Agents that actually run your business process: orchestration, tool use, human oversight, and measurable results.
+
+## 文档 / Documentation
+
+- [API 集成开发指南](https://m9ai.work/zh/docs/api-integration/): 学习如何将大模型能力集成到您的应用程序中 — updated 2025-02-09
+- [API 文档](https://m9ai.work/zh/docs/api-reference/): 水杉智境 API 接口文档，包含认证方式、基础 URL、接口列表和错误处理说明 — updated 2025-02-09
+- [常见问题](https://m9ai.work/zh/docs/faq/): 水杉智境工作室常见问题解答，包含服务咨询、技术支持和合作方式 — updated 2025-02-09
+- [欢迎使用水杉智境工作室](https://m9ai.work/zh/docs/introduction/): 水杉智境工作室提供企业级 AI 解决方案，包括大模型私有化部署、应用开发和智能体定制服务 — updated 2025-02-09
+- [本地知识库搭建指南](https://m9ai.work/zh/docs/knowledge-base/): 学习如何构建企业级本地知识库，实现私有数据的智能检索与问答 — updated 2025-02-09
+- [模型部署指南](https://m9ai.work/zh/docs/model-deployment/): 提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化 — updated 2025-02-10
+- [隐私政策](https://m9ai.work/zh/docs/privacy-policy/): 我们如何收集、使用、存储和保护您的信息，以及您对这些信息的权利 — updated 2025-02-09
+- [提示词工程最佳实践](https://m9ai.work/zh/docs/prompt-engineering/): 掌握提示词设计技巧，提升大模型输出质量与可靠性 — updated 2025-02-09
+- [服务条款](https://m9ai.work/zh/docs/terms-of-service/): 使用本站服务前需知悉的权利义务与使用约定 — updated 2025-02-09
+- [AI 工作流搭建实战](https://m9ai.work/zh/docs/workflow/): 使用可视化工具搭建自动化 AI 工作流，提升业务效率 — updated 2025-02-09
+
+## Skill 市集 / Agent Skills
+
+- [金山铁路时刻表 (Jinshan Railway Schedule)](https://m9ai.work/zh/apps/jinshan-train/): 查询上海金山铁路班次、经停站、票价与下一班车 Schedules, stops, fares and next departures for Shanghai Jinshan Railway
+- [上海学区查询 (Shanghai School District Lookup)](https://m9ai.work/zh/apps/shanghai-school-district/): 按小区或地址查询上海对口学校与学区划分 Find the catchment schools for a Shanghai address or residence
+- [金额转大写 (Amount to Chinese Capital)](https://m9ai.work/zh/apps/amount-to-chinese/): 人民币金额转中文大写，批量处理发票与合同金额 Convert amounts into Chinese capital form for invoices and contracts
+- [发票要素校验 (Invoice Field Validator)](https://m9ai.work/zh/apps/invoice-field-checker/): 批量校验发票代码与号码格式、金额税额勾稽与开票日期 Batch-validate invoice code/number format, amount/tax consistency and issue dates
+- [银行流水对账 (Bank Reconciliation)](https://m9ai.work/zh/apps/bank-reconciliation/): 两方账单按金额与日期模糊匹配，输出未达账项 Fuzzy-match two statements by amount and date, list the unmatched items
+- [报销单据检查 (Expense Claim Audit)](https://m9ai.work/zh/apps/expense-audit/): 检查报销清单的必填项、金额合计与重复票据，超标项按你提供的标准核对 Check required fields, totals and duplicate receipts; over-limit items checked against limits you supply
+- [期限计算 (Deadline Calculator)](https://m9ai.work/zh/apps/deadline-calculator/): 按民法典口径推算期限届满日，休假日自动顺延 Compute deadlines under the Civil Code, with automatic holiday rollover
+- [敏感信息脱敏 (PII Redactor)](https://m9ai.work/zh/apps/pii-redactor/): 识别并脱敏手机号、身份证号、银行卡号、邮箱、车牌与 IP Detect and mask phone numbers, ID numbers, bank cards, emails, plates and IP addresses
+- [合同要素检查 (Contract Checklist)](https://m9ai.work/zh/apps/contract-checklist/): 检查合同是否包含必备条款，缺失项逐条列出 Check whether a contract contains all required clauses, list what is missing
+- [文件证据固化 (File Evidence Seal)](https://m9ai.work/zh/apps/file-evidence-seal/): 为目录生成可事后核验的 SHA-256 清单 Generate a verifiable SHA-256 manifest for a directory
+- [CSV 清洗 (CSV Cleaner)](https://m9ai.work/zh/apps/csv-cleaner/): 编码检测、分隔符嗅探、去空行、类型归一化与日期标准化 Encoding detection, delimiter sniffing, type normalisation, date standardisation
+- [CSV 统计汇总 (CSV Aggregator)](https://m9ai.work/zh/apps/csv-aggregator/): 分组聚合与常用统计，输出可直接引用的结果 Group-by aggregation and descriptive statistics ready to cite
+- [数据质量体检 (Data Quality Checker)](https://m9ai.work/zh/apps/data-quality-checker/): 空值率、唯一性、异常值与枚举合法性体检报告 Null rates, uniqueness, outliers and enum validity in one report
+- [表格差异比对 (Table Diff)](https://m9ai.work/zh/apps/csv-diff/): 按关键列比对两份表格，输出新增、删除与变更 Compare two tables by key column: added, removed and changed rows
+- [违禁词检测 (Banned Word Checker)](https://m9ai.work/zh/apps/banned-word-checker/): 检测平台违禁词及其常见变体，语义变体交由 Agent 判断 Detect banned terms and common evasions; semantic variants go to the Agent
+- [敏感信息泄露检测 (PII Leak Scanner)](https://m9ai.work/zh/apps/pii-leak-scanner/): 扫描文本中的手机号、身份证、银行卡、邮箱与密钥 Scan text for phone numbers, ID numbers, bank cards, emails and keys
+- [极限词检测 (Ad Law Risk Checker)](https://m9ai.work/zh/apps/ad-law-risk-checker/): 检测广告法风险词，如「最」「第一」「国家级」 Flag advertising-law risk wording such as superlatives and efficacy claims
+- [批量重命名 (Batch Rename)](https://m9ai.work/zh/apps/batch-rename/): 按规则重命名大量文件，先预览再执行且可撤销 Rename many files by rule: preview first, execute, and undo
+- [重复文件检测 (Duplicate File Finder)](https://m9ai.work/zh/apps/duplicate-file-finder/): 按内容哈希找出重复文件，先出组再决定是否清理 Group identical files by content hash; you decide what to delete
+- [目录指纹比对 (Directory Fingerprint)](https://m9ai.work/zh/apps/dir-fingerprint/): 直接比对两份目录的内容差异 Compare two directories side by side by content
+- [Markdown 规范检查 (Markdown Linter)](https://m9ai.work/zh/apps/markdown-linter/): 检查并修复 Markdown 的标题层级、列表、链接与表格 Check and fix Markdown headings, lists, links and tables
+- [Markdown 表格生成 (Markdown Table Builder)](https://m9ai.work/zh/apps/markdown-table-builder/): 从 CSV/TSV 生成对齐的 Markdown 表格 Turn CSV/TSV into an aligned Markdown table
+- [字幕格式转换 (Subtitle Converter)](https://m9ai.work/zh/apps/subtitle-converter/): SRT / ASS / VTT 字幕互转，保留时间轴与文本 Convert SRT / ASS / VTT subtitles, preserving timing and text
+- [JSON 工具集 (JSON Toolkit)](https://m9ai.work/zh/apps/json-toolkit/): 格式化、批量语法校验与 TypeScript 类型生成 Format, batch-validate and generate TypeScript types
+- [密钥泄露扫描 (Secret Scanner)](https://m9ai.work/zh/apps/secret-scanner/): 扫描代码目录中的密钥、AccessKey 与私钥特征 Scan a codebase for keys, access keys and private key material
+- [Cron 解析与推算 (Cron Explainer)](https://m9ai.work/zh/apps/cron-explainer/): 解析 cron 表达式，输出未来执行时间与人类可读说明 Parse cron expressions: next run times and a plain-language description
+
+## 客户案例 / Case Studies
+
+- [客服问答 Agent (Support Q&A Agent)](https://m9ai.work/zh/cases/enterprise-service/): 用私有化检索接住重复咨询，让人工只处理真正复杂的问题。
+- [病历与文献处理 Agent (Clinical Record & Literature Agent)](https://m9ai.work/zh/cases/healthcare/): 把非结构化的病历、报告与文献转成可检索、可追溯的结构化明细。
+- [合规与公告审阅 Agent (Compliance & Disclosure Review Agent)](https://m9ai.work/zh/cases/fintech/): 把规则核对和信息披露审阅做成可复现的流程，而不是依赖个人经验。
+- [教学素材生成 Agent (Course Material Generation Agent)](https://m9ai.work/zh/cases/education/): 按课程大纲批量产出可编辑的讲义与练习，教师只做审阅与调整。
+- [图纸与技术文档问答 Agent (Drawing & Technical Document Agent)](https://m9ai.work/zh/cases/architecture/): 让现场与设计人员直接向图纸、规范和技术文档提问，答案指向具体出处。
+- [巡检与异常闭环 Agent (Inspection & Issue Closure Agent)](https://m9ai.work/zh/cases/manufacturing/): 从图像识别一路走到工单闭环，把发现问题变成推动处理。
+- [合同审阅 Agent (Contract Review Agent)](https://m9ai.work/zh/cases/law-firm/): 先做全条款比对和抽取，让律师把时间花在真正的判断上。
+- [票据与账务核对 Agent (Invoice & Reconciliation Agent)](https://m9ai.work/zh/cases/accounting/): 票据识别、三单匹配与异常标记交给机器，人工专注判断例外。
+
+## 其它页面 / Other pages
+
+- [首页 / Home](https://m9ai.work/zh/)
+- [Skill 市集](https://m9ai.work/zh/store/)
+- [联系我们 / Contact](https://m9ai.work/zh/contact/)
+- [隐私政策 / Privacy Policy](https://m9ai.work/zh/privacy-policy/)
+- [服务条款 / Terms of Service](https://m9ai.work/zh/terms-of-service/)
+
+## 机器可读来源 / Machine-readable sources
+
+- [sitemap.xml](https://m9ai.work/sitemap.xml): 全站 URL 清单（含 hreflang）
+- [llms-full.txt](https://m9ai.work/llms-full.txt): 本站文档的完整正文
+- [search-index.json](https://m9ai.work/search-index.json): 全站内容的 JSON 摘要
+- 文档原文：https://m9ai.work/docs/<slug>.md（可直接抓取 Markdown）

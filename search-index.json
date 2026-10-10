@@ -1,0 +1,801 @@
+[
+  {
+    "id": "service-model-deployment",
+    "title": "私有化推理部署",
+    "description": "在你的服务器或专有云上搭建推理底座，数据不出内网，成本可控可预测。",
+    "content": "基于 vLLM、Ollama 等推理框架完成模型选型、部署、量化压缩、监控告警与容量规划，向上层 Agent 暴露 OpenAI 兼容的推理服务。 Model selection and deployment, quantization, compression, monitoring and capacity planning on vLLM and Ollama — exposing an OpenAI-compatible inference service to the agents above it.",
+    "url": "/services/model-deployment",
+    "type": "service",
+    "category": "aiService"
+  },
+  {
+    "id": "service-model-application",
+    "title": "AI 应用与多模态处理",
+    "description": "把模型能力封装成业务真正用得起来的产品：文档解析、语音交互、内容生成、数据洞察。",
+    "content": "打通非结构化数据入口与既有业务系统，交付可直接面向员工或客户使用的 AI 应用，支持 Web、小程序、浏览器扩展与桌面端。 We connect unstructured data sources with your existing systems and ship applications your staff or customers can use directly — across web, mini programs, browser extensions, and desktop.",
+    "url": "/services/model-application",
+    "type": "service",
+    "category": "aiService"
+  },
+  {
+    "id": "service-agent-development",
+    "title": "Agent 系统交付",
+    "description": "交付能真正跑通业务流程的 Agent：任务编排、工具调用、人机协同、效果可度量。",
+    "content": "以业务指标而非 Demo 效果为目标设计 Agent 系统：任务拆解与路由、MCP / Function Calling 工具接入、长程记忆与状态管理、关键节点人工介入，以及上线后的评测回归。交付物是一套在生产环境持续运行的系统。 We design agent systems against business metrics, not demo impressions: task decomposition and routing, MCP and function-calling tool access, long-term state management, Human-in-the-loop checkpoints, and post-launch evaluation and regression. The deliverable is a system that keeps running in production.",
+    "url": "/services/agent-development",
+    "type": "service",
+    "category": "aiService"
+  },
+  {
+    "id": "doc-api-integration",
+    "title": "API 集成开发指南",
+    "description": "学习如何将大模型能力集成到您的应用程序中",
+    "content": "API 集成开发指南 概述 本文档介绍如何通过 API 将大语言模型能力集成到您的应用程序中，支持多种编程语言和框架。 快速开始 获取 API 密钥 1. 登录控制台: https://console.m9ai.work 2. 进入「API 管理」页面 3. 点击「创建密钥」，复制生成的 API Key 基础请求示例 cURL bash curl -X POST \"https://api.m9ai.work/v1/chat/completions\" \\   -H \"Authorization: Bearer YOURAPIKEY\" \\   -H \"Content-Type: application/json\" \\   -d '{     \"model\": \"gpt-4\",     \"messages\": [       {\"role\": \"user\", \"content\": \"你好！\"}     ]   }' Python python from openai import OpenAI client = OpenAI(     apikey=\"YOURAPIKEY\",     baseurl=\"https://api.m9ai.work/v1\" ) response = client.chat.completions.create(     model=\"gpt-4\",     messages=[         {\"role\": \"user\", \"content\": \"你好！\"}     ] ) print(response.choices[0].message.content) JavaScript javascript import OpenAI from 'openai'; const client = new OpenAI({   apiKey: 'YOURAPIKEY',   baseURL: 'https://api.m9ai.work/v1', }); async function chat() {   const response = await client.chat.completions.create({     model: 'gpt-4',     messages: [{ role: 'user', content: '你好！' }",
+    "url": "/docs/api-integration",
+    "type": "doc",
+    "category": "开发指南",
+    "tags": [
+      "API",
+      "集成",
+      "SDK",
+      "RESTful",
+      "开发"
+    ]
+  },
+  {
+    "id": "doc-api-reference",
+    "title": "API 文档",
+    "description": "水杉智境 API 接口文档，包含认证方式、基础 URL、接口列表和错误处理说明",
+    "content": "API 文档 概述 我们提供 RESTful API 接口，方便您将 AI 能力集成到自己的应用中。 认证 所有 API 请求需要在 Header 中包含 API Key： bash Authorization: Bearer YOURAPIKEY 基础 URL bash https://api.m9ai.work/v1 接口列表 文本生成 POST /chat/completions 请求参数： json {   \"model\": \"gpt-4\",   \"messages\": [     {\"role\": \"user\", \"content\": \"你好\"}   ] } 嵌入向量 POST /embeddings 请求参数： json {   \"model\": \"text-embedding-ada-002\",   \"input\": \"需要生成嵌入的文本\" } 错误处理 API 使用标准 HTTP 状态码： - 200: 成功 - 400: 请求参数错误 - 401: 认证失败 - 429: 请求频率限制 - 500: 服务器内部错误 联系我们 如需 API 访问权限，请 联系我们。",
+    "url": "/docs/api-reference",
+    "type": "doc",
+    "category": "技术文档",
+    "tags": [
+      "API",
+      "RESTful",
+      "接口文档",
+      "开发指南"
+    ]
+  },
+  {
+    "id": "doc-faq",
+    "title": "常见问题",
+    "description": "水杉智境工作室常见问题解答，包含服务咨询、技术支持和合作方式",
+    "content": "常见问题 一般问题 Q: 你们提供哪些服务？ A: 我们提供三大核心服务： 1. 模型部署 - 在私有环境部署大语言模型 2. 应用开发 - 基于大模型构建企业级应用 3. 智能体开发 - 开发具备自主决策能力的 AI 智能体 Q: 如何开始合作？ A: 您可以通过以下方式开始： 1. 访问 服务页面 了解详情 2. 填写 联系表单 描述您的需求 3. 直接发送邮件至 c@m9ai.work Q: 支持哪些大模型？ A: 我们支持主流的大语言模型，包括： - OpenAI GPT 系列 - Meta LLaMA 系列 - DeepSee 系列 - Qwen AI 系列 - Kimi AI 系列 - 百度文心一言 - 讯飞星火 - 以及其他开源模型 技术问题 Q: 私有化部署是否安全？ A: 是的，私有化部署将模型和数据保存在您自己的服务器上，数据不会离开您的网络环境，满足各类合规要求。 Q: 需要什么样的硬件配置？ A: 硬件需求取决于具体的模型和使用场景。一般来说： - 小型模型：单张消费级显卡（如 RTX 4090） - 中型模型：单张/多张专业显卡（如 A100） - 大型模型：多卡集群 我们会在需求评估阶段提供具体的硬件建议。 Q: 是否提供技术支持？ A: 是的，我们提供 7×24 小时技术支持，确保您的业务正常运行。 其他问题 如有其他问题，请随时 联系我们。",
+    "url": "/docs/faq",
+    "type": "doc",
+    "category": "帮助中心",
+    "tags": [
+      "FAQ",
+      "常见问题",
+      "帮助",
+      "支持"
+    ]
+  },
+  {
+    "id": "doc-introduction",
+    "title": "欢迎使用水杉智境工作室",
+    "description": "水杉智境工作室提供企业级 AI 解决方案，包括大模型私有化部署、应用开发和智能体定制服务",
+    "content": "欢迎使用水杉智境工作室 简介 水杉智境工作室（Metasequoia AI Studio）是一家专注于企业级 AI 解决方案的技术团队。我们提供大模型私有化部署、应用开发和智能体定制服务。 核心服务 1. 模型部署 在客户自有服务器环境中部署大语言模型，确保数据安全与隐私保护。 2. 大模型应用开发 基于大语言模型构建企业级应用，实现智能客服、内容生成等场景。 3. 智能体开发 开发具备自主决策能力的 AI 智能体，自动化复杂业务流程。 快速开始 访问我们的 服务页面 了解更多详情，或通过 应用商店 探索现成的 AI 应用。 联系我们 如有任何问题，请通过以下方式联系我们： - 邮箱：c@m9ai.work - 微信：扫码添加（见官网底部）",
+    "url": "/docs/introduction",
+    "type": "doc",
+    "category": "入门指南",
+    "tags": [
+      "入门",
+      "介绍",
+      "快速开始"
+    ]
+  },
+  {
+    "id": "doc-knowledge-base",
+    "title": "本地知识库搭建指南",
+    "description": "学习如何构建企业级本地知识库，实现私有数据的智能检索与问答",
+    "content": "本地知识库搭建指南 概述 本地知识库（Local Knowledge Base）是企业 AI 应用的核心基础设施。通过将企业私有文档、数据转化为可检索的知识，结合大语言模型的理解能力，实现智能问答、文档分析、知识挖掘等功能。 核心架构 mermaid flowchart LR     subgraph Input[\"数据输入\"]         A[📄 文档输入<br/>PDF/Word/等]         F[💬 用户提问<br/>自然语言]     end          subgraph Processing[\"处理层\"]         B[⚙️ 文档处理引擎<br/>解析/分块/嵌入]         D[🔍 RAG 检索引擎<br/>向量相似度搜索]     end          subgraph Storage[\"存储层\"]         C[🗄️ 向量数据库<br/>Milvus/PGVector]     end          subgraph Output[\"输出层\"]         E[🤖 大语言模型<br/>生成回答]     end          A --> B     B --> C     C --> D     F --> D     D --> E 环境准备 系统要求 - CPU: 4核及以上 - 内存: 16GB 及以上 - 存储: 100GB SSD 及以上 - GPU: 可选，推荐用于 Embedding 加速 依赖安装 bash Python 环境 python -m pip install langchain langchain-community 向量数据库 pip install pymilvus  或 pgvector 文档解析 pip install pypdf unstructured Embedding 模型 pip install sentence-transformers 快速开始 1. 初始化向量数据库 使用 Milvus 作为向量存储： bash Docker 启动 Milvus docker-compose -f milvus-standalone-docker-compose.yml up -d 或使用 PostgreSQL + pgvector： sql -- 创建向",
+    "url": "/docs/knowledge-base",
+    "type": "doc",
+    "category": "进阶教程",
+    "tags": [
+      "知识库",
+      "RAG",
+      "向量数据库",
+      "数据安全"
+    ]
+  },
+  {
+    "id": "doc-model-deployment",
+    "title": "模型部署指南",
+    "description": "提供主流大模型的本地化部署方案，保障数据安全与隐私，支持自定义微调与性能优化",
+    "content": "模型部署指南 概述 我们提供主流大模型的本地化部署方案，帮助企业在自有基础设施上运行大语言模型，保障数据安全与隐私，支持自定义微调与性能优化。本指南涵盖从单机部署到分布式集群的完整方案。 支持的模型 开源模型 | 模型 | 参数量 | 显存需求 | 推荐用途 | 特点 | |------|--------|----------|----------|------| | DeepSeek | 7B-67B | 16GB-140GB | 代码生成、数学推理 | 开源最强代码模型，支持 128K 长上下文 | | Qwen (通义千问) | 7B-72B | 16GB-160GB | 中文场景、代码生成 | 中文理解优秀，支持 function call | | LLaMA 2/3 | 7B-70B | 16GB-160GB | 通用对话、文本生成 | 生态丰富，社区支持广泛 | | Yi (零一万物) | 6B-34B | 14GB-80GB | 中英文混合场景 | 中文表现优异，支持长文本 | | ChatGLM3 | 6B | 14GB | 中文对话、轻量级部署 | 低资源占用，适合边缘部署 | | Baichuan2 | 7B-13B | 16GB-28GB | 中文场景、企业应用 | 商用友好，中文知识丰富 | | Mistral | 7B-8x7B | 16GB-90GB | 多语言推理 | MoE 架构，推理效率高 | 特色模型详解 DeepSeek 系列 DeepSeek 是目前最强的开源代码大模型，特别适合开发场景： - DeepSeek-Coder-33B: 代码生成能力接近 GPT-4 - DeepSeek-V2: 采用 MLA 架构，推理成本低，支持 128K 上下文 - DeepSeek-Math: 数学推理专项优化，竞赛级表现 bash DeepSeek 快速部署 docker pull m9ai/deepseek-coder-33b:latest docker run -d --gpus all -p 8000:8000 m9ai/deepseek-coder-33b:latest Kimi 系列 (Moonshot) Kimi 以超长上下文窗口著称，适合文档分析场景： - Kimi-V1: 支持 200K 超长上下文 - Kimi-V1.5",
+    "url": "/docs/model-deployment",
+    "type": "doc",
+    "category": "技术文档",
+    "tags": [
+      "模型部署",
+      "私有化",
+      "大模型",
+      "GPU",
+      "Docker",
+      "Kubernetes"
+    ]
+  },
+  {
+    "id": "doc-privacy-policy",
+    "title": "隐私政策",
+    "description": "我们如何收集、使用、存储和保护您的信息，以及您对这些信息的权利",
+    "content": "隐私政策 1. 引言 欢迎使用我们的服务。我们尊重您的隐私，并致力于保护您的个人信息。本隐私政策解释了我们如何收集、使用、存储和保护您的信息，以及您对这些信息的权利。 2. 信息收集 我们可能会收集以下类型的信息： - 个人身份信息：如姓名、电子邮件地址、电话号码等，当您注册账户或使用我们的服务时提供。 - 使用数据：如您使用我们服务的方式、访问的页面、停留时间等。 - 设备信息：如您使用的设备类型、操作系统、IP地址等。 3. 信息使用 我们收集的信息将用于： - 提供、维护和改进我们的服务 - 开发新功能和服务 - 理解用户如何使用我们的服务，以优化用户体验 - 与您沟通，发送服务相关通知 4. 信息存储与保护 我们采用行业标准的安全措施保护您的个人信息，防止未授权访问、使用或披露。您的信息将存储在安全的服务器上，并仅在必要的时间内保留。 5. 第三方共享 我们不会向第三方出售或出租您的个人信息。在以下情况下，我们可能会共享您的信息： - 获得您的明确同意 - 遵守法律法规或响应法律要求 - 保护我们的权利、财产或安全，以及用户和公众的安全 6. 您的权利 您有权访问、更正或删除您的个人信息。您也可以随时撤回对信息收集和使用的同意。如需行使这些权利，请联系我们。 7. 政策更新 我们可能会不时更新本隐私政策。任何更改将在发布后生效，我们会通过适当方式通知您。 8. 联系我们 如有任何关于本隐私政策的问题，请通过以下方式联系我们： - 电子邮件：c@m9ai.work",
+    "url": "/docs/privacy-policy",
+    "type": "doc",
+    "category": "帮助中心",
+    "tags": []
+  },
+  {
+    "id": "doc-prompt-engineering",
+    "title": "提示词工程最佳实践",
+    "description": "掌握提示词设计技巧，提升大模型输出质量与可靠性",
+    "content": "提示词工程最佳实践 概述 提示词工程（Prompt Engineering）是通过设计和优化输入提示词，引导大语言模型（LLM）生成高质量、符合预期的输出的技术。良好的提示词设计是 AI 应用成功的关键。 提示词基本结构 标准格式 markdown 角色设定 你是[专业角色]，具备[相关经验/能力]。 任务描述 请完成以下任务：[具体任务] 输入数据 [需要处理的内容] 约束条件 - 条件1 - 条件2 - ... 输出格式 请以[格式]输出，包含以下要素： 1. 要素A 2. 要素B 3. ... 示例：产品文案生成 markdown 角色 你是一位资深的电商文案策划专家，拥有10年文案撰写经验，擅长挖掘产品卖点并转化为吸引人的文案。 任务 为以下产品撰写一则朋友圈推广文案。 产品信息 - 产品名称：智能颈椎按摩仪 - 核心功能：热敷+脉冲按摩+APP控制 - 目标人群：25-40岁办公室白领 - 价格区间：299-399元 - 卖点：15分钟快速缓解疲劳、静音设计、便携可折叠 要求 1. 开头要有吸引力，3秒内抓住注意力 2. 突出解决的具体痛点 3. 加入社会认同元素（如销量、好评） 4. 结尾有明确的行动号召 5. 字数控制在150字以内 6. 语气亲切自然，避免过度营销感 输出格式 直接输出文案内容，不需要额外解释。 核心技巧 1. 角色设定（Role Prompting） 通过设定专业角色，激活模型的领域知识： markdown ❌ 一般：\"写一篇关于糖尿病的文章\" ✅ 优化：\"你是一位内分泌科主任医师，拥有20年临床经验。请用通俗语言向糖尿病患者解释血糖控制的重要性，包括： 1. 血糖失控的危害 2. 日常监测要点 3. 饮食控制原则 要求：专业准确但易懂，语气亲切关怀。\" 2. 思维链（Chain-of-Thought） 引导模型展示推理过程，提升复杂任务准确率： markdown 请解答以下数学问题，并展示详细的推理步骤： 问题：一个水箱有2个进水管和1个排水管。A管单独注满需要6小时，B管单独注满需要4小时，排水管单独排空需要8小时。如果三管同时打开，需要多久注满水箱？ 思考过程： 1. 首先，我需要计算每个管子的工作效率... 2. 然后，计算三管同时工作时的净效率... 3. 最后，根据净效率计算注满时间... 请按以上思路详细解答。 3. ",
+    "url": "/docs/prompt-engineering",
+    "type": "doc",
+    "category": "进阶教程",
+    "tags": [
+      "提示词",
+      "Prompt",
+      "提示工程",
+      "LLM优化",
+      "角色设定"
+    ]
+  },
+  {
+    "id": "doc-terms-of-service",
+    "title": "服务条款",
+    "description": "使用本站服务前需知悉的权利义务与使用约定",
+    "content": "服务条款 1. 接受条款 通过使用我们的服务，您同意遵守本服务条款。如果您不同意这些条款，请不要使用我们的服务。 2. 服务说明 我们提供的服务包括但不限于： - 聊天功能 - 语音识别 - 语音合成 - 文本到语音转换 - 视频生成 - 其他相关服务 我们保留随时修改、暂停或终止服务的权利，恕不另行通知。 3. 用户责任 您同意： - 仅将服务用于合法目的 - 不侵犯任何第三方的权利 - 不干扰或损害服务的安全性和正常运行 - 提供准确、完整的信息 4. 知识产权 我们服务中的所有内容，包括但不限于文本、图像、商标、代码等，均受知识产权法律保护。未经我们书面许可，您不得复制、修改、分发或使用这些内容。 5. 免责声明 我们的服务按\"现状\"提供，不提供任何明示或暗示的保证。我们不对服务的可靠性、准确性或完整性作出任何承诺。 6. 责任限制 在法律允许的范围内，我们不对任何间接、偶然、特殊或后果性损害承担责任，包括但不限于利润损失、数据丢失等。 7. 条款修改 我们可能会不时更新本服务条款。任何更改将在发布后生效，建议您定期查看本页面。 8. 终止 我们有权在任何时候终止您对服务的访问，如有违反本条款的行为。 9. 适用法律 本服务条款受中国法律管辖，任何争议将提交中国法院解决。 10. 联系我们 如有任何关于本服务条款的问题，请通过以下方式联系我们： - 电子邮件：c@m9ai.work",
+    "url": "/docs/terms-of-service",
+    "type": "doc",
+    "category": "帮助中心",
+    "tags": []
+  },
+  {
+    "id": "doc-workflow",
+    "title": "AI 工作流搭建实战",
+    "description": "使用可视化工具搭建自动化 AI 工作流，提升业务效率",
+    "content": "AI 工作流搭建实战 概述 AI 工作流（AI Workflow）是将大语言模型与业务流程相结合的自动化系统。通过可视化的流程编排工具，无需编写代码即可构建复杂的 AI 应用。 常见工作流类型 | 类型 | 应用场景 | 典型工具 | |------|----------|----------| | 内容生成 | 文章写作、营销文案 | Dify、Coze | | 数据处理 | 文档分析、信息提取 | LangFlow、Flowise | | 客服自动化 | 智能问答、工单处理 | Dify、FastGPT | | 代码辅助 | 代码生成、Code Review | Continue、Cursor | Dify 快速入门 环境部署 Docker 部署（推荐） bash 克隆仓库 git clone https://github.com/langgenius/dify.git cd dify/docker 启动服务 docker-compose up -d 访问 http://localhost/install 完成初始化 本地开发环境 bash 后端 cd api poetry install poetry shell flask db upgrade flask run --host 0.0.0.0 --port 5001 前端 cd web npm install npm run dev 第一个工作流：智能客服 步骤 1: 创建应用 1. 登录 Dify 控制台 2. 点击「创建应用」→「工作流编排」 3. 命名：智能客服助手 步骤 2: 设计流程 mermaid flowchart LR     A[\"开始节点<br/>接收用户问题\"] --> B[\"意图识别 (LLM)<br/>LLM 判断问题类型\"]     B --> C[\"条件分支 (IF/ELSE)<br/>技术问题？产品咨询？投诉？\"]     C --> D[\"知识检索 (RAG)<br/>从知识库搜索相关内容\"]     D --> E[\"答案生成 (LLM)<br/>LLM 生成回复\"]     E --> F[\"结束节点<br/>输出最终回答\"] 步骤 3: 配置节点 意图识别节点配置： json {   \"model\": \"gpt-4\",   \"temperature\": 0.3,   ",
+    "url": "/docs/workflow",
+    "type": "doc",
+    "category": "进阶教程",
+    "tags": [
+      "工作流",
+      "自动化",
+      "Dify",
+      "智能体",
+      "业务流程"
+    ]
+  },
+  {
+    "id": "case-enterprise-service",
+    "title": "客服问答 Agent",
+    "description": "用私有化检索接住重复咨询，让人工只处理真正复杂的问题。",
+    "content": "重复咨询长期占用座席时间，响应时长随排班波动；产品资料、历史工单与 FAQ 分散在不同系统，新人上手周期长，同一问题在不同座席口中答案不一致。 历史工单、产品文档与 FAQ 统一解析入库，保留章节结构 混合检索（向量 + 关键词）再重排序，保证召回上下文准确 生成答案强制附带原文引用，便于座席与用户自行核验 置信度不足或命中敏感场景时自动转人工，并携带会话摘要 首次响应时长 人工转接率 答案附引用的覆盖率 转人工后的平均处理时长 私有化推理部署 混合检索 重排序 引用溯源 人工转接",
+    "url": "/cases/enterprise-service",
+    "type": "case",
+    "category": "客户服务"
+  },
+  {
+    "id": "case-healthcare",
+    "title": "病历与文献处理 Agent",
+    "description": "把非结构化的病历、报告与文献转成可检索、可追溯的结构化明细。",
+    "content": "病历、检查报告与指南以 PDF、扫描件、表格等多种形态存在，人工摘录耗时且口径难统一；跨科室共享时需要脱敏与权限控制。 版面解析与表格还原，处理扫描件和版式复杂的报告 按病种与文档类型定义抽取字段与术语映射 全程私有化部署，处理过程不出院区网络，配合脱敏策略 抽取结果回写业务库并保留原文坐标，便于人工复核 单份文档的结构化耗时 字段抽取的抽检一致率 需要人工返工的比例 结构化数据的检索命中率 多模态文档解析 版面还原 私有化部署 术语映射 人机复核",
+    "url": "/cases/healthcare",
+    "type": "case",
+    "category": "医疗健康"
+  },
+  {
+    "id": "case-fintech",
+    "title": "合规与公告审阅 Agent",
+    "description": "把规则核对和信息披露审阅做成可复现的流程，而不是依赖个人经验。",
+    "content": "审阅高度依赖个人经验，同一份材料不同人结论不同；规则更新频繁，历史材料需要重新核对；审阅过程缺少留痕，事后难以回溯依据。 把规则条目结构化，并与原文条款建立映射关系 检索增强的逐条比对，输出结论、命中依据与置信度 低置信度项自动进入人工复核队列并排序 全流程 Trace 留痕，支持按材料、按规则回溯 单份材料的审阅时长 需人工复核的条款占比 同一材料跨审阅人的结论一致率 规则更新后历史材料的重跑覆盖率 规则引擎 混合检索 低置信度路由 全链路 Trace 私有化部署",
+    "url": "/cases/fintech",
+    "type": "case",
+    "category": "金融"
+  },
+  {
+    "id": "case-education",
+    "title": "教学素材生成 Agent",
+    "description": "按课程大纲批量产出可编辑的讲义与练习，教师只做审阅与调整。",
+    "content": "素材产出依赖教师个人时间，同一门课不同班级内容不一致；大纲一改，配套讲义、练习与讲解要点都要手动同步。 大纲、教材与既有题库导入知识库，作为生成依据 按讲义、例题、练习、讲解要点拆成独立生成任务 生成结果强制标注依据出处，教师可一键追溯 大纲变更后重跑受影响章节，避免手工同步 单个章节的素材产出时长 生成内容的采纳率 大纲变更后的同步耗时 同一知识点在不同班级的一致性 知识库检索 多任务编排 引用标注 模板化输出 批量重跑",
+    "url": "/cases/education",
+    "type": "case",
+    "category": "教育培训"
+  },
+  {
+    "id": "case-architecture",
+    "title": "图纸与技术文档问答 Agent",
+    "description": "让现场与设计人员直接向图纸、规范和技术文档提问，答案指向具体出处。",
+    "content": "图纸、变更单、规范与设计说明分散存放，查找依赖记忆；多版本混用时容易引用失效内容；新人难以看懂现场图纸的历史变更脉络。 图纸元数据、变更单与规范文档统一建索引 以图号、版本、部位为检索维度，先定位再回答 答案附带图纸页码与变更记录，避免跨版本误引 接入权限与版本控制，过期文档不进入检索范围 单次资料查找耗时 答案附出处的比例 跨版本误引事件数 新人独立处理现场问题的上手时长 版面解析 版本感知检索 引用溯源 权限控制 多模态问答",
+    "url": "/cases/architecture",
+    "type": "case",
+    "category": "工程建筑"
+  },
+  {
+    "id": "case-manufacturing",
+    "title": "巡检与异常闭环 Agent",
+    "description": "从图像识别一路走到工单闭环，把发现问题变成推动处理。",
+    "content": "巡检结果记在纸质表格或离线文件里，与工单系统脱节；缺陷描述口径不统一，后续统计困难；异常上报后缺少跟踪，容易悬空。 现场图像与视频做缺陷识别，输出结构化缺陷项 按缺陷类型与严重度路由到对应处理流程 自动生成工单并写回工单系统，附带图像证据 未闭环工单自动升级与提醒 从发现到派单的时长 可统计缺陷占比（描述口径一致率） 工单闭环率 复核抽检所需人力 视觉识别 工作流编排 工单系统集成 多路路由 闭环跟踪",
+    "url": "/cases/manufacturing",
+    "type": "case",
+    "category": "智能制造"
+  },
+  {
+    "id": "case-law-firm",
+    "title": "合同审阅 Agent",
+    "description": "先做全条款比对和抽取，让律师把时间花在真正的判断上。",
+    "content": "初审要逐份通读，耗时随文书数量线性增长；风险条款依赖个人清单，容易漏项；高峰期只能抽检，覆盖范围不全。 版面解析与条款切分，保留条款编号层级 按风险清单逐项抽取与比对，输出命中条款原文 与历史合同或模板做差异比对，突出变更点 全量初筛后按风险等级排序，人工从高风险看起 单份合同的初筛时长 全量初筛覆盖率（相对此前的抽检比例） 条款抽取的抽检准确率 人工复核发现的漏条款数 版面解析 条款抽取 差异比对 风险清单 人机复核",
+    "url": "/cases/law-firm",
+    "type": "case",
+    "category": "法律服务"
+  },
+  {
+    "id": "case-accounting",
+    "title": "票据与账务核对 Agent",
+    "description": "票据识别、三单匹配与异常标记交给机器，人工专注判断例外。",
+    "content": "发票、银行流水与报销单据格式各异，识别后的二次录入工作量大；勾稽核对靠人工盯表，异常难以及时发现；审计时缺少可复算的过程记录。 票据版面解析与字段结构化 三单匹配（合同、发票、流水）自动生成核对结果 异常项按规则标记并附带完整证据链 核对过程留痕可复算，支撑审计抽样 单张票据的结构化耗时 自动勾稽命中率 异常项的漏报与误报比例 审计抽样的准备时长 票据版面解析 字段结构化 规则勾稽 证据链留痕 批量处理",
+    "url": "/cases/accounting",
+    "type": "case",
+    "category": "财务审计"
+  },
+  {
+    "id": "page-home",
+    "title": "首页",
+    "description": "水杉智境工作室 - 企业级 AI 解决方案",
+    "url": "/",
+    "content": "水杉智境工作室 - 企业级 AI 解决方案",
+    "type": "page"
+  },
+  {
+    "id": "page-services",
+    "title": "服务",
+    "description": "探索我们的 AI 服务解决方案",
+    "url": "/services",
+    "content": "探索我们的 AI 服务解决方案",
+    "type": "page"
+  },
+  {
+    "id": "page-store",
+    "title": "Skill 市集",
+    "description": "面向不同角色与业务场景的本地 Skill 目录",
+    "url": "/store",
+    "content": "面向不同角色与业务场景的本地 Skill 目录",
+    "type": "page"
+  },
+  {
+    "id": "page-docs",
+    "title": "文档",
+    "description": "产品文档和使用指南",
+    "url": "/docs",
+    "content": "产品文档和使用指南",
+    "type": "page"
+  },
+  {
+    "id": "page-contact",
+    "title": "联系我们",
+    "description": "与我们取得联系",
+    "url": "/contact",
+    "content": "与我们取得联系",
+    "type": "page"
+  },
+  {
+    "id": "skill-jinshan-train",
+    "title": "金山铁路时刻表",
+    "titleEn": "Jinshan Railway Schedule",
+    "description": "查询上海金山铁路班次、经停站、票价与下一班车",
+    "descriptionEn": "Schedules, stops, fares and next departures for Shanghai Jinshan Railway",
+    "content": "金山铁路时刻表 Jinshan Railway Schedule 查询上海金山铁路班次、经停站、票价与下一班车 Schedules, stops, fares and next departures for Shanghai Jinshan Railway 提供上海金山铁路（上海南 ↔ 金山卫，单线 9 站）的班次查询能力。所有结果由脚本实时计算：首次执行联网同步线上时刻表并写入本地缓存，之后优先读缓存，离线时回退到内置兜底数据并明确标注「可能过期」。 Query trains on the Shanghai Jinshan Railway (Shanghai South ↔ Jinshanwei, 9 stations). Every answer is computed by script: the first run syncs the online timetable into a local cache, later runs read the cache, and offline it falls back to bundled data clearly marked as possibly outdated. 两站之间的班次检索（支持直达 / 大站停 / 站站停筛选） 某趟车次的经停站与到发时刻 某站的下一班车（区分平日与节假日方案） 票价、站点地址与换乘信息 Search trains between any two stations (express / semi-express / local) Stops and arrival-departure times for a given train Next departure from a station (weekday vs holiday patterns) Fares, station addresses and transfer information 班次查询 票价 Timetables Fares general 出行交通 Travel & Transit",
+    "url": "/apps/jinshan-train",
+    "type": "skill",
+    "category": "出行交通",
+    "categoryEn": "Travel & Transit",
+    "tags": [
+      "两站之间的班次检索（支持直达 / 大站停 / 站站停筛选）",
+      "某趟车次的经停站与到发时刻",
+      "某站的下一班车（区分平日与节假日方案）",
+      "票价、站点地址与换乘信息",
+      "general"
+    ]
+  },
+  {
+    "id": "skill-shanghai-school-district",
+    "title": "上海学区查询",
+    "titleEn": "Shanghai School District Lookup",
+    "description": "按小区或地址查询上海对口学校与学区划分",
+    "descriptionEn": "Find the catchment schools for a Shanghai address or residence",
+    "content": "上海学区查询 Shanghai School District Lookup 按小区或地址查询上海对口学校与学区划分 Find the catchment schools for a Shanghai address or residence 面向上海升学场景的学区对口查询。输入小区名或地址，返回对口小学 / 初中与所属街区信息；数据随教育部门公示同步更新，离线时使用内置快照并标注数据日期。 School district lookup for Shanghai. Give a residence name or address and get the assigned primary / junior secondary schools plus the street block. Data is synced from official publications and, when offline, served from a bundled snapshot with its date clearly shown. 按小区或地址查询对口学校 查看所属街道与招生范围说明 数据日期与来源标注 Look up catchment schools by residence or address Show the street block and enrolment scope Data date and source labelling 学区 School districts general 生活服务 Local Life",
+    "url": "/apps/shanghai-school-district",
+    "type": "skill",
+    "category": "生活服务",
+    "categoryEn": "Local Life",
+    "tags": [
+      "按小区或地址查询对口学校",
+      "查看所属街道与招生范围说明",
+      "数据日期与来源标注",
+      "general"
+    ]
+  },
+  {
+    "id": "skill-amount-to-chinese",
+    "title": "金额转大写",
+    "titleEn": "Amount to Chinese Capital",
+    "description": "人民币金额转中文大写，批量处理发票与合同金额",
+    "descriptionEn": "Convert amounts into Chinese capital form for invoices and contracts",
+    "content": "金额转大写 Amount to Chinese Capital 人民币金额转中文大写，批量处理发票与合同金额 Convert amounts into Chinese capital form for invoices and contracts 把阿拉伯数字金额转成符合票据规范的人民币中文大写（含「零」「整」「佰拾万仟」等规则与角分处理）。支持单条转换，也支持批量读取清单文件逐行输出，避免手工誊写出错。 Converts numeric amounts into the Chinese capital form required on invoices, handling zero, \"整\", jiao/fen and large-value edge cases. Works on single values or in batch from a list file, removing manual transcription errors. 符合票据规范的大写转换（零 / 整 / 角分规则） 负数、零、超大金额边界处理 批量读取清单逐行转换 Invoice-compliant capital conversion (zero / 整 / jiao-fen rules) Negative, zero and very large amount edge cases Batch conversion line by line from a list 发票 记账 Invoices Bookkeeping finance admin 财税计算 Finance & Tax",
+    "url": "/apps/amount-to-chinese",
+    "type": "skill",
+    "category": "财税计算",
+    "categoryEn": "Finance & Tax",
+    "tags": [
+      "符合票据规范的大写转换（零 / 整 / 角分规则）",
+      "负数、零、超大金额边界处理",
+      "批量读取清单逐行转换",
+      "finance",
+      "admin"
+    ]
+  },
+  {
+    "id": "skill-invoice-field-checker",
+    "title": "发票要素校验",
+    "titleEn": "Invoice Field Validator",
+    "description": "批量校验发票代码与号码格式、金额税额勾稽与开票日期",
+    "descriptionEn": "Batch-validate invoice code/number format, amount/tax consistency and issue dates",
+    "content": "发票要素校验 Invoice Field Validator 批量校验发票代码与号码格式、金额税额勾稽与开票日期 Batch-validate invoice code/number format, amount/tax consistency and issue dates 对一批发票记录做要素级校验：代码与号码的位数格式是否正确、购方统一社会信用代码校验位是否通过、金额与税额是否符合税率勾稽、价税合计是否吻合、开票日期是否合理。发票代码与号码本身是流水编号，没有公开的校验位算法，脚本只校验位数与格式，不臆造校验位。输出逐条结果与汇总统计，便于在入账前发现问题票据。 Validates a batch of invoice records at field level: code and number length and format, the buyer unified social credit code check digit, amount/tax consistency against the stated rate, total consistency, and plausible issue dates. Invoice codes and numbers are sequential identifiers with no published check-digit algorithm, so only their length and format are checked. Emits per-row results plus a summary so problem invoices surface before posting. 发票代码与号码的位数与格式校验（代码 10/12 位、号码 8 位） 购方统一社会信用代码校验位（GB 32100） 金额 / 税额 / 税率勾稽与价税合计核对 开票日期合理性、重复票号与批量汇总 Invoice code and number length / format checks (code 10 or 12 digits, number 8) Buyer tax ID (USCC) check digit per GB 32100 Amount / tax / rate and total consistency Issue date plausibility, duplicate numbers, batch summary 发票 对账 Invoices Reconciliation finance 财税计算 Finance & Tax",
+    "url": "/apps/invoice-field-checker",
+    "type": "skill",
+    "category": "财税计算",
+    "categoryEn": "Finance & Tax",
+    "tags": [
+      "发票代码与号码的位数与格式校验（代码 10/12 位、号码 8 位）",
+      "购方统一社会信用代码校验位（GB 32100）",
+      "金额 / 税额 / 税率勾稽与价税合计核对",
+      "开票日期合理性、重复票号与批量汇总",
+      "finance"
+    ]
+  },
+  {
+    "id": "skill-bank-reconciliation",
+    "title": "银行流水对账",
+    "titleEn": "Bank Reconciliation",
+    "description": "两方账单按金额与日期模糊匹配，输出未达账项",
+    "descriptionEn": "Fuzzy-match two statements by amount and date, list the unmatched items",
+    "content": "银行流水对账 Bank Reconciliation 两方账单按金额与日期模糊匹配，输出未达账项 Fuzzy-match two statements by amount and date, list the unmatched items 读入企业账面流水与银行流水两份清单，按金额 + 日期窗口做模糊匹配，支持一笔对多笔的拆分匹配，输出已匹配、仅一方存在（未达账项）与金额不符的条目，并标出可疑近似项与差异合计。结果直接打印，可输出 JSON 供二次处理。全程本地计算，账单数据不出本机。 Takes the book ledger and the bank statement and fuzzy-matches them on amount plus a date window, supporting one-to-many split matching. Reports matched rows, items present on only one side (uncleared items) and amount mismatches, flags near-miss candidates and gives a difference total. Results are printed, with JSON available for further processing. Runs entirely locally so statement data never leaves the machine. 金额 + 日期窗口的模糊匹配 未达账项与金额不符条目清单 一笔对多笔拆分匹配，标注可疑近似项 CSV 输入，可输出 JSON 供二次处理 Fuzzy matching on amount plus a date window Uncleared items and amount mismatch lists One-to-many split matching, with near-miss candidates flagged CSV input, JSON output for further processing 对账 记账 Reconciliation Bookkeeping finance 财税计算 Finance & Tax",
+    "url": "/apps/bank-reconciliation",
+    "type": "skill",
+    "category": "财税计算",
+    "categoryEn": "Finance & Tax",
+    "tags": [
+      "金额 + 日期窗口的模糊匹配",
+      "未达账项与金额不符条目清单",
+      "一笔对多笔拆分匹配，标注可疑近似项",
+      "CSV 输入，可输出 JSON 供二次处理",
+      "finance"
+    ]
+  },
+  {
+    "id": "skill-expense-audit",
+    "title": "报销单据检查",
+    "titleEn": "Expense Claim Audit",
+    "description": "检查报销清单的必填项、金额合计与重复票据，超标项按你提供的标准核对",
+    "descriptionEn": "Check required fields, totals and duplicate receipts; over-limit items checked against limits you supply",
+    "content": "报销单据检查 Expense Claim Audit 检查报销清单的必填项、金额合计与重复票据，超标项按你提供的标准核对 Check required fields, totals and duplicate receipts; over-limit items checked against limits you supply 在付款前对报销清单做一轮机械检查：必填字段是否齐全、分项合计与声明总金额是否吻合、票号是否重复、同人同日同额是否存在疑似拆分。超标检查需要你提供本单位的限额标准（--limit= 或 --limits-file=），未提供时该检查跳过——脚本不内置任何限额。输出可执行的退回意见清单。 A mechanical pre-payment pass over expense claims: required fields present, line items summing to the declared total, duplicate receipt numbers, and suspected splitting (same person, same day, same amount). Over-limit checking needs limits supplied by your organisation via --limit= or --limits-file=; if none are given the check is skipped, since the script ships with no built-in limits. Produces an actionable list of items to send back. 必填字段完整性检查 分项合计与声明总金额勾稽 重复票号与同人同日同额疑似拆分提示 超标项检查（需先提供限额标准） Required field completeness check Line item vs declared total consistency Duplicate receipts and suspected split claims Over-limit checks (requires supplied limits) 报销 Expense claims finance admin 财税计算 Finance & Tax",
+    "url": "/apps/expense-audit",
+    "type": "skill",
+    "category": "财税计算",
+    "categoryEn": "Finance & Tax",
+    "tags": [
+      "必填字段完整性检查",
+      "分项合计与声明总金额勾稽",
+      "重复票号与同人同日同额疑似拆分提示",
+      "超标项检查（需先提供限额标准）",
+      "finance",
+      "admin"
+    ]
+  },
+  {
+    "id": "skill-deadline-calculator",
+    "title": "期限计算",
+    "titleEn": "Deadline Calculator",
+    "description": "按民法典口径推算期限届满日，休假日自动顺延",
+    "descriptionEn": "Compute deadlines under the Civil Code, with automatic holiday rollover",
+    "content": "期限计算 Deadline Calculator 按民法典口径推算期限届满日，休假日自动顺延 Compute deadlines under the Civil Code, with automatic holiday rollover 用于诉讼时效、答辩期、合同到期、试用期届满等场景的期限推算。默认按民法典口径（开始的当日不计入，自次日起算）；届满日落在法定休假日或周休息日时自动顺延，并逐日列出顺延原因便于复核。工作日口径需先填入当年度放假安排（法定休假日与调休上班日）后才能使用。 Deadline computation for limitation periods, response windows, contract expiry and probation end. Uses the Civil Code convention by default (the starting day is excluded; counting begins the next day). When the expiry date lands on a statutory holiday or weekly rest day it rolls forward automatically and lists each skipped day for review. Working-day counting requires the current year holiday schedule to be filled in first. 民法典口径：开始当日不计入，自次日起算 届满日落在休假日自动顺延，逐日列出跳过原因 按日 / 按月 / 按年推算，输出起算日与届满日 工作日口径需先填年度放假安排（含调休上班日） Civil Code convention: starting day excluded, counting from the next day Automatic rollover off rest days, with a per-day reason list By day / month / year, reporting start and expiry dates Working-day mode needs the annual holiday schedule filled in first 期限计算 合同审查 Deadlines Contract review legal hr 法务合规 Legal & Compliance",
+    "url": "/apps/deadline-calculator",
+    "type": "skill",
+    "category": "法务合规",
+    "categoryEn": "Legal & Compliance",
+    "tags": [
+      "民法典口径：开始当日不计入，自次日起算",
+      "届满日落在休假日自动顺延，逐日列出跳过原因",
+      "按日 / 按月 / 按年推算，输出起算日与届满日",
+      "工作日口径需先填年度放假安排（含调休上班日）",
+      "legal",
+      "hr"
+    ]
+  },
+  {
+    "id": "skill-pii-redactor",
+    "title": "敏感信息脱敏",
+    "titleEn": "PII Redactor",
+    "description": "识别并脱敏手机号、身份证号、银行卡号、邮箱、车牌与 IP",
+    "descriptionEn": "Detect and mask phone numbers, ID numbers, bank cards, emails, plates and IP addresses",
+    "content": "敏感信息脱敏 PII Redactor 识别并脱敏手机号、身份证号、银行卡号、邮箱、车牌与 IP Detect and mask phone numbers, ID numbers, bank cards, emails, plates and IP addresses 在文档外发、日志共享、演示数据准备等场景，先对文本做本地脱敏再交出去。统一采用保留格式的部分掩码（手机号 138****5678、身份证与银行卡仅留后四位），便于下游仍可按格式校验。不做姓名与住址的通用识别，可输出命中位置清单以便复核。 Redact sensitive values locally before sharing documents, logs or demo data. Applies format-preserving partial masking throughout (138****5678 for phone numbers, last four only for ID and bank card numbers) so downstream format validation still works. General name and address recognition is not attempted. Can emit a hit list with positions for review. Everything runs locally. 手机号 / 身份证 / 银行卡 / 邮箱 / 车牌 / IPv4 识别 保留格式的部分掩码（身份证可选 --id-level=keep6） 统一社会信用代码识别（默认关闭，--types=uscc 开启） 输出命中位置清单便于复核，纯本地处理 Phone / ID / bank card / email / plate / IPv4 detection Format-preserving partial masking (--id-level=keep6 for IDs) Unified social credit code detection (off by default, --types=uscc) Hit list with positions for review, fully local 脱敏 合规检查 Redaction Compliance legal dev admin 法务合规 Legal & Compliance",
+    "url": "/apps/pii-redactor",
+    "type": "skill",
+    "category": "法务合规",
+    "categoryEn": "Legal & Compliance",
+    "tags": [
+      "手机号 / 身份证 / 银行卡 / 邮箱 / 车牌 / IPv4 识别",
+      "保留格式的部分掩码（身份证可选 --id-level=keep6）",
+      "统一社会信用代码识别（默认关闭，--types=uscc 开启）",
+      "输出命中位置清单便于复核，纯本地处理",
+      "legal",
+      "dev",
+      "admin"
+    ]
+  },
+  {
+    "id": "skill-contract-checklist",
+    "title": "合同要素检查",
+    "titleEn": "Contract Checklist",
+    "description": "检查合同是否包含必备条款，缺失项逐条列出",
+    "descriptionEn": "Check whether a contract contains all required clauses, list what is missing",
+    "content": "合同要素检查 Contract Checklist 检查合同是否包含必备条款，缺失项逐条列出 Check whether a contract contains all required clauses, list what is missing 对合同文本做结构级检查：主体、标的、数量与质量、价款、履行期限与地点、违约责任、争议解决等必备条款是否存在。内置民法典 470 条、劳动合同法 17 条、民法典 704 条三类条款模板。脚本只做确定性的存在性与占位符检查，不提取金额与日期，也不判断条款实质是否公平——那部分由 Agent 阅读理解后判断。 A structural pass over contract text: are parties, subject matter, quantity and quality, price, performance period and place, breach liability and dispute resolution all present. Ships with three clause templates (Civil Code art. 470, Labour Contract Law art. 17, Civil Code art. 704). The script does deterministic presence and placeholder checks only — it does not extract amounts or dates, and whether a clause is substantively fair is left to the Agent reading the text. 必备条款存在性检查（三类内置条款模板） 待填占位符识别（____、【 】、TBD 等） 当事人成对称谓检查：只出现一方时提示 缺失项清单输出，语义判断交由 Agent Required clause presence check (three built-in templates) Unfilled placeholder detection (____, TBD) Paired party-term check: flags one-sided contracts Missing-item list, semantic judgement delegated to the Agent 合同审查 条款检查 Contract review Clause check legal 法务合规 Legal & Compliance",
+    "url": "/apps/contract-checklist",
+    "type": "skill",
+    "category": "法务合规",
+    "categoryEn": "Legal & Compliance",
+    "tags": [
+      "必备条款存在性检查（三类内置条款模板）",
+      "待填占位符识别（____、【 】、TBD 等）",
+      "当事人成对称谓检查：只出现一方时提示",
+      "缺失项清单输出，语义判断交由 Agent",
+      "legal"
+    ]
+  },
+  {
+    "id": "skill-file-evidence-seal",
+    "title": "文件证据固化",
+    "titleEn": "File Evidence Seal",
+    "description": "为目录生成可事后核验的 SHA-256 清单",
+    "descriptionEn": "Generate a verifiable SHA-256 manifest for a directory",
+    "content": "文件证据固化 File Evidence Seal 为目录生成可事后核验的 SHA-256 清单 Generate a verifiable SHA-256 manifest for a directory 对一个目录及其所有文件计算 SHA-256，生成含时间戳与文件大小的清单文件，并给出整体摘要 rootHash。之后可用清单重新核验目录，区分新增、删除、内容修改与仅修改时间变化——仅时间变化不判为篡改，避免误报。适用于电子证据固定、交付物留痕与备份完整性核验。 Computes SHA-256 for a directory and every file in it, writing a manifest with timestamps and sizes plus an overall rootHash. The manifest can later be used to re-verify the directory, distinguishing added, removed, content-modified and mtime-only changes — a changed timestamp alone is not reported as tampering. Intended for evidence preservation, delivery records and backup verification. 递归计算 SHA-256 并生成清单文件 事后重新核验：新增 / 删除 / 内容修改 / 仅时间变化 整体摘要 rootHash，可作同步校验卡口 默认排除 .DS_Store / Thumbs.db，支持 --exclude Recursive SHA-256 computation with a manifest file Re-verification: added / removed / modified / mtime-only Overall rootHash, usable as a sync gate Skips .DS_Store / Thumbs.db by default, --exclude supported 证据固化 Evidence preservation legal devops 法务合规 Legal & Compliance",
+    "url": "/apps/file-evidence-seal",
+    "type": "skill",
+    "category": "法务合规",
+    "categoryEn": "Legal & Compliance",
+    "tags": [
+      "递归计算 SHA-256 并生成清单文件",
+      "事后重新核验：新增 / 删除 / 内容修改 / 仅时间变化",
+      "整体摘要 rootHash，可作同步校验卡口",
+      "默认排除 .DS_Store / Thumbs.db，支持 --exclude",
+      "legal",
+      "devops"
+    ]
+  },
+  {
+    "id": "skill-csv-cleaner",
+    "title": "CSV 清洗",
+    "titleEn": "CSV Cleaner",
+    "description": "编码检测、分隔符嗅探、去空行、类型归一化与日期标准化",
+    "descriptionEn": "Encoding detection, delimiter sniffing, type normalisation, date standardisation",
+    "content": "CSV 清洗 CSV Cleaner 编码检测、分隔符嗅探、去空行、类型归一化与日期标准化 Encoding detection, delimiter sniffing, type normalisation, date standardisation 把来源混乱的 CSV 变成可分析的干净表：自动检测编码与分隔符、去掉空行与首尾空白、统一数字与日期格式、按 RFC4180 处理引号转义，并给出列级体检报告（类型、空值、唯一值、非法日期）。8 位编号（如订单号）默认不会被误判为日期。 Turns a messy CSV into something analysable: detects encoding and delimiter, strips blank rows and padding, normalises numbers and dates, handles RFC4180 quoted escapes, and reports per-column health (type, blanks, unique counts, invalid dates). Eight-digit identifiers such as order numbers are not mistaken for dates. 编码检测（UTF-8 / GBK / BOM）与分隔符嗅探 去空行、去首尾空白、数字与日期归一化 列级体检：类型、空值、唯一值、非法日期 清洗报告说明每项改动，不做静默修改 Encoding detection (UTF-8 / GBK / BOM) and delimiter sniffing Blank rows and padding removed; number and date normalisation Per-column health: type, blanks, unique counts, invalid dates Cleaning report per change, nothing mutated silently 数据清洗 编码处理 Data cleaning Encoding ops finance sales 数据统计 Data Statistics",
+    "url": "/apps/csv-cleaner",
+    "type": "skill",
+    "category": "数据统计",
+    "categoryEn": "Data Statistics",
+    "tags": [
+      "编码检测（UTF-8 / GBK / BOM）与分隔符嗅探",
+      "去空行、去首尾空白、数字与日期归一化",
+      "列级体检：类型、空值、唯一值、非法日期",
+      "清洗报告说明每项改动，不做静默修改",
+      "ops",
+      "finance",
+      "sales"
+    ]
+  },
+  {
+    "id": "skill-csv-aggregator",
+    "title": "CSV 统计汇总",
+    "titleEn": "CSV Aggregator",
+    "description": "分组聚合与常用统计，输出可直接引用的结果",
+    "descriptionEn": "Group-by aggregation and descriptive statistics ready to cite",
+    "content": "CSV 统计汇总 CSV Aggregator 分组聚合与常用统计，输出可直接引用的结果 Group-by aggregation and descriptive statistics ready to cite 对表格做分组聚合与描述性统计：求和、均值、中位数、分位数、最大最小值、去重与空值计数、TopN。支持按一列或多列分组，结果输出为对齐文本表格或 JSON；describe 子命令可一次给出每列的非空、空值、去重、极值、均值、中位数与 P90。 Group-by aggregation and descriptive statistics over a table: sum, mean, median, quantiles, min/max, distinct and blank counts, and TopN. Groups by one or more columns and prints an aligned text table or JSON; the describe subcommand reports per-column non-blank, blank, distinct, extremes, mean, median and P90 in one pass. 按单列或多列分组聚合 求和 / 均值 / 中位数 / 分位数 / 极值 去重计数、空值计数与 TopN 排行 输出对齐文本表格或 JSON，describe 给单列概览 Group by one or more columns Sum / mean / median / quantiles / extremes Distinct counts, blank counts and TopN ranking Aligned text table or JSON; describe for per-column profiles 汇总统计 报表生成 Aggregation Reporting ops sales executive 数据统计 Data Statistics",
+    "url": "/apps/csv-aggregator",
+    "type": "skill",
+    "category": "数据统计",
+    "categoryEn": "Data Statistics",
+    "tags": [
+      "按单列或多列分组聚合",
+      "求和 / 均值 / 中位数 / 分位数 / 极值",
+      "去重计数、空值计数与 TopN 排行",
+      "输出对齐文本表格或 JSON，describe 给单列概览",
+      "ops",
+      "sales",
+      "executive"
+    ]
+  },
+  {
+    "id": "skill-data-quality-checker",
+    "title": "数据质量体检",
+    "titleEn": "Data Quality Checker",
+    "description": "空值率、唯一性、异常值与枚举合法性体检报告",
+    "descriptionEn": "Null rates, uniqueness, outliers and enum validity in one report",
+    "content": "数据质量体检 Data Quality Checker 空值率、唯一性、异常值与枚举合法性体检报告 Null rates, uniqueness, outliers and enum validity in one report 对一份表格做整体体检：每列的空值率、唯一值分布、类型一致性、数值异常值、枚举字段的非法取值，以及完全重复行与形似日期但非法的取值。问题按 Q（疑似问题）与 W（需人工判断）两级分组输出。适合在导入系统或对外报送前跑一遍。 A full health check of a table: per-column null rates, value distribution, type consistency, numeric outliers, invalid enum values, fully duplicated rows and date-shaped but invalid values. Issues are grouped into two levels, Q (likely problems) and W (needs human judgement). Run it before loading data into a system or sending it out. 空值率与唯一性统计 类型一致性与枚举合法性检查 数值异常值、完全重复行与非法日期识别 按 Q（疑似问题）/ W（需人工判断）两级分组输出 Null rate and uniqueness statistics Type consistency and enum validity Numeric outliers, duplicate rows and invalid dates Issues grouped into Q (likely) and W (needs judgement) 质量体检 Quality check ops 数据统计 Data Statistics",
+    "url": "/apps/data-quality-checker",
+    "type": "skill",
+    "category": "数据统计",
+    "categoryEn": "Data Statistics",
+    "tags": [
+      "空值率与唯一性统计",
+      "类型一致性与枚举合法性检查",
+      "数值异常值、完全重复行与非法日期识别",
+      "按 Q（疑似问题）/ W（需人工判断）两级分组输出",
+      "ops"
+    ]
+  },
+  {
+    "id": "skill-csv-diff",
+    "title": "表格差异比对",
+    "titleEn": "Table Diff",
+    "description": "按关键列比对两份表格，输出新增、删除与变更",
+    "descriptionEn": "Compare two tables by key column: added, removed and changed rows",
+    "content": "表格差异比对 Table Diff 按关键列比对两份表格，输出新增、删除与变更 Compare two tables by key column: added, removed and changed rows 比对两份结构相近的表格（如本月与上月、导出前后）：按关键列对齐，列出新增行、删除行与发生变更的字段及新旧值。可用 --compare 指定只比对哪些列；数值按归一化比较，1200.00 与 1200 不算变更。没有浮点容差参数，数值需完全一致才认为未变。 Compares two structurally similar tables (this month vs last, before vs after an export): aligns rows on a key column and lists added rows, removed rows, and changed fields with old and new values. Use --compare to restrict comparison to chosen columns. Numbers are compared after normalisation, so 1200.00 and 1200 are not treated as a change; there is no float tolerance, so values must match exactly. 按关键列对齐两表 输出新增 / 删除 / 变更及新旧值 可指定只比对哪些列（--compare） 数值归一化比较与差异汇总统计 Row alignment on a key column Added / removed / changed with old and new values Restrict comparison to chosen columns (--compare) Numeric normalisation plus difference summary counts 差异比对 去重 Diffing Deduplication ops finance 数据统计 Data Statistics",
+    "url": "/apps/csv-diff",
+    "type": "skill",
+    "category": "数据统计",
+    "categoryEn": "Data Statistics",
+    "tags": [
+      "按关键列对齐两表",
+      "输出新增 / 删除 / 变更及新旧值",
+      "可指定只比对哪些列（--compare）",
+      "数值归一化比较与差异汇总统计",
+      "ops",
+      "finance"
+    ]
+  },
+  {
+    "id": "skill-banned-word-checker",
+    "title": "违禁词检测",
+    "titleEn": "Banned Word Checker",
+    "description": "检测平台违禁词及其常见变体，语义变体交由 Agent 判断",
+    "descriptionEn": "Detect banned terms and common evasions; semantic variants go to the Agent",
+    "content": "违禁词检测 Banned Word Checker 检测平台违禁词及其常见变体，语义变体交由 Agent 判断 Detect banned terms and common evasions; semantic variants go to the Agent 对文案做发布前的违禁词扫描。脚本负责字形层面的确定性部分：词库命中，以及全角半角、插入空格与符号、零宽字符、跨行拆分等规避写法；词表中已列出的拼音与同音别名同样能命中。真正隐晦的表达（比喻、黑话）由 Agent 阅读理解后判断。支持挂载企业自有词表。 Pre-publish scan for banned wording. The script handles the orthographic, deterministic part: dictionary hits plus evasions such as full-width forms, inserted spaces or symbols, zero-width characters and line-break splitting; pinyin and homophone aliases listed in the word list are matched too. Genuinely subtle phrasing (metaphor, slang) is left to the Agent reading the copy. Custom company word lists can be mounted. 字形层面变体识别（全角 / 空格 / 符号 / 零宽 / 跨行） 支持挂载企业自有词表（含拼音与同音别名） 输出命中行号、原文片段与上下文便于人工复核 隐晦语义变体交由 Agent 判断 Orthographic evasion detection (full-width / spacing / symbols / zero-width / line breaks) Custom company word lists, including pinyin and homophone aliases Hit line numbers, matched text and context for human review Subtle semantic variants delegated to the Agent 违禁词 合规检查 Banned words Compliance ops marketing 内容合规 Content Compliance",
+    "url": "/apps/banned-word-checker",
+    "type": "skill",
+    "category": "内容合规",
+    "categoryEn": "Content Compliance",
+    "tags": [
+      "字形层面变体识别（全角 / 空格 / 符号 / 零宽 / 跨行）",
+      "支持挂载企业自有词表（含拼音与同音别名）",
+      "输出命中行号、原文片段与上下文便于人工复核",
+      "隐晦语义变体交由 Agent 判断",
+      "ops",
+      "marketing"
+    ]
+  },
+  {
+    "id": "skill-pii-leak-scanner",
+    "title": "敏感信息泄露检测",
+    "titleEn": "PII Leak Scanner",
+    "description": "扫描文本中的手机号、身份证、银行卡、邮箱与密钥",
+    "descriptionEn": "Scan text for phone numbers, ID numbers, bank cards, emails and keys",
+    "content": "敏感信息泄露检测 PII Leak Scanner 扫描文本中的手机号、身份证、银行卡、邮箱与密钥 Scan text for phone numbers, ID numbers, bank cards, emails and keys 在对外发布、提交代码或共享文档前，扫描其中是否夹带了手机号、身份证号、银行卡号、邮箱地址，或 AccessKey、私钥、JWT、各类 token 与含口令的连接串。输出命中类型、位置、严重度与掩码后的样例，原始值不回显。 Before publishing, committing or sharing, scan for embedded phone numbers, ID numbers, bank card numbers and email addresses, as well as access keys, private keys, JWTs, tokens of various kinds and credentialed connection strings. Reports the hit type, position, severity and a masked sample; raw values are never echoed back. 手机号 / 身份证 / 银行卡 / 邮箱识别 AccessKey、私钥、JWT、token 与含口令连接串检测 输出掩码样例与三级严重度，不回显原始值 支持目录级批量扫描 Phone / ID / bank card / email detection Access keys, private keys, JWTs, tokens and credentialed connection strings Masked samples with three severity levels, raw values never echoed Directory-wide batch scanning 敏感信息 Sensitive data ops legal dev 内容合规 Content Compliance",
+    "url": "/apps/pii-leak-scanner",
+    "type": "skill",
+    "category": "内容合规",
+    "categoryEn": "Content Compliance",
+    "tags": [
+      "手机号 / 身份证 / 银行卡 / 邮箱识别",
+      "AccessKey、私钥、JWT、token 与含口令连接串检测",
+      "输出掩码样例与三级严重度，不回显原始值",
+      "支持目录级批量扫描",
+      "ops",
+      "legal",
+      "dev"
+    ]
+  },
+  {
+    "id": "skill-ad-law-risk-checker",
+    "title": "极限词检测",
+    "titleEn": "Ad Law Risk Checker",
+    "description": "检测广告法风险词，如「最」「第一」「国家级」",
+    "descriptionEn": "Flag advertising-law risk wording such as superlatives and efficacy claims",
+    "content": "极限词检测 Ad Law Risk Checker 检测广告法风险词，如「最」「第一」「国家级」 Flag advertising-law risk wording such as superlatives and efficacy claims 扫描营销文案中的广告法风险表述，重点是绝对化用语（国家级、最高级、最佳等）与疗效承诺类词（根治、无副作用、永久等），按高 / 中 / 低三级给出风险等级与命中位置，并附上下文便于人工复核。常见非广告语境（最佳食用期、第一层、最大载重）会自动豁免。需要说明：虚假宣传、数据无依据这类问题脚本查不出，改写方向由 Agent 给出。 Scans marketing copy for advertising-law risk wording, focusing on absolute and superlative terms (national-level, highest-grade, best) and efficacy claims (cures, no side effects, permanent), graded high / medium / low with hit positions and context for human review. Common non-advertising usages (best-before dates, \"first layer\", \"max load\") are exempted automatically. Unsubstantiated or false claims cannot be detected by the script; safer rewording is produced by the Agent. 绝对化用语与疗效承诺词识别（高 / 中 / 低三级） 常见非广告语境自动豁免，减少误报 风险等级、命中位置与上下文输出 改写建议交由 Agent 生成 Absolute / superlative and efficacy-claim detection, graded high / medium / low Automatic exemptions for non-advertising usage Risk level, hit positions and surrounding context Rewriting suggestions generated by the Agent 极限词 合规检查 Superlatives Compliance marketing ops 内容合规 Content Compliance",
+    "url": "/apps/ad-law-risk-checker",
+    "type": "skill",
+    "category": "内容合规",
+    "categoryEn": "Content Compliance",
+    "tags": [
+      "绝对化用语与疗效承诺词识别（高 / 中 / 低三级）",
+      "常见非广告语境自动豁免，减少误报",
+      "风险等级、命中位置与上下文输出",
+      "改写建议交由 Agent 生成",
+      "marketing",
+      "ops"
+    ]
+  },
+  {
+    "id": "skill-batch-rename",
+    "title": "批量重命名",
+    "titleEn": "Batch Rename",
+    "description": "按规则重命名大量文件，先预览再执行且可撤销",
+    "descriptionEn": "Rename many files by rule: preview first, execute, and undo",
+    "content": "批量重命名 Batch Rename 按规则重命名大量文件，先预览再执行且可撤销 Rename many files by rule: preview first, execute, and undo 按序号、日期、正则替换、大小写转换、前后缀与扩展名等规则批量重命名。执行前输出完整的「原名 → 新名」预览，确认后才落盘，并生成撤销清单可一条命令回滚。冲突检测会拦下重名与覆盖既有文件的情况。 Bulk renaming by sequence, date, regex substitution, case conversion, prefix, suffix and extension rules. Prints a full old-to-new preview before touching anything, applies only after confirmation, and writes an undo manifest for one-command rollback. Collision detection blocks duplicate names and overwriting existing files. 序号 / 日期 / 正则 / 大小写 / 前后缀等规则 执行前完整预览，确认后才落盘 生成撤销清单，一条命令回滚 冲突检测：拦下重名与覆盖既有文件 Sequence / date / regex / case / prefix-suffix rules Full preview before write, confirmation required Undo manifest for one-command rollback Collision detection: duplicate names and overwrite blocking 批量重命名 Batch rename admin design dev 文件批处理 File Batch Processing",
+    "url": "/apps/batch-rename",
+    "type": "skill",
+    "category": "文件批处理",
+    "categoryEn": "File Batch Processing",
+    "tags": [
+      "序号 / 日期 / 正则 / 大小写 / 前后缀等规则",
+      "执行前完整预览，确认后才落盘",
+      "生成撤销清单，一条命令回滚",
+      "冲突检测：拦下重名与覆盖既有文件",
+      "admin",
+      "design",
+      "dev"
+    ]
+  },
+  {
+    "id": "skill-duplicate-file-finder",
+    "title": "重复文件检测",
+    "titleEn": "Duplicate File Finder",
+    "description": "按内容哈希找出重复文件，先出组再决定是否清理",
+    "descriptionEn": "Group identical files by content hash; you decide what to delete",
+    "content": "重复文件检测 Duplicate File Finder 按内容哈希找出重复文件，先出组再决定是否清理 Group identical files by content hash; you decide what to delete 按内容哈希（而非文件名）扫描目录，把完全相同的文件归组，显示每组占用的空间。脚本只输出分组结果，绝不自行删除；可用 --out 生成待删清单，并用 --keep 指定每组保留哪一个（最早 / 最近修改 / 路径最短）。支持按最小体积过滤与排除目录。适合磁盘清理与资料库去重。 Scans a directory by content hash rather than filename, grouping byte-identical files and showing the space each group occupies. It only reports groups and never deletes anything itself; --out writes a deletion manifest and --keep chooses which copy to preserve (oldest, newest or shortest path). Filtering is by minimum size and excluded directories. Safe for disk cleanup and archive deduplication. 按内容哈希分组，不受文件名影响 显示每组数量与可回收空间 只输出分组，绝不自行删除文件 可生成待删清单，并指定每组保留哪一个 Content-hash grouping independent of filenames Per-group counts and reclaimable space Report only; never deletes anything itself Deletion manifest output, with a per-group keep policy 去重 Deduplication admin devops 文件批处理 File Batch Processing",
+    "url": "/apps/duplicate-file-finder",
+    "type": "skill",
+    "category": "文件批处理",
+    "categoryEn": "File Batch Processing",
+    "tags": [
+      "按内容哈希分组，不受文件名影响",
+      "显示每组数量与可回收空间",
+      "只输出分组，绝不自行删除文件",
+      "可生成待删清单，并指定每组保留哪一个",
+      "admin",
+      "devops"
+    ]
+  },
+  {
+    "id": "skill-dir-fingerprint",
+    "title": "目录指纹比对",
+    "titleEn": "Directory Fingerprint",
+    "description": "直接比对两份目录的内容差异",
+    "descriptionEn": "Compare two directories side by side by content",
+    "content": "目录指纹比对 Directory Fingerprint 直接比对两份目录的内容差异 Compare two directories side by side by content 直接比对两个目录（本地与备份、旧版与新版）：按相对路径 + 体积 + 内容 SHA-256 匹配，输出内容不同、仅一边存在的文件与两侧整体摘要。顶层目录名不同也能比对，修改时间变化不参与判定。适用于发布前后核对、备份校验与交付物比对。 Compares two live directories (local vs backup, old vs new release): matches files by relative path plus size and SHA-256, then reports content differences, files present on only one side, and an overall digest for each side. Top-level directory names may differ. Modification times are not part of the comparison. Useful for pre/post release checks, backup verification and delivery comparison. 按相对路径匹配，顶层目录名不同也能比 输出相同 / 仅 A 有 / 仅 B 有 / 内容不同四类 两侧整体摘要哈希，可作同步校验卡口 可按目录名排除，默认跳过系统文件 Relative-path matching even when top-level names differ Same / only-in-A / only-in-B / content-differs classification Overall digest per side, usable as a sync gate Exclude by directory name; system files skipped by default 目录比对 完整性校验 Directory diff Integrity devops legal 文件批处理 File Batch Processing",
+    "url": "/apps/dir-fingerprint",
+    "type": "skill",
+    "category": "文件批处理",
+    "categoryEn": "File Batch Processing",
+    "tags": [
+      "按相对路径匹配，顶层目录名不同也能比",
+      "输出相同 / 仅 A 有 / 仅 B 有 / 内容不同四类",
+      "两侧整体摘要哈希，可作同步校验卡口",
+      "可按目录名排除，默认跳过系统文件",
+      "devops",
+      "legal"
+    ]
+  },
+  {
+    "id": "skill-markdown-linter",
+    "title": "Markdown 规范检查",
+    "titleEn": "Markdown Linter",
+    "description": "检查并修复 Markdown 的标题层级、列表、链接与表格",
+    "descriptionEn": "Check and fix Markdown headings, lists, links and tables",
+    "content": "Markdown 规范检查 Markdown Linter 检查并修复 Markdown 的标题层级、列表、链接与表格 Check and fix Markdown headings, lists, links and tables 对 Markdown 文档做规范检查：标题层级是否跳级、列表缩进是否一致、链接与图片引用是否有效、代码块围栏是否闭合、表格是否对齐。可只报告问题，也可自动修复安全项。 Lints Markdown documents: heading level jumps, list indentation, link and image references, code fence closure and table alignment. Can report only, or auto-fix the safe rules. 标题层级跳级与重复检查 列表缩进、代码块围栏、表格对齐 链接与图片引用有效性检查 报告模式与自动修复模式 Heading level jumps and duplicates List indentation, code fences, table alignment Link and image reference validity Report-only or auto-fix mode Markdown 排版 Markdown Formatting dev admin 文档处理 Document Processing",
+    "url": "/apps/markdown-linter",
+    "type": "skill",
+    "category": "文档处理",
+    "categoryEn": "Document Processing",
+    "tags": [
+      "标题层级跳级与重复检查",
+      "列表缩进、代码块围栏、表格对齐",
+      "链接与图片引用有效性检查",
+      "报告模式与自动修复模式",
+      "dev",
+      "admin"
+    ]
+  },
+  {
+    "id": "skill-markdown-table-builder",
+    "title": "Markdown 表格生成",
+    "titleEn": "Markdown Table Builder",
+    "description": "从 CSV/TSV 生成对齐的 Markdown 表格",
+    "descriptionEn": "Turn CSV/TSV into an aligned Markdown table",
+    "content": "Markdown 表格生成 Markdown Table Builder 从 CSV/TSV 生成对齐的 Markdown 表格 Turn CSV/TSV into an aligned Markdown table 把 CSV 或 TSV 数据转成列宽对齐的 Markdown 表格，可直接贴进文档或 README。对齐方式可整体指定（auto / left / right / center），auto 模式下数字列自动右对齐；中日韩全角字符按 2 个宽度计算，保证渲染后仍然对齐。处理含竖线与换行的单元格转义。 Converts CSV or TSV into a column-aligned Markdown table ready to paste into docs or a README. Alignment is set globally (auto / left / right / center); under auto, numeric columns are right-aligned. CJK full-width characters count as two columns so the table stays aligned after rendering. Escapes pipes and newlines inside cells. CSV / TSV 转对齐的 Markdown 表格 对齐方式整体指定，auto 模式下数字列右对齐 单元格转义（竖线、换行）与全角宽度对齐 可直接粘贴的输出 CSV / TSV to aligned Markdown table Global alignment; auto right-aligns numeric columns Cell escaping (pipes, newlines) and full-width aware widths Paste-ready output 表格 Markdown Tables Markdown ops dev 文档处理 Document Processing",
+    "url": "/apps/markdown-table-builder",
+    "type": "skill",
+    "category": "文档处理",
+    "categoryEn": "Document Processing",
+    "tags": [
+      "CSV / TSV 转对齐的 Markdown 表格",
+      "对齐方式整体指定，auto 模式下数字列右对齐",
+      "单元格转义（竖线、换行）与全角宽度对齐",
+      "可直接粘贴的输出",
+      "ops",
+      "dev"
+    ]
+  },
+  {
+    "id": "skill-subtitle-converter",
+    "title": "字幕格式转换",
+    "titleEn": "Subtitle Converter",
+    "description": "SRT / ASS / VTT 字幕互转，保留时间轴与文本",
+    "descriptionEn": "Convert SRT / ASS / VTT subtitles, preserving timing and text",
+    "content": "字幕格式转换 Subtitle Converter SRT / ASS / VTT 字幕互转，保留时间轴与文本 Convert SRT / ASS / VTT subtitles, preserving timing and text 在常见字幕格式之间互转（SRT、ASS、VTT），按扩展名与内容特征自动识别输入格式，保留时间码精度与多行文本。从 ASS 转到其他格式时默认剥离样式标签，加 --keep-tags 可保留。不支持时间轴偏移与缩放，也不校验时间码的单调性与重叠；读取按 UTF-8 处理（自动去 BOM），GBK 编码的字幕需先转码。 Converts between common subtitle formats (SRT, ASS, VTT), detecting the input format from its extension and content, and preserving timecode precision and multi-line text. ASS style tags are stripped when converting away from ASS unless --keep-tags is given. Timeline shifting and scaling are not supported, and timecodes are not validated for monotonicity or overlap. Input is read as UTF-8 with BOM handling; GBK files must be transcoded first. SRT / ASS / VTT 互转 输入格式自动识别（扩展名 + 内容特征） 保留时间码精度与多行文本 ASS 样式标签可选保留（--keep-tags，默认剥离） SRT / ASS / VTT conversion Automatic input format detection (extension plus content) Timecode precision and multi-line text preserved ASS style tags kept on request (--keep-tags; stripped by default) 字幕 格式转换 Subtitles Conversion ops marketing 文档处理 Document Processing",
+    "url": "/apps/subtitle-converter",
+    "type": "skill",
+    "category": "文档处理",
+    "categoryEn": "Document Processing",
+    "tags": [
+      "SRT / ASS / VTT 互转",
+      "输入格式自动识别（扩展名 + 内容特征）",
+      "保留时间码精度与多行文本",
+      "ASS 样式标签可选保留（--keep-tags，默认剥离）",
+      "ops",
+      "marketing"
+    ]
+  },
+  {
+    "id": "skill-json-toolkit",
+    "title": "JSON 工具集",
+    "titleEn": "JSON Toolkit",
+    "description": "格式化、批量语法校验与 TypeScript 类型生成",
+    "descriptionEn": "Format, batch-validate and generate TypeScript types",
+    "content": "JSON 工具集 JSON Toolkit 格式化、批量语法校验与 TypeScript 类型生成 Format, batch-validate and generate TypeScript types 面向研发的 JSON 处理：格式化与压缩、批量校验多个文件的语法并定位错误行、从示例 JSON 推断并生成 TypeScript interface。全部基于 Node 内置能力，无需安装依赖。 JSON tooling for developers: pretty-print and minify, batch syntax validation with error positions, and TypeScript interface inference from sample JSON. Built purely on Node built-ins, no dependencies to install. 格式化与压缩 批量语法校验并定位错误位置 从样例推断生成 TypeScript interface 目录级批量处理 Pretty-print and minify Batch validation with error positions TypeScript interface inference from samples Directory-wide batch processing 类型生成 格式转换 Type generation Conversion dev 研发运维 Dev & Ops",
+    "url": "/apps/json-toolkit",
+    "type": "skill",
+    "category": "研发运维",
+    "categoryEn": "Dev & Ops",
+    "tags": [
+      "格式化与压缩",
+      "批量语法校验并定位错误位置",
+      "从样例推断生成 TypeScript interface",
+      "目录级批量处理",
+      "dev"
+    ]
+  },
+  {
+    "id": "skill-secret-scanner",
+    "title": "密钥泄露扫描",
+    "titleEn": "Secret Scanner",
+    "description": "扫描代码目录中的密钥、AccessKey 与私钥特征",
+    "descriptionEn": "Scan a codebase for keys, access keys and private key material",
+    "content": "密钥泄露扫描 Secret Scanner 扫描代码目录中的密钥、AccessKey 与私钥特征 Scan a codebase for keys, access keys and private key material 在提交或发布前扫描代码目录，查找疑似 AccessKey / SecretKey、私钥文件头、硬编码 Token、数据库连接串等特征。除工作区外，还能扫描 Git 历史（--git-history）与暂存区（--staged），用于清理已进入历史或即将提交的凭证。输出文件路径、行号与掩码样例，不回显原始值；支持排除目录与指定类别。 Scans a code directory before commit or release for suspected access keys / secret keys, private key headers, hardcoded tokens and database connection strings. Besides the working tree it can scan Git history (--git-history) and the staging area (--staged), useful for cleaning up credentials already committed or about to be. Reports file, line and a masked sample, never the raw value. Exclusion paths and rule-type filtering are supported. AccessKey / SecretKey / Token 特征识别 私钥文件头与含口令连接串检测 输出位置与掩码样例，不回显原始值 可扫描 Git 历史与暂存区，支持排除目录 Access key / secret key / token pattern detection Private key headers and credentialed connection strings Positions with masked samples, no raw values Git history and staging area scanning; exclusion paths 密钥扫描 合规检查 Secret scanning Compliance dev devops 研发运维 Dev & Ops",
+    "url": "/apps/secret-scanner",
+    "type": "skill",
+    "category": "研发运维",
+    "categoryEn": "Dev & Ops",
+    "tags": [
+      "AccessKey / SecretKey / Token 特征识别",
+      "私钥文件头与含口令连接串检测",
+      "输出位置与掩码样例，不回显原始值",
+      "可扫描 Git 历史与暂存区，支持排除目录",
+      "dev",
+      "devops"
+    ]
+  },
+  {
+    "id": "skill-cron-explainer",
+    "title": "Cron 解析与推算",
+    "titleEn": "Cron Explainer",
+    "description": "解析 cron 表达式，输出未来执行时间与人类可读说明",
+    "descriptionEn": "Parse cron expressions: next run times and a plain-language description",
+    "content": "Cron 解析与推算 Cron Explainer 解析 cron 表达式，输出未来执行时间与人类可读说明 Parse cron expressions: next run times and a plain-language description 解析标准 5 段与 6 段 cron 表达式，输出未来若干次的执行时间，并给出人类可读的说明（如「每天 03:00」）。支持 ? 占位与月份 / 星期的英文别名，日期与星期同时受限时会提示按 OR 处理。时间按系统本地时区计算，可用 --from 指定起始时间，不支持指定时区。 Parses standard 5-field and 6-field cron expressions, prints the next N run times and a plain-language summary (e.g. \"every day at 03:00\"). Supports the ? placeholder and month / weekday aliases; when both day-of-month and day-of-week are restricted it flags OR semantics. Times are computed in the system local timezone, from --from if given; there is no timezone option. 5 段与 6 段 cron 表达式解析 输出未来 N 次执行时间 人类可读的调度说明 支持 ? 与月份 / 星期别名，日 / 周同时受限时提示 5-field and 6-field cron parsing Next N execution times Plain-language schedule description Supports ? and month / weekday aliases; OR semantics flagged 定时任务 Scheduled jobs devops dev 研发运维 Dev & Ops",
+    "url": "/apps/cron-explainer",
+    "type": "skill",
+    "category": "研发运维",
+    "categoryEn": "Dev & Ops",
+    "tags": [
+      "5 段与 6 段 cron 表达式解析",
+      "输出未来 N 次执行时间",
+      "人类可读的调度说明",
+      "支持 ? 与月份 / 星期别名，日 / 周同时受限时提示",
+      "devops",
+      "dev"
+    ]
+  }
+]
